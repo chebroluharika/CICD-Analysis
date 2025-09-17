@@ -1,0 +1,267 @@
+2025-04-14 22:26:16,595 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-14 22:26:16,607 - cephci - run:722 - INFO - Running test test_bootstrap.py
+2025-04-14 22:26:16,608 - cephci - test_bootstrap:585 - INFO - Executing  bootstrap
+2025-04-14 22:26:16,610 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.198.145
+2025-04-14 22:26:17,615 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.198.145 took 1.004591 seconds
+2025-04-14 22:26:17,617 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.198.145
+2025-04-14 22:26:18,622 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.198.145 took 1.004631 seconds
+2025-04-14 22:26:18,625 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.198.145
+2025-04-14 22:26:19,630 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.198.145 took 1.004619 seconds
+2025-04-14 22:26:19,632 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.198.145
+2025-04-14 22:26:20,637 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.198.145 took 1.004004 seconds
+2025-04-14 22:26:20,637 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node2
+
+2025-04-14 22:26:20,639 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.198.145
+2025-04-14 22:26:21,643 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.198.145 took 1.003793 seconds
+2025-04-14 22:26:21,646 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.203.90
+2025-04-14 22:26:22,651 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.203.90 took 1.004722 seconds
+2025-04-14 22:26:22,654 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.203.90
+2025-04-14 22:26:23,659 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.203.90 took 1.004746 seconds
+2025-04-14 22:26:23,661 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.203.90
+2025-04-14 22:26:24,666 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.203.90 took 1.004065 seconds
+2025-04-14 22:26:24,668 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.203.90
+2025-04-14 22:26:25,672 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.203.90 took 1.003698 seconds
+2025-04-14 22:26:25,673 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node4
+
+2025-04-14 22:26:25,674 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.203.90
+2025-04-14 22:26:26,678 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.203.90 took 1.003754 seconds
+2025-04-14 22:26:26,684 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.198.203
+2025-04-14 22:26:27,688 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.198.203 took 1.003853 seconds
+2025-04-14 22:26:27,690 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.198.203
+2025-04-14 22:26:28,695 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.198.203 took 1.003484 seconds
+2025-04-14 22:26:28,696 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.198.203
+2025-04-14 22:26:29,701 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.198.203 took 1.004051 seconds
+2025-04-14 22:26:29,703 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.198.203
+2025-04-14 22:26:30,707 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.198.203 took 1.003149 seconds
+2025-04-14 22:26:30,708 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node1-installer
+
+2025-04-14 22:26:30,710 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.198.203
+2025-04-14 22:26:31,714 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.198.203 took 1.003787 seconds
+2025-04-14 22:26:31,718 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.203.101
+2025-04-14 22:26:32,723 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.203.101 took 1.004924 seconds
+2025-04-14 22:26:32,725 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.203.101
+2025-04-14 22:26:33,730 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.203.101 took 1.004165 seconds
+2025-04-14 22:26:33,732 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.203.101
+2025-04-14 22:26:34,737 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.203.101 took 1.004189 seconds
+2025-04-14 22:26:34,740 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.203.101
+2025-04-14 22:26:35,744 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.203.101 took 1.004008 seconds
+2025-04-14 22:26:35,745 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node6
+
+2025-04-14 22:26:35,747 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.203.101
+2025-04-14 22:26:36,752 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.203.101 took 1.003917 seconds
+2025-04-14 22:26:36,754 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.188.47
+2025-04-14 22:26:37,760 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.188.47 took 1.004972 seconds
+2025-04-14 22:26:37,763 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.188.47
+2025-04-14 22:26:38,768 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.188.47 took 1.004444 seconds
+2025-04-14 22:26:38,770 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.188.47
+2025-04-14 22:26:39,774 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.188.47 took 1.003661 seconds
+2025-04-14 22:26:39,777 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.188.47
+2025-04-14 22:26:40,782 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.188.47 took 1.004233 seconds
+2025-04-14 22:26:40,783 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node7
+
+2025-04-14 22:26:40,784 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.188.47
+2025-04-14 22:26:41,789 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.188.47 took 1.003664 seconds
+2025-04-14 22:26:41,793 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.188.50
+2025-04-14 22:26:42,798 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.188.50 took 1.004967 seconds
+2025-04-14 22:26:42,800 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.188.50
+2025-04-14 22:26:43,805 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.188.50 took 1.004219 seconds
+2025-04-14 22:26:43,808 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.188.50
+2025-04-14 22:26:44,812 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.188.50 took 1.004151 seconds
+2025-04-14 22:26:44,814 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.188.50
+2025-04-14 22:26:45,819 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.188.50 took 1.003974 seconds
+2025-04-14 22:26:45,820 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node8
+
+2025-04-14 22:26:45,822 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.188.50
+2025-04-14 22:26:46,827 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.188.50 took 1.004294 seconds
+2025-04-14 22:26:46,830 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.188.109
+2025-04-14 22:26:47,837 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.188.109 took 1.005794 seconds
+2025-04-14 22:26:47,839 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.188.109
+2025-04-14 22:26:48,844 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.188.109 took 1.004546 seconds
+2025-04-14 22:26:48,847 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.188.109
+2025-04-14 22:26:49,851 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.188.109 took 1.003936 seconds
+2025-04-14 22:26:49,854 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.188.109
+2025-04-14 22:26:50,858 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.188.109 took 1.00405 seconds
+2025-04-14 22:26:50,859 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node9
+
+2025-04-14 22:26:50,861 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.188.109
+2025-04-14 22:26:51,867 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.188.109 took 1.004968 seconds
+2025-04-14 22:26:51,877 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.203.175
+2025-04-14 22:26:52,882 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.203.175 took 1.004922 seconds
+2025-04-14 22:26:52,884 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.203.175
+2025-04-14 22:26:53,889 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.203.175 took 1.00446 seconds
+2025-04-14 22:26:53,892 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.203.175
+2025-04-14 22:26:54,896 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.203.175 took 1.003961 seconds
+2025-04-14 22:26:54,898 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.203.175
+2025-04-14 22:26:55,902 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.203.175 took 1.003388 seconds
+2025-04-14 22:26:55,903 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node5
+
+2025-04-14 22:26:55,905 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.203.175
+2025-04-14 22:26:56,909 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.203.175 took 1.003794 seconds
+2025-04-14 22:26:56,915 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.195.134
+2025-04-14 22:26:57,919 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.195.134 took 1.003874 seconds
+2025-04-14 22:26:57,922 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.195.134
+2025-04-14 22:26:58,926 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.195.134 took 1.004201 seconds
+2025-04-14 22:26:58,929 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.195.134
+2025-04-14 22:26:59,934 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.195.134 took 1.004621 seconds
+2025-04-14 22:26:59,936 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.195.134
+2025-04-14 22:27:00,940 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.195.134 took 1.004039 seconds
+2025-04-14 22:27:00,941 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node10
+
+2025-04-14 22:27:00,943 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.195.134
+2025-04-14 22:27:01,947 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.195.134 took 1.004067 seconds
+2025-04-14 22:27:01,950 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.198.195
+2025-04-14 22:27:02,955 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.198.195 took 1.004742 seconds
+2025-04-14 22:27:02,957 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.198.195
+2025-04-14 22:27:03,962 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.198.195 took 1.004755 seconds
+2025-04-14 22:27:03,964 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.198.195
+2025-04-14 22:27:04,970 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.198.195 took 1.005256 seconds
+2025-04-14 22:27:04,973 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.198.195
+2025-04-14 22:27:05,978 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.198.195 took 1.004303 seconds
+2025-04-14 22:27:05,978 - cephci - ceph:1549 - INFO - ceph-regression-zoxrmx-kkrr85-node3
+
+2025-04-14 22:27:05,980 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.198.195
+2025-04-14 22:27:06,985 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.198.195 took 1.004116 seconds
+2025-04-14 22:27:07,090 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.198.145
+2025-04-14 22:27:08,096 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.198.145 took 1.005062 seconds
+2025-04-14 22:27:08,159 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.198.145
+2025-04-14 22:27:09,166 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.198.145 took 1.006001 seconds
+2025-04-14 22:27:09,170 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.198.145
+2025-04-14 22:27:10,176 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.198.145 took 1.004952 seconds
+2025-04-14 22:27:10,246 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.203.90
+2025-04-14 22:27:11,251 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.203.90 took 1.003762 seconds
+2025-04-14 22:27:11,296 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.203.90
+2025-04-14 22:27:12,301 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.203.90 took 1.0043 seconds
+2025-04-14 22:27:12,304 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.203.90
+2025-04-14 22:27:13,308 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.203.90 took 1.003716 seconds
+2025-04-14 22:27:13,368 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.198.203
+2025-04-14 22:27:14,372 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.198.203 took 1.003205 seconds
+2025-04-14 22:27:14,411 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.198.203
+2025-04-14 22:27:15,414 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.198.203 took 1.002982 seconds
+2025-04-14 22:27:15,417 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.198.203
+2025-04-14 22:27:16,421 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.198.203 took 1.004073 seconds
+2025-04-14 22:27:16,493 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.203.101
+2025-04-14 22:27:17,498 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.203.101 took 1.003684 seconds
+2025-04-14 22:27:17,548 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.203.101
+2025-04-14 22:27:18,553 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.203.101 took 1.004723 seconds
+2025-04-14 22:27:18,555 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.203.101
+2025-04-14 22:27:19,560 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.203.101 took 1.004079 seconds
+2025-04-14 22:27:19,633 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.188.47
+2025-04-14 22:27:20,637 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.188.47 took 1.003709 seconds
+2025-04-14 22:27:20,677 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.188.47
+2025-04-14 22:27:21,682 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.188.47 took 1.003761 seconds
+2025-04-14 22:27:21,684 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.188.47
+2025-04-14 22:27:22,689 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.188.47 took 1.004194 seconds
+2025-04-14 22:27:22,758 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.188.50
+2025-04-14 22:27:23,763 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.188.50 took 1.003926 seconds
+2025-04-14 22:27:23,802 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.188.50
+2025-04-14 22:27:24,806 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.188.50 took 1.003574 seconds
+2025-04-14 22:27:24,808 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.188.50
+2025-04-14 22:27:25,813 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.188.50 took 1.004279 seconds
+2025-04-14 22:27:25,900 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.188.109
+2025-04-14 22:27:26,906 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.188.109 took 1.005223 seconds
+2025-04-14 22:27:26,959 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.188.109
+2025-04-14 22:27:27,964 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.188.109 took 1.004657 seconds
+2025-04-14 22:27:27,966 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.188.109
+2025-04-14 22:27:28,971 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.188.109 took 1.004696 seconds
+2025-04-14 22:27:29,031 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.203.175
+2025-04-14 22:27:30,034 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.203.175 took 1.003082 seconds
+2025-04-14 22:27:30,077 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.203.175
+2025-04-14 22:27:31,082 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.203.175 took 1.004034 seconds
+2025-04-14 22:27:31,085 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.203.175
+2025-04-14 22:27:32,090 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.203.175 took 1.004203 seconds
+2025-04-14 22:27:32,161 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.195.134
+2025-04-14 22:27:33,166 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.195.134 took 1.004085 seconds
+2025-04-14 22:27:33,203 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.195.134
+2025-04-14 22:27:34,208 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.195.134 took 1.004019 seconds
+2025-04-14 22:27:34,210 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.195.134
+2025-04-14 22:27:35,215 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.195.134 took 1.004504 seconds
+2025-04-14 22:27:35,283 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.198.195
+2025-04-14 22:27:36,288 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.198.195 took 1.003892 seconds
+2025-04-14 22:27:36,336 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.198.195
+2025-04-14 22:27:37,340 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.198.195 took 1.003919 seconds
+2025-04-14 22:27:37,342 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.198.195
+2025-04-14 22:27:38,346 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.198.195 took 1.003762 seconds
+2025-04-14 22:27:39,439 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.198.145
+2025-04-14 22:27:41,939 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.198.145 took 2.499158 seconds
+2025-04-14 22:27:41,942 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.203.90
+2025-04-14 22:27:46,713 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.203.90 took 4.770283 seconds
+2025-04-14 22:27:46,715 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.198.203
+2025-04-14 22:27:48,501 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.198.203 took 1.785519 seconds
+2025-04-14 22:27:48,506 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.203.101
+2025-04-14 22:27:51,595 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.203.101 took 3.087611 seconds
+2025-04-14 22:27:51,600 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.188.47
+2025-04-14 22:27:54,479 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.188.47 took 2.878113 seconds
+2025-04-14 22:27:54,481 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.188.50
+2025-04-14 22:27:56,591 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.188.50 took 2.109503 seconds
+2025-04-14 22:27:56,599 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.188.109
+2025-04-14 22:27:59,078 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.188.109 took 2.478419 seconds
+2025-04-14 22:27:59,084 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.203.175
+2025-04-14 22:28:00,859 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.203.175 took 1.77507 seconds
+2025-04-14 22:28:00,862 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.195.134
+2025-04-14 22:28:02,869 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.195.134 took 2.00696 seconds
+2025-04-14 22:28:02,871 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.198.195
+2025-04-14 22:28:05,921 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://s3.upshift.redhat.com/ceph-composes/RHCEPH-8.0-RHEL-9-20250328.0/RHCEPH-8.0-RHEL-9-20250328.0.repo on 10.0.198.195 took 3.049225 seconds
+2025-04-14 22:28:05,923 - cephci - ceph:1576 - INFO - Execute ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.198.145
+2025-04-14 22:28:06,927 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 22:28:07,644 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 22:28:07,644 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 22:28:07,645 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 22:28:08,127 - cephci - ceph:1186 - DEBUG - RHCEPH-8.0-Tools-rpms                           353 kB/s |  33 kB     00:00    
+2025-04-14 22:28:09,026 - cephci - ceph:1186 - DEBUG - No match for argument: ibm-storage-ceph-license
+2025-04-14 22:28:09,172 - cephci - ceph:1186 - ERROR - Error: Unable to find a match: ibm-storage-ceph-license
+2025-04-14 22:28:09,172 - cephci - ceph:1606 - INFO - Execution of ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.198.145 took 3.249022 seconds
+2025-04-14 22:28:09,172 - cephci - utils:354 - ERROR - Execution failed for 'ibm-storage-ceph-license' on 'ceph-regression-zoxrmx-kkrr85-node2'
+2025-04-14 22:28:09,173 - cephci - test_bootstrap:601 - DEBUG - Gathering cluster state after running test_bootstrap
+2025-04-14 22:28:09,174 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph status on 10.0.198.203
+2025-04-14 22:28:10,179 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph status on 10.0.198.203 took 1.004016 seconds
+2025-04-14 22:28:10,179 - cephci - ceph:1682 - INFO - 
+Command:    cephadm shell -- ceph status
+Duration:   1.004016 seconds
+Exit Code:  127
+Stderr:      bash: line 1: cephadm: command not found
+
+2025-04-14 22:28:10,179 - cephci - run:854 - ERROR - cephadm shell -- ceph status returned bash: line 1: cephadm: command not found
+ and code 127 on 10.0.198.203
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/cephadm/test_bootstrap.py", line 593, in run
+    out, err = method(config)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph_admin/bootstrap.py", line 257, in bootstrap
+    self.install()
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph_admin/__init__.py", line 272, in install
+    setup_ibm_licence(node, build_type=None)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/cli/utilities/configure.py", line 182, in setup_ibm_licence
+    Package(nodes).install(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/cli/utilities/packages.py", line 85, in install
+    raise PackageError("Failed to install package '{pkg}'")
+cli.utilities.packages.PackageError: Failed to install package '{pkg}'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/run.py", line 839, in run
+    rc = test_mod.run(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/cephadm/test_bootstrap.py", line 602, in run
+    get_cluster_state(instance)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph_admin/helper.py", line 915, in get_cluster_state
+    cls.shell(args=[cmd], pretty_print=True)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph_admin/shell.py", line 53, in shell
+    out = self.installer.exec_command(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph.py", line 2305, in exec_command
+    return self.node.exec_command(cmd=cmd, **kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: cephadm shell -- ceph status returned bash: line 1: cephadm: command not found
+ and code 127 on 10.0.198.203
+2025-04-14 22:28:10,187 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.198.203
+2025-04-14 22:28:11,191 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.198.203 took 1.003728 seconds
+2025-04-14 22:28:11,192 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-14 22:28:11,193 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.198.203
+2025-04-14 22:28:12,197 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.198.203 took 1.00273 seconds
+2025-04-14 22:28:12,199 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.134
+2025-04-14 22:28:13,203 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.134 took 1.003742 seconds
+2025-04-14 22:28:13,203 - cephci - run:1081 - INFO - ceph Version 
+2025-04-14 22:28:13,204 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-ZoXRmX-KKRR85
+2025-04-14 22:28:13,204 - cephci - run:927 - INFO - Test <module 'test_bootstrap' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/cephadm/test_bootstrap.py'> failed
+2025-04-14 22:28:13,204 - cephci - run:935 - INFO - Aborting on test failure
+2025-04-14 22:28:13,205 - cephci - run:964 - INFO - 
+All test logs located here: /home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/logs/tier-3_rados_test-3-AZ-Cluster

@@ -1,0 +1,96 @@
+2025-04-14 11:38:39,633 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-14 11:38:39,635 - cephci - run:722 - INFO - Running test test_osd_service_operations.py
+2025-04-14 11:38:39,637 - cephci - ceph:1576 - INFO - Execute systemctl --type=service | grep osd | awk '{print $1}' on 10.0.195.140
+2025-04-14 11:38:40,640 - cephci - ceph:1606 - INFO - Execution of systemctl --type=service | grep osd | awk '{print $1}' on 10.0.195.140 took 1.003299 seconds
+2025-04-14 11:38:40,642 - cephci - ceph:1576 - INFO - Execute systemctl stop ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140
+2025-04-14 11:38:43,648 - cephci - ceph:1606 - INFO - Execution of systemctl stop ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140 took 3.005659 seconds
+2025-04-14 11:38:43,650 - cephci - ceph:1576 - INFO - Execute systemctl is-active ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140
+2025-04-14 11:38:44,655 - cephci - ceph:1606 - INFO - Execution of systemctl is-active ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140 took 1.005038 seconds
+2025-04-14 11:38:44,656 - cephci - test_osd_service_operations:34 - INFO - Service has been stopped
+2025-04-14 11:38:44,657 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:38:45,661 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003309 seconds
+2025-04-14 11:38:45,662 - cephci - operations:25 - INFO - Cluster status is in expected state HEALTH_WARN
+2025-04-14 11:38:45,663 - cephci - ceph:1576 - INFO - Execute systemctl start ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140
+2025-04-14 11:38:50,671 - cephci - ceph:1606 - INFO - Execution of systemctl start ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140 took 5.008012 seconds
+2025-04-14 11:38:50,673 - cephci - ceph:1576 - INFO - Execute systemctl is-active ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140
+2025-04-14 11:38:51,677 - cephci - ceph:1606 - INFO - Execution of systemctl is-active ceph-19e8ae5e-1922-11f0-ac46-fa163eec7ad0@osd.10.service on 10.0.195.140 took 1.004038 seconds
+2025-04-14 11:38:51,678 - cephci - test_osd_service_operations:48 - INFO - Service has been started
+2025-04-14 11:38:51,679 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:38:52,683 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003356 seconds
+2025-04-14 11:39:02,697 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:39:03,702 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00398 seconds
+2025-04-14 11:39:13,720 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:39:14,724 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004015 seconds
+2025-04-14 11:39:24,735 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:39:25,738 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.002879 seconds
+2025-04-14 11:39:35,752 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:39:36,756 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003904 seconds
+2025-04-14 11:39:46,764 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:39:47,768 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003619 seconds
+2025-04-14 11:39:57,782 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:39:58,786 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003655 seconds
+2025-04-14 11:40:08,800 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:40:09,803 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00335 seconds
+2025-04-14 11:40:19,818 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:40:20,825 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004071 seconds
+2025-04-14 11:40:30,836 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:40:31,840 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00386 seconds
+2025-04-14 11:40:41,854 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:40:42,859 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004432 seconds
+2025-04-14 11:40:52,873 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:40:53,877 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00404 seconds
+2025-04-14 11:41:03,888 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:41:04,891 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00291 seconds
+2025-04-14 11:41:14,895 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:41:15,900 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003961 seconds
+2025-04-14 11:41:25,911 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:41:26,916 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003809 seconds
+2025-04-14 11:41:36,929 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:41:37,934 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004261 seconds
+2025-04-14 11:41:47,941 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:41:48,945 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004057 seconds
+2025-04-14 11:41:58,960 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:41:59,964 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00362 seconds
+2025-04-14 11:42:09,977 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:42:10,982 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00395 seconds
+2025-04-14 11:42:20,995 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:42:22,000 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004208 seconds
+2025-04-14 11:42:32,014 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:42:33,018 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003653 seconds
+2025-04-14 11:42:43,032 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:42:44,039 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003873 seconds
+2025-04-14 11:42:54,052 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:42:55,057 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.003821 seconds
+2025-04-14 11:43:05,067 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:43:06,072 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.00425 seconds
+2025-04-14 11:43:16,080 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:43:17,085 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004499 seconds
+2025-04-14 11:43:27,097 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:43:28,102 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004264 seconds
+2025-04-14 11:43:38,116 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:43:39,122 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.0055 seconds
+2025-04-14 11:43:49,136 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:43:50,141 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004618 seconds
+2025-04-14 11:44:00,154 - cephci - ceph:1576 - INFO - Execute ceph health on 10.0.195.90
+2025-04-14 11:44:01,158 - cephci - ceph:1606 - INFO - Execution of ceph health on 10.0.195.90 took 1.004074 seconds
+2025-04-14 11:44:01,159 - cephci - operations:28 - ERROR - Cluster is not in HEALTH_OK state even after 300 secs
+2025-04-14 11:44:01,159 - cephci - run:854 - ERROR - Cluster is not in expected state
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/cephci/run.py", line 839, in run
+    rc = test_mod.run(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/cephci/tests/cephadm/test_osd_service_operations.py", line 52, in run
+    raise UnexpectedStateError("Cluster is not in expected state")
+cli.exceptions.UnexpectedStateError: Cluster is not in expected state
+2025-04-14 11:44:01,161 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.118
+2025-04-14 11:44:02,165 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.118 took 1.003186 seconds
+2025-04-14 11:44:02,165 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-14 11:44:02,166 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.118
+2025-04-14 11:44:03,170 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.118 took 1.003401 seconds
+2025-04-14 11:44:03,171 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.90
+2025-04-14 11:44:04,176 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.90 took 1.004134 seconds
+2025-04-14 11:44:04,176 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-14 11:44:04,177 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-qh40Hy-SQ6KM3
+2025-04-14 11:44:04,178 - cephci - run:927 - INFO - Test <module 'test_osd_service_operations' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/cephci/tests/cephadm/test_osd_service_operations.py'> failed
+2025-04-14 11:44:04,178 - cephci - run:935 - INFO - Aborting on test failure
+2025-04-14 11:44:04,178 - cephci - run:964 - INFO - 
+All test logs located here: /home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/logs/tier4-service-operations

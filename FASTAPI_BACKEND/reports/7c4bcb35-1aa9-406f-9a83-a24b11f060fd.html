@@ -1,0 +1,1320 @@
+
+    <html>
+    <head>
+        <title>CephCI Log Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; }
+            th { background-color: #f2f2f2; }
+            .directory-title { 
+                font-size: 1.2em; 
+                margin-top: 25px; 
+                margin-bottom: 10px; 
+                color: #2c3e50; 
+                background-color: #ecf0f1; 
+                padding: 8px; 
+                border-left: 4px solid #3498db; 
+            }
+            .log-name { font-weight: bold; color: #2980b9; }
+            .feedback-buttons { display: flex; gap: 5px; justify-content: center; }
+            .feedback-btn { 
+                cursor: pointer; 
+                border: none; 
+                border-radius: 4px; 
+                padding: 2px 8px; 
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+            .like-btn { background-color: #2ecc71; color: white; }
+            .like-btn.active { background-color: #27ae60; }
+            .dislike-btn { background-color: #e74c3c; color: white; }
+            .dislike-btn.active { background-color: #c0392b; }
+            .skip-btn { background-color: #f39c12; color: white; }
+            .skip-btn.active { background-color: #d35400; }
+            .feedback-form {
+                display: none;
+                margin-top: 5px;
+            }
+            textarea {
+                width: 100%;
+                min-height: 50px;
+                padding: 5px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+            .submit-all-btn {
+                background-color: #e67e22;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 20px auto;
+                display: block;
+                font-size: 16px;
+            }
+            .submit-all-btn:hover {
+                background-color: #d35400;
+            }
+            .raw-analysis {
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-radius: 4px;
+                margin-top: 5px;
+            }
+        </style>
+        <script>
+            function toggleRawAnalysis(logId) {
+                var rawDiv = document.getElementById('raw-' + logId);
+                var toggleBtn = document.getElementById('toggle-' + logId);
+                if (rawDiv.style.display === 'none') {
+                    rawDiv.style.display = 'block';
+                    toggleBtn.textContent = '▼';
+                } else {
+                    rawDiv.style.display = 'none';
+                    toggleBtn.textContent = '➤';
+                }
+            }
+
+            function showFeedbackForm(logId, btnType) {
+                // Remove active class from all buttons for this log
+                document.querySelectorAll(`.feedback-btn[data-log-id="${logId}"]`).forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Set active class on clicked button
+                document.getElementById(btnType + '-btn-' + logId).classList.add('active');
+                
+                // Show/hide textarea
+                var form = document.getElementById('feedback-form-' + logId);
+                if (btnType === 'dislike') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            }
+
+            function submitAllFeedback() {
+                const feedbacks = [];
+                const logItems = document.querySelectorAll('.log-item');
+                
+                logItems.forEach(item => {
+                    const logId = item.dataset.logId;
+                    const activeBtn = item.querySelector('.feedback-btn.active');
+                    const vote = activeBtn ? activeBtn.dataset.vote : 'skip';
+                    const comment = item.querySelector('textarea')?.value || '';
+                    
+                    feedbacks.push({
+                        log_id: logId,
+                        log_name: item.dataset.logName,
+                        vote: vote,
+                        comment: comment,
+                        build_stamp: new Date().toISOString()
+                    });
+                });
+
+                fetch('/submit-feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(feedbacks)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Successfully submitted feedback');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to submit feedback');
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <h2>CephCI Log Analysis Report</h2>
+        <p><strong>Generated at:</strong> 2025-08-19 12:23:43</p>
+        <p><strong>Test Suite:</strong> Regression | <strong>RHEL:</strong> RHEL-9</p>
+        <hr>
+        
+        
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-cephadm-ansible-wrapper-bootstrap-with-registry-details</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0logab5f80" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0logab5f80" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0logab5f80')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-cephadm-ansible-wrapper-bootstrap-with-registry-details/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>The traceback indicates that the `cephci` process failed to execute the `long_running` function, which is likely due to a timeout issue.</td>
+                <td>1. Increase the maximum execution time for the `cephci` process in the configuration file. This can be done by increasing the `CEPH_MAX_EXEC_TIME` environment variable or by modifying the `ceph.conf` file directly.</td>
+                <td>1. Increase the maximum execution time for the `cephci` process in the configuration file.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0logab5f80" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logab5f80', 'like')"
+                                data-log-id="setup_install_prerequisistes_0logab5f80" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0logab5f80" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logab5f80', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0logab5f80" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0logab5f80" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logab5f80', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0logab5f80" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0logab5f80" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0logab5f80" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0logab5f80" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The traceback indicates that the `cephci` process failed to execute the `long_running` function, which is likely due to a timeout issue.
+
+Fix:
+
+1. Increase the maximum execution time for the `cephci` process in the configuration file. This can be done by increasing the `CEPH_MAX_EXEC_TIME` environment variable or by modifying the `ceph.conf` file directly.
+2. Check if there are any resource constraints (e.g., memory, CPU) that may be causing the timeouts. If so, consider increasing the resources allocated to the `cephci` process or adjusting the Ceph configuration to reduce resource usage.
+3. Review the Ceph configuration file and ensure that there are no syntax errors or incorrect settings that may be causing the timeouts.
+
+Steps:
+
+1. Increase the maximum execution time for the `cephci` process in the configuration file.
+2. Check if there are any resource constraints (e.g., memory, CPU) that may be causing the timeouts. If so, consider increasing the resources allocated to the `cephci` process or adjusting the Ceph configuration to reduce resource usage.
+3. Review the Ceph configuration file and ensure that there are no syntax errors or incorrect settings that may be causing the timeouts.
+
+Answer: The root cause of the failures is a timeout issue caused by the `long_running` function execution in the `cephci` process. To fix this issue, increase the maximum execution time for the `cephci` process in the configuration file or adjust the Ceph configuration to reduce resource usage. Additionally, review the Ceph configuration file to ensure there are no syntax errors or incorrect settings that may be causing the timeouts.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-cephadm-clients</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Install_ceph_prerequisites_0logfeaf32" data-log-name="Install_ceph_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Install_ceph_prerequisites_0logfeaf32" class="toggle-raw" onclick="toggleRawAnalysis('Install_ceph_prerequisites_0logfeaf32')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-cephadm-clients/Install_ceph_pre-requisites_0.log" target="_blank" class="log-name">Install_ceph_pre-requisites_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.</td>
+                <td>To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.</td>
+                <td>1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Install_ceph_prerequisites_0logfeaf32" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logfeaf32', 'like')"
+                                data-log-id="Install_ceph_prerequisites_0logfeaf32" data-vote="like">👍</button>
+                        <button id="dislike-btn-Install_ceph_prerequisites_0logfeaf32" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logfeaf32', 'dislike')"
+                                data-log-id="Install_ceph_prerequisites_0logfeaf32" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Install_ceph_prerequisites_0logfeaf32" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logfeaf32', 'skip')"
+                                data-log-id="Install_ceph_prerequisites_0logfeaf32" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Install_ceph_prerequisites_0logfeaf32" class="feedback-form">
+                        <textarea id="feedback-text-Install_ceph_prerequisites_0logfeaf32" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Install_ceph_prerequisites_0logfeaf32" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.
+
+Fix: To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.
+
+Steps:
+
+1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.
+2. Check the version of Perl being used and ensure it&#x27;s compatible with the versions of the modules being installed.
+3. Verify that the system is now able to run the affected scripts without any issues.
+
+Note: It&#x27;s important to keep in mind that this is just a suggested solution based on the information provided in the log file, and additional troubleshooting may be necessary to fully resolve the issue.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier2-ceph-volume-non-collocated</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_0logaa3a28" data-log-name="Deploy_cluster_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_0logaa3a28" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_0logaa3a28')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier2-ceph-volume-non-collocated/Deploy_cluster_0.log" target="_blank" class="log-name">Deploy_cluster_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient disk space.</td>
+                <td>Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.</td>
+                <td>1. Check the available disk space on the system using the `df` command.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_0logaa3a28" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0logaa3a28', 'like')"
+                                data-log-id="Deploy_cluster_0logaa3a28" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_0logaa3a28" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0logaa3a28', 'dislike')"
+                                data-log-id="Deploy_cluster_0logaa3a28" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_0logaa3a28" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0logaa3a28', 'skip')"
+                                data-log-id="Deploy_cluster_0logaa3a28" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_0logaa3a28" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_0logaa3a28" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_0logaa3a28" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient disk space.
+
+Fix: Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.
+
+Steps:
+
+1. Check the available disk space on the system using the `df` command.
+2. Identify the largest consumers of disk space and prioritize them for optimization.
+3. Delete unnecessary files and applications to free up disk space.
+4. Add more disks to the system if necessary to increase the total available disk space.
+5. Verify that the disk space issue has been resolved by running the `df` command again.
+
+Answer: The root cause of the failures is due to insufficient disk space, and the suggested solution is to increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications. Immediate next steps include checking the available disk space using the `df` command, identifying the largest consumers of disk space, and prioritizing them for optimization.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier2-ceph-volume-redeploy</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_0log60978e" data-log-name="Deploy_cluster_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_0log60978e" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_0log60978e')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier2-ceph-volume-redeploy/Deploy_cluster_0.log" target="_blank" class="log-name">Deploy_cluster_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient disk space.</td>
+                <td>Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.</td>
+                <td>1. Check the available disk space on the system using the `df` command.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_0log60978e" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0log60978e', 'like')"
+                                data-log-id="Deploy_cluster_0log60978e" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_0log60978e" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0log60978e', 'dislike')"
+                                data-log-id="Deploy_cluster_0log60978e" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_0log60978e" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0log60978e', 'skip')"
+                                data-log-id="Deploy_cluster_0log60978e" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_0log60978e" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_0log60978e" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_0log60978e" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient disk space.
+
+Fix: Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.
+
+Steps:
+
+1. Check the available disk space on the system using the `df` command.
+2. Identify the largest consumers of disk space and prioritize them for optimization.
+3. Delete unnecessary files and applications to free up disk space.
+4. Add more disks to the system if necessary to increase the total available disk space.
+5. Verify that the disk space issue has been resolved by running the `df` command again.
+
+Answer: The root cause of the failures is due to insufficient disk space, and the suggested solution is to increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications. Immediate next steps include checking the available disk space using the `df` command, identifying the largest consumers of disk space, and prioritizing them for optimization.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-mix-os-deployment</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_prerequisites_0log6e44b2" data-log-name="setup_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_prerequisites_0log6e44b2" class="toggle-raw" onclick="toggleRawAnalysis('setup_prerequisites_0log6e44b2')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-mix-os-deployment/setup_pre-requisites_0.log" target="_blank" class="log-name">setup_pre-requisites_0.log</a>
+                </td>
+                <td>Analysis incomplete</td>
+                <td>See raw analysis for details</td>
+                <td>Review full log</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_prerequisites_0log6e44b2" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log6e44b2', 'like')"
+                                data-log-id="setup_prerequisites_0log6e44b2" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_prerequisites_0log6e44b2" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log6e44b2', 'dislike')"
+                                data-log-id="setup_prerequisites_0log6e44b2" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_prerequisites_0log6e44b2" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log6e44b2', 'skip')"
+                                data-log-id="setup_prerequisites_0log6e44b2" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_prerequisites_0log6e44b2" class="feedback-form">
+                        <textarea id="feedback-text-setup_prerequisites_0log6e44b2" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_prerequisites_0log6e44b2" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>I cannot provide a direct answer to your query as it is not within my capabilities to analyze log files and identify root causes of failures. However, I can offer some general suggestions on how to approach the task.
+
+1. Review the log file: The first step is to carefully review the log file provided, looking for any patterns or anomalies that may indicate the root cause of the failures. This may involve searching for specific keywords, such as &quot;error,&quot; &quot;failure,&quot; or &quot;exception,&quot; as well as identifying any recurring themes or issues.
+2. Identify relevant information: Determine which parts of the log file are most relevant to the problem at hand. This may involve focusing on specific sections of the log, such as the beginning or end, or isolating particular lines or phrases that stand out as potential causes of the failures.
+3. Look for common patterns: Once you have identified the relevant information, look for any common patterns or trends in the log file. For example, are there any repeated errors or issues? Are there any specific lines or phrases that keep appearing? Identifying these patterns can help you narrow down the root cause of the failures.
+4. Consult additional resources: If you are unable to identify the root cause of the failures based on the log file alone, consider consulting additional resources such as system logs, network traffic logs, or other relevant data sources. This may provide additional clues or insights that can help you pinpoint the root cause of the problem.
+5. Test and validate: Once you have identified a potential root cause of the failures, test and validate your theory by reproducing the issue and observing the results. This can help you confirm whether your theory is correct and identify any additional factors that may be contributing to the problem.
+
+In summary, analyzing a log file to identify the root cause of failures involves carefully reviewing the log file, identifying relevant information, looking for common patterns or trends, consulting additional resources, and testing and validating your theories.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier2-bootstrap-along-with-spec-file</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" data-log-name="Bootstrap_a_cluster_along_with_a_spec_file_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" class="toggle-raw" onclick="toggleRawAnalysis('Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier2-bootstrap-along-with-spec-file/Bootstrap_a_cluster_along_with_a_spec_file_0.log" target="_blank" class="log-name">Bootstrap_a_cluster_along_with_a_spec_file_0.log</a>
+                </td>
+                <td>The failures are caused by a combination of issues, including:</td>
+                <td>To fix these issues, follow these steps:</td>
+                <td>1. Correctly configure the `set -o pipefail` command in the log file.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9', 'like')"
+                                data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" data-vote="like">👍</button>
+                        <button id="dislike-btn-Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9', 'dislike')"
+                                data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9', 'skip')"
+                                data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" class="feedback-form">
+                        <textarea id="feedback-text-Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Bootstrap_a_cluster_along_with_a_spec_file_0loge8e9d9" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The failures are caused by a combination of issues, including:
+
+* Incorrect configuration: The `set -o pipefail` command is not correctly configured in the log file.
+* Missing kex names: The gss kex names are missing in the log file, which can cause connection failures.
+* Incomplete configuration: The configuration for the `ecdh-sha2-nistp384` and `diffie-hellman-group-exchange-sha256` is incomplete in the log file.
+
+Fix: To fix these issues, follow these steps:
+
+1. Correctly configure the `set -o pipefail` command in the log file.
+2. Ensure that the gss kex names are correctly specified in the log file.
+3. Complete the configuration for the `ecdh-sha2-nistp384` and `diffie-hellman-group-exchange-sha256` in the log file.
+
+Steps:
+
+1. Review and correct the configuration for the `set -o pipefail` command in the log file.
+2. Check the gss kex names in the log file and ensure that they are correctly specified.
+3. Complete the configuration for the `ecdh-sha2-nistp384` and `diffie-hellman-group-exchange-sha256` in the log file.
+
+Answer: The root cause of the failures is incorrect or incomplete configuration in the log file. To fix these issues, follow the steps outlined above to correctly configure the `set -o pipefail` command, specify the correct gss kex names, and complete the configuration for the `ecdh-sha2-nistp384` and `diffie-hellman-group-exchange-sha256`.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier2-ceph-volume</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0log8db66e" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0log8db66e" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0log8db66e')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier2-ceph-volume/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>The traceback indicates that the `cephci` process failed to execute the `long_running` function due to a timeout.</td>
+                <td>To fix this issue, we need to identify the cause of the long execution time and optimize it. Here are some potential solutions:</td>
+                <td>1. Review the code that implements the `long_running` function to identify any potential bottlenecks.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0log8db66e" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log8db66e', 'like')"
+                                data-log-id="setup_install_prerequisistes_0log8db66e" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0log8db66e" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log8db66e', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0log8db66e" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0log8db66e" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log8db66e', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0log8db66e" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0log8db66e" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0log8db66e" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0log8db66e" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The traceback indicates that the `cephci` process failed to execute the `long_running` function due to a timeout.
+
+Fix:
+To fix this issue, we need to identify the cause of the long execution time and optimize it. Here are some potential solutions:
+
+1. Check for any bottlenecks in the code that could be causing the delay. This could include excessive database queries, complex data processing, or network latency.
+2. Increase the timeout value to allow more time for the execution. However, this should be done with caution as it may lead to unnecessary delays if the issue is not addressed.
+3. Implement a mechanism to check the execution status of the `long_running` function and cancel it if it exceeds the allocated time.
+
+Steps:
+
+1. Review the code that implements the `long_running` function to identify any potential bottlenecks.
+2. Optimize the code to reduce execution time, such as reducing database queries or improving data processing efficiency.
+3. Increase the timeout value and test the `long_running` function again to see if it completes within the allocated time.
+4. Implement a mechanism to check the execution status of the `long_running` function and cancel it if it exceeds the allocated time.
+
+Answer: The root cause of the failure is the long execution time of the `long_running` function, which resulted in a timeout. To fix this issue, we need to identify the bottlenecks in the code and optimize it to reduce execution time. Additionally, increasing the timeout value or implementing a mechanism to cancel the function if it exceeds the allocated time can help mitigate the issue.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-cephadm-ansible-wrapper-modules</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" data-log-name="Bootstrap_cluster_using_cephadm-ansible_wrapper_modules_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" class="toggle-raw" onclick="toggleRawAnalysis('Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-cephadm-ansible-wrapper-modules/Bootstrap_cluster_using_cephadm-ansible_wrapper_modules_0.log" target="_blank" class="log-name">Bootstrap_cluster_using_cephadm-ansible_wrapper_modules_0.log</a>
+                </td>
+                <td>The failures are caused by a combination of factors, including insufficient memory, CPU weight issues, and incorrect configuration.</td>
+                <td>To address the issue, I recommend the following steps:</td>
+                <td>1. Increase the memory allocation for the firewall daemon to at least 2GB to ensure that it has sufficient resources to operate correctly.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773', 'like')"
+                                data-log-id="Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" data-vote="like">👍</button>
+                        <button id="dislike-btn-Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773', 'dislike')"
+                                data-log-id="Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773', 'skip')"
+                                data-log-id="Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" class="feedback-form">
+                        <textarea id="feedback-text-Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Bootstrap_cluster_using_cephadmansible_wrapper_modules_0log6ff773" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The failures are caused by a combination of factors, including insufficient memory, CPU weight issues, and incorrect configuration.
+
+Fix: To address the issue, I recommend the following steps:
+
+1. Increase the memory allocation for the firewall daemon to at least 2GB to ensure that it has sufficient resources to operate correctly.
+2. Review the CPU weight settings and adjust them as necessary to ensure that the firewall daemon is not overloaded with too many CPU-intensive tasks.
+3. Check the firewall configuration files (e.g., /etc/sysconfig/firewall) and correct any issues or inconsistencies that may be causing problems.
+4. Ensure that the firewall is running with the correct parameters and settings by checking the logs and restarting the firewall daemon if necessary.
+
+Steps:
+
+1. Check the system logs to identify any recent errors or issues related to the firewall daemon.
+2. Review the firewall configuration files and adjust the settings as needed to ensure that the firewall is running correctly.
+3. Restart the firewall daemon to apply any changes made to the configuration files.
+4. Monitor the system logs to ensure that the firewall is functioning properly and address any issues that may arise.
+
+Answer: The root cause of the failures is a combination of insufficient memory, CPU weight issues, and incorrect configuration. To fix these issues, I recommend increasing the memory allocation for the firewall daemon, reviewing and adjusting the CPU weight settings, and checking and correcting any issues or inconsistencies in the firewall configuration files. Additionally, restarting the firewall daemon and monitoring the system logs can help ensure that the firewall is running correctly and address any issues that may arise.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier2-rgw-with-warn-state</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_prerequisites_0log278fab" data-log-name="setup_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_prerequisites_0log278fab" class="toggle-raw" onclick="toggleRawAnalysis('setup_prerequisites_0log278fab')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier2-rgw-with-warn-state/setup_pre-requisites_0.log" target="_blank" class="log-name">setup_pre-requisites_0.log</a>
+                </td>
+                <td>Analysis incomplete</td>
+                <td>See raw analysis for details</td>
+                <td>Review full log</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_prerequisites_0log278fab" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log278fab', 'like')"
+                                data-log-id="setup_prerequisites_0log278fab" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_prerequisites_0log278fab" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log278fab', 'dislike')"
+                                data-log-id="setup_prerequisites_0log278fab" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_prerequisites_0log278fab" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log278fab', 'skip')"
+                                data-log-id="setup_prerequisites_0log278fab" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_prerequisites_0log278fab" class="feedback-form">
+                        <textarea id="feedback-text-setup_prerequisites_0log278fab" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_prerequisites_0log278fab" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>I cannot provide a direct answer to your query as it is not within my capabilities to analyze log files and identify root causes of failures. However, I can offer some general suggestions on how to approach the task.
+
+1. Review the log file: The first step is to carefully review the log file provided, looking for any patterns or trends that may indicate the root cause of the failures. This may involve searching for specific keywords, such as &quot;error,&quot; &quot;failure,&quot; or &quot;bug,&quot; as well as identifying any recurring themes or issues.
+2. Identify the affected system: Determine which system or application is experiencing failures. This information can often be gleaned from the log file itself, or it may require additional investigation.
+3. Gather more context: If necessary, gather additional contextual information about the system or application, such as configuration files, network logs, or other relevant data. This will help to provide a more complete picture of the issue.
+4. Consult relevant documentation and resources: Review relevant documentation and resources, such as user manuals, technical guides, and online forums, to identify potential causes of the failures.
+5. Isolate the root cause: Based on the information gathered, attempt to isolate the root cause of the failures. This may involve identifying a specific bug or issue that is causing the problems.
+6. Develop a solution: Once the root cause has been identified, develop a suggested solution or plan for addressing the issue. This may involve modifying configuration files, updating software or applications, or implementing additional security measures.
+7. Implement the solution: Implement the suggested solution and monitor the system or application to ensure that the failures have been resolved.
+8. Follow up: After implementing the solution, continue to monitor the system or application to ensure that the issue does not recur. If necessary, perform additional troubleshooting or maintenance tasks to keep the system or application running smoothly.
+
+In summary, analyzing a log file to identify the root cause of failures involves carefully reviewing the log file, gathering more contextual information, consulting relevant documentation and resources, isolating the root cause, developing a solution, implementing the solution, and following up to ensure that the issue does not recur.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-remove-cluster</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_prerequisites_0log1b175a" data-log-name="setup_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_prerequisites_0log1b175a" class="toggle-raw" onclick="toggleRawAnalysis('setup_prerequisites_0log1b175a')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-remove-cluster/setup_pre-requisites_0.log" target="_blank" class="log-name">setup_pre-requisites_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_prerequisites_0log1b175a" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log1b175a', 'like')"
+                                data-log-id="setup_prerequisites_0log1b175a" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_prerequisites_0log1b175a" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log1b175a', 'dislike')"
+                                data-log-id="setup_prerequisites_0log1b175a" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_prerequisites_0log1b175a" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_prerequisites_0log1b175a', 'skip')"
+                                data-log-id="setup_prerequisites_0log1b175a" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_prerequisites_0log1b175a" class="feedback-form">
+                        <textarea id="feedback-text-setup_prerequisites_0log1b175a" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_prerequisites_0log1b175a" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: timed out</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier2-osd-scenarios</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Install_ceph_prerequisites_0log994ef4" data-log-name="Install_ceph_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Install_ceph_prerequisites_0log994ef4" class="toggle-raw" onclick="toggleRawAnalysis('Install_ceph_prerequisites_0log994ef4')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier2-osd-scenarios/Install_ceph_pre-requisites_0.log" target="_blank" class="log-name">Install_ceph_pre-requisites_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.</td>
+                <td>To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being used.</td>
+                <td>1. Update the affected Perl modules to their latest compatible versions using the `perldl` command.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Install_ceph_prerequisites_0log994ef4" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0log994ef4', 'like')"
+                                data-log-id="Install_ceph_prerequisites_0log994ef4" data-vote="like">👍</button>
+                        <button id="dislike-btn-Install_ceph_prerequisites_0log994ef4" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0log994ef4', 'dislike')"
+                                data-log-id="Install_ceph_prerequisites_0log994ef4" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Install_ceph_prerequisites_0log994ef4" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0log994ef4', 'skip')"
+                                data-log-id="Install_ceph_prerequisites_0log994ef4" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Install_ceph_prerequisites_0log994ef4" class="feedback-form">
+                        <textarea id="feedback-text-Install_ceph_prerequisites_0log994ef4" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Install_ceph_prerequisites_0log994ef4" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.
+
+Fix: To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being used.
+
+Steps:
+
+1. Update the affected Perl modules to their latest compatible versions using the `perldl` command.
+2. Check the version of Perl being used and ensure that it&#x27;s compatible with the versions of the modules being used.
+3. Review the system configuration and dependencies to identify any other potential issues.
+4. Implement measures to prevent similar issues from occurring in the future, such as using a consistent set of Perl modules across the system and ensuring that all dependencies are properly managed.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-container-cli-args</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Install_ceph_prerequisites_0logd6db95" data-log-name="Install_ceph_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Install_ceph_prerequisites_0logd6db95" class="toggle-raw" onclick="toggleRawAnalysis('Install_ceph_prerequisites_0logd6db95')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-container-cli-args/Install_ceph_pre-requisites_0.log" target="_blank" class="log-name">Install_ceph_pre-requisites_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.</td>
+                <td>To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.</td>
+                <td>1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Install_ceph_prerequisites_0logd6db95" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logd6db95', 'like')"
+                                data-log-id="Install_ceph_prerequisites_0logd6db95" data-vote="like">👍</button>
+                        <button id="dislike-btn-Install_ceph_prerequisites_0logd6db95" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logd6db95', 'dislike')"
+                                data-log-id="Install_ceph_prerequisites_0logd6db95" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Install_ceph_prerequisites_0logd6db95" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logd6db95', 'skip')"
+                                data-log-id="Install_ceph_prerequisites_0logd6db95" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Install_ceph_prerequisites_0logd6db95" class="feedback-form">
+                        <textarea id="feedback-text-Install_ceph_prerequisites_0logd6db95" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Install_ceph_prerequisites_0logd6db95" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.
+
+Fix: To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.
+
+Steps:
+
+1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.
+2. Check the version of Perl being used and ensure it&#x27;s compatible with the versions of the modules being installed.
+3. Review the system logs to identify any other potential issues that may be causing failures.
+4. Implement measures to prevent similar issues from occurring in the future, such as ensuring consistent module versions across the system and regularly updating the system to ensure compatibility.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier2-ceph-volume-lvm</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_0logabd75d" data-log-name="Deploy_cluster_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_0logabd75d" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_0logabd75d')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier2-ceph-volume-lvm/Deploy_cluster_0.log" target="_blank" class="log-name">Deploy_cluster_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient disk space.</td>
+                <td>Increase the available disk space on the system by deleting unnecessary files or moving them to a different location. Additionally, ensure that the Ceph cluster configuration allows for sufficient disk space for the log files to be stored.</td>
+                <td>1. Check the available disk space on the system and identify any unnecessary files that can be deleted to free up space.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_0logabd75d" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0logabd75d', 'like')"
+                                data-log-id="Deploy_cluster_0logabd75d" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_0logabd75d" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0logabd75d', 'dislike')"
+                                data-log-id="Deploy_cluster_0logabd75d" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_0logabd75d" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_0logabd75d', 'skip')"
+                                data-log-id="Deploy_cluster_0logabd75d" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_0logabd75d" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_0logabd75d" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_0logabd75d" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient disk space.
+
+Fix: Increase the available disk space on the system by deleting unnecessary files or moving them to a different location. Additionally, ensure that the Ceph cluster configuration allows for sufficient disk space for the log files to be stored.
+
+Steps:
+
+1. Check the available disk space on the system and identify any unnecessary files that can be deleted to free up space.
+2. Move any necessary files to a different location to free up space if possible.
+3. Adjust the Ceph cluster configuration to allow for sufficient disk space for the log files to be stored.
+4. Monitor the disk space regularly to ensure it does not drop below the minimum required for the Ceph cluster to function properly.
+
+Answer: The root cause of the failures is due to insufficient disk space, and the suggested solution is to increase the available disk space on the system by deleting unnecessary files or moving them to a different location, and adjusting the Ceph cluster configuration to allow for sufficient disk space for the log files to be stored. Regular monitoring of the disk space is also recommended to ensure it does not drop below the minimum required for the Ceph cluster to function properly.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-ceph-volume-sanity</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0log595516" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0log595516" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0log595516')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-ceph-volume-sanity/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>The traceback indicates that the `cephci` process failed to execute a command due to a time limit exceedance.</td>
+                <td>1. Review the ceph configuration files and ensure that the `max_time` parameter is set correctly. This parameter determines the maximum execution time for ceph commands. Increase the value of `max_time` if necessary to avoid exceeding the time limit.</td>
+                <td>1. Check the ceph configuration files for any errors or inconsistencies.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0log595516" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log595516', 'like')"
+                                data-log-id="setup_install_prerequisistes_0log595516" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0log595516" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log595516', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0log595516" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0log595516" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log595516', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0log595516" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0log595516" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0log595516" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0log595516" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The traceback indicates that the `cephci` process failed to execute a command due to a time limit exceedance.
+
+Fix:
+1. Review the ceph configuration files and ensure that the `max_time` parameter is set correctly. This parameter determines the maximum execution time for ceph commands. Increase the value of `max_time` if necessary to avoid exceeding the time limit.
+2. Check if there are any resource constraints (e.g., CPU, memory) that may be causing the command to take longer than expected. If so, consider increasing the resources allocated to the ceph process or adjusting the ceph configuration to reduce resource usage.
+3. Verify that the `cephci` process is running with sufficient privileges to execute the command. Running as a non-root user may limit the available commands and increase the risk of failure due to permission issues.
+
+Steps:
+
+1. Check the ceph configuration files for any errors or inconsistencies.
+2. Monitor the `cephci` process&#x27;s execution time and resources usage to identify potential issues before they cause failures.
+3. Test the ceph command execution time by running a small-scale test with different inputs and monitoring the execution time. If necessary, adjust the `max_time` parameter in the ceph configuration file accordingly.
+
+Answer: The root cause of the failure is the exceedance of the maximum execution time limit for the `cephci` process. To fix this issue, review the ceph configuration files, check the process&#x27;s resources usage, and adjust the `max_time` parameter as necessary to avoid exceeding the time limit in future executions.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-ssl-dashboard-port</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Install_ceph_prerequisites_0logcd1ebb" data-log-name="Install_ceph_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Install_ceph_prerequisites_0logcd1ebb" class="toggle-raw" onclick="toggleRawAnalysis('Install_ceph_prerequisites_0logcd1ebb')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-ssl-dashboard-port/Install_ceph_pre-requisites_0.log" target="_blank" class="log-name">Install_ceph_pre-requisites_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.</td>
+                <td>To fix this issue, the following steps can be taken:</td>
+                <td>1. Run the `perldl` command to update all Perl modules to their latest compatible versions.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Install_ceph_prerequisites_0logcd1ebb" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logcd1ebb', 'like')"
+                                data-log-id="Install_ceph_prerequisites_0logcd1ebb" data-vote="like">👍</button>
+                        <button id="dislike-btn-Install_ceph_prerequisites_0logcd1ebb" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logcd1ebb', 'dislike')"
+                                data-log-id="Install_ceph_prerequisites_0logcd1ebb" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Install_ceph_prerequisites_0logcd1ebb" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logcd1ebb', 'skip')"
+                                data-log-id="Install_ceph_prerequisites_0logcd1ebb" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Install_ceph_prerequisites_0logcd1ebb" class="feedback-form">
+                        <textarea id="feedback-text-Install_ceph_prerequisites_0logcd1ebb" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Install_ceph_prerequisites_0logcd1ebb" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.
+
+Fix: To fix this issue, the following steps can be taken:
+
+1. Update all Perl modules to their latest compatible versions using the `perldl` command.
+2. Check for any conflicting dependencies between the different Perl modules and resolve them.
+3. Verify that the system has enough memory and CPU resources to run the applications smoothly.
+
+Steps:
+
+1. Run the `perldl` command to update all Perl modules to their latest compatible versions.
+2. Check the dependencies of each Perl module using the `depends` command and resolve any conflicts.
+3. Monitor the system&#x27;s resource usage and adjust it if necessary to ensure smooth application execution.
+
+By following these steps, the root cause of the failures should be resolved, and the system should be able to run the applications without any issues.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-osd-crush-device-class</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" data-log-name="Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_'crush_device_class'_to_create_osd._0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" class="toggle-raw" onclick="toggleRawAnalysis('Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-osd-crush-device-class/Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_'crush_device_class'_to_create_osd._0.log" target="_blank" class="log-name">Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_'crush_device_class'_to_create_osd._0.log</a>
+                </td>
+                <td>The failures are caused by the escalation of the firewalld service.</td>
+                <td>Restart the firewalld service with elevated privileges to fix the issue.</td>
+                <td>1. Check if there are any ongoing processes that may be causing the issue. If so, terminate them.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc', 'like')"
+                                data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" data-vote="like">👍</button>
+                        <button id="dislike-btn-Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc', 'dislike')"
+                                data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc', 'skip')"
+                                data-log-id="Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" class="feedback-form">
+                        <textarea id="feedback-text-Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Bootstrap_a_cluster_along_with_a_spec_file_using_class_field_crush_device_class_to_create_osd_0log8d48fc" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The failures are caused by the escalation of the firewalld service.
+Fix: Restart the firewalld service with elevated privileges to fix the issue.
+Steps:
+1. Check if there are any ongoing processes that may be causing the issue. If so, terminate them.
+2. Restart the firewalld service with elevated privileges using the command `sudo systemctl restart firewalld` or `sudo firewalld --restart`.
+3. Verify if the issue persists and repeat steps 1 and 2 as needed.
+Answer: The root cause of the failures is the escalation of the firewalld service, which can be fixed by restarting the service with elevated privileges.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-os-tuning-profiles</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Install_ceph_prerequisites_0log7b7c71" data-log-name="Install_ceph_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Install_ceph_prerequisites_0log7b7c71" class="toggle-raw" onclick="toggleRawAnalysis('Install_ceph_prerequisites_0log7b7c71')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-os-tuning-profiles/Install_ceph_pre-requisites_0.log" target="_blank" class="log-name">Install_ceph_pre-requisites_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.</td>
+                <td>To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.</td>
+                <td>1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Install_ceph_prerequisites_0log7b7c71" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0log7b7c71', 'like')"
+                                data-log-id="Install_ceph_prerequisites_0log7b7c71" data-vote="like">👍</button>
+                        <button id="dislike-btn-Install_ceph_prerequisites_0log7b7c71" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0log7b7c71', 'dislike')"
+                                data-log-id="Install_ceph_prerequisites_0log7b7c71" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Install_ceph_prerequisites_0log7b7c71" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0log7b7c71', 'skip')"
+                                data-log-id="Install_ceph_prerequisites_0log7b7c71" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Install_ceph_prerequisites_0log7b7c71" class="feedback-form">
+                        <textarea id="feedback-text-Install_ceph_prerequisites_0log7b7c71" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Install_ceph_prerequisites_0log7b7c71" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.
+
+Fix: To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.
+
+Steps:
+
+1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.
+2. Check the version of Perl being used and ensure it&#x27;s compatible with the versions of the modules being installed.
+3. Review the system configuration and dependencies to identify any other potential issues that may arise due to incompatible module versions.
+4. Implement measures to prevent similar issues from occurring in the future, such as using a consistent version of Perl across the system and ensuring that all modules are updated regularly.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1_node_exporter_operation</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Install_ceph_prerequisites_0logbbec66" data-log-name="Install_ceph_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Install_ceph_prerequisites_0logbbec66" class="toggle-raw" onclick="toggleRawAnalysis('Install_ceph_prerequisites_0logbbec66')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1_node_exporter_operation/Install_ceph_pre-requisites_0.log" target="_blank" class="log-name">Install_ceph_pre-requisites_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.</td>
+                <td>To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.</td>
+                <td>1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Install_ceph_prerequisites_0logbbec66" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logbbec66', 'like')"
+                                data-log-id="Install_ceph_prerequisites_0logbbec66" data-vote="like">👍</button>
+                        <button id="dislike-btn-Install_ceph_prerequisites_0logbbec66" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logbbec66', 'dislike')"
+                                data-log-id="Install_ceph_prerequisites_0logbbec66" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Install_ceph_prerequisites_0logbbec66" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logbbec66', 'skip')"
+                                data-log-id="Install_ceph_prerequisites_0logbbec66" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Install_ceph_prerequisites_0logbbec66" class="feedback-form">
+                        <textarea id="feedback-text-Install_ceph_prerequisites_0logbbec66" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Install_ceph_prerequisites_0logbbec66" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the lack of compatibility between the different versions of Perl modules being used in the system.
+
+Fix: To fix this issue, I suggest updating all the affected Perl modules to their latest compatible versions using the `perldl` command. Additionally, it&#x27;s important to ensure that the version of Perl being used is compatible with the versions of the modules being installed.
+
+Steps:
+
+1. Run the `perldl` command to update all the affected Perl modules to their latest compatible versions.
+2. Check the version of Perl being used and ensure it&#x27;s compatible with the versions of the modules being installed.
+3. Review the system configuration and dependencies to identify any other potential issues that may arise due to incompatible module versions.
+4. Implement measures to prevent similar issues from occurring in the future, such as using a consistent version of Perl across the system and ensuring that all modules are updated to their latest compatible versions.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-cephapi-auth-api</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Setup_prerequisites_0log07e0f5" data-log-name="Setup_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Setup_prerequisites_0log07e0f5" class="toggle-raw" onclick="toggleRawAnalysis('Setup_prerequisites_0log07e0f5')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier1-cephapi-auth-api/Setup_pre-requisites_0.log" target="_blank" class="log-name">Setup_pre-requisites_0.log</a>
+                </td>
+                <td>Analysis incomplete</td>
+                <td>See raw analysis for details</td>
+                <td>1. Read the log file carefully: The first step is to read the log file thoroughly to understand the context and the events that led to the failure. Pay attention to any error messages, warnings, or other relevant information.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Setup_prerequisites_0log07e0f5" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Setup_prerequisites_0log07e0f5', 'like')"
+                                data-log-id="Setup_prerequisites_0log07e0f5" data-vote="like">👍</button>
+                        <button id="dislike-btn-Setup_prerequisites_0log07e0f5" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Setup_prerequisites_0log07e0f5', 'dislike')"
+                                data-log-id="Setup_prerequisites_0log07e0f5" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Setup_prerequisites_0log07e0f5" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Setup_prerequisites_0log07e0f5', 'skip')"
+                                data-log-id="Setup_prerequisites_0log07e0f5" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Setup_prerequisites_0log07e0f5" class="feedback-form">
+                        <textarea id="feedback-text-Setup_prerequisites_0log07e0f5" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Setup_prerequisites_0log07e0f5" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>I cannot provide a direct answer to your query as it is not within my capabilities to analyze log files and identify root causes of failures. However, I can offer some general guidance on how to approach this task.
+
+To analyze a log file and identify the root cause of failures, you can follow these steps:
+
+1. Read the log file carefully: The first step is to read the log file thoroughly to understand the context and the events that led to the failure. Pay attention to any error messages, warnings, or other relevant information.
+2. Identify the common causes of failures: Based on your reading of the log file, identify the common causes of failures. For example, are there any recurring errors or issues? Are there any patterns in the errors that could indicate a root cause?
+3. Look for clues in the log file: The log file may contain clues about the root cause of the failure. Look for any information that could help you identify the root cause, such as the type of error, the time and date of the error, or any other relevant details.
+4. Consult relevant documentation and resources: Consult relevant documentation and resources to help you identify the root cause of the failure. For example, if the failure is related to a specific module or function, consult the documentation for that module or function to see if there are any known issues or causes of failure.
+5. Analyze the log file using tools: There are various tools available that can help you analyze log files and identify the root cause of failures. For example, you could use a tool like `logparser` to parse and analyze log files, or use a tool like `grep` to search for specific patterns in the log file.
+6. Collaborate with others: If you are unable to identify the root cause of the failure on your own, consider collaborating with others who may have more expertise or knowledge in the area. For example, you could ask colleagues or mentors for their input and advice.
+7. Test potential solutions: Once you have identified a potential root cause of the failure, test any suggested solutions to see if they resolve the issue. If the solution does not work, repeat the process of identifying the root cause and testing potential solutions until you find one that works.
+
+By following these steps, you should be able to identify the root cause of failures in your log file and take appropriate action to resolve the issues.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier4-service-operations</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="OSD_service_ops_using_systemctl_0loga406aa" data-log-name="OSD_service_ops_using_systemctl_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-OSD_service_ops_using_systemctl_0loga406aa" class="toggle-raw" onclick="toggleRawAnalysis('OSD_service_ops_using_systemctl_0loga406aa')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/dmfg/101/tier4-service-operations/OSD_service_ops_using_systemctl_0.log" target="_blank" class="log-name">OSD_service_ops_using_systemctl_0.log</a>
+                </td>
+                <td>The root cause of the failures is a combination of hardware and software issues.</td>
+                <td>To fix the issue, we need to identify and address the underlying causes. Here are some suggested solutions:</td>
+                <td>1. Review the log files to identify the root cause of the failures.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-OSD_service_ops_using_systemctl_0loga406aa" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('OSD_service_ops_using_systemctl_0loga406aa', 'like')"
+                                data-log-id="OSD_service_ops_using_systemctl_0loga406aa" data-vote="like">👍</button>
+                        <button id="dislike-btn-OSD_service_ops_using_systemctl_0loga406aa" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('OSD_service_ops_using_systemctl_0loga406aa', 'dislike')"
+                                data-log-id="OSD_service_ops_using_systemctl_0loga406aa" data-vote="dislike">👎</button>
+                        <button id="skip-btn-OSD_service_ops_using_systemctl_0loga406aa" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('OSD_service_ops_using_systemctl_0loga406aa', 'skip')"
+                                data-log-id="OSD_service_ops_using_systemctl_0loga406aa" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-OSD_service_ops_using_systemctl_0loga406aa" class="feedback-form">
+                        <textarea id="feedback-text-OSD_service_ops_using_systemctl_0loga406aa" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-OSD_service_ops_using_systemctl_0loga406aa" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is a combination of hardware and software issues.
+
+Fix: To fix the issue, we need to identify and address the underlying causes. Here are some suggested solutions:
+
+1. Hardware Issues: Check if there are any hardware failures or malfunctions in the system. If so, replace or repair the affected components.
+2. Software Issues: Check if there are any software bugs or issues that may be causing the failures. Update or patch the affected software to the latest version.
+3. Configuration Issues: Review the system configuration and ensure that it is set up correctly. Make any necessary adjustments to the configuration to prevent future failures.
+4. Resource Constraints: Check if there are any resource constraints that may be causing the failures. Ensure that the system has enough resources (e.g., memory, CPU) to handle the workload.
+5. Network Issues: Check if there are any network issues that may be affecting the system. Resolve any network issues and ensure that the system is properly configured for networking.
+6. Security Issues: Check if there are any security issues that may be causing the failures. Implement appropriate security measures to prevent future failures.
+7. Monitoring and Logging: Ensure that the system is properly monitored and logged. This will help identify potential issues before they become critical.
+8. Backup and Recovery: Implement a backup and recovery plan to ensure that data can be recovered in case of a failure.
+9. Performance Optimization: Optimize the system for better performance. This may involve tuning configuration parameters, optimizing database queries, or using caching mechanisms.
+10. Regular Maintenance: Regularly perform maintenance tasks such as running disk checks, updating software, and checking for security vulnerabilities.
+
+Steps:
+
+1. Review the log files to identify the root cause of the failures.
+2. Check the system configuration and ensure that it is set up correctly.
+3. Identify any hardware or software issues and address them.
+4. Implement a backup and recovery plan.
+5. Optimize the system for better performance.
+6. Regularly perform maintenance tasks to prevent future failures.
+7. Monitor the system closely to identify potential issues before they become critical.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        
+        <button class="submit-all-btn" onclick="submitAllFeedback()">
+            Submit All Feedback (20 logs)
+        </button>
+    </body>
+    </html>
+    

@@ -1,0 +1,142 @@
+2025-04-15 12:46:28,148 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-15 12:46:28,154 - cephci - run:722 - INFO - Running test test_mon_connection_scores.py
+2025-04-15 12:46:28,154 - cephci - test_mon_connection_scores:62 - DEBUG - Setting mon election strategy to classic mode
+2025-04-15 12:46:28,154 - cephci - test_mon_connection_scores:63 - DEBUG - Proceeding to test all scenarios with mon election strategy classic
+2025-04-15 12:46:28,156 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph mon set election_strategy classic on 10.0.195.79
+2025-04-15 12:46:30,879 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph mon set election_strategy classic on 10.0.195.79 took 2.72314 seconds
+2025-04-15 12:46:30,880 - cephci - shell:64 - DEBUG - 
+2025-04-15 12:46:31,882 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph mon dump -f json on 10.0.195.79
+2025-04-15 12:46:33,594 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph mon dump -f json on 10.0.195.79 took 1.711861 seconds
+2025-04-15 12:46:33,595 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 12:46:33,595 - cephci - ceph:1186 - DEBUG - {"epoch":3,"fsid":"79ad3a88-19c4-11f0-bea5-fa163ea10f51","modified":"2025-04-15T06:48:14.142303Z","created":"2025-04-15T06:40:27.910535Z","min_mon_release":19,"min_mon_release_name":"squid","election_strategy":1,"disallowed_leaders: ":"","stretch_mode":false,"tiebreaker_mon":"","removed_ranks: ":"","features":{"persistent":["kraken","luminous","mimic","osdmap-prune","nautilus","octopus","pacific","elector-pinging","quincy","reef","squid"],"optional":[]},"mons":[{"rank":0,"name":"ceph-regression-juxejq-zv217a-node1-installer","public_addrs":{"addrvec":[{"type":"v2","addr":"10.0.195.79:3300","nonce":0},{"type":"v1","addr":"10.0.195.79:6789","nonce":0}]},"addr":"10.0.195.79:6789/0","public_addr":"10.0.195.79:6789/0","priority":0,"weight":0,"crush_location":"{}"},{"rank":1,"name":"ceph-regression-juxejq-zv217a-node2","public_addrs":{"addrvec":[{"type":"v2","addr":"10.0.195.138:3300","nonce":0},{"type":"v1","addr":"10.0.195.138:6789","nonce":0}]},"addr":"10.0.195.138:6789/0","public_addr":"10.0.195.138:6789/0","priority":0,"weight":0,"crush_location":"{}"},{"rank":2,"name":"ceph-regression-juxejq-zv217a-node6","public_addrs":{"addrvec":[{"type":"v2","addr":"10.0.195.171:3300","nonce":0},{"type":"v1","addr":"10.0.195.171:6789","nonce":0}]},"addr":"10.0.195.171:6789/0","public_addr":"10.0.195.171:6789/0","priority":0,"weight":0,"crush_location":"{}"}],"quorum":[0,1,2]}
+2025-04-15 12:46:33,596 - cephci - monitor_configurations:135 - DEBUG - Changed the election strategy
+2025-04-15 12:46:33,636 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph mon dump -f json on 10.0.195.79
+2025-04-15 12:46:35,320 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph mon dump -f json on 10.0.195.79 took 1.683642 seconds
+2025-04-15 12:46:35,321 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 12:46:35,321 - cephci - ceph:1186 - DEBUG - {"epoch":3,"fsid":"79ad3a88-19c4-11f0-bea5-fa163ea10f51","modified":"2025-04-15T06:48:14.142303Z","created":"2025-04-15T06:40:27.910535Z","min_mon_release":19,"min_mon_release_name":"squid","election_strategy":1,"disallowed_leaders: ":"","stretch_mode":false,"tiebreaker_mon":"","removed_ranks: ":"","features":{"persistent":["kraken","luminous","mimic","osdmap-prune","nautilus","octopus","pacific","elector-pinging","quincy","reef","squid"],"optional":[]},"mons":[{"rank":0,"name":"ceph-regression-juxejq-zv217a-node1-installer","public_addrs":{"addrvec":[{"type":"v2","addr":"10.0.195.79:3300","nonce":0},{"type":"v1","addr":"10.0.195.79:6789","nonce":0}]},"addr":"10.0.195.79:6789/0","public_addr":"10.0.195.79:6789/0","priority":0,"weight":0,"crush_location":"{}"},{"rank":1,"name":"ceph-regression-juxejq-zv217a-node2","public_addrs":{"addrvec":[{"type":"v2","addr":"10.0.195.138:3300","nonce":0},{"type":"v1","addr":"10.0.195.138:6789","nonce":0}]},"addr":"10.0.195.138:6789/0","public_addr":"10.0.195.138:6789/0","priority":0,"weight":0,"crush_location":"{}"},{"rank":2,"name":"ceph-regression-juxejq-zv217a-node6","public_addrs":{"addrvec":[{"type":"v2","addr":"10.0.195.171:3300","nonce":0},{"type":"v1","addr":"10.0.195.171:6789","nonce":0}]},"addr":"10.0.195.171:6789/0","public_addr":"10.0.195.171:6789/0","priority":0,"weight":0,"crush_location":"{}"}],"quorum":[0,1,2]}
+2025-04-15 12:46:35,322 - cephci - ceph:1576 - INFO - Execute ceph orch ps ceph-regression-juxejq-zv217a-node1-installer -f json on 10.0.195.240
+2025-04-15 12:46:36,326 - cephci - ceph:1606 - INFO - Execution of ceph orch ps ceph-regression-juxejq-zv217a-node1-installer -f json on 10.0.195.240 took 1.003701 seconds
+2025-04-15 12:46:36,327 - cephci - core_workflows:4724 - DEBUG - mon daemon present on the host
+2025-04-15 12:46:36,328 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph orch ps --daemon_type mon --daemon_id ceph-regression-juxejq-zv217a-node1-installer --refresh -f json on 10.0.195.79
+2025-04-15 12:46:37,880 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph orch ps --daemon_type mon --daemon_id ceph-regression-juxejq-zv217a-node1-installer --refresh -f json on 10.0.195.79 took 1.551371 seconds
+2025-04-15 12:46:37,881 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 12:46:37,881 - cephci - ceph:1186 - DEBUG - [{"container_id": "27164bae9584", "container_image_digests": ["cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:ef6bebc203b9e271330f00b51d0616aa3de5cff643d4c6bf13e526801a5c18ee", "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6"], "container_image_id": "3b1483211cc850965b5b32c6080476272f17b6b386903025fa3d9ab5f6e784ef", "container_image_name": "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-110", "cpu_percentage": "1.66%", "created": "2025-04-15T06:40:29.897024Z", "daemon_id": "ceph-regression-juxejq-zv217a-node1-installer", "daemon_name": "mon.ceph-regression-juxejq-zv217a-node1-installer", "daemon_type": "mon", "events": ["2025-04-15T06:48:47.712778Z daemon:mon.ceph-regression-juxejq-zv217a-node1-installer [INFO] \"Reconfigured mon.ceph-regression-juxejq-zv217a-node1-installer on host 'ceph-regression-juxejq-zv217a-node1-installer'\""], "hostname": "ceph-regression-juxejq-zv217a-node1-installer", "is_active": false, "last_refresh": "2025-04-15T12:42:49.810685Z", "memory_request": 2147483648, "memory_usage": 489500000, "pending_daemon_config": false, "ports": [], "service_name": "mon", "started": "2025-04-15T06:40:32.300215Z", "status": 1, "status_desc": "running", "systemd_unit": "ceph-79ad3a88-19c4-11f0-bea5-fa163ea10f51@mon.ceph-regression-juxejq-zv217a-node1-installer", "version": "19.2.1-126.el9cp"}]
+2025-04-15 12:46:37,881 - cephci - core_workflows:2089 - DEBUG - [{'container_id': '27164bae9584', 'container_image_digests': ['cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:ef6bebc203b9e271330f00b51d0616aa3de5cff643d4c6bf13e526801a5c18ee', 'cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6'], 'container_image_id': '3b1483211cc850965b5b32c6080476272f17b6b386903025fa3d9ab5f6e784ef', 'container_image_name': 'cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-110', 'cpu_percentage': '1.66%', 'created': '2025-04-15T06:40:29.897024Z', 'daemon_id': 'ceph-regression-juxejq-zv217a-node1-installer', 'daemon_name': 'mon.ceph-regression-juxejq-zv217a-node1-installer', 'daemon_type': 'mon', 'events': ['2025-04-15T06:48:47.712778Z daemon:mon.ceph-regression-juxejq-zv217a-node1-installer [INFO] "Reconfigured mon.ceph-regression-juxejq-zv217a-node1-installer on host \'ceph-regression-juxejq-zv217a-node1-installer\'"'], 'hostname': 'ceph-regression-juxejq-zv217a-node1-installer', 'is_active': False, 'last_refresh': '2025-04-15T12:42:49.810685Z', 'memory_request': 2147483648, 'memory_usage': 489500000, 'pending_daemon_config': False, 'ports': [], 'service_name': 'mon', 'started': '2025-04-15T06:40:32.300215Z', 'status': 1, 'status_desc': 'running', 'systemd_unit': 'ceph-79ad3a88-19c4-11f0-bea5-fa163ea10f51@mon.ceph-regression-juxejq-zv217a-node1-installer', 'version': '19.2.1-126.el9cp'}]
+2025-04-15 12:46:37,921 - cephci - ceph:1576 - INFO - Execute cephadm shell ceph daemon mon.ceph-regression-juxejq-zv217a-node1-installer connection scores dump on 10.0.195.79
+2025-04-15 12:46:39,285 - cephci - ceph:1606 - INFO - Execution of cephadm shell ceph daemon mon.ceph-regression-juxejq-zv217a-node1-installer connection scores dump on 10.0.195.79 took 1.363082 seconds
+2025-04-15 12:46:39,286 - cephci - monitor_workflows:353 - ERROR - Failed with exception: None
+2025-04-15 12:46:39,286 - cephci - monitor_workflows:354 - ERROR - cephadm shell ceph daemon mon.ceph-regression-juxejq-zv217a-node1-installer connection scores dump returned Inferring fsid 79ad3a88-19c4-11f0-bea5-fa163ea10f51
+Inferring config /var/lib/ceph/79ad3a88-19c4-11f0-bea5-fa163ea10f51/mon.ceph-regression-juxejq-zv217a-node1-installer/config
+Using ceph image with id '3b1483211cc8' and tag '8-110' created on 2025-04-11 13:52:17 +0000 UTC
+cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6
+Invalid command: unused arguments: ['--default-mgr_initial_modules=iostat,nfs,smb']
+connection scores dump :  show the scores used in connectivity-based elections
+admin_socket: invalid command
+ and code 22 on 10.0.195.79
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/rados/monitor_workflows.py", line 342, in connection_score_checks
+    out, err = host.exec_command(sudo=True, cmd=cmd)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: cephadm shell ceph daemon mon.ceph-regression-juxejq-zv217a-node1-installer connection scores dump returned Inferring fsid 79ad3a88-19c4-11f0-bea5-fa163ea10f51
+Inferring config /var/lib/ceph/79ad3a88-19c4-11f0-bea5-fa163ea10f51/mon.ceph-regression-juxejq-zv217a-node1-installer/config
+Using ceph image with id '3b1483211cc8' and tag '8-110' created on 2025-04-11 13:52:17 +0000 UTC
+cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6
+Invalid command: unused arguments: ['--default-mgr_initial_modules=iostat,nfs,smb']
+connection scores dump :  show the scores used in connectivity-based elections
+admin_socket: invalid command
+ and code 22 on 10.0.195.79
+2025-04-15 12:46:39,286 - cephci - test_mon_connection_scores:207 - ERROR - Failed with exception: Common base class for all non-exit exceptions.
+2025-04-15 12:46:39,287 - cephci - test_mon_connection_scores:208 - ERROR - Connection score checks failed
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_mon_connection_scores.py", line 76, in run
+    raise Exception("Connection score checks failed")
+Exception: Connection score checks failed
+2025-04-15 12:46:39,287 - cephci - test_mon_connection_scores:212 - INFO - 
+ 
+ ************** Execution of finally block begins here *************** 
+ 
+
+2025-04-15 12:46:39,288 - cephci - ceph:1576 - INFO - Execute ceph orch ls mon --export -f json on 10.0.195.240
+2025-04-15 12:46:40,293 - cephci - ceph:1606 - INFO - Execution of ceph orch ls mon --export -f json on 10.0.195.240 took 1.004122 seconds
+2025-04-15 12:46:40,293 - cephci - monitor_workflows:86 - DEBUG - Setting the service as unmanaged by cephadm. current status : {'placement': {'label': 'mon'}, 'service_name': 'mon', 'service_type': 'mon'}
+2025-04-15 12:46:40,295 - cephci - ceph:1576 - INFO - Execute touch /tmp/mon_spec_1.yaml on 10.0.195.240
+2025-04-15 12:46:41,299 - cephci - ceph:1606 - INFO - Execution of touch /tmp/mon_spec_1.yaml on 10.0.195.240 took 1.003677 seconds
+2025-04-15 12:46:41,301 - cephci - ceph:1576 - INFO - Execute echo {'placement': {'label': 'mon'}, 'service_name': 'mon', 'service_type': 'mon', 'unmanaged': 'false'} > /tmp/mon_spec_1.yaml on 10.0.195.240
+2025-04-15 12:46:42,304 - cephci - ceph:1606 - INFO - Execution of echo {'placement': {'label': 'mon'}, 'service_name': 'mon', 'service_type': 'mon', 'unmanaged': 'false'} > /tmp/mon_spec_1.yaml on 10.0.195.240 took 1.003181 seconds
+2025-04-15 12:46:42,305 - cephci - monitor_workflows:98 - DEBUG - Contents of mon spec file : {'placement': {'label': 'mon'}, 'service_name': 'mon', 'service_type': 'mon', 'unmanaged': 'false'}
+2025-04-15 12:46:42,305 - cephci - monitor_workflows:100 - INFO - Applying the spec file via cmd : ceph orch apply -i /tmp/mon_spec_1.yaml
+2025-04-15 12:46:42,306 - cephci - ceph:1576 - INFO - Execute ceph orch apply -i /tmp/mon_spec_1.yaml on 10.0.195.240
+2025-04-15 12:46:43,310 - cephci - ceph:1606 - INFO - Execution of ceph orch apply -i /tmp/mon_spec_1.yaml on 10.0.195.240 took 1.003446 seconds
+2025-04-15 12:46:53,322 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph orch ls -f json on 10.0.195.79
+2025-04-15 12:46:54,828 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph orch ls -f json on 10.0.195.79 took 1.505932 seconds
+2025-04-15 12:46:54,829 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 12:46:54,829 - cephci - ceph:1186 - DEBUG - [{"events": ["2025-04-15T06:42:05.789605Z service:alertmanager [INFO] \"service was created\""], "placement": {"count": 1}, "service_name": "alertmanager", "service_type": "alertmanager", "status": {"created": "2025-04-15T06:41:05.532199Z", "last_refresh": "2025-04-15T12:46:19.120567Z", "ports": [9093, 9094], "running": 1, "size": 1}}, {"events": ["2025-04-15T06:48:09.774672Z service:ceph-exporter [INFO] \"service was created\""], "placement": {"host_pattern": "*"}, "service_name": "ceph-exporter", "service_type": "ceph-exporter", "spec": {"prio_limit": 5, "stats_period": 5}, "status": {"created": "2025-04-15T06:41:02.775661Z", "last_refresh": "2025-04-15T12:46:18.184165Z", "running": 6, "size": 6}}, {"events": ["2025-04-15T06:42:18.332811Z service:grafana [INFO] \"service was created\""], "placement": {"count": 1}, "service_name": "grafana", "service_type": "grafana", "spec": {"anonymous_access": true, "protocol": "https"}, "status": {"created": "2025-04-15T06:41:04.189613Z", "last_refresh": "2025-04-15T12:46:19.120666Z", "ports": [3000], "running": 1, "size": 1}}, {"events": ["2025-04-15T06:58:15.609083Z service:mds.cephfs [INFO] \"service was created\""], "placement": {"count": 2, "hosts": ["ceph-regression-juxejq-zv217a-node2", "ceph-regression-juxejq-zv217a-node6"]}, "service_id": "cephfs", "service_name": "mds.cephfs", "service_type": "mds", "status": {"created": "2025-04-15T06:57:59.484698Z", "last_refresh": "2025-04-15T12:46:18.184719Z", "running": 2, "size": 2}}, {"events": ["2025-04-15T06:48:11.688950Z service:mgr [INFO] \"service was created\""], "placement": {"label": "mgr"}, "service_name": "mgr", "service_type": "mgr", "status": {"created": "2025-04-15T06:44:03.366292Z", "last_refresh": "2025-04-15T12:46:18.184415Z", "running": 3, "size": 3}}, {"events": ["2025-04-15T12:46:22.775915Z service:mon [INFO] \"service was created\""], "placement": {"label": "mon"}, "service_name": "mon", "service_type": "mon", "status": {"created": "2025-04-15T12:46:21.678641Z", "last_refresh": "2025-04-15T12:46:18.18457
+2025-04-15 12:46:54,830 - cephci - ceph:1186 - DEBUG - 8Z", "running": 3, "size": 3}}, {"events": ["2025-04-15T06:48:43.416043Z service:node-exporter [INFO] \"service was created\""], "placement": {"host_pattern": "*"}, "service_name": "node-exporter", "service_type": "node-exporter", "status": {"created": "2025-04-15T06:41:04.876565Z", "last_refresh": "2025-04-15T12:46:18.184298Z", "ports": [9100], "running": 5, "size": 6}}, {"events": ["2025-04-15T06:52:01.876369Z service:osd.all-available-devices [INFO] \"service was created\""], "placement": {"host_pattern": "*"}, "service_id": "all-available-devices", "service_name": "osd.all-available-devices", "service_type": "osd", "spec": {"data_devices": {"all": true}, "filter_logic": "AND", "objectstore": "bluestore"}, "status": {"created": "2025-04-15T06:52:01.862810Z", "last_refresh": "2025-04-15T12:46:18.478731Z", "running": 14, "size": 15}}, {"events": ["2025-04-15T06:42:25.056977Z service:prometheus [INFO] \"service was created\""], "placement": {"count": 1}, "service_name": "prometheus", "service_type": "prometheus", "status": {"created": "2025-04-15T06:41:03.538569Z", "last_refresh": "2025-04-15T12:46:19.120745Z", "ports": [9095], "running": 1, "size": 1}}, {"events": ["2025-04-15T06:56:17.625281Z service:rgw.rgw.1 [INFO] \"service was created\""], "placement": {"label": "rgw"}, "service_id": "rgw.1", "service_name": "rgw.rgw.1", "service_type": "rgw", "spec": {"rgw_exit_timeout_secs": 120}, "status": {"created": "2025-04-15T06:56:17.597879Z", "last_refresh": "2025-04-15T12:46:18.184834Z", "ports": [80], "running": 2, "size": 2}}]
+2025-04-15 12:46:54,830 - cephci - monitor_workflows:109 - DEBUG - Service status : {'events': ['2025-04-15T12:46:22.775915Z service:mon [INFO] "service was created"'], 'placement': {'label': 'mon'}, 'service_name': 'mon', 'service_type': 'mon', 'status': {'created': '2025-04-15T12:46:21.678641Z', 'last_refresh': '2025-04-15T12:46:18.184578Z', 'running': 3, 'size': 3}}
+2025-04-15 12:46:54,830 - cephci - monitor_workflows:115 - INFO - Service  in unmamaned=False state. Pass
+2025-04-15 12:46:54,831 - cephci - core_workflows:4558 - DEBUG - Printing cluster health and status
+2025-04-15 12:46:54,871 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph health detail on 10.0.195.79
+2025-04-15 12:46:56,441 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph health detail on 10.0.195.79 took 1.570389 seconds
+2025-04-15 12:46:56,442 - cephci - ceph:1186 - DEBUG - HEALTH_WARN 1 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+2025-04-15 12:46:56,442 - cephci - ceph:1186 - DEBUG - [WRN] BLUESTORE_SLOW_OP_ALERT: 1 OSD(s) experiencing slow operations in BlueStore
+2025-04-15 12:46:56,442 - cephci - ceph:1186 - DEBUG -      osd.6 observed slow operation indications in BlueStore
+2025-04-15 12:46:56,442 - cephci - ceph:1186 - DEBUG - [WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+2025-04-15 12:46:56,443 - cephci - ceph:1186 - DEBUG -     daemon node-exporter.ceph-regression-juxejq-zv217a-node1-installer on ceph-regression-juxejq-zv217a-node1-installer is in unknown state
+2025-04-15 12:46:56,443 - cephci - shell:64 - DEBUG - HEALTH_WARN 1 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+[WRN] BLUESTORE_SLOW_OP_ALERT: 1 OSD(s) experiencing slow operations in BlueStore
+     osd.6 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-juxejq-zv217a-node1-installer on ceph-regression-juxejq-zv217a-node1-installer is in unknown state
+
+2025-04-15 12:46:56,443 - cephci - core_workflows:4560 - INFO - 
+****
+ Cluster health detail: 
+ HEALTH_WARN 1 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+[WRN] BLUESTORE_SLOW_OP_ALERT: 1 OSD(s) experiencing slow operations in BlueStore
+     osd.6 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-juxejq-zv217a-node1-installer on ceph-regression-juxejq-zv217a-node1-installer is in unknown state
+ 
+****
+2025-04-15 12:46:56,445 - cephci - ceph:1576 - INFO - Execute ceph -s on 10.0.195.240
+2025-04-15 12:46:57,448 - cephci - ceph:1606 - INFO - Execution of ceph -s on 10.0.195.240 took 1.003502 seconds
+2025-04-15 12:46:57,449 - cephci - core_workflows:4561 - INFO - 
+****
+ Cluster status: 
+   cluster:
+    id:     79ad3a88-19c4-11f0-bea5-fa163ea10f51
+    health: HEALTH_WARN
+            1 OSD(s) experiencing slow operations in BlueStore
+            1 failed cephadm daemon(s)
+ 
+  services:
+    mon: 3 daemons, quorum ceph-regression-juxejq-zv217a-node1-installer,ceph-regression-juxejq-zv217a-node2,ceph-regression-juxejq-zv217a-node6 (age 5h)
+    mgr: ceph-regression-juxejq-zv217a-node1-installer.odtafx(active, since 6h), standbys: ceph-regression-juxejq-zv217a-node2.oxadyy, ceph-regression-juxejq-zv217a-node6.agdlmk
+    mds: 1/1 daemons up, 1 standby
+    osd: 15 osds: 14 up (since 95m), 14 in (since 3h)
+    rgw: 2 daemons active (2 hosts, 1 zones)
+ 
+  data:
+    volumes: 1/1 healthy
+    pools:   8 pools, 689 pgs
+    objects: 219 objects, 456 KiB
+    usage:   13 GiB used, 337 GiB / 350 GiB avail
+    pgs:     689 active+clean
+ 
+ 
+****
+2025-04-15 12:46:57,450 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph crash ls-new -f json on 10.0.195.79
+2025-04-15 12:46:58,926 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph crash ls-new -f json on 10.0.195.79 took 1.475632 seconds
+2025-04-15 12:46:58,927 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 12:46:58,927 - cephci - ceph:1186 - DEBUG - []
+2025-04-15 12:46:58,968 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.79
+2025-04-15 12:46:59,973 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.79 took 1.004106 seconds
+2025-04-15 12:46:59,973 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-15 12:46:59,975 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.79
+2025-04-15 12:47:00,978 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.79 took 1.003301 seconds
+2025-04-15 12:47:00,980 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.240
+2025-04-15 12:47:01,984 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.240 took 1.003474 seconds
+2025-04-15 12:47:01,984 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-15 12:47:01,985 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-JUxEjq-ZV217A
+2025-04-15 12:47:01,985 - cephci - run:927 - INFO - Test <module 'test_mon_connection_scores' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_mon_connection_scores.py'> failed

@@ -1,0 +1,233 @@
+[
+  {
+    "log_id": "Deploy_cluster_using_cephadm_0logaf9ccb",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.139Z"
+  },
+  {
+    "log_id": "Cephadm_Bootstrap_with_custom_user_option_0log5580fd",
+    "log_name": "Cephadm_Bootstrap_with_custom_user_option_0.log",
+    "vote": "dislike",
+    "comment": "More accurate answer",
+    "build_stamp": "2025-08-19T14:59:37.139Z"
+  },
+  {
+    "log_id": "deploy_cluster_0log35e5d7",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "like",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.139Z"
+  },
+  {
+    "log_id": "cluster_deployment_0log2e4aa9",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "skip",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.139Z"
+  },
+  {
+    "log_id": "deploy_cluster_using_cephadm_0logdc48e4",
+    "log_name": "deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.139Z"
+  },
+  {
+    "log_id": "deploy_cluster_0logf4beb2",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "like",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.140Z"
+  },
+  {
+    "log_id": "Deploy_cluster_using_cephadm_0log4b7147",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": "No proper analysis",
+    "build_stamp": "2025-08-19T14:59:37.140Z"
+  },
+  {
+    "log_id": "Deploy_cluster_using_cephadm_0logf636c0",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.140Z"
+  },
+  {
+    "log_id": "Deploy_cluster_using_cephadm_0logbd1737",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.140Z"
+  },
+  {
+    "log_id": "Cephadm_Bootstrap_0log00fb4a",
+    "log_name": "Cephadm_Bootstrap_0.log",
+    "vote": "like",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.140Z"
+  },
+  {
+    "log_id": "Deploy_cluster_using_cephadm_0log39d64d",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": "",
+    "build_stamp": "2025-08-19T14:59:37.140Z"
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log062a82",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "deploy_cluster_0log9c3334",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "dislike",
+    "comment": "Veriry properly"
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "deploy_cluster_0log53fb64",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logb66251",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log78632d",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "Cephadm_Bootstrap_0logba0a3a",
+    "log_name": "Cephadm_Bootstrap_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logd4392f",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "cluster_deployment_0logca43ea",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "deploy_cluster_using_cephadm_0log61c5a9",
+    "log_name": "deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "Cephadm_Bootstrap_with_custom_user_option_0log7e846d",
+    "log_name": "Cephadm_Bootstrap_with_custom_user_option_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T15:12:30.935Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log2104ba",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "deploy_cluster_using_cephadm_0logbc3e34",
+    "log_name": "deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logf0e346",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log2eb4c7",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logfeba54",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log2f12da",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "Cephadm_Bootstrap_0logc07a5a",
+    "log_name": "Cephadm_Bootstrap_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "cluster_deployment_0logfec618",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "Deploy_cluster_using_cephadm_0loga97fb0",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "deploy_cluster_0log2c6e59",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "Cephadm_Bootstrap_with_custom_user_option_0logb787e1",
+    "log_name": "Cephadm_Bootstrap_with_custom_user_option_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "build_stamp": "2025-08-19T19:02:33.222Z",
+    "log_id": "deploy_cluster_0log4dd488",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "skip",
+    "comment": ""
+  }
+]

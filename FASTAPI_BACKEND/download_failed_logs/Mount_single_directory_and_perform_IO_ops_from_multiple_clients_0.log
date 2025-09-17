@@ -1,0 +1,1037 @@
+2025-04-14 14:28:33,481 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-14 14:28:33,484 - cephci - run:722 - INFO - Running test clients.multiclients_io_on_same_directory.py
+2025-04-14 14:28:33,485 - cephci - multiclients_io_on_same_directory:25 - INFO - Running cephfs 11224 test case
+2025-04-14 14:28:33,486 - cephci - ceph:1576 - INFO - Execute yum install -y python3 --nogpgcheck on 10.0.195.192
+2025-04-14 14:28:34,490 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:35,079 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:35,080 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:35,080 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:35,534 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 1:26:00 ago on Mon Apr 14 13:02:15 2025.
+2025-04-14 14:28:35,739 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 14:28:35,822 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:35,823 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:35,824 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:35,940 - cephci - ceph:1606 - INFO - Execution of yum install -y python3 --nogpgcheck on 10.0.195.192 took 2.453761 seconds
+2025-04-14 14:28:35,983 - cephci - ceph:1576 - INFO - Execute yum install -y python3-pip --nogpgcheck on 10.0.195.192
+2025-04-14 14:28:36,988 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:37,510 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:37,511 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:37,511 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:38,034 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 1:26:02 ago on Mon Apr 14 13:02:15 2025.
+2025-04-14 14:28:38,252 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 14:28:38,334 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:38,335 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:38,336 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:39,458 - cephci - ceph:1606 - INFO - Execution of yum install -y python3-pip --nogpgcheck on 10.0.195.192 took 3.474337 seconds
+2025-04-14 14:28:39,461 - cephci - ceph:1576 - INFO - Execute python3 --version; pip3 --version on 10.0.195.192
+2025-04-14 14:28:40,465 - cephci - ceph:1606 - INFO - Execution of python3 --version; pip3 --version on 10.0.195.192 took 1.003993 seconds
+2025-04-14 14:28:40,468 - cephci - ceph:1576 - INFO - Execute yum install -y python3 --nogpgcheck on 10.0.195.94
+2025-04-14 14:28:41,473 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:42,039 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:42,039 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:42,039 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:42,704 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:36:13 ago on Mon Apr 14 13:52:08 2025.
+2025-04-14 14:28:42,987 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 14:28:43,065 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:43,066 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:43,067 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:43,171 - cephci - ceph:1606 - INFO - Execution of yum install -y python3 --nogpgcheck on 10.0.195.94 took 2.702024 seconds
+2025-04-14 14:28:43,212 - cephci - ceph:1576 - INFO - Execute yum install -y python3-pip --nogpgcheck on 10.0.195.94
+2025-04-14 14:28:44,216 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:44,767 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:44,768 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:44,768 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:45,318 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:36:16 ago on Mon Apr 14 13:52:08 2025.
+2025-04-14 14:28:45,530 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 14:28:45,612 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:45,613 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:45,613 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:46,727 - cephci - ceph:1606 - INFO - Execution of yum install -y python3-pip --nogpgcheck on 10.0.195.94 took 3.514107 seconds
+2025-04-14 14:28:46,731 - cephci - ceph:1576 - INFO - Execute python3 --version; pip3 --version on 10.0.195.94
+2025-04-14 14:28:47,735 - cephci - ceph:1606 - INFO - Execution of python3 --version; pip3 --version on 10.0.195.94 took 1.003562 seconds
+2025-04-14 14:28:47,737 - cephci - ceph:1576 - INFO - Execute yum install -y python3 --nogpgcheck on 10.0.195.5
+2025-04-14 14:28:48,742 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:49,477 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:49,477 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:49,477 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:50,119 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 1:04:48 ago on Mon Apr 14 13:23:41 2025.
+2025-04-14 14:28:50,329 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 14:28:50,415 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:50,416 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:50,416 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:50,565 - cephci - ceph:1606 - INFO - Execution of yum install -y python3 --nogpgcheck on 10.0.195.5 took 2.827901 seconds
+2025-04-14 14:28:50,608 - cephci - ceph:1576 - INFO - Execute yum install -y python3-pip --nogpgcheck on 10.0.195.5
+2025-04-14 14:28:51,612 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:52,189 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:52,189 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:52,190 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:52,680 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 1:04:50 ago on Mon Apr 14 13:23:41 2025.
+2025-04-14 14:28:52,906 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 14:28:52,985 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:52,986 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:52,987 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:53,138 - cephci - ceph:1606 - INFO - Execution of yum install -y python3-pip --nogpgcheck on 10.0.195.5 took 2.529612 seconds
+2025-04-14 14:28:53,139 - cephci - ceph:1576 - INFO - Execute python3 --version; pip3 --version on 10.0.195.5
+2025-04-14 14:28:54,143 - cephci - ceph:1606 - INFO - Execution of python3 --version; pip3 --version on 10.0.195.5 took 1.003401 seconds
+2025-04-14 14:28:54,145 - cephci - ceph:1576 - INFO - Execute yum install -y python3 --nogpgcheck on 10.0.195.217
+2025-04-14 14:28:55,149 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:55,698 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:55,698 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:55,699 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:56,155 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 1:21:59 ago on Mon Apr 14 13:06:36 2025.
+2025-04-14 14:28:56,364 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 14:28:56,447 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:56,448 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:56,449 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:56,575 - cephci - ceph:1606 - INFO - Execution of yum install -y python3 --nogpgcheck on 10.0.195.217 took 2.429745 seconds
+2025-04-14 14:28:56,618 - cephci - ceph:1576 - INFO - Execute yum install -y python3-pip --nogpgcheck on 10.0.195.217
+2025-04-14 14:28:57,622 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 14:28:58,195 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:58,196 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 14:28:58,196 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 14:28:58,668 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 1:22:02 ago on Mon Apr 14 13:06:36 2025.
+2025-04-14 14:28:58,875 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 14:28:58,955 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 14:28:58,956 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 14:28:58,956 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 14:28:59,101 - cephci - ceph:1606 - INFO - Execution of yum install -y python3-pip --nogpgcheck on 10.0.195.217 took 2.482169 seconds
+2025-04-14 14:28:59,102 - cephci - ceph:1576 - INFO - Execute python3 --version; pip3 --version on 10.0.195.217
+2025-04-14 14:29:00,106 - cephci - ceph:1606 - INFO - Execution of python3 --version; pip3 --version on 10.0.195.217 took 1.003649 seconds
+2025-04-14 14:29:00,107 - cephci - cephfs_utils:69 - INFO - Getting Clients
+2025-04-14 14:29:00,108 - cephci - ceph:1576 - INFO - Execute ceph mon dump  | awk {'print $2'}  on 10.0.195.192
+2025-04-14 14:29:01,112 - cephci - ceph:1606 - INFO - Execution of ceph mon dump  | awk {'print $2'}  on 10.0.195.192 took 1.003457 seconds
+2025-04-14 14:29:01,114 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'attr\|xattr' on 10.0.195.192
+2025-04-14 14:29:02,118 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'attr\|xattr' on 10.0.195.192 took 1.003905 seconds
+2025-04-14 14:29:02,120 - cephci - ceph:1576 - INFO - Execute yum install -y gcc python3-devel on 10.0.195.192
+2025-04-14 14:29:04,634 - cephci - ceph:1606 - INFO - Execution of yum install -y gcc python3-devel on 10.0.195.192 took 2.513478 seconds
+2025-04-14 14:29:04,677 - cephci - ceph:1576 - INFO - Execute pip3 install xattr on 10.0.195.192
+2025-04-14 14:29:05,682 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 14:29:05,682 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 14:29:05,682 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 14:29:05,682 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 14:29:05,683 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr on 10.0.195.192 took 1.004795 seconds
+2025-04-14 14:29:05,684 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.192
+2025-04-14 14:29:06,688 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.192 took 1.003251 seconds
+2025-04-14 14:29:06,688 - cephci - cephfs_utils:130 - INFO - ls /home/cephuser : Crefi
+local-ceph-regression-rpbzec-wrs7oy-node8_5_5_3-0-verify.state
+smallfile
+
+2025-04-14 14:29:06,690 - cephci - ceph:1576 - INFO - Execute rpm -qa on 10.0.195.192
+2025-04-14 14:29:07,693 - cephci - ceph:1606 - INFO - Execution of rpm -qa on 10.0.195.192 took 1.003115 seconds
+2025-04-14 14:29:07,695 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'attr\|xattr' on 10.0.195.94
+2025-04-14 14:29:08,698 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'attr\|xattr' on 10.0.195.94 took 1.003262 seconds
+2025-04-14 14:29:08,700 - cephci - ceph:1576 - INFO - Execute yum install -y gcc python3-devel on 10.0.195.94
+2025-04-14 14:29:11,454 - cephci - ceph:1606 - INFO - Execution of yum install -y gcc python3-devel on 10.0.195.94 took 2.752523 seconds
+2025-04-14 14:29:11,498 - cephci - ceph:1576 - INFO - Execute pip3 install xattr on 10.0.195.94
+2025-04-14 14:29:12,502 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 14:29:12,503 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 14:29:12,503 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 14:29:12,503 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 14:29:12,504 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr on 10.0.195.94 took 1.005162 seconds
+2025-04-14 14:29:12,505 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.94
+2025-04-14 14:29:13,509 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.94 took 1.003483 seconds
+2025-04-14 14:29:13,510 - cephci - cephfs_utils:130 - INFO - ls /home/cephuser : Crefi
+smallfile
+
+2025-04-14 14:29:13,511 - cephci - ceph:1576 - INFO - Execute rpm -qa on 10.0.195.94
+2025-04-14 14:29:14,515 - cephci - ceph:1606 - INFO - Execution of rpm -qa on 10.0.195.94 took 1.003472 seconds
+2025-04-14 14:29:14,517 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'attr\|xattr' on 10.0.195.5
+2025-04-14 14:29:15,521 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'attr\|xattr' on 10.0.195.5 took 1.003861 seconds
+2025-04-14 14:29:15,523 - cephci - ceph:1576 - INFO - Execute yum install -y gcc python3-devel on 10.0.195.5
+2025-04-14 14:29:25,893 - cephci - ceph:1606 - INFO - Execution of yum install -y gcc python3-devel on 10.0.195.5 took 10.370524 seconds
+2025-04-14 14:29:25,935 - cephci - ceph:1576 - INFO - Execute pip3 install xattr on 10.0.195.5
+2025-04-14 14:29:26,939 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 14:29:26,940 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 14:29:26,940 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 14:29:26,940 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 14:29:26,941 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr on 10.0.195.5 took 1.005127 seconds
+2025-04-14 14:29:26,942 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.5
+2025-04-14 14:29:27,946 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.5 took 1.00388 seconds
+2025-04-14 14:29:27,947 - cephci - cephfs_utils:130 - INFO - ls /home/cephuser : Crefi
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_120-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_213-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_250-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_283-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_340-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_389-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_394-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_426-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_100_100_55-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_121-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_136-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_227-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_269-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_377-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_401-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_433-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_438-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_455-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_462-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_50_50_492-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_145-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_167-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_196-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_203-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_223-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_248-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_275-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_313-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_423-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_440-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_443-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_51_51_487-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_138-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_155-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_21-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_233-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_241-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_353-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_393-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_414-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_52_52_484-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_106-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_114-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_272-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_295-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_333-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_359-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_382-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_460-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_483-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_68-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_53_53_87-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_151-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_220-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_32-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_358-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_363-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_370-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_38-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_396-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_417-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_465-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_80-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_54_54_84-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_55_55_378-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_55_55_449-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_55_55_495-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_55_55_96-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_56_56_163-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_56_56_257-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_56_56_299-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_56_56_345-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_56_56_50-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_56_56_83-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_154-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_164-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_238-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_334-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_379-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_410-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_436-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_453-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_57_57_76-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_58_58_112-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_58_58_113-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_58_58_232-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_58_58_249-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_58_58_273-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_58_58_284-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_58_58_45-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_59_59_149-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_59_59_247-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_59_59_289-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_59_59_306-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_59_59_456-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_59_59_90-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_100-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_182-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_22-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_258-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_281-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_314-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_361-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_37-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_384-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_422-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_430-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_466-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_496-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_497-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_58-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_59-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_61-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_60_60_98-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_105-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_117-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_134-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_146-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_169-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_188-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_202-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_279-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_30-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_307-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_362-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_366-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_407-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_474-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_479-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_61_61_8-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_110-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_162-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_193-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_321-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_325-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_365-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_413-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_473-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_62_62_92-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_125-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_175-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_190-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_208-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_209-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_214-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_260-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_296-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_316-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_322-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_337-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_354-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_387-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_94-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_63_63_95-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_128-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_200-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_222-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_274-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_277-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_297-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_305-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_323-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_342-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_376-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_418-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_434-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_5-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_64_64_52-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_65_65_197-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_65_65_252-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_65_65_3-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_65_65_302-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_65_65_319-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_65_65_425-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_65_65_47-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_109-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_192-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_29-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_294-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_328-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_335-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_36-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_374-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_486-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_66_66_62-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_26-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_267-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_317-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_368-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_383-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_388-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_399-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_67_67_463-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_111-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_129-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_211-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_221-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_304-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_336-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_357-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_364-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_395-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_400-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_68_68_408-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_102-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_20-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_293-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_341-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_347-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_351-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_467-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_74-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_86-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_69_69_91-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_70_70_14-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_70_70_170-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_70_70_185-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_70_70_239-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_70_70_386-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_70_70_420-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_71_71_349-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_71_71_457-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_71_71_46-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_71_71_469-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_71_71_471-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_71_71_476-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_71_71_494-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_72_72_280-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_72_72_287-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_72_72_318-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_72_72_446-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_72_72_461-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_72_72_9-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_13-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_263-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_290-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_31-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_356-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_385-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_39-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_40-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_73_73_427-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_118-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_142-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_143-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_148-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_183-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_19-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_2-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_237-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_329-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_33-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_475-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_77-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_74_74_99-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_75_75_137-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_75_75_144-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_75_75_147-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_75_75_235-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_75_75_375-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_75_75_412-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_75_75_66-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_177-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_254-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_324-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_348-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_402-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_405-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_472-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_48-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_76_76_498-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_171-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_180-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_229-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_245-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_278-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_372-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_43-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_488-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_51-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_77_77_60-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_78_78_108-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_78_78_131-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_78_78_135-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_78_78_65-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_78_78_88-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_119-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_152-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_184-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_228-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_251-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_288-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_308-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_398-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_415-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_424-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_499-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_64-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_79_79_82-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_107-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_12-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_210-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_216-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_253-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_27-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_360-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_441-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_480-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_80_80_57-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_140-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_15-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_259-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_282-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_291-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_303-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_346-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_369-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_452-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_81_81_70-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_10-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_116-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_159-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_17-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_243-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_285-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_300-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_320-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_392-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_82_82_444-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_124-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_132-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_156-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_217-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_236-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_25-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_270-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_332-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_338-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_429-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_459-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_493-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_83_83_81-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_160-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_161-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_178-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_194-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_226-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_24-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_330-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_41-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_485-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_84_84_6-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_122-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_141-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_172-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_189-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_199-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_271-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_331-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_355-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_409-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_450-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_53-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_85_85_85-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_127-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_130-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_150-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_16-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_186-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_201-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_212-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_219-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_240-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_264-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_86_86_419-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_87_87_126-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_87_87_133-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_87_87_244-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_87_87_371-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_87_87_380-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_87_87_69-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_158-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_174-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_179-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_206-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_34-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_390-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_404-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_437-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_88_88_482-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_89_89_268-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_89_89_276-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_89_89_428-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_89_89_54-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_89_89_67-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_139-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_195-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_204-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_218-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_224-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_225-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_255-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_256-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_28-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_373-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_397-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_421-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_432-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_7-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_90_90_97-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_103-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_11-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_157-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_166-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_18-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_234-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_311-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_406-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_448-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_91_91_454-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_1-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_153-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_205-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_215-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_23-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_292-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_344-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_35-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_350-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_4-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_431-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_44-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_445-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_468-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_92_92_489-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_187-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_246-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_286-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_309-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_411-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_442-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_49-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_93_93_93-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_94_94_101-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_94_94_104-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_94_94_198-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_94_94_391-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_94_94_470-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_95_95_176-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_95_95_339-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_95_95_464-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_95_95_481-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_115-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_173-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_191-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_207-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_262-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_301-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_326-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_343-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_435-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_478-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_75-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_96_96_78-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_165-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_168-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_230-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_261-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_266-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_298-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_310-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_447-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_490-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_97_97_63-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_123-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_315-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_352-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_381-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_416-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_491-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_71-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_72-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_98_98_89-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_0-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_181-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_231-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_242-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_265-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_312-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_327-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_367-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_403-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_42-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_439-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_451-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_458-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_477-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_56-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_73-0-verify.state
+local-ceph-regression-rpbzec-wrs7oy-node10_99_99_79-0-verify.state
+smallfile
+
+2025-04-14 14:29:27,952 - cephci - ceph:1576 - INFO - Execute rpm -qa on 10.0.195.5
+2025-04-14 14:29:28,957 - cephci - ceph:1606 - INFO - Execution of rpm -qa on 10.0.195.5 took 1.003959 seconds
+2025-04-14 14:29:28,960 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'attr\|xattr' on 10.0.195.217
+2025-04-14 14:29:29,964 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'attr\|xattr' on 10.0.195.217 took 1.003484 seconds
+2025-04-14 14:29:29,966 - cephci - ceph:1576 - INFO - Execute yum install -y gcc python3-devel on 10.0.195.217
+2025-04-14 14:29:32,407 - cephci - ceph:1606 - INFO - Execution of yum install -y gcc python3-devel on 10.0.195.217 took 2.4405 seconds
+2025-04-14 14:29:32,449 - cephci - ceph:1576 - INFO - Execute pip3 install xattr on 10.0.195.217
+2025-04-14 14:29:33,454 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 14:29:33,454 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 14:29:33,454 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 14:29:33,454 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 14:29:33,455 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr on 10.0.195.217 took 1.005096 seconds
+2025-04-14 14:29:33,456 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.217
+2025-04-14 14:29:34,460 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.217 took 1.003693 seconds
+2025-04-14 14:29:34,461 - cephci - cephfs_utils:130 - INFO - ls /home/cephuser : Crefi
+local-ceph-regression-rpbzec-wrs7oy-node11_3_3_5-0-verify.state
+smallfile
+
+2025-04-14 14:29:34,462 - cephci - ceph:1576 - INFO - Execute rpm -qa on 10.0.195.217
+2025-04-14 14:29:35,465 - cephci - ceph:1606 - INFO - Execution of rpm -qa on 10.0.195.217 took 1.003307 seconds
+2025-04-14 14:29:35,466 - cephci - multiclients_io_on_same_directory:38 - INFO - Got client info
+2025-04-14 14:29:35,469 - cephci - ceph:1576 - INFO - Execute ceph -s -f json on 10.0.195.192
+2025-04-14 14:29:36,473 - cephci - ceph:1606 - INFO - Execution of ceph -s -f json on 10.0.195.192 took 1.00358 seconds
+2025-04-14 14:29:36,474 - cephci - utils:615 - INFO - 
+{"fsid":"f69a23f6-1930-11f0-b91e-fa163ef8a5c7","health":{"status":"HEALTH_WARN","checks":{"BLUESTORE_SLOW_OP_ALERT":{"severity":"HEALTH_WARN","summary":{"message":"12 OSD(s) experiencing slow operations in BlueStore","count":12},"muted":false}},"mutes":[]},"election_epoch":14,"quorum":[0,1,2],"quorum_names":["ceph-regression-rpbzec-wrs7oy-node1-installer","ceph-regression-rpbzec-wrs7oy-node2","ceph-regression-rpbzec-wrs7oy-node3"],"quorum_age":4586,"monmap":{"epoch":3,"min_mon_release_name":"squid","num_mons":3},"osdmap":{"epoch":351,"num_osds":16,"num_up_osds":16,"osd_up_since":1744637043,"num_in_osds":16,"osd_in_since":1744636671,"num_remapped_pgs":0},"pgmap":{"pgs_by_state":[{"state_name":"active+clean","count":641}],"num_pgs":641,"num_pools":6,"num_objects":14013,"data_bytes":22724524781,"bytes_used":72708317184,"bytes_avail":184922611712,"bytes_total":257630928896,"write_bytes_sec":23747515,"read_op_per_sec":0,"write_op_per_sec":63},"fsmap":{"epoch":303,"btime":"2025-04-14T14:27:06:711291+0000","id":1,"up":2,"in":2,"max":2,"id":2,"up":1,"in":1,"max":1,"by_rank":[{"filesystem_id":2,"rank":0,"name":"cephfs.ceph-regression-rpbzec-wrs7oy-node6.rcnadt","status":"up:active","gid":14871},{"filesystem_id":1,"rank":1,"name":"cephfs.ceph-regression-rpbzec-wrs7oy-node7.eautko","status":"up:active","gid":14877},{"filesystem_id":1,"rank":0,"name":"cephfs.ceph-regression-rpbzec-wrs7oy-node4.gckoxu","status":"up:active","gid":34397}],"up:standby":2},"mgrmap":{"available":true,"num_standbys":1,"modules":["cephadm","dashboard","iostat","nfs","smb"],"services":{"dashboard":"https://10.0.195.83:8443/"}},"servicemap":{"epoch":88,"modified":"2025-04-14T14:28:32.285309+0000","services":{}},"progress_events":{}}
+
+2025-04-14 14:29:36,475 - cephci - utils:628 - ERROR - Not all osd's are up. None / 16
+2025-04-14 14:29:36,477 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.192
+2025-04-14 14:29:37,481 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.192 took 1.003406 seconds
+2025-04-14 14:29:37,481 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 14:29:37,483 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192
+2025-04-14 14:29:38,487 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192 took 1.003822 seconds
+2025-04-14 14:29:38,490 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192
+2025-04-14 14:29:39,494 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192 took 1.003839 seconds
+2025-04-14 14:29:39,496 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node8 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192
+2025-04-14 14:29:40,499 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node8 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192 took 1.002591 seconds
+2025-04-14 14:29:40,501 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192
+2025-04-14 14:29:41,506 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192 took 1.00394 seconds
+2025-04-14 14:29:41,509 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.94
+2025-04-14 14:29:42,513 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.94 took 1.003876 seconds
+2025-04-14 14:29:42,514 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 14:29:42,516 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94
+2025-04-14 14:29:43,520 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94 took 1.00398 seconds
+2025-04-14 14:29:43,522 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94
+2025-04-14 14:29:44,526 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94 took 1.002943 seconds
+2025-04-14 14:29:44,527 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node9 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94
+2025-04-14 14:29:45,531 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node9 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94 took 1.003231 seconds
+2025-04-14 14:29:45,532 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94
+2025-04-14 14:29:46,537 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94 took 1.003922 seconds
+2025-04-14 14:29:46,538 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.5
+2025-04-14 14:29:47,542 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.5 took 1.003686 seconds
+2025-04-14 14:29:47,543 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 14:29:47,545 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5
+2025-04-14 14:29:48,548 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5 took 1.003165 seconds
+2025-04-14 14:29:48,549 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5
+2025-04-14 14:29:49,553 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5 took 1.003217 seconds
+2025-04-14 14:29:49,554 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node10 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5
+2025-04-14 14:29:50,558 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node10 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5 took 1.003068 seconds
+2025-04-14 14:29:50,559 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5
+2025-04-14 14:29:51,563 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5 took 1.003259 seconds
+2025-04-14 14:29:51,564 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.217
+2025-04-14 14:29:52,568 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.217 took 1.003712 seconds
+2025-04-14 14:29:52,569 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 14:29:52,570 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217
+2025-04-14 14:29:53,574 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217 took 1.003483 seconds
+2025-04-14 14:29:53,576 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217
+2025-04-14 14:29:54,580 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217 took 1.00346 seconds
+2025-04-14 14:29:54,581 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node11 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217
+2025-04-14 14:29:55,585 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node11 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217 took 1.003241 seconds
+2025-04-14 14:29:55,587 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217
+2025-04-14 14:29:56,590 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217 took 1.003381 seconds
+2025-04-14 14:29:56,591 - cephci - multiclients_io_on_same_directory:60 - INFO - got auth keys
+2025-04-14 14:29:56,593 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.192
+2025-04-14 14:29:57,596 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.192 took 1.003274 seconds
+2025-04-14 14:29:57,597 - cephci - cephfs_utilsV1:834 - INFO - Creating mounting dir:
+2025-04-14 14:29:57,598 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.192
+2025-04-14 14:29:58,602 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.192 took 1.003215 seconds
+2025-04-14 14:29:58,602 - cephci - cephfs_utilsV1:836 - INFO - Mounting fs with ceph-fuse on client ceph-regression-rpbzec-wrs7oy-node8:
+2025-04-14 14:29:58,604 - cephci - ceph:1576 - INFO - Execute ceph-fuse -n client.ceph-regression-rpbzec-wrs7oy-node8 /mnt/cephfs_zz1f23chkc/  --client_fs cephfs on 10.0.195.192
+2025-04-14 14:29:59,607 - cephci - ceph:1186 - ERROR - 2025-04-14T14:29:38.151+0000 7f43bc42d580 -1 init, newargv = 0x556bf4ad25d0 newargc=15
+2025-04-14 14:29:59,607 - cephci - ceph:1186 - ERROR - ceph-fuse[8229]: starting ceph client
+2025-04-14 14:29:59,608 - cephci - ceph:1186 - ERROR - ceph-fuse[8229]: starting fuse
+2025-04-14 14:29:59,608 - cephci - ceph:1606 - INFO - Execution of ceph-fuse -n client.ceph-regression-rpbzec-wrs7oy-node8 /mnt/cephfs_zz1f23chkc/  --client_fs cephfs on 10.0.195.192 took 1.003886 seconds
+2025-04-14 14:29:59,608 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 14:29:59,609 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.192
+2025-04-14 14:30:00,612 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.192 took 1.003059 seconds
+2025-04-14 14:30:00,613 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972990,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573696k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=17808)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=22664)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786844k,nr_inodes=196711,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786844k,nr_inodes=196711,mode=700,uid=1000,gid=1000,inode64)
+ceph-fuse on /mnt/cephfs_7zth6tozza type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/cephfs_zz1f23chkc type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+
+2025-04-14 14:30:00,613 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 14:30:00,614 - cephci - cephfs_utilsV1:834 - INFO - Creating mounting dir:
+2025-04-14 14:30:00,615 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.94
+2025-04-14 14:30:01,619 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.94 took 1.003565 seconds
+2025-04-14 14:30:01,620 - cephci - cephfs_utilsV1:836 - INFO - Mounting fs with ceph-fuse on client ceph-regression-rpbzec-wrs7oy-node9:
+2025-04-14 14:30:01,621 - cephci - ceph:1576 - INFO - Execute ceph-fuse -n client.ceph-regression-rpbzec-wrs7oy-node9 /mnt/cephfs_zz1f23chkc/  --client_fs cephfs on 10.0.195.94
+2025-04-14 14:30:02,625 - cephci - ceph:1186 - ERROR - 2025-04-14T14:29:41.171+0000 7ff774438580 -1 init, newargv = 0x55dff33417a0 newargc=15
+2025-04-14 14:30:02,625 - cephci - ceph:1186 - ERROR - ceph-fuse[8142]: starting ceph client
+2025-04-14 14:30:04,009 - cephci - ceph:1186 - ERROR - ceph-fuse[8142]: starting fuse
+2025-04-14 14:30:05,010 - cephci - ceph:1606 - INFO - Execution of ceph-fuse -n client.ceph-regression-rpbzec-wrs7oy-node9 /mnt/cephfs_zz1f23chkc/  --client_fs cephfs on 10.0.195.94 took 3.388621 seconds
+2025-04-14 14:30:05,011 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 14:30:05,012 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.94
+2025-04-14 14:30:06,015 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.94 took 1.002944 seconds
+2025-04-14 14:30:06,016 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15865)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15981)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+ceph-fuse on /mnt/cephfs_7zth6tozza type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/cephfs_zz1f23chkc type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+
+2025-04-14 14:30:06,017 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 14:30:06,017 - cephci - cephfs_utilsV1:1048 - INFO - Creating mounting dir:
+2025-04-14 14:30:06,019 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.5
+2025-04-14 14:30:07,023 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.5 took 1.003637 seconds
+2025-04-14 14:30:07,024 - cephci - ceph:1576 - INFO - Execute ceph auth get-key client.ceph-regression-rpbzec-wrs7oy-node10 -o /etc/ceph/ceph-regression-rpbzec-wrs7oy-node10.secret on 10.0.195.5
+2025-04-14 14:30:08,028 - cephci - ceph:1606 - INFO - Execution of ceph auth get-key client.ceph-regression-rpbzec-wrs7oy-node10 -o /etc/ceph/ceph-regression-rpbzec-wrs7oy-node10.secret on 10.0.195.5 took 1.003207 seconds
+2025-04-14 14:30:08,030 - cephci - ceph:1576 - INFO - Execute mount -t ceph 10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ /mnt/cephfs_zz1f23chkc/ -o name=ceph-regression-rpbzec-wrs7oy-node10,secretfile=/etc/ceph/ceph-regression-rpbzec-wrs7oy-node10.secret,noshare,fs=cephfs on 10.0.195.5
+2025-04-14 14:30:09,034 - cephci - ceph:1606 - INFO - Execution of mount -t ceph 10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ /mnt/cephfs_zz1f23chkc/ -o name=ceph-regression-rpbzec-wrs7oy-node10,secretfile=/etc/ceph/ceph-regression-rpbzec-wrs7oy-node10.secret,noshare,fs=cephfs on 10.0.195.5 took 1.003125 seconds
+2025-04-14 14:30:09,034 - cephci - cephfs_utilsV1:1068 - INFO - validate kernel mount:
+2025-04-14 14:30:09,035 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 14:30:09,036 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.5
+2025-04-14 14:30:10,040 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.5 took 1.003367 seconds
+2025-04-14 14:30:10,040 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21859)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=55,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=21979)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ on /mnt/cephfs_7zth6tozza type ceph (rw,relatime,seclabel,name=ceph-regression-rpbzec-wrs7oy-node10,secret=<hidden>,fsid=f69a23f6-1930-11f0-b91e-fa163ef8a5c7,noshare,acl,mds_namespace=cephfs)
+10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ on /mnt/cephfs_zz1f23chkc type ceph (rw,relatime,seclabel,name=ceph-regression-rpbzec-wrs7oy-node10,secret=<hidden>,fsid=f69a23f6-1930-11f0-b91e-fa163ef8a5c7,noshare,acl,mds_namespace=cephfs)
+
+2025-04-14 14:30:10,041 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 14:30:10,041 - cephci - cephfs_utilsV1:1048 - INFO - Creating mounting dir:
+2025-04-14 14:30:10,043 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.217
+2025-04-14 14:30:11,046 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/cephfs_zz1f23chkc/ on 10.0.195.217 took 1.002832 seconds
+2025-04-14 14:30:11,047 - cephci - ceph:1576 - INFO - Execute ceph auth get-key client.ceph-regression-rpbzec-wrs7oy-node11 -o /etc/ceph/ceph-regression-rpbzec-wrs7oy-node11.secret on 10.0.195.217
+2025-04-14 14:30:12,050 - cephci - ceph:1606 - INFO - Execution of ceph auth get-key client.ceph-regression-rpbzec-wrs7oy-node11 -o /etc/ceph/ceph-regression-rpbzec-wrs7oy-node11.secret on 10.0.195.217 took 1.002272 seconds
+2025-04-14 14:30:12,052 - cephci - ceph:1576 - INFO - Execute mount -t ceph 10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ /mnt/cephfs_zz1f23chkc/ -o name=ceph-regression-rpbzec-wrs7oy-node11,secretfile=/etc/ceph/ceph-regression-rpbzec-wrs7oy-node11.secret,noshare,fs=cephfs on 10.0.195.217
+2025-04-14 14:30:13,055 - cephci - ceph:1606 - INFO - Execution of mount -t ceph 10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ /mnt/cephfs_zz1f23chkc/ -o name=ceph-regression-rpbzec-wrs7oy-node11,secretfile=/etc/ceph/ceph-regression-rpbzec-wrs7oy-node11.secret,noshare,fs=cephfs on 10.0.195.217 took 1.003188 seconds
+2025-04-14 14:30:13,056 - cephci - cephfs_utilsV1:1068 - INFO - validate kernel mount:
+2025-04-14 14:30:13,056 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 14:30:13,057 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.217
+2025-04-14 14:30:14,060 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.217 took 1.0031 seconds
+2025-04-14 14:30:14,061 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21239)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=22540)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ on /mnt/cephfs_7zth6tozza type ceph (rw,relatime,seclabel,name=ceph-regression-rpbzec-wrs7oy-node11,secret=<hidden>,fsid=f69a23f6-1930-11f0-b91e-fa163ef8a5c7,noshare,acl,mds_namespace=cephfs)
+10.0.195.83:6789,10.0.195.151:6789,10.0.195.106:6789:/ on /mnt/cephfs_zz1f23chkc type ceph (rw,relatime,seclabel,name=ceph-regression-rpbzec-wrs7oy-node11,secret=<hidden>,fsid=f69a23f6-1930-11f0-b91e-fa163ef8a5c7,noshare,acl,mds_namespace=cephfs)
+
+2025-04-14 14:30:14,062 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 14:30:14,065 - cephci - ceph:1576 - INFO - Execute ceph fs set cephfs max_mds 2 on 10.0.195.192
+2025-04-14 14:30:16,070 - cephci - ceph:1606 - INFO - Execution of ceph fs set cephfs max_mds 2 on 10.0.195.192 took 2.004459 seconds
+2025-04-14 14:30:16,072 - cephci - ceph:1576 - INFO - Execute mkdir /mnt/cephfs_zz1f23chkc/dir on 10.0.195.192
+2025-04-14 14:30:17,076 - cephci - ceph:1606 - INFO - Execution of mkdir /mnt/cephfs_zz1f23chkc/dir on 10.0.195.192 took 1.00332 seconds
+2025-04-14 14:30:17,076 - cephci - multiclients_io_on_same_directory:416 - ERROR - mkdir /mnt/cephfs_zz1f23chkc/dir returned mkdir: cannot create directory ‘/mnt/cephfs_zz1f23chkc/dir’: File exists
+ and code 1 on 10.0.195.192
+2025-04-14 14:30:17,077 - cephci - multiclients_io_on_same_directory:417 - ERROR - Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/clients/multiclients_io_on_same_directory.py", line 93, in run
+    client1[0].exec_command(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 2305, in exec_command
+    return self.node.exec_command(cmd=cmd, **kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: mkdir /mnt/cephfs_zz1f23chkc/dir returned mkdir: cannot create directory ‘/mnt/cephfs_zz1f23chkc/dir’: File exists
+ and code 1 on 10.0.195.192
+
+2025-04-14 14:30:17,077 - cephci - multiclients_io_on_same_directory:418 - INFO - Cleaning up!-----
+2025-04-14 14:30:17,077 - cephci - cephfs_utils:2411 - INFO - Removing files:
+2025-04-14 14:30:17,079 - cephci - ceph:1576 - INFO - Execute find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.192
+2025-04-14 14:30:37,102 - cephci - ceph:1606 - INFO - Execution of find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.192 took 20.023498 seconds
+2025-04-14 14:30:37,104 - cephci - ceph:1576 - INFO - Execute rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.192
+2025-04-14 14:31:48,182 - cephci - ceph:1606 - INFO - Execution of rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.192 took 71.077437 seconds
+2025-04-14 14:31:48,183 - cephci - cephfs_utils:2426 - INFO - Unmounting fuse client:
+2025-04-14 14:31:48,184 - cephci - ceph:1576 - INFO - Execute fusermount -u /mnt/cephfs_zz1f23chkc/ -z on 10.0.195.192
+2025-04-14 14:31:49,188 - cephci - ceph:1606 - INFO - Execution of fusermount -u /mnt/cephfs_zz1f23chkc/ -z on 10.0.195.192 took 1.003613 seconds
+2025-04-14 14:31:49,189 - cephci - cephfs_utils:2430 - INFO - Removing mounting directory:
+2025-04-14 14:31:49,190 - cephci - ceph:1576 - INFO - Execute rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.192
+2025-04-14 14:31:50,195 - cephci - ceph:1606 - INFO - Execution of rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.192 took 1.004372 seconds
+2025-04-14 14:31:50,195 - cephci - cephfs_utils:2432 - INFO - Removing keyring <masked>
+2025-04-14 14:31:50,197 - cephci - ceph:1576 - INFO - Execute rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192
+2025-04-14 14:31:51,201 - cephci - ceph:1606 - INFO - Execution of rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192 took 1.003634 seconds
+2025-04-14 14:31:51,202 - cephci - cephfs_utils:2438 - INFO - Removing permissions:
+2025-04-14 14:31:51,203 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192
+2025-04-14 14:31:52,207 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192 took 1.003621 seconds
+2025-04-14 14:31:52,209 - cephci - ceph:1576 - INFO - Execute find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.192
+2025-04-14 14:31:53,213 - cephci - ceph:1606 - INFO - Execution of find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.192 took 1.003692 seconds
+2025-04-14 14:31:53,215 - cephci - ceph:1576 - INFO - Execute cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.192
+2025-04-14 14:31:54,219 - cephci - ceph:1186 - ERROR - rm: cannot remove '.': Is a directory
+2025-04-14 14:31:54,219 - cephci - ceph:1186 - ERROR - rm: cannot remove '..': Is a directory
+2025-04-14 14:31:54,220 - cephci - ceph:1186 - ERROR - rm: cannot remove '.docker': Is a directory
+2025-04-14 14:31:54,220 - cephci - ceph:1186 - ERROR - rm: cannot remove '.ssh': Is a directory
+2025-04-14 14:31:54,220 - cephci - ceph:1186 - ERROR - rm: cannot remove 'Crefi': Is a directory
+2025-04-14 14:31:54,220 - cephci - ceph:1186 - ERROR - rm: cannot remove 'smallfile': Is a directory
+2025-04-14 14:31:54,220 - cephci - ceph:1606 - INFO - Execution of cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.192 took 1.004902 seconds
+2025-04-14 14:31:54,221 - cephci - ceph:1576 - INFO - Execute iptables -F on 10.0.195.192
+2025-04-14 14:31:55,225 - cephci - ceph:1606 - INFO - Execution of iptables -F on 10.0.195.192 took 1.003253 seconds
+2025-04-14 14:31:55,225 - cephci - cephfs_utils:2411 - INFO - Removing files:
+2025-04-14 14:31:55,227 - cephci - ceph:1576 - INFO - Execute find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.94
+2025-04-14 14:31:56,230 - cephci - ceph:1606 - INFO - Execution of find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.94 took 1.003441 seconds
+2025-04-14 14:31:56,232 - cephci - ceph:1576 - INFO - Execute rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.94
+2025-04-14 14:31:57,235 - cephci - ceph:1606 - INFO - Execution of rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.94 took 1.002984 seconds
+2025-04-14 14:31:57,236 - cephci - cephfs_utils:2426 - INFO - Unmounting fuse client:
+2025-04-14 14:31:57,237 - cephci - ceph:1576 - INFO - Execute fusermount -u /mnt/cephfs_zz1f23chkc/ -z on 10.0.195.94
+2025-04-14 14:31:58,240 - cephci - ceph:1606 - INFO - Execution of fusermount -u /mnt/cephfs_zz1f23chkc/ -z on 10.0.195.94 took 1.002563 seconds
+2025-04-14 14:31:58,240 - cephci - cephfs_utils:2430 - INFO - Removing mounting directory:
+2025-04-14 14:31:58,241 - cephci - ceph:1576 - INFO - Execute rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.94
+2025-04-14 14:31:59,245 - cephci - ceph:1606 - INFO - Execution of rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.94 took 1.002853 seconds
+2025-04-14 14:31:59,245 - cephci - cephfs_utils:2432 - INFO - Removing keyring <masked>
+2025-04-14 14:31:59,246 - cephci - ceph:1576 - INFO - Execute rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94
+2025-04-14 14:32:00,249 - cephci - ceph:1606 - INFO - Execution of rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94 took 1.002936 seconds
+2025-04-14 14:32:00,250 - cephci - cephfs_utils:2438 - INFO - Removing permissions:
+2025-04-14 14:32:00,251 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94
+2025-04-14 14:32:01,254 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94 took 1.00322 seconds
+2025-04-14 14:32:01,256 - cephci - ceph:1576 - INFO - Execute find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.94
+2025-04-14 14:32:02,260 - cephci - ceph:1606 - INFO - Execution of find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.94 took 1.003314 seconds
+2025-04-14 14:32:02,261 - cephci - ceph:1576 - INFO - Execute cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.94
+2025-04-14 14:32:03,264 - cephci - ceph:1186 - ERROR - rm: cannot remove '.': Is a directory
+2025-04-14 14:32:03,265 - cephci - ceph:1186 - ERROR - rm: cannot remove '..': Is a directory
+2025-04-14 14:32:03,265 - cephci - ceph:1186 - ERROR - rm: cannot remove '.docker': Is a directory
+2025-04-14 14:32:03,265 - cephci - ceph:1186 - ERROR - rm: cannot remove '.ssh': Is a directory
+2025-04-14 14:32:03,266 - cephci - ceph:1186 - ERROR - rm: cannot remove 'Crefi': Is a directory
+2025-04-14 14:32:03,266 - cephci - ceph:1186 - ERROR - rm: cannot remove 'smallfile': Is a directory
+2025-04-14 14:32:03,266 - cephci - ceph:1606 - INFO - Execution of cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.94 took 1.00496 seconds
+2025-04-14 14:32:03,267 - cephci - ceph:1576 - INFO - Execute iptables -F on 10.0.195.94
+2025-04-14 14:32:04,271 - cephci - ceph:1606 - INFO - Execution of iptables -F on 10.0.195.94 took 1.003051 seconds
+2025-04-14 14:32:04,271 - cephci - cephfs_utils:2462 - INFO - Removing files:
+2025-04-14 14:32:04,274 - cephci - ceph:1576 - INFO - Execute find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.5
+2025-04-14 14:32:05,284 - cephci - ceph:1606 - INFO - Execution of find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.5 took 1.009074 seconds
+2025-04-14 14:32:05,285 - cephci - ceph:1576 - INFO - Execute rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.5
+2025-04-14 14:32:06,289 - cephci - ceph:1606 - INFO - Execution of rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.5 took 1.002951 seconds
+2025-04-14 14:32:06,289 - cephci - cephfs_utils:2477 - INFO - Unmounting kernel client:
+2025-04-14 14:32:06,291 - cephci - ceph:1576 - INFO - Execute umount /mnt/cephfs_zz1f23chkc/ -l on 10.0.195.5
+2025-04-14 14:32:07,295 - cephci - ceph:1606 - INFO - Execution of umount /mnt/cephfs_zz1f23chkc/ -l on 10.0.195.5 took 1.003381 seconds
+2025-04-14 14:32:07,297 - cephci - ceph:1576 - INFO - Execute rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.5
+2025-04-14 14:32:08,301 - cephci - ceph:1606 - INFO - Execution of rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.5 took 1.003529 seconds
+2025-04-14 14:32:08,301 - cephci - cephfs_utils:2484 - INFO - Removing keyring <masked>
+2025-04-14 14:32:08,303 - cephci - ceph:1576 - INFO - Execute rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5
+2025-04-14 14:32:09,306 - cephci - ceph:1606 - INFO - Execution of rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5 took 1.002713 seconds
+2025-04-14 14:32:09,306 - cephci - cephfs_utils:2491 - INFO - Removing permissions:
+2025-04-14 14:32:09,307 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5
+2025-04-14 14:32:10,311 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5 took 1.003372 seconds
+2025-04-14 14:32:10,312 - cephci - ceph:1576 - INFO - Execute find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.5
+2025-04-14 14:32:11,316 - cephci - ceph:1606 - INFO - Execution of find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.5 took 1.003249 seconds
+2025-04-14 14:32:11,318 - cephci - ceph:1576 - INFO - Execute cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.5
+2025-04-14 14:32:12,321 - cephci - ceph:1186 - ERROR - rm: cannot remove '.': Is a directory
+2025-04-14 14:32:12,322 - cephci - ceph:1186 - ERROR - rm: cannot remove '..': Is a directory
+2025-04-14 14:32:12,322 - cephci - ceph:1186 - ERROR - rm: cannot remove '.docker': Is a directory
+2025-04-14 14:32:12,322 - cephci - ceph:1186 - ERROR - rm: cannot remove '.ssh': Is a directory
+2025-04-14 14:32:12,322 - cephci - ceph:1186 - ERROR - rm: cannot remove 'Crefi': Is a directory
+2025-04-14 14:32:12,322 - cephci - ceph:1186 - ERROR - rm: cannot remove 'smallfile': Is a directory
+2025-04-14 14:32:12,322 - cephci - ceph:1606 - INFO - Execution of cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.5 took 1.004344 seconds
+2025-04-14 14:32:12,322 - cephci - cephfs_utils:2462 - INFO - Removing files:
+2025-04-14 14:32:12,325 - cephci - ceph:1576 - INFO - Execute find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.217
+2025-04-14 14:32:13,328 - cephci - ceph:1606 - INFO - Execution of find /mnt/cephfs_zz1f23chkc/ -type f -delete on 10.0.195.217 took 1.003321 seconds
+2025-04-14 14:32:13,330 - cephci - ceph:1576 - INFO - Execute rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.217
+2025-04-14 14:32:14,333 - cephci - ceph:1606 - INFO - Execution of rm -rf /mnt/cephfs_zz1f23chkc/* on 10.0.195.217 took 1.003033 seconds
+2025-04-14 14:32:14,334 - cephci - cephfs_utils:2477 - INFO - Unmounting kernel client:
+2025-04-14 14:32:14,335 - cephci - ceph:1576 - INFO - Execute umount /mnt/cephfs_zz1f23chkc/ -l on 10.0.195.217
+2025-04-14 14:32:15,338 - cephci - ceph:1606 - INFO - Execution of umount /mnt/cephfs_zz1f23chkc/ -l on 10.0.195.217 took 1.002541 seconds
+2025-04-14 14:32:15,340 - cephci - ceph:1576 - INFO - Execute rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.217
+2025-04-14 14:32:16,344 - cephci - ceph:1606 - INFO - Execution of rmdir /mnt/cephfs_zz1f23chkc/ on 10.0.195.217 took 1.003439 seconds
+2025-04-14 14:32:16,346 - cephci - cephfs_utils:2484 - INFO - Removing keyring <masked>
+2025-04-14 14:32:16,348 - cephci - ceph:1576 - INFO - Execute rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217
+2025-04-14 14:32:17,351 - cephci - ceph:1606 - INFO - Execution of rm -rf /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217 took 1.003153 seconds
+2025-04-14 14:32:17,352 - cephci - cephfs_utils:2491 - INFO - Removing permissions:
+2025-04-14 14:32:17,353 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217
+2025-04-14 14:32:18,357 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217 took 1.00323 seconds
+2025-04-14 14:32:18,358 - cephci - ceph:1576 - INFO - Execute find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.217
+2025-04-14 14:32:19,362 - cephci - ceph:1606 - INFO - Execution of find /home/cephuser -type f -not -name 'authorized_keys' -name 'Crefi' -name 'smallfile' -delete on 10.0.195.217 took 1.003611 seconds
+2025-04-14 14:32:19,364 - cephci - ceph:1576 - INFO - Execute cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.217
+2025-04-14 14:32:20,368 - cephci - ceph:1186 - ERROR - rm: cannot remove '.': Is a directory
+2025-04-14 14:32:20,368 - cephci - ceph:1186 - ERROR - rm: cannot remove '..': Is a directory
+2025-04-14 14:32:20,368 - cephci - ceph:1186 - ERROR - rm: cannot remove '.docker': Is a directory
+2025-04-14 14:32:20,369 - cephci - ceph:1186 - ERROR - rm: cannot remove '.ssh': Is a directory
+2025-04-14 14:32:20,369 - cephci - ceph:1186 - ERROR - rm: cannot remove 'Crefi': Is a directory
+2025-04-14 14:32:20,369 - cephci - ceph:1186 - ERROR - rm: cannot remove 'smallfile': Is a directory
+2025-04-14 14:32:20,369 - cephci - ceph:1606 - INFO - Execution of cd /home/cephuser && ls -a | grep -v 'authorized_keys' | xargs sudo rm -f on 10.0.195.217 took 1.004637 seconds
+2025-04-14 14:32:20,371 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.83
+2025-04-14 14:32:21,374 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.83 took 1.003426 seconds
+2025-04-14 14:32:21,375 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-14 14:32:21,378 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.83
+2025-04-14 14:32:22,382 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.83 took 1.003268 seconds
+2025-04-14 14:32:22,385 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.192
+2025-04-14 14:32:23,389 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.192 took 1.003843 seconds
+2025-04-14 14:32:23,390 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-14 14:32:23,391 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-RPBZEc-WRS7OY
+2025-04-14 14:32:23,391 - cephci - run:927 - INFO - Test <module 'clients.multiclients_io_on_same_directory' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/clients/multiclients_io_on_same_directory.py'> failed

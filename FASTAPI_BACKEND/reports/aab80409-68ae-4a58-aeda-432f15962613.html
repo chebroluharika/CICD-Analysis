@@ -1,0 +1,1015 @@
+
+    <html>
+    <head>
+        <title>CephCI Log Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; }
+            th { background-color: #f2f2f2; }
+            .directory-title { 
+                font-size: 1.2em; 
+                margin-top: 25px; 
+                margin-bottom: 10px; 
+                color: #2c3e50; 
+                background-color: #ecf0f1; 
+                padding: 8px; 
+                border-left: 4px solid #3498db; 
+            }
+            .log-name { font-weight: bold; color: #2980b9; }
+            .feedback-buttons { display: flex; gap: 5px; justify-content: center; }
+            .feedback-btn { 
+                cursor: pointer; 
+                border: none; 
+                border-radius: 4px; 
+                padding: 2px 8px; 
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+            .like-btn { background-color: #2ecc71; color: white; }
+            .like-btn.active { background-color: #27ae60; }
+            .dislike-btn { background-color: #e74c3c; color: white; }
+            .dislike-btn.active { background-color: #c0392b; }
+            .skip-btn { background-color: #f39c12; color: white; }
+            .skip-btn.active { background-color: #d35400; }
+            .feedback-form {
+                display: none;
+                margin-top: 5px;
+            }
+            textarea {
+                width: 100%;
+                min-height: 50px;
+                padding: 5px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+            .submit-all-btn {
+                background-color: #e67e22;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 20px auto;
+                display: block;
+                font-size: 16px;
+            }
+            .submit-all-btn:hover {
+                background-color: #d35400;
+            }
+            .raw-analysis {
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-radius: 4px;
+                margin-top: 5px;
+            }
+        </style>
+        <script>
+            function toggleRawAnalysis(logId) {
+                var rawDiv = document.getElementById('raw-' + logId);
+                var toggleBtn = document.getElementById('toggle-' + logId);
+                if (rawDiv.style.display === 'none') {
+                    rawDiv.style.display = 'block';
+                    toggleBtn.textContent = '▼';
+                } else {
+                    rawDiv.style.display = 'none';
+                    toggleBtn.textContent = '➤';
+                }
+            }
+
+            function showFeedbackForm(logId, btnType) {
+                // Remove active class from all buttons for this log
+                document.querySelectorAll(`.feedback-btn[data-log-id="${logId}"]`).forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Set active class on clicked button
+                document.getElementById(btnType + '-btn-' + logId).classList.add('active');
+                
+                // Show/hide textarea
+                var form = document.getElementById('feedback-form-' + logId);
+                if (btnType === 'dislike') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            }
+
+            async function submitAllFeedback() {
+                const feedbacks = [];
+                const logItems = document.querySelectorAll('.log-item');
+                
+                logItems.forEach(item => {
+                    const logId = item.dataset.logId;
+                    const activeBtn = item.querySelector('.feedback-btn.active');
+                    const vote = activeBtn ? activeBtn.dataset.vote : 'skip';
+                    const comment = item.querySelector('textarea')?.value || '';
+                    
+                    feedbacks.push({
+                        log_id: logId,
+                        log_name: item.dataset.logName,
+                        vote: vote,
+                        comment: comment,
+                        build_stamp: new Date().toISOString()
+                    });
+                });
+
+                try {
+                    const response = await fetch('/submit-feedback', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(feedbacks)
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert('Successfully submitted feedback!');
+                    } else {
+                        alert('Failed to submit feedback: ' + data.error);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting feedback.');
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>CephCI Log Analysis Report</h2>
+        <p><strong>Generated at:</strong> 2025-09-02 16:19:36</p>
+        <p><strong>Test Suite:</strong> Regression | <strong>RHEL:</strong> RHEL-9</p>
+        <hr>
+        
+        
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-3_rados_test-4-node-8+6-msr-ecpools</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="cluster_deployment_0log498207" data-log-name="cluster_deployment_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-cluster_deployment_0log498207" class="toggle-raw" onclick="toggleRawAnalysis('cluster_deployment_0log498207')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-3_rados_test-4-node-8+6-msr-ecpools/cluster_deployment_0.log" target="_blank" class="log-name">cluster_deployment_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cluster_deployment_0log498207" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0log498207', 'like')"
+                                data-log-id="cluster_deployment_0log498207" data-vote="like">👍</button>
+                        <button id="dislike-btn-cluster_deployment_0log498207" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0log498207', 'dislike')"
+                                data-log-id="cluster_deployment_0log498207" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cluster_deployment_0log498207" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0log498207', 'skip')"
+                                data-log-id="cluster_deployment_0log498207" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cluster_deployment_0log498207" class="feedback-form">
+                        <textarea id="feedback-text-cluster_deployment_0log498207" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cluster_deployment_0log498207" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test-drain-customer-issue</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0log4ca87c" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0log4ca87c" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0log4ca87c')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-drain-customer-issue/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0log4ca87c" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log4ca87c', 'like')"
+                                data-log-id="setup_install_prerequisistes_0log4ca87c" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0log4ca87c" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log4ca87c', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0log4ca87c" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0log4ca87c" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log4ca87c', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0log4ca87c" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0log4ca87c" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0log4ca87c" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0log4ca87c" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-3_rados_test-4-node-ecpools</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="cluster_deployment_0logd6f188" data-log-name="cluster_deployment_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-cluster_deployment_0logd6f188" class="toggle-raw" onclick="toggleRawAnalysis('cluster_deployment_0logd6f188')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-3_rados_test-4-node-ecpools/cluster_deployment_0.log" target="_blank" class="log-name">cluster_deployment_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cluster_deployment_0logd6f188" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0logd6f188', 'like')"
+                                data-log-id="cluster_deployment_0logd6f188" data-vote="like">👍</button>
+                        <button id="dislike-btn-cluster_deployment_0logd6f188" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0logd6f188', 'dislike')"
+                                data-log-id="cluster_deployment_0logd6f188" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cluster_deployment_0logd6f188" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0logd6f188', 'skip')"
+                                data-log-id="cluster_deployment_0logd6f188" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cluster_deployment_0logd6f188" class="feedback-form">
+                        <textarea id="feedback-text-cluster_deployment_0logd6f188" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cluster_deployment_0logd6f188" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_trim_tests</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="OSD_compaction_with_failures_0log1450b0" data-log-name="OSD_compaction_with_failures_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-OSD_compaction_with_failures_0log1450b0" class="toggle-raw" onclick="toggleRawAnalysis('OSD_compaction_with_failures_0log1450b0')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_trim_tests/OSD_compaction_with_failures_0.log" target="_blank" class="log-name">OSD_compaction_with_failures_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-OSD_compaction_with_failures_0log1450b0" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('OSD_compaction_with_failures_0log1450b0', 'like')"
+                                data-log-id="OSD_compaction_with_failures_0log1450b0" data-vote="like">👍</button>
+                        <button id="dislike-btn-OSD_compaction_with_failures_0log1450b0" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('OSD_compaction_with_failures_0log1450b0', 'dislike')"
+                                data-log-id="OSD_compaction_with_failures_0log1450b0" data-vote="dislike">👎</button>
+                        <button id="skip-btn-OSD_compaction_with_failures_0log1450b0" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('OSD_compaction_with_failures_0log1450b0', 'skip')"
+                                data-log-id="OSD_compaction_with_failures_0log1450b0" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-OSD_compaction_with_failures_0log1450b0" class="feedback-form">
+                        <textarea id="feedback-text-OSD_compaction_with_failures_0log1450b0" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-OSD_compaction_with_failures_0log1450b0" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test-pg-split-merge</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" data-log-name="verify_mon_parameter_'mon_pg_warn_max_object_skew'_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" class="toggle-raw" onclick="toggleRawAnalysis('verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-pg-split-merge/verify_mon_parameter_'mon_pg_warn_max_object_skew'_0.log" target="_blank" class="log-name">verify_mon_parameter_'mon_pg_warn_max_object_skew'_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8', 'like')"
+                                data-log-id="verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" data-vote="like">👍</button>
+                        <button id="dislike-btn-verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8', 'dislike')"
+                                data-log-id="verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" data-vote="dislike">👎</button>
+                        <button id="skip-btn-verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8', 'skip')"
+                                data-log-id="verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" class="feedback-form">
+                        <textarea id="feedback-text-verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Test_Reads_Balancer_0log6431a4" data-log-name="Test_Reads_Balancer_0.log">
+                <td>2</td>
+                <td>
+                    <span id="toggle-Test_Reads_Balancer_0log6431a4" class="toggle-raw" onclick="toggleRawAnalysis('Test_Reads_Balancer_0log6431a4')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-pg-split-merge/Test_Reads_Balancer_0.log" target="_blank" class="log-name">Test_Reads_Balancer_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Test_Reads_Balancer_0log6431a4" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Test_Reads_Balancer_0log6431a4', 'like')"
+                                data-log-id="Test_Reads_Balancer_0log6431a4" data-vote="like">👍</button>
+                        <button id="dislike-btn-Test_Reads_Balancer_0log6431a4" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Test_Reads_Balancer_0log6431a4', 'dislike')"
+                                data-log-id="Test_Reads_Balancer_0log6431a4" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Test_Reads_Balancer_0log6431a4" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Test_Reads_Balancer_0log6431a4', 'skip')"
+                                data-log-id="Test_Reads_Balancer_0log6431a4" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Test_Reads_Balancer_0log6431a4" class="feedback-form">
+                        <textarea id="feedback-text-Test_Reads_Balancer_0log6431a4" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Test_Reads_Balancer_0log6431a4" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Test_Reads_Balancer_1logd664ea" data-log-name="Test_Reads_Balancer_1.log">
+                <td>3</td>
+                <td>
+                    <span id="toggle-Test_Reads_Balancer_1logd664ea" class="toggle-raw" onclick="toggleRawAnalysis('Test_Reads_Balancer_1logd664ea')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-pg-split-merge/Test_Reads_Balancer_1.log" target="_blank" class="log-name">Test_Reads_Balancer_1.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Test_Reads_Balancer_1logd664ea" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Test_Reads_Balancer_1logd664ea', 'like')"
+                                data-log-id="Test_Reads_Balancer_1logd664ea" data-vote="like">👍</button>
+                        <button id="dislike-btn-Test_Reads_Balancer_1logd664ea" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Test_Reads_Balancer_1logd664ea', 'dislike')"
+                                data-log-id="Test_Reads_Balancer_1logd664ea" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Test_Reads_Balancer_1logd664ea" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Test_Reads_Balancer_1logd664ea', 'skip')"
+                                data-log-id="Test_Reads_Balancer_1logd664ea" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Test_Reads_Balancer_1logd664ea" class="feedback-form">
+                        <textarea id="feedback-text-Test_Reads_Balancer_1logd664ea" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Test_Reads_Balancer_1logd664ea" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test_omap</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="OMAP_feature_0log7c63b7" data-log-name="OMAP_feature_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-OMAP_feature_0log7c63b7" class="toggle-raw" onclick="toggleRawAnalysis('OMAP_feature_0log7c63b7')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test_omap/OMAP_feature_0.log" target="_blank" class="log-name">OMAP_feature_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-OMAP_feature_0log7c63b7" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('OMAP_feature_0log7c63b7', 'like')"
+                                data-log-id="OMAP_feature_0log7c63b7" data-vote="like">👍</button>
+                        <button id="dislike-btn-OMAP_feature_0log7c63b7" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('OMAP_feature_0log7c63b7', 'dislike')"
+                                data-log-id="OMAP_feature_0log7c63b7" data-vote="dislike">👎</button>
+                        <button id="skip-btn-OMAP_feature_0log7c63b7" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('OMAP_feature_0log7c63b7', 'skip')"
+                                data-log-id="OMAP_feature_0log7c63b7" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-OMAP_feature_0log7c63b7" class="feedback-form">
+                        <textarea id="feedback-text-OMAP_feature_0log7c63b7" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-OMAP_feature_0log7c63b7" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Verification_of_dump_scrub_parameters_0log8c6d37" data-log-name="Verification_of_dump_scrub_parameters_0.log">
+                <td>2</td>
+                <td>
+                    <span id="toggle-Verification_of_dump_scrub_parameters_0log8c6d37" class="toggle-raw" onclick="toggleRawAnalysis('Verification_of_dump_scrub_parameters_0log8c6d37')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test_omap/Verification_of_dump_scrub_parameters_0.log" target="_blank" class="log-name">Verification_of_dump_scrub_parameters_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Verification_of_dump_scrub_parameters_0log8c6d37" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Verification_of_dump_scrub_parameters_0log8c6d37', 'like')"
+                                data-log-id="Verification_of_dump_scrub_parameters_0log8c6d37" data-vote="like">👍</button>
+                        <button id="dislike-btn-Verification_of_dump_scrub_parameters_0log8c6d37" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Verification_of_dump_scrub_parameters_0log8c6d37', 'dislike')"
+                                data-log-id="Verification_of_dump_scrub_parameters_0log8c6d37" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Verification_of_dump_scrub_parameters_0log8c6d37" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Verification_of_dump_scrub_parameters_0log8c6d37', 'skip')"
+                                data-log-id="Verification_of_dump_scrub_parameters_0log8c6d37" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Verification_of_dump_scrub_parameters_0log8c6d37" class="feedback-form">
+                        <textarea id="feedback-text-Verification_of_dump_scrub_parameters_0log8c6d37" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Verification_of_dump_scrub_parameters_0log8c6d37" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" data-log-name="concurrent_and_parallel_IOPS_on_an_object_0.log">
+                <td>3</td>
+                <td>
+                    <span id="toggle-concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" class="toggle-raw" onclick="toggleRawAnalysis('concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test_omap/concurrent_and_parallel_IOPS_on_an_object_0.log" target="_blank" class="log-name">concurrent_and_parallel_IOPS_on_an_object_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3', 'like')"
+                                data-log-id="concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" data-vote="like">👍</button>
+                        <button id="dislike-btn-concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3', 'dislike')"
+                                data-log-id="concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" data-vote="dislike">👎</button>
+                        <button id="skip-btn-concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3', 'skip')"
+                                data-log-id="concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" class="feedback-form">
+                        <textarea id="feedback-text-concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test-osd-rebalance</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0logfaf2c9" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0logfaf2c9" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0logfaf2c9')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-osd-rebalance/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0logfaf2c9" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logfaf2c9', 'like')"
+                                data-log-id="setup_install_prerequisistes_0logfaf2c9" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0logfaf2c9" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logfaf2c9', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0logfaf2c9" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0logfaf2c9" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logfaf2c9', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0logfaf2c9" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0logfaf2c9" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0logfaf2c9" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0logfaf2c9" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test-bugfixes</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" data-log-name="Inconsistent_objects_in_EC_pool_functionality_check_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" class="toggle-raw" onclick="toggleRawAnalysis('Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-bugfixes/Inconsistent_objects_in_EC_pool_functionality_check_0.log" target="_blank" class="log-name">Inconsistent_objects_in_EC_pool_functionality_check_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac', 'like')"
+                                data-log-id="Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" data-vote="like">👍</button>
+                        <button id="dislike-btn-Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac', 'dislike')"
+                                data-log-id="Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac', 'skip')"
+                                data-log-id="Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" class="feedback-form">
+                        <textarea id="feedback-text-Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" data-log-name="Inconsistent_objects_in_replicated_pool_functionality_check_0.log">
+                <td>2</td>
+                <td>
+                    <span id="toggle-Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" class="toggle-raw" onclick="toggleRawAnalysis('Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-bugfixes/Inconsistent_objects_in_replicated_pool_functionality_check_0.log" target="_blank" class="log-name">Inconsistent_objects_in_replicated_pool_functionality_check_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4', 'like')"
+                                data-log-id="Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" data-vote="like">👍</button>
+                        <button id="dislike-btn-Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4', 'dislike')"
+                                data-log-id="Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4', 'skip')"
+                                data-log-id="Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" class="feedback-form">
+                        <textarea id="feedback-text-Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Mon_connection_scores_testing_0log8782e3" data-log-name="Mon_connection_scores_testing_0.log">
+                <td>3</td>
+                <td>
+                    <span id="toggle-Mon_connection_scores_testing_0log8782e3" class="toggle-raw" onclick="toggleRawAnalysis('Mon_connection_scores_testing_0log8782e3')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-bugfixes/Mon_connection_scores_testing_0.log" target="_blank" class="log-name">Mon_connection_scores_testing_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Mon_connection_scores_testing_0log8782e3" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Mon_connection_scores_testing_0log8782e3', 'like')"
+                                data-log-id="Mon_connection_scores_testing_0log8782e3" data-vote="like">👍</button>
+                        <button id="dislike-btn-Mon_connection_scores_testing_0log8782e3" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Mon_connection_scores_testing_0log8782e3', 'dislike')"
+                                data-log-id="Mon_connection_scores_testing_0log8782e3" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Mon_connection_scores_testing_0log8782e3" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Mon_connection_scores_testing_0log8782e3', 'skip')"
+                                data-log-id="Mon_connection_scores_testing_0log8782e3" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Mon_connection_scores_testing_0log8782e3" class="feedback-form">
+                        <textarea id="feedback-text-Mon_connection_scores_testing_0log8782e3" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Mon_connection_scores_testing_0log8782e3" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Verify_read_crc_error_message_0logb71a58" data-log-name="Verify_read_crc_error_message_0.log">
+                <td>4</td>
+                <td>
+                    <span id="toggle-Verify_read_crc_error_message_0logb71a58" class="toggle-raw" onclick="toggleRawAnalysis('Verify_read_crc_error_message_0logb71a58')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-bugfixes/Verify_read_crc_error_message_0.log" target="_blank" class="log-name">Verify_read_crc_error_message_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Verify_read_crc_error_message_0logb71a58" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Verify_read_crc_error_message_0logb71a58', 'like')"
+                                data-log-id="Verify_read_crc_error_message_0logb71a58" data-vote="like">👍</button>
+                        <button id="dislike-btn-Verify_read_crc_error_message_0logb71a58" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Verify_read_crc_error_message_0logb71a58', 'dislike')"
+                                data-log-id="Verify_read_crc_error_message_0logb71a58" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Verify_read_crc_error_message_0logb71a58" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Verify_read_crc_error_message_0logb71a58', 'skip')"
+                                data-log-id="Verify_read_crc_error_message_0logb71a58" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Verify_read_crc_error_message_0logb71a58" class="feedback-form">
+                        <textarea id="feedback-text-Verify_read_crc_error_message_0logb71a58" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Verify_read_crc_error_message_0logb71a58" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-3_rados_test-location-stretch-mode</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Install_ceph_prerequisites_0logaa9b7c" data-log-name="Install_ceph_pre-requisites_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Install_ceph_prerequisites_0logaa9b7c" class="toggle-raw" onclick="toggleRawAnalysis('Install_ceph_prerequisites_0logaa9b7c')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-3_rados_test-location-stretch-mode/Install_ceph_pre-requisites_0.log" target="_blank" class="log-name">Install_ceph_pre-requisites_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Install_ceph_prerequisites_0logaa9b7c" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logaa9b7c', 'like')"
+                                data-log-id="Install_ceph_prerequisites_0logaa9b7c" data-vote="like">👍</button>
+                        <button id="dislike-btn-Install_ceph_prerequisites_0logaa9b7c" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logaa9b7c', 'dislike')"
+                                data-log-id="Install_ceph_prerequisites_0logaa9b7c" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Install_ceph_prerequisites_0logaa9b7c" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Install_ceph_prerequisites_0logaa9b7c', 'skip')"
+                                data-log-id="Install_ceph_prerequisites_0logaa9b7c" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Install_ceph_prerequisites_0logaa9b7c" class="feedback-form">
+                        <textarea id="feedback-text-Install_ceph_prerequisites_0logaa9b7c" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Install_ceph_prerequisites_0logaa9b7c" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test_parameters</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Ceph_bluestore_min_alloc_size_tests_1log336293" data-log-name="Ceph_bluestore_min_alloc_size_tests_1.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Ceph_bluestore_min_alloc_size_tests_1log336293" class="toggle-raw" onclick="toggleRawAnalysis('Ceph_bluestore_min_alloc_size_tests_1log336293')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test_parameters/Ceph_bluestore_min_alloc_size_tests_1.log" target="_blank" class="log-name">Ceph_bluestore_min_alloc_size_tests_1.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Ceph_bluestore_min_alloc_size_tests_1log336293" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Ceph_bluestore_min_alloc_size_tests_1log336293', 'like')"
+                                data-log-id="Ceph_bluestore_min_alloc_size_tests_1log336293" data-vote="like">👍</button>
+                        <button id="dislike-btn-Ceph_bluestore_min_alloc_size_tests_1log336293" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Ceph_bluestore_min_alloc_size_tests_1log336293', 'dislike')"
+                                data-log-id="Ceph_bluestore_min_alloc_size_tests_1log336293" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Ceph_bluestore_min_alloc_size_tests_1log336293" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Ceph_bluestore_min_alloc_size_tests_1log336293', 'skip')"
+                                data-log-id="Ceph_bluestore_min_alloc_size_tests_1log336293" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Ceph_bluestore_min_alloc_size_tests_1log336293" class="feedback-form">
+                        <textarea id="feedback-text-Ceph_bluestore_min_alloc_size_tests_1log336293" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Ceph_bluestore_min_alloc_size_tests_1log336293" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test_cot_cbt</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0logd64516" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0logd64516" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0logd64516')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test_cot_cbt/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0logd64516" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logd64516', 'like')"
+                                data-log-id="setup_install_prerequisistes_0logd64516" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0logd64516" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logd64516', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0logd64516" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0logd64516" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0logd64516', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0logd64516" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0logd64516" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0logd64516" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0logd64516" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rados_test-mon-db-trimming</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Automatic_trimming_of_Mon_DB_0log64b2f6" data-log-name="Automatic_trimming_of_Mon_DB_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Automatic_trimming_of_Mon_DB_0log64b2f6" class="toggle-raw" onclick="toggleRawAnalysis('Automatic_trimming_of_Mon_DB_0log64b2f6')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-2_rados_test-mon-db-trimming/Automatic_trimming_of_Mon_DB_0.log" target="_blank" class="log-name">Automatic_trimming_of_Mon_DB_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Automatic_trimming_of_Mon_DB_0log64b2f6" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Automatic_trimming_of_Mon_DB_0log64b2f6', 'like')"
+                                data-log-id="Automatic_trimming_of_Mon_DB_0log64b2f6" data-vote="like">👍</button>
+                        <button id="dislike-btn-Automatic_trimming_of_Mon_DB_0log64b2f6" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Automatic_trimming_of_Mon_DB_0log64b2f6', 'dislike')"
+                                data-log-id="Automatic_trimming_of_Mon_DB_0log64b2f6" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Automatic_trimming_of_Mon_DB_0log64b2f6" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Automatic_trimming_of_Mon_DB_0log64b2f6', 'skip')"
+                                data-log-id="Automatic_trimming_of_Mon_DB_0log64b2f6" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Automatic_trimming_of_Mon_DB_0log64b2f6" class="feedback-form">
+                        <textarea id="feedback-text-Automatic_trimming_of_Mon_DB_0log64b2f6" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Automatic_trimming_of_Mon_DB_0log64b2f6" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-3_rados_test-3-AZ-Cluster</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Cephadm_Bootstrap_with_applyspec_0logc22bc7" data-log-name="Cephadm_Bootstrap_with_apply-spec_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Cephadm_Bootstrap_with_applyspec_0logc22bc7" class="toggle-raw" onclick="toggleRawAnalysis('Cephadm_Bootstrap_with_applyspec_0logc22bc7')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/tier-3_rados_test-3-AZ-Cluster/Cephadm_Bootstrap_with_apply-spec_0.log" target="_blank" class="log-name">Cephadm_Bootstrap_with_apply-spec_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Cephadm_Bootstrap_with_applyspec_0logc22bc7" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_applyspec_0logc22bc7', 'like')"
+                                data-log-id="Cephadm_Bootstrap_with_applyspec_0logc22bc7" data-vote="like">👍</button>
+                        <button id="dislike-btn-Cephadm_Bootstrap_with_applyspec_0logc22bc7" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_applyspec_0logc22bc7', 'dislike')"
+                                data-log-id="Cephadm_Bootstrap_with_applyspec_0logc22bc7" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Cephadm_Bootstrap_with_applyspec_0logc22bc7" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_applyspec_0logc22bc7', 'skip')"
+                                data-log-id="Cephadm_Bootstrap_with_applyspec_0logc22bc7" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Cephadm_Bootstrap_with_applyspec_0logc22bc7" class="feedback-form">
+                        <textarea id="feedback-text-Cephadm_Bootstrap_with_applyspec_0logc22bc7" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Cephadm_Bootstrap_with_applyspec_0logc22bc7" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        
+        <button class="submit-all-btn" onclick="submitAllFeedback()">
+            Submit All Feedback (20 logs)
+        </button>
+    </body>
+    </html>
+    

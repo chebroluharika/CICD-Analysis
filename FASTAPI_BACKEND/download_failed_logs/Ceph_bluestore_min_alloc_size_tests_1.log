@@ -1,0 +1,182 @@
+2025-04-14 22:55:54,337 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-14 22:55:54,337 - cephci - run:722 - INFO - Running test test_bluestore_min_alloc_size.py
+2025-04-14 22:55:54,338 - cephci - test_bluestore_min_alloc_size:28 - INFO - 
+    Module to test bluestore_min_alloc_size functionality on RHCS 7.0 and above clusters
+    Bugzilla automated : 2264726
+    Returns:
+        1 -> Fail, 0 -> Pass
+    
+2025-04-14 22:55:54,340 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd bluestore_min_alloc_size_hdd on 10.0.195.110
+2025-04-14 22:55:56,122 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd bluestore_min_alloc_size_hdd on 10.0.195.110 took 1.781509 seconds
+2025-04-14 22:55:56,123 - cephci - ceph:1186 - DEBUG - 8192
+2025-04-14 22:55:56,124 - cephci - shell:64 - DEBUG - 8192
+
+2025-04-14 22:55:56,164 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd bluestore_min_alloc_size_ssd on 10.0.195.110
+2025-04-14 22:55:57,966 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd bluestore_min_alloc_size_ssd on 10.0.195.110 took 1.801391 seconds
+2025-04-14 22:55:57,968 - cephci - ceph:1186 - DEBUG - 8192
+2025-04-14 22:55:57,969 - cephci - shell:64 - DEBUG - 8192
+
+2025-04-14 22:55:57,969 - cephci - core_workflows:695 - INFO - No argument provided, returning the acting set for PG 1.0
+2025-04-14 22:55:57,972 - cephci - core_workflows:699 - DEBUG - Collecting the acting set for the PG : 1.0
+2025-04-14 22:55:58,010 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph pg map 1.0 -f json on 10.0.195.110
+2025-04-14 22:55:59,860 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph pg map 1.0 -f json on 10.0.195.110 took 1.84916 seconds
+2025-04-14 22:55:59,861 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 22:55:59,862 - cephci - ceph:1186 - DEBUG - {"epoch":109,"raw_pgid":"1.0","pgid":"1.0","up":[8,3],"acting":[8,3,5]}
+2025-04-14 22:55:59,862 - cephci - core_workflows:702 - DEBUG - collected the acting set for the PG : 1.0. details of PG map : {'epoch': 109, 'raw_pgid': '1.0', 'pgid': '1.0', 'up': [8, 3], 'acting': [8, 3, 5]}
+2025-04-14 22:55:59,862 - cephci - test_bluestore_min_alloc_size:109 - INFO - Acting set collected for PG 1.0 is [8, 3]
+2025-04-14 22:55:59,862 - cephci - test_bluestore_min_alloc_size:111 - INFO - Collecting metadata details for OSD : 8
+2025-04-14 22:55:59,863 - cephci - core_workflows:4442 - DEBUG - Passed daemon type : osd, Daemon ID : 8
+2025-04-14 22:55:59,865 - cephci - ceph:1576 - INFO - Execute ceph osd metadata osd.8 -f json on 10.0.195.10
+2025-04-14 22:56:00,870 - cephci - ceph:1606 - INFO - Execution of ceph osd metadata osd.8 -f json on 10.0.195.10 took 1.004817 seconds
+2025-04-14 22:56:00,871 - cephci - test_bluestore_min_alloc_size:115 - DEBUG - metadata details for OSD : 8 is 
+{'id': 8, 'arch': 'x86_64', 'back_addr': '[v2:10.0.195.116:6826/2238383024,v1:10.0.195.116:6827/2238383024]', 'back_iface': '', 'bluefs': '1', 'bluefs_dedicated_db': '0', 'bluefs_dedicated_wal': '0', 'bluefs_single_shared_device': '1', 'bluestore_allocation_from_file': '0', 'bluestore_bdev_access_mode': 'blk', 'bluestore_bdev_block_size': '4096', 'bluestore_bdev_dev_node': '/dev/dm-3', 'bluestore_bdev_devices': 'vde', 'bluestore_bdev_driver': 'KernelDevice', 'bluestore_bdev_optimal_io_size': '0', 'bluestore_bdev_partition_path': '/dev/dm-3', 'bluestore_bdev_rotational': '1', 'bluestore_bdev_size': '26839351296', 'bluestore_bdev_support_discard': '1', 'bluestore_bdev_type': 'hdd', 'bluestore_min_alloc_size': '8192', 'ceph_release': 'squid', 'ceph_version': 'ceph version 19.2.1-126.el9cp (cfd2907537ba633f7d638895efd70ef5d0f1c99b) squid (stable)', 'ceph_version_short': '19.2.1-126.el9cp', 'ceph_version_when_created': 'ceph version 19.2.1-126.el9cp (cfd2907537ba633f7d638895efd70ef5d0f1c99b) squid (stable)', 'container_hostname': 'ceph-regression-vykogm-etny30-node5', 'container_image': 'cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6', 'cpu': 'AMD EPYC-Rome Processor', 'created_at': '2025-04-14T22:46:39.428754Z', 'default_device_class': 'hdd', 'device_ids': 'vde=5fc200f8-f116-4d30-b', 'device_paths': 'vde=/dev/disk/by-path/pci-0000:0a:00.0', 'devices': 'vde', 'distro': 'rhel', 'distro_description': 'Red Hat Enterprise Linux 9.5 (Plow)', 'distro_version': '9.5', 'front_addr': '[v2:10.0.195.116:6824/2238383024,v1:10.0.195.116:6825/2238383024]', 'front_iface': '', 'hb_back_addr': '[v2:10.0.195.116:6830/2238383024,v1:10.0.195.116:6831/2238383024]', 'hb_front_addr': '[v2:10.0.195.116:6828/2238383024,v1:10.0.195.116:6829/2238383024]', 'hostname': 'ceph-regression-vykogm-etny30-node5', 'journal_rotational': '1', 'kernel_description': '#1 SMP PREEMPT_DYNAMIC Mon Mar 24 11:15:27 EDT 2025', 'kernel_version': '5.14.0-503.35.1.el9_5.x86_64', 'mem_swap_kb': '0', 'mem_total_kb': '7868488', 'network_numa_unknown_ifaces': 'back_iface,front_iface', 'objectstore_numa_unknown_devices': 'vde', 'os': 'Linux', 'osd_data': '/var/lib/ceph/osd/ceph-8', 'osd_objectstore': 'bluestore', 'osdspec_affinity': 'osds', 'rotational': '1'}
+
+2025-04-14 22:56:00,872 - cephci - test_bluestore_min_alloc_size:132 - INFO - OSDs successfully deployed with the new alloc size, and verified the size on OSD: 8
+2025-04-14 22:56:00,873 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config show osd.8 bluestore_min_alloc_size_hdd on 10.0.195.110
+2025-04-14 22:56:03,947 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config show osd.8 bluestore_min_alloc_size_hdd on 10.0.195.110 took 3.073096 seconds
+2025-04-14 22:56:03,947 - cephci - shell:64 - DEBUG - 8192
+
+2025-04-14 22:56:03,949 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config show osd.8 bluestore_min_alloc_size_ssd on 10.0.195.110
+2025-04-14 22:56:05,709 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config show osd.8 bluestore_min_alloc_size_ssd on 10.0.195.110 took 1.760107 seconds
+2025-04-14 22:56:05,710 - cephci - ceph:1186 - DEBUG - 8192
+2025-04-14 22:56:05,710 - cephci - shell:64 - DEBUG - 8192
+
+2025-04-14 22:56:05,711 - cephci - test_bluestore_min_alloc_size:161 - INFO - Ceph config show is verified
+2025-04-14 22:56:05,753 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 8 -f json on 10.0.195.110
+2025-04-14 22:56:08,652 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 8 -f json on 10.0.195.110 took 2.897992 seconds
+2025-04-14 22:56:08,655 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph daemon osd.8 config show --format json on 10.0.195.116
+2025-04-14 22:56:11,516 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph daemon osd.8 config show --format json on 10.0.195.116 took 2.860686 seconds
+2025-04-14 22:56:11,517 - cephci - test_bluestore_min_alloc_size:390 - ERROR - Execution failed with exception: None
+2025-04-14 22:56:11,517 - cephci - test_bluestore_min_alloc_size:391 - ERROR - cephadm shell -- ceph daemon osd.8 config show --format json returned Inferring fsid 42975a1e-197f-11f0-ab6b-fa163e8c348c
+Using ceph image with id '3b1483211cc8' and tag '<none>' created on 2025-04-11 13:52:17 +0000 UTC
+cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6
+Invalid command: unused arguments: ['--default-mgr_initial_modules=iostat,nfs,smb']
+config show :  dump current config settings
+admin_socket: invalid command
+ and code 22 on 10.0.195.116
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_bluestore_min_alloc_size.py", line 163, in run
+    json_out = mon_obj.daemon_config_show(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/monitor_configurations.py", line 452, in daemon_config_show
+    json_str, _ = daemon_node.exec_command(cmd=cmd, sudo=True)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: cephadm shell -- ceph daemon osd.8 config show --format json returned Inferring fsid 42975a1e-197f-11f0-ab6b-fa163e8c348c
+Using ceph image with id '3b1483211cc8' and tag '<none>' created on 2025-04-11 13:52:17 +0000 UTC
+cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6
+Invalid command: unused arguments: ['--default-mgr_initial_modules=iostat,nfs,smb']
+config show :  dump current config settings
+admin_socket: invalid command
+ and code 22 on 10.0.195.116
+2025-04-14 22:56:11,524 - cephci - ceph:1576 - INFO - Execute ceph osd pool ls detail -f json on 10.0.195.10
+2025-04-14 22:56:12,529 - cephci - ceph:1606 - INFO - Execution of ceph osd pool ls detail -f json on 10.0.195.10 took 1.004681 seconds
+2025-04-14 22:56:12,530 - cephci - core_workflows:4540 - INFO - List of rados pool on the cluster is empty: []
+2025-04-14 22:56:12,530 - cephci - core_workflows:4541 - INFO - Nothing to remove
+2025-04-14 22:57:12,570 - cephci - core_workflows:4558 - DEBUG - Printing cluster health and status
+2025-04-14 22:57:12,572 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph health detail on 10.0.195.110
+2025-04-14 22:57:14,715 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph health detail on 10.0.195.110 took 2.141755 seconds
+2025-04-14 22:57:14,716 - cephci - ceph:1186 - DEBUG - HEALTH_WARN 10 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 1 stray daemon(s) not managed by cephadm
+2025-04-14 22:57:14,716 - cephci - ceph:1186 - DEBUG - [WRN] BLUESTORE_SLOW_OP_ALERT: 10 OSD(s) experiencing slow operations in BlueStore
+2025-04-14 22:57:14,716 - cephci - ceph:1186 - DEBUG -      osd.2 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,716 - cephci - ceph:1186 - DEBUG -      osd.4 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,717 - cephci - ceph:1186 - DEBUG -      osd.7 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,717 - cephci - ceph:1186 - DEBUG -      osd.8 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,717 - cephci - ceph:1186 - DEBUG -      osd.9 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,717 - cephci - ceph:1186 - DEBUG -      osd.10 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,717 - cephci - ceph:1186 - DEBUG -      osd.11 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,718 - cephci - ceph:1186 - DEBUG -      osd.12 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,718 - cephci - ceph:1186 - DEBUG -      osd.13 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,718 - cephci - ceph:1186 - DEBUG -      osd.14 observed slow operation indications in BlueStore
+2025-04-14 22:57:14,718 - cephci - ceph:1186 - DEBUG - [WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+2025-04-14 22:57:14,718 - cephci - ceph:1186 - DEBUG -     daemon node-exporter.ceph-regression-vykogm-etny30-node1-installer on ceph-regression-vykogm-etny30-node1-installer is in error state
+2025-04-14 22:57:14,718 - cephci - ceph:1186 - DEBUG - [WRN] CEPHADM_STRAY_DAEMON: 1 stray daemon(s) not managed by cephadm
+2025-04-14 22:57:14,718 - cephci - ceph:1186 - DEBUG -     stray daemon mon.ceph-regression-vykogm-etny30-node3 on host ceph-regression-vykogm-etny30-node3 not managed by cephadm
+2025-04-14 22:57:14,719 - cephci - shell:64 - DEBUG - HEALTH_WARN 10 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 1 stray daemon(s) not managed by cephadm
+[WRN] BLUESTORE_SLOW_OP_ALERT: 10 OSD(s) experiencing slow operations in BlueStore
+     osd.2 observed slow operation indications in BlueStore
+     osd.4 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.8 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-vykogm-etny30-node1-installer on ceph-regression-vykogm-etny30-node1-installer is in error state
+[WRN] CEPHADM_STRAY_DAEMON: 1 stray daemon(s) not managed by cephadm
+    stray daemon mon.ceph-regression-vykogm-etny30-node3 on host ceph-regression-vykogm-etny30-node3 not managed by cephadm
+
+2025-04-14 22:57:14,720 - cephci - core_workflows:4560 - INFO - 
+****
+ Cluster health detail: 
+ HEALTH_WARN 10 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 1 stray daemon(s) not managed by cephadm
+[WRN] BLUESTORE_SLOW_OP_ALERT: 10 OSD(s) experiencing slow operations in BlueStore
+     osd.2 observed slow operation indications in BlueStore
+     osd.4 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.8 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-vykogm-etny30-node1-installer on ceph-regression-vykogm-etny30-node1-installer is in error state
+[WRN] CEPHADM_STRAY_DAEMON: 1 stray daemon(s) not managed by cephadm
+    stray daemon mon.ceph-regression-vykogm-etny30-node3 on host ceph-regression-vykogm-etny30-node3 not managed by cephadm
+ 
+****
+2025-04-14 22:57:14,724 - cephci - ceph:1576 - INFO - Execute ceph -s on 10.0.195.10
+2025-04-14 22:57:15,731 - cephci - ceph:1606 - INFO - Execution of ceph -s on 10.0.195.10 took 1.006126 seconds
+2025-04-14 22:57:15,732 - cephci - core_workflows:4561 - INFO - 
+****
+ Cluster status: 
+   cluster:
+    id:     42975a1e-197f-11f0-ab6b-fa163e8c348c
+    health: HEALTH_WARN
+            10 OSD(s) experiencing slow operations in BlueStore
+            1 failed cephadm daemon(s)
+            1 stray daemon(s) not managed by cephadm
+ 
+  services:
+    mon: 3 daemons, quorum ceph-regression-vykogm-etny30-node1-installer,ceph-regression-vykogm-etny30-node2,ceph-regression-vykogm-etny30-node6 (age 15m)
+    mgr: ceph-regression-vykogm-etny30-node1-installer.igeomu(active, since 29m), standbys: ceph-regression-vykogm-etny30-node2.atfhfn, ceph-regression-vykogm-etny30-node6.atdrrt
+    mds: 1/1 daemons up, 1 standby
+    osd: 15 osds: 15 up (since 9s), 15 in (since 9m)
+    rgw: 2 daemons active (2 hosts, 1 zones)
+ 
+  data:
+    volumes: 1/1 healthy
+    pools:   8 pools, 306 pgs
+    objects: 222 objects, 456 KiB
+    usage:   550 MiB used, 374 GiB / 375 GiB avail
+    pgs:     2.288% pgs not active
+             299 active+clean
+             7   peering
+ 
+  io:
+    recovery: 640 B/s, 31 objects/s
+ 
+  progress:
+    Global Recovery Event (3m)
+      [=========...................] (remaining: 5m)
+ 
+ 
+****
+2025-04-14 22:57:15,734 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph crash ls-new -f json on 10.0.195.110
+2025-04-14 22:57:17,669 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph crash ls-new -f json on 10.0.195.110 took 1.93478 seconds
+2025-04-14 22:57:17,670 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 22:57:17,670 - cephci - ceph:1186 - DEBUG - []
+2025-04-14 22:57:17,712 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.110
+2025-04-14 22:57:18,717 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.110 took 1.004771 seconds
+2025-04-14 22:57:18,718 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-14 22:57:18,720 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.110
+2025-04-14 22:57:19,727 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.110 took 1.006691 seconds
+2025-04-14 22:57:19,729 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.10
+2025-04-14 22:57:20,733 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.10 took 1.003958 seconds
+2025-04-14 22:57:20,735 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-14 22:57:20,736 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-Vykogm-ETNY30
+2025-04-14 22:57:20,737 - cephci - run:927 - INFO - Test <module 'test_bluestore_min_alloc_size' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_bluestore_min_alloc_size.py'> failed

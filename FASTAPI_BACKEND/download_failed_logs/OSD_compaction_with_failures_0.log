@@ -1,0 +1,625 @@
+2025-04-15 00:12:44,437 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-15 00:12:44,442 - cephci - run:722 - INFO - Running test test_osd_compaction.py
+2025-04-15 00:12:44,442 - cephci - test_osd_compaction:32 - INFO - 
+    # CEPH-11681
+    This test is to perform various operations on OMAPS and execute
+    OSD compaction during IOPS with and without OSD failure
+    1. Create cluster with default configuration
+    2. Create a pool and write large number of OMAPS to few objects
+    3. Perform various operations on the OMAP entries, list, get,
+     add new, delete, clear, etc
+    4. Trigger background IOPS using rados bench
+    5. Execute OSD compaction for a healthy OSD
+    6. Stop the OSD using systemctl
+    7. Execute OSD compaction on the down OSD, expected to fail
+    
+2025-04-15 00:12:44,443 - cephci - test_osd_compaction:42 - DEBUG - Creating replicated pool on the cluster with name re_pool_large_omap
+2025-04-15 00:12:44,443 - cephci - core_workflows:563 - DEBUG - creating pool_name re_pool_large_omap
+2025-04-15 00:12:44,444 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool create re_pool_large_omap on 10.0.195.193
+2025-04-15 00:12:47,356 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool create re_pool_large_omap on 10.0.195.193 took 2.911008 seconds
+2025-04-15 00:12:47,357 - cephci - shell:64 - DEBUG - 
+2025-04-15 00:12:47,360 - cephci - ceph:1576 - INFO - Execute cephadm shell -- sudo ceph osd pool application enable re_pool_large_omap rados on 10.0.195.193
+2025-04-15 00:12:49,567 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- sudo ceph osd pool application enable re_pool_large_omap rados on 10.0.195.193 took 2.206254 seconds
+2025-04-15 00:12:49,568 - cephci - shell:64 - DEBUG - 
+2025-04-15 00:12:54,570 - cephci - core_workflows:620 - INFO - Created pool re_pool_large_omap successfully
+2025-04-15 00:12:54,570 - cephci - utils:1858 - DEBUG - The <bound method RadosOrchestrator.create_pool of <ceph.rados.core_workflows.RadosOrchestrator object at 0x7ff149524d00>> return status is True
+2025-04-15 00:12:54,581 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.24
+2025-04-15 00:12:55,586 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.24 took 1.004463 seconds
+2025-04-15 00:12:55,587 - cephci - core_workflows:452 - INFO - check_ec: True
+2025-04-15 00:12:55,588 - cephci - ceph:1576 - INFO - Execute sudo rados --no-log-to-stderr -b 4096KB -p re_pool_large_omap bench 600 write --no-cleanup --max-objects 400 on 10.0.195.24
+2025-04-15 00:12:56,593 - cephci - ceph:1186 - DEBUG - hints = 1
+2025-04-15 00:12:56,594 - cephci - ceph:1186 - DEBUG - Maintaining 16 concurrent writes of 4194304 bytes to objects of size 4194304 for up to 600 seconds or 400 objects
+2025-04-15 00:12:56,594 - cephci - ceph:1186 - DEBUG - Object prefix: benchmark_data_ceph-regression-5v4xpn-ykok4e_11084
+2025-04-15 00:12:56,594 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:12:56,594 - cephci - ceph:1186 - DEBUG -     0       0         0         0         0         0           -           0
+2025-04-15 00:12:56,721 - cephci - ceph:1186 - DEBUG -     1      16        16         0         0         0           -           0
+2025-04-15 00:12:57,721 - cephci - ceph:1186 - DEBUG -     2      16        16         0         0         0           -           0
+2025-04-15 00:12:58,721 - cephci - ceph:1186 - DEBUG -     3      16        28        12    15.997        16      2.1612     2.16099
+2025-04-15 00:12:59,721 - cephci - ceph:1186 - DEBUG -     4      16        28        12   11.9977         0           -     2.16099
+2025-04-15 00:13:00,721 - cephci - ceph:1186 - DEBUG -     5      16        28        12   9.59824         0           -     2.16099
+2025-04-15 00:13:01,722 - cephci - ceph:1186 - DEBUG -     6      16        42        26   17.3302   18.6667     3.65733     3.29925
+2025-04-15 00:13:02,722 - cephci - ceph:1186 - DEBUG -     7      16        42        26   14.8545         0           -     3.29925
+2025-04-15 00:13:03,722 - cephci - ceph:1186 - DEBUG -     8      16        47        31   15.4972        10     1.41972     3.23203
+2025-04-15 00:13:04,722 - cephci - ceph:1186 - DEBUG -     9      16        47        31   13.7753         0           -     3.23203
+2025-04-15 00:13:05,722 - cephci - ceph:1186 - DEBUG -    10      16        56        40   15.9972        18     3.26526     3.23952
+2025-04-15 00:13:06,723 - cephci - ceph:1186 - DEBUG -    11      16        56        40   14.5429         0           -     3.23952
+2025-04-15 00:13:07,723 - cephci - ceph:1186 - DEBUG -    12      16        56        40    13.331         0           -     3.23952
+2025-04-15 00:13:08,723 - cephci - ceph:1186 - DEBUG -    13      16        70        54   16.6124   18.6667     3.08927     3.49239
+2025-04-15 00:13:09,723 - cephci - ceph:1186 - DEBUG -    14      16        70        54   15.4257         0           -     3.49239
+2025-04-15 00:13:10,723 - cephci - ceph:1186 - DEBUG -    15      16        84        68   18.1299        28     2.19471     3.29249
+2025-04-15 00:13:11,724 - cephci - ceph:1186 - DEBUG -    16      16        89        73   18.2465        20     1.54524     3.22752
+2025-04-15 00:13:12,724 - cephci - ceph:1186 - DEBUG -    17      16        94        78   18.3493        20     2.45059     3.18055
+2025-04-15 00:13:13,724 - cephci - ceph:1186 - DEBUG -    18      16        94        78   17.3298         0           -     3.18055
+2025-04-15 00:13:14,724 - cephci - ceph:1186 - DEBUG -    19      16        94        78   16.4177         0           -     3.18055
+2025-04-15 00:13:15,725 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:12:54.999843+0000 min lat: 1.41972 max lat: 6.3543 avg lat: 3.18055
+2025-04-15 00:13:15,725 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:13:15,725 - cephci - ceph:1186 - DEBUG -    20      16        94        78   15.5968         0           -     3.18055
+2025-04-15 00:13:16,725 - cephci - ceph:1186 - DEBUG -    21      16        94        78   14.8539         0           -     3.18055
+2025-04-15 00:13:17,725 - cephci - ceph:1186 - DEBUG -    22      16        94        78   14.1788         0           -     3.18055
+2025-04-15 00:13:18,726 - cephci - ceph:1186 - DEBUG -    23      16       107        91   15.8227   8.66667     5.54604     3.73393
+2025-04-15 00:13:19,726 - cephci - ceph:1186 - DEBUG -    24      16       107        91   15.1634         0           -     3.73393
+2025-04-15 00:13:20,726 - cephci - ceph:1186 - DEBUG -    25      16       112        96   15.3567        10     2.59926     3.84814
+2025-04-15 00:13:21,726 - cephci - ceph:1186 - DEBUG -    26      16       117       101   15.5351        20     3.49912     3.82503
+2025-04-15 00:13:22,726 - cephci - ceph:1186 - DEBUG -    27      16       117       101   14.9597         0           -     3.82503
+2025-04-15 00:13:23,727 - cephci - ceph:1186 - DEBUG -    28      16       117       101   14.4254         0           -     3.82503
+2025-04-15 00:13:24,727 - cephci - ceph:1186 - DEBUG -    29      16       117       101   13.9279         0           -     3.82503
+2025-04-15 00:13:25,727 - cephci - ceph:1186 - DEBUG -    30      16       131       115   15.3299        14     3.88367     4.05891
+2025-04-15 00:13:26,727 - cephci - ceph:1186 - DEBUG -    31      16       136       120   15.4804        20    0.989767     3.99571
+2025-04-15 00:13:27,728 - cephci - ceph:1186 - DEBUG -    32      16       136       120   14.9966         0           -     3.99571
+2025-04-15 00:13:28,728 - cephci - ceph:1186 - DEBUG -    33      16       136       120   14.5422         0           -     3.99571
+2025-04-15 00:13:29,728 - cephci - ceph:1186 - DEBUG -    34      16       141       125   14.7025   6.66667     3.97458     3.99488
+2025-04-15 00:13:30,729 - cephci - ceph:1186 - DEBUG -    35      16       141       125   14.2824         0           -     3.99488
+2025-04-15 00:13:31,730 - cephci - ceph:1186 - DEBUG -    36      16       146       130   14.4411        10     5.88341     4.06752
+2025-04-15 00:13:32,729 - cephci - ceph:1186 - DEBUG -    37      16       146       130   14.0508         0           -     4.06752
+2025-04-15 00:13:33,729 - cephci - ceph:1186 - DEBUG -    38      16       146       130    13.681         0           -     4.06752
+2025-04-15 00:13:34,730 - cephci - ceph:1186 - DEBUG -    39      16       153       137    14.048   9.33333     4.94372      4.2503
+2025-04-15 00:13:35,730 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:13:15.005026+0000 min lat: 0.989731 max lat: 8.91802 avg lat: 4.29096
+2025-04-15 00:13:35,731 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:13:35,731 - cephci - ceph:1186 - DEBUG -    40      16       156       140   13.9967        12     6.14802     4.29096
+2025-04-15 00:13:36,730 - cephci - ceph:1186 - DEBUG -    41      16       156       140   13.6553         0           -     4.29096
+2025-04-15 00:13:37,731 - cephci - ceph:1186 - DEBUG -    42      16       156       140   13.3302         0           -     4.29096
+2025-04-15 00:13:38,731 - cephci - ceph:1186 - DEBUG -    43      16       157       141   13.1132   1.33333      7.4557     4.31341
+2025-04-15 00:13:39,731 - cephci - ceph:1186 - DEBUG -    44      16       157       141   12.8152         0           -     4.31341
+2025-04-15 00:13:40,731 - cephci - ceph:1186 - DEBUG -    45      16       157       141   12.5304         0           -     4.31341
+2025-04-15 00:13:41,731 - cephci - ceph:1186 - DEBUG -    46      16       157       141    12.258         0           -     4.31341
+2025-04-15 00:13:42,732 - cephci - ceph:1186 - DEBUG -    47      16       157       141   11.9972         0           -     4.31341
+2025-04-15 00:13:43,732 - cephci - ceph:1186 - DEBUG -    48      16       157       141   11.7472         0           -     4.31341
+2025-04-15 00:13:44,732 - cephci - ceph:1186 - DEBUG -    49      16       159       143   11.6707   1.33333     15.1129      4.4511
+2025-04-15 00:13:45,732 - cephci - ceph:1186 - DEBUG -    50      16       160       144   11.5173         4     9.80656     4.48829
+2025-04-15 00:13:46,733 - cephci - ceph:1186 - DEBUG -    51      16       160       144   11.2915         0           -     4.48829
+2025-04-15 00:13:47,733 - cephci - ceph:1186 - DEBUG -    52      16       166       150   11.5357        12     11.9532     4.84726
+2025-04-15 00:13:48,733 - cephci - ceph:1186 - DEBUG -    53      16       170       154   11.6199        16     17.2261     5.11292
+2025-04-15 00:13:49,734 - cephci - ceph:1186 - DEBUG -    54      16       170       154   11.4047         0           -     5.11292
+2025-04-15 00:13:50,734 - cephci - ceph:1186 - DEBUG -    55      16       170       154   11.1973         0           -     5.11292
+2025-04-15 00:13:51,734 - cephci - ceph:1186 - DEBUG -    56      16       170       154   10.9974         0           -     5.11292
+2025-04-15 00:13:52,735 - cephci - ceph:1186 - DEBUG -    57      16       173       157   11.0149         3     13.1669       5.253
+2025-04-15 00:13:53,734 - cephci - ceph:1186 - DEBUG -    58      16       173       157    10.825         0           -       5.253
+2025-04-15 00:13:54,735 - cephci - ceph:1186 - DEBUG -    59      16       173       157   10.6415         0           -       5.253
+2025-04-15 00:13:55,735 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:13:35.010093+0000 min lat: 0.989731 max lat: 17.5877 avg lat: 5.253
+2025-04-15 00:13:55,735 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:13:55,736 - cephci - ceph:1186 - DEBUG -    60      16       173       157   10.4642         0           -       5.253
+2025-04-15 00:13:56,735 - cephci - ceph:1186 - DEBUG -    61      16       173       157   10.2926         0           -       5.253
+2025-04-15 00:13:57,736 - cephci - ceph:1186 - DEBUG -    62      16       173       157   10.1266         0           -       5.253
+2025-04-15 00:13:58,736 - cephci - ceph:1186 - DEBUG -    63      16       173       157   9.96585         0           -       5.253
+2025-04-15 00:13:59,736 - cephci - ceph:1186 - DEBUG -    64      16       173       157   9.81013         0           -       5.253
+2025-04-15 00:14:00,736 - cephci - ceph:1186 - DEBUG -    65      16       173       157   9.65921         0           -       5.253
+2025-04-15 00:14:01,737 - cephci - ceph:1186 - DEBUG -    66      16       175       159   9.63404  0.888889     13.7286     5.37841
+2025-04-15 00:14:02,737 - cephci - ceph:1186 - DEBUG -    67      16       176       160   9.54993         4      14.039     5.43254
+2025-04-15 00:14:03,737 - cephci - ceph:1186 - DEBUG -    68      16       179       163   9.58592        12     18.8931     5.63853
+2025-04-15 00:14:04,737 - cephci - ceph:1186 - DEBUG -    69      16       179       163   9.44699         0           -     5.63853
+2025-04-15 00:14:05,738 - cephci - ceph:1186 - DEBUG -    70      16       180       164   9.36917         2     13.3939     5.68582
+2025-04-15 00:14:06,738 - cephci - ceph:1186 - DEBUG -    71      16       181       165   9.29353         4     3.87868     5.67486
+2025-04-15 00:14:07,738 - cephci - ceph:1186 - DEBUG -    72      16       182       166   9.21999         4     15.1645     5.73203
+2025-04-15 00:14:08,738 - cephci - ceph:1186 - DEBUG -    73      16       183       167   9.14847         4     16.0688     5.79393
+2025-04-15 00:14:09,739 - cephci - ceph:1186 - DEBUG -    74      16       184       168   9.07889         4     21.3279     5.88639
+2025-04-15 00:14:10,739 - cephci - ceph:1186 - DEBUG -    75      16       185       169   9.01117         4     3.30634     5.87112
+2025-04-15 00:14:11,747 - cephci - ceph:1186 - DEBUG -    76      16       186       170   8.94524         4       3.325     5.85615
+2025-04-15 00:14:12,739 - cephci - ceph:1186 - DEBUG -    77      16       191       175   9.08875        20     24.1892     6.30581
+2025-04-15 00:14:13,739 - cephci - ceph:1186 - DEBUG -    78      16       193       177   9.07478         8     10.1905     6.30612
+2025-04-15 00:14:14,739 - cephci - ceph:1186 - DEBUG -    79      16       193       177   8.95992         0           -     6.30612
+2025-04-15 00:14:15,740 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:13:55.014419+0000 min lat: 0.989731 max lat: 29.0623 avg lat: 6.30612
+2025-04-15 00:14:15,740 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:14:15,740 - cephci - ceph:1186 - DEBUG -    80      16       193       177   8.84793         0           -     6.30612
+2025-04-15 00:14:16,740 - cephci - ceph:1186 - DEBUG -    81      16       193       177    8.7387         0           -     6.30612
+2025-04-15 00:14:17,740 - cephci - ceph:1186 - DEBUG -    82      16       193       177   8.63214         0           -     6.30612
+2025-04-15 00:14:18,740 - cephci - ceph:1186 - DEBUG -    83      16       193       177   8.52815         0           -     6.30612
+2025-04-15 00:14:19,740 - cephci - ceph:1186 - DEBUG -    84      16       201       185    8.8075   5.33333     31.8037      6.7361
+2025-04-15 00:14:20,741 - cephci - ceph:1186 - DEBUG -    85      16       201       185   8.70389         0           -      6.7361
+2025-04-15 00:14:21,741 - cephci - ceph:1186 - DEBUG -    86      16       201       185   8.60269         0           -      6.7361
+2025-04-15 00:14:22,741 - cephci - ceph:1186 - DEBUG -    87      16       201       185   8.50381         0           -      6.7361
+2025-04-15 00:14:23,741 - cephci - ceph:1186 - DEBUG -    88      16       202       186   8.45263         1     35.1847     6.88905
+2025-04-15 00:14:24,742 - cephci - ceph:1186 - DEBUG -    89      16       204       188   8.44753         8     5.19286     6.87101
+2025-04-15 00:14:25,741 - cephci - ceph:1186 - DEBUG -    90      16       205       189   8.39811         4     5.76622     6.86516
+2025-04-15 00:14:26,741 - cephci - ceph:1186 - DEBUG -    91      16       212       196   8.61346        28     7.14788     7.06646
+2025-04-15 00:14:27,742 - cephci - ceph:1186 - DEBUG -    92      16       212       196   8.51983         0           -     7.06646
+2025-04-15 00:14:28,742 - cephci - ceph:1186 - DEBUG -    93      16       212       196   8.42823         0           -     7.06646
+2025-04-15 00:14:29,742 - cephci - ceph:1186 - DEBUG -    94      16       213       197   8.38112   1.33333      3.0852     7.04625
+2025-04-15 00:14:30,742 - cephci - ceph:1186 - DEBUG -    95      16       213       197    8.2929         0           -     7.04625
+2025-04-15 00:14:31,742 - cephci - ceph:1186 - DEBUG -    96      16       214       198   8.24818         2     5.28525     7.03736
+2025-04-15 00:14:32,742 - cephci - ceph:1186 - DEBUG -    97      16       220       204   8.41053        24     8.16194     7.25608
+2025-04-15 00:14:33,742 - cephci - ceph:1186 - DEBUG -    98      16       221       205   8.36552         4     4.35637     7.24194
+2025-04-15 00:14:34,743 - cephci - ceph:1186 - DEBUG -    99      16       223       207   8.36181         8     8.30799     7.28377
+2025-04-15 00:14:35,745 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:14:15.017476+0000 min lat: 0.989731 max lat: 35.1847 avg lat: 7.26147
+2025-04-15 00:14:35,746 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:14:35,746 - cephci - ceph:1186 - DEBUG -   100      16       224       208   8.31819         4     2.64514     7.26147
+2025-04-15 00:14:36,743 - cephci - ceph:1186 - DEBUG -   101      16       228       212   8.39422        16     13.4558     7.26561
+2025-04-15 00:14:37,743 - cephci - ceph:1186 - DEBUG -   102      16       228       212   8.31193         0           -     7.26561
+2025-04-15 00:14:38,743 - cephci - ceph:1186 - DEBUG -   103      16       228       212   8.23123         0           -     7.26561
+2025-04-15 00:14:39,744 - cephci - ceph:1186 - DEBUG -   104      16       232       216   8.30591   5.33333     7.75816     7.30764
+2025-04-15 00:14:40,744 - cephci - ceph:1186 - DEBUG -   105      16       234       218   8.30298         8      7.7535     7.29451
+2025-04-15 00:14:41,748 - cephci - ceph:1186 - DEBUG -   106      16       235       219   8.26239         4     9.12464     7.30287
+2025-04-15 00:14:42,744 - cephci - ceph:1186 - DEBUG -   107      16       235       219   8.18517         0           -     7.30287
+2025-04-15 00:14:43,744 - cephci - ceph:1186 - DEBUG -   108      16       235       219   8.10939         0           -     7.30287
+2025-04-15 00:14:44,744 - cephci - ceph:1186 - DEBUG -   109      16       236       220   8.07169   1.33333      18.567     7.35407
+2025-04-15 00:14:45,744 - cephci - ceph:1186 - DEBUG -   110      16       239       223   8.10738        12     5.79721     7.34372
+2025-04-15 00:14:46,745 - cephci - ceph:1186 - DEBUG -   111      16       242       226   8.14243        12     2.00356     7.30732
+2025-04-15 00:14:47,745 - cephci - ceph:1186 - DEBUG -   112      16       242       226   8.06973         0           -     7.30732
+2025-04-15 00:14:48,745 - cephci - ceph:1186 - DEBUG -   113      16       245       229   8.10449         6     1.98438     7.32615
+2025-04-15 00:14:49,745 - cephci - ceph:1186 - DEBUG -   114      16       246       230   8.06848         4    0.749022     7.29755
+2025-04-15 00:14:50,745 - cephci - ceph:1186 - DEBUG -   115      16       246       230   7.99833         0           -     7.29755
+2025-04-15 00:14:51,746 - cephci - ceph:1186 - DEBUG -   116      16       246       230   7.92938         0           -     7.29755
+2025-04-15 00:14:52,746 - cephci - ceph:1186 - DEBUG -   117      16       246       230   7.86161         0           -     7.29755
+2025-04-15 00:14:53,746 - cephci - ceph:1186 - DEBUG -   118      16       251       235   7.96445         5     16.3073     7.54447
+2025-04-15 00:14:54,746 - cephci - ceph:1186 - DEBUG -   119      16       251       235   7.89752         0           -     7.54447
+2025-04-15 00:14:55,746 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:14:35.020469+0000 min lat: 0.749022 max lat: 35.1847 avg lat: 7.5838
+2025-04-15 00:14:55,746 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:14:55,747 - cephci - ceph:1186 - DEBUG -   120      16       253       237   7.89837         4     22.6736      7.5838
+2025-04-15 00:14:56,746 - cephci - ceph:1186 - DEBUG -   121      16       254       238   7.86615         4    0.742169     7.55506
+2025-04-15 00:14:57,746 - cephci - ceph:1186 - DEBUG -   122      16       254       238   7.80167         0           -     7.55506
+2025-04-15 00:14:58,746 - cephci - ceph:1186 - DEBUG -   123      16       261       245   7.96585        14     3.77815     7.57166
+2025-04-15 00:14:59,747 - cephci - ceph:1186 - DEBUG -   124      16       262       246   7.93386         4    0.659991     7.54356
+2025-04-15 00:15:00,747 - cephci - ceph:1186 - DEBUG -   125      16       265       249   7.96637        12     18.8643     7.63961
+2025-04-15 00:15:01,747 - cephci - ceph:1186 - DEBUG -   126      16       265       249   7.90315         0           -     7.63961
+2025-04-15 00:15:02,747 - cephci - ceph:1186 - DEBUG -   127      16       266       250   7.87241         2     1.91588     7.61671
+2025-04-15 00:15:03,747 - cephci - ceph:1186 - DEBUG -   128      16       273       257   8.02962        28     18.8356     7.68987
+2025-04-15 00:15:04,753 - cephci - ceph:1186 - DEBUG -   129      16       273       257   7.96737         0           -     7.68987
+2025-04-15 00:15:05,748 - cephci - ceph:1186 - DEBUG -   130      16       277       261   8.02914         8     7.04881     7.71934
+2025-04-15 00:15:06,748 - cephci - ceph:1186 - DEBUG -   131      16       278       262   7.99838         4     13.0945     7.73986
+2025-04-15 00:15:07,748 - cephci - ceph:1186 - DEBUG -   132      16       281       265   8.02868        12     1.87382     7.67814
+2025-04-15 00:15:08,748 - cephci - ceph:1186 - DEBUG -   133      16       281       265   7.96832         0           -     7.67814
+2025-04-15 00:15:09,748 - cephci - ceph:1186 - DEBUG -   134      16       282       266    7.9387         2     11.8648     7.69388
+2025-04-15 00:15:10,749 - cephci - ceph:1186 - DEBUG -   135      16       288       272   8.05764        24     3.67024     7.63088
+2025-04-15 00:15:11,749 - cephci - ceph:1186 - DEBUG -   136      16       295       279   8.20423        28     1.74111     7.64786
+2025-04-15 00:15:12,749 - cephci - ceph:1186 - DEBUG -   137      16       295       279   8.14435         0           -     7.64786
+2025-04-15 00:15:13,749 - cephci - ceph:1186 - DEBUG -   138      16       295       279   8.08534         0           -     7.64786
+2025-04-15 00:15:14,749 - cephci - ceph:1186 - DEBUG -   139      16       295       279   8.02717         0           -     7.64786
+2025-04-15 00:15:15,749 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:14:55.023720+0000 min lat: 0.39976 max lat: 35.1847 avg lat: 7.61811
+2025-04-15 00:15:15,750 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:15:15,750 - cephci - ceph:1186 - DEBUG -   140      16       298       282   8.05553         3     4.38333     7.61811
+2025-04-15 00:15:16,750 - cephci - ceph:1186 - DEBUG -   141      16       300       284   8.05513         8     4.88285      7.6006
+2025-04-15 00:15:17,750 - cephci - ceph:1186 - DEBUG -   142      16       304       288   8.11106        16     13.3446     7.67388
+2025-04-15 00:15:18,750 - cephci - ceph:1186 - DEBUG -   143      16       309       293   8.19417        20     8.05154     7.64918
+2025-04-15 00:15:19,750 - cephci - ceph:1186 - DEBUG -   144      16       309       293   8.13727         0           -     7.64918
+2025-04-15 00:15:20,750 - cephci - ceph:1186 - DEBUG -   145      16       315       299   8.24664        12     2.74791     7.63411
+2025-04-15 00:15:21,751 - cephci - ceph:1186 - DEBUG -   146      16       319       303   8.29972        16     4.57522      7.6004
+2025-04-15 00:15:22,751 - cephci - ceph:1186 - DEBUG -   147      16       327       311   8.46091        32     2.37604     7.48308
+2025-04-15 00:15:23,751 - cephci - ceph:1186 - DEBUG -   148      16       331       315   8.51183        16     1.39799     7.40536
+2025-04-15 00:15:24,751 - cephci - ceph:1186 - DEBUG -   149      16       337       321   8.61575        24    0.258561     7.27815
+2025-04-15 00:15:25,751 - cephci - ceph:1186 - DEBUG -   150      16       341       325   8.66496        16     7.24651     7.24976
+2025-04-15 00:15:26,753 - cephci - ceph:1186 - DEBUG -   151      16       342       326   8.63406         4    0.848651     7.23012
+2025-04-15 00:15:27,751 - cephci - ceph:1186 - DEBUG -   152      16       350       334   8.78774        32     2.74589     7.15443
+2025-04-15 00:15:28,752 - cephci - ceph:1186 - DEBUG -   153      16       350       334   8.73031         0           -     7.15443
+2025-04-15 00:15:29,751 - cephci - ceph:1186 - DEBUG -   154      16       357       341   8.85541        14      3.8462     7.13573
+2025-04-15 00:15:30,752 - cephci - ceph:1186 - DEBUG -   155      16       360       344   8.87568        12     2.62441     7.09638
+2025-04-15 00:15:31,752 - cephci - ceph:1186 - DEBUG -   156      16       363       347   8.89569        12     1.98151     7.05261
+2025-04-15 00:15:32,752 - cephci - ceph:1186 - DEBUG -   157      16       373       357   9.09376        40     5.77785     6.95405
+2025-04-15 00:15:33,752 - cephci - ceph:1186 - DEBUG -   158      16       379       363   9.18808        24     2.11218     6.90925
+2025-04-15 00:15:34,752 - cephci - ceph:1186 - DEBUG -   159      16       380       364   9.15545         4     2.77727      6.8979
+2025-04-15 00:15:35,753 - cephci - ceph:1186 - DEBUG - 2025-04-15T00:15:15.026869+0000 min lat: 0.258561 max lat: 35.1847 avg lat: 6.85237
+2025-04-15 00:15:35,753 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 00:15:35,753 - cephci - ceph:1186 - DEBUG -   160      16       385       369    9.2232        20     1.40984     6.85237
+2025-04-15 00:15:36,753 - cephci - ceph:1186 - DEBUG -   161      16       388       372   9.24044        12     3.88975     6.82801
+2025-04-15 00:15:37,753 - cephci - ceph:1186 - DEBUG -   162      16       392       376   9.28214        16     2.43614     6.79205
+2025-04-15 00:15:38,753 - cephci - ceph:1186 - DEBUG -   163      16       394       378   9.27426         8     2.10137     6.76899
+2025-04-15 00:15:39,753 - cephci - ceph:1186 - DEBUG -   164      16       400       384   9.36402        24     4.08295     6.72955
+2025-04-15 00:15:40,754 - cephci - ceph:1186 - DEBUG -   165      16       400       384   9.30727         0           -     6.72955
+2025-04-15 00:15:41,754 - cephci - ceph:1186 - DEBUG -   166      14       400       386   9.29939         4     2.11583     6.70561
+2025-04-15 00:15:42,754 - cephci - ceph:1186 - DEBUG -   167      13       400       387   9.26765         4     5.45986     6.70239
+2025-04-15 00:15:43,754 - cephci - ceph:1186 - DEBUG -   168      10       400       390    9.2839        12     8.28617     6.71949
+2025-04-15 00:15:44,754 - cephci - ceph:1186 - DEBUG -   169       5       400       395   9.34729        20     5.22874     6.72961
+2025-04-15 00:15:45,755 - cephci - ceph:1186 - DEBUG -   170       5       400       395   9.29231         0           -     6.72961
+2025-04-15 00:15:46,758 - cephci - ceph:1186 - DEBUG -   171       5       400       395   9.23797         0           -     6.72961
+2025-04-15 00:15:47,755 - cephci - ceph:1186 - DEBUG -   172       5       400       395   9.18426         0           -     6.72961
+2025-04-15 00:15:48,755 - cephci - ceph:1186 - DEBUG - Total time run:         172.898
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Total writes made:      400
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Write size:             4194304
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Object size:            4194304
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Bandwidth (MB/sec):     9.25402
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Stddev Bandwidth:       8.59364
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Max bandwidth (MB/sec): 40
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Min bandwidth (MB/sec): 0
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Average IOPS:           2
+2025-04-15 00:15:48,756 - cephci - ceph:1186 - DEBUG - Stddev IOPS:            2.14511
+2025-04-15 00:15:48,757 - cephci - ceph:1186 - DEBUG - Max IOPS:               10
+2025-04-15 00:15:48,757 - cephci - ceph:1186 - DEBUG - Min IOPS:               0
+2025-04-15 00:15:48,757 - cephci - ceph:1186 - DEBUG - Average Latency(s):     6.7683
+2025-04-15 00:15:48,757 - cephci - ceph:1186 - DEBUG - Stddev Latency(s):      5.83392
+2025-04-15 00:15:48,757 - cephci - ceph:1186 - DEBUG - Max latency(s):         35.1847
+2025-04-15 00:15:48,757 - cephci - ceph:1186 - DEBUG - Min latency(s):         0.258561
+2025-04-15 00:15:48,784 - cephci - ceph:1606 - INFO - Execution of sudo rados --no-log-to-stderr -b 4096KB -p re_pool_large_omap bench 600 write --no-cleanup --max-objects 400 on 10.0.195.24 took 173.195316 seconds
+2025-04-15 00:16:03,800 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.24
+2025-04-15 00:16:04,805 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.24 took 1.004383 seconds
+2025-04-15 00:16:04,806 - cephci - core_workflows:471 - INFO - Objs in the re_pool_large_omap before IOPS: 0 | Objs in the pool post IOPS: 399 | Expected 399 > 0 | Expected 399 > 0
+2025-04-15 00:16:04,806 - cephci - test_osd_compaction:63 - DEBUG - Created the pool. beginning to create omap entries on the pool. Count : 5
+2025-04-15 00:16:04,808 - cephci - ceph:1576 - INFO - Execute ceph osd pool stats re_pool_large_omap -f json on 10.0.195.24
+2025-04-15 00:16:05,813 - cephci - ceph:1606 - INFO - Execution of ceph osd pool stats re_pool_large_omap -f json on 10.0.195.24 took 1.00431 seconds
+2025-04-15 00:16:05,814 - cephci - pool_workflows:123 - DEBUG - Writing 1000005 Key pairs to increase the omap entries on pool re_pool_large_omap
+2025-04-15 00:16:05,817 - cephci - ceph:1576 - INFO - Execute curl -k https://raw.githubusercontent.com/red-hat-storage/cephci/refs/heads/main/utility/generate_omap_entries.py -O on 10.0.195.24
+2025-04-15 00:16:06,822 - cephci - ceph:1606 - INFO - Execution of curl -k https://raw.githubusercontent.com/red-hat-storage/cephci/refs/heads/main/utility/generate_omap_entries.py -O on 10.0.195.24 took 1.004327 seconds
+2025-04-15 00:16:06,824 - cephci - ceph:1576 - INFO - Execute pip3 install docopt on 10.0.195.24
+2025-04-15 00:16:07,838 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: docopt in /usr/local/lib/python3.9/site-packages (0.6.2)
+2025-04-15 00:16:07,839 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-15 00:16:07,839 - cephci - ceph:1606 - INFO - Execution of pip3 install docopt on 10.0.195.24 took 1.00518 seconds
+2025-04-15 00:16:07,845 - cephci - ceph:1576 - INFO - Execute python3 generate_omap_entries.py --pool re_pool_large_omap --start 0 --end 5 --key-count 200001 on 10.0.195.24
+2025-04-15 00:16:13,856 - cephci - ceph:1186 - DEBUG - wrote 200001 of 1000005 omap entries
+2025-04-15 00:16:19,942 - cephci - ceph:1186 - DEBUG - wrote 400002 of 1000005 omap entries
+2025-04-15 00:16:20,775 - cephci - ceph:1186 - DEBUG - wrote 600003 of 1000005 omap entries
+2025-04-15 00:16:21,910 - cephci - ceph:1186 - DEBUG - wrote 800004 of 1000005 omap entries
+2025-04-15 00:16:25,170 - cephci - ceph:1186 - DEBUG - wrote 1000005 of 1000005 omap entries
+2025-04-15 00:16:25,255 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 00:16:25,255 - cephci - ceph:1186 - DEBUG - Done!
+2025-04-15 00:16:25,276 - cephci - ceph:1606 - INFO - Execution of python3 generate_omap_entries.py --pool re_pool_large_omap --start 0 --end 5 --key-count 200001 on 10.0.195.24 took 17.430134 seconds
+2025-04-15 00:16:25,278 - cephci - ceph:1576 - INFO - Execute rm -rf generate_omap_entries.py on 10.0.195.24
+2025-04-15 00:16:26,282 - cephci - ceph:1606 - INFO - Execution of rm -rf generate_omap_entries.py on 10.0.195.24 took 1.003472 seconds
+2025-04-15 00:16:26,283 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:16:27,288 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003821 seconds
+2025-04-15 00:16:27,288 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:17:07,331 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:17:08,335 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.003751 seconds
+2025-04-15 00:17:08,336 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 0
+2025-04-15 00:17:08,337 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 0
+2025-04-15 00:17:08,340 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:17:09,344 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003995 seconds
+2025-04-15 00:17:09,345 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:17:49,389 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:17:50,397 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.006569 seconds
+2025-04-15 00:17:50,398 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 0
+2025-04-15 00:17:50,398 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 0
+2025-04-15 00:17:50,399 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:17:51,404 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003881 seconds
+2025-04-15 00:17:51,405 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:18:31,447 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:18:32,452 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004622 seconds
+2025-04-15 00:18:32,453 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 0
+2025-04-15 00:18:32,453 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 0
+2025-04-15 00:18:32,455 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:18:33,458 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003268 seconds
+2025-04-15 00:18:33,459 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:19:13,507 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:19:14,514 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.00449 seconds
+2025-04-15 00:19:14,515 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 0
+2025-04-15 00:19:14,515 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 0
+2025-04-15 00:19:14,516 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:19:15,520 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003675 seconds
+2025-04-15 00:19:15,521 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:19:55,564 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:19:56,568 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.00398 seconds
+2025-04-15 00:19:56,569 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 0
+2025-04-15 00:19:56,569 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 0
+2025-04-15 00:19:56,571 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:19:57,575 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003728 seconds
+2025-04-15 00:19:57,576 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:20:37,619 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:20:38,624 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004067 seconds
+2025-04-15 00:20:38,625 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 200001
+2025-04-15 00:20:38,625 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 200001
+2025-04-15 00:20:38,627 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:20:39,631 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003672 seconds
+2025-04-15 00:20:39,631 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:21:19,638 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:21:20,643 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004577 seconds
+2025-04-15 00:21:20,644 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 200001
+2025-04-15 00:21:20,644 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 200001
+2025-04-15 00:21:20,646 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:21:21,649 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003445 seconds
+2025-04-15 00:21:21,650 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:22:01,693 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:22:02,698 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004138 seconds
+2025-04-15 00:22:02,698 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 200001
+2025-04-15 00:22:02,699 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 200001
+2025-04-15 00:22:02,700 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:22:03,704 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003553 seconds
+2025-04-15 00:22:03,705 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:22:43,733 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:22:44,737 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.003606 seconds
+2025-04-15 00:22:44,738 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 200001
+2025-04-15 00:22:44,738 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 200001
+2025-04-15 00:22:44,740 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:22:45,745 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.004104 seconds
+2025-04-15 00:22:45,745 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:23:25,786 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:23:26,791 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004175 seconds
+2025-04-15 00:23:26,792 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 200001
+2025-04-15 00:23:26,792 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 200001
+2025-04-15 00:23:26,795 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:23:27,799 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.00394 seconds
+2025-04-15 00:23:27,800 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:24:07,843 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:24:08,849 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004496 seconds
+2025-04-15 00:24:08,850 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 200001
+2025-04-15 00:24:08,850 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 1000005 for pool re_pool_large_omap. Current entries : 200001
+2025-04-15 00:24:08,852 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:24:09,856 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003339 seconds
+2025-04-15 00:24:09,856 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-15 00:24:49,878 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:24:50,883 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004135 seconds
+2025-04-15 00:24:50,884 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 1000005
+2025-04-15 00:24:50,884 - cephci - pool_workflows:156 - INFO - OMAP entries are available
+2025-04-15 00:24:50,886 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.24
+2025-04-15 00:24:51,890 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.24 took 1.004136 seconds
+2025-04-15 00:24:51,891 - cephci - pool_workflows:163 - INFO - Wrote 1000005 keys with 11444510 bytes of OMAP data on the pool.
+2025-04-15 00:24:51,893 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd osd_deep_scrub_large_omap_object_key_threshold on 10.0.195.193
+2025-04-15 00:24:53,653 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd osd_deep_scrub_large_omap_object_key_threshold on 10.0.195.193 took 1.75998 seconds
+2025-04-15 00:24:53,654 - cephci - ceph:1186 - DEBUG - 200000
+2025-04-15 00:24:53,654 - cephci - shell:64 - DEBUG - 200000
+
+2025-04-15 00:24:53,656 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24
+2025-04-15 00:24:54,660 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub re_pool_large_omap on 10.0.195.24 took 1.003539 seconds
+2025-04-15 00:24:54,662 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph health detail on 10.0.195.193
+2025-04-15 00:24:57,492 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph health detail on 10.0.195.193 took 2.830231 seconds
+2025-04-15 00:24:57,493 - cephci - shell:64 - DEBUG - HEALTH_WARN 3 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 5 large omap objects; Degraded data redundancy: 16/1953 objects degraded (0.819%), 1 pg degraded
+[WRN] BLUESTORE_SLOW_OP_ALERT: 3 OSD(s) experiencing slow operations in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-5v4xpn-ykok4e-node1-installer on ceph-regression-5v4xpn-ykok4e-node1-installer is in error state
+[WRN] LARGE_OMAP_OBJECTS: 5 large omap objects
+    5 large objects found in pool 're_pool_large_omap'
+    Search the cluster log for 'Large omap object found' for more details.
+[WRN] PG_DEGRADED: Degraded data redundancy: 16/1953 objects degraded (0.819%), 1 pg degraded
+    pg 14.b is active+recovery_wait+undersized+degraded+remapped, acting [2,3]
+
+2025-04-15 00:24:57,493 - cephci - pool_workflows:644 - INFO - HEALTH_WARN 3 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 5 large omap objects; Degraded data redundancy: 16/1953 objects degraded (0.819%), 1 pg degraded
+[WRN] BLUESTORE_SLOW_OP_ALERT: 3 OSD(s) experiencing slow operations in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-5v4xpn-ykok4e-node1-installer on ceph-regression-5v4xpn-ykok4e-node1-installer is in error state
+[WRN] LARGE_OMAP_OBJECTS: 5 large omap objects
+    5 large objects found in pool 're_pool_large_omap'
+    Search the cluster log for 'Large omap object found' for more details.
+[WRN] PG_DEGRADED: Degraded data redundancy: 16/1953 objects degraded (0.819%), 1 pg degraded
+    pg 14.b is active+recovery_wait+undersized+degraded+remapped, acting [2,3]
+
+2025-04-15 00:24:57,494 - cephci - pool_workflows:655 - INFO - Large omap objects warning found: True | Expected: True
+2025-04-15 00:24:57,498 - cephci - ceph:1576 - INFO - Execute cephadm shell -- rados ls -p re_pool_large_omap | grep 'omap_obj' on 10.0.195.193
+2025-04-15 00:25:13,772 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- rados ls -p re_pool_large_omap | grep 'omap_obj' on 10.0.195.193 took 16.274002 seconds
+2025-04-15 00:25:13,773 - cephci - shell:64 - DEBUG - omap_obj_11216_0
+omap_obj_11216_1
+omap_obj_11216_4
+omap_obj_11216_2
+omap_obj_11216_3
+
+2025-04-15 00:25:13,773 - cephci - test_osd_compaction:80 - INFO - List of Objects having large omaps in re_pool_large_omap,listing first 100: ['omap_obj_11216_0', 'omap_obj_11216_1', 'omap_obj_11216_4', 'omap_obj_11216_2', 'omap_obj_11216_3']
+2025-04-15 00:25:13,773 - cephci - test_osd_compaction:88 - INFO - #1 Listing OMAP key entries for obj: omap_obj_11216_4
+2025-04-15 00:25:13,774 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_4 
+Operation selected: listomapkeys
+2025-04-15 00:25:13,774 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap listomapkeys omap_obj_11216_4
+2025-04-15 00:25:13,775 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap listomapkeys omap_obj_11216_4 on 10.0.195.24
+2025-04-15 00:25:15,092 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap listomapkeys omap_obj_11216_4 on 10.0.195.24 took 1.316455 seconds
+2025-04-15 00:25:15,124 - cephci - test_osd_compaction:92 - INFO - Printing first 20 OMAP keys present for Object omap_obj_11216_4: 
+['key_0', 'key_1', 'key_10', 'key_100', 'key_1000', 'key_10000', 'key_100000', 'key_100001', 'key_100002', 'key_100003', 'key_100004', 'key_100005', 'key_100006', 'key_100007', 'key_100008', 'key_100009', 'key_10001', 'key_100010', 'key_100011', 'key_100012']
+2025-04-15 00:25:15,124 - cephci - test_osd_compaction:99 - INFO - #2 Listing OMAP key & value entries for obj: omap_obj_11216_3
+2025-04-15 00:25:15,125 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_3 
+Operation selected: listomapvals
+2025-04-15 00:25:15,125 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap listomapvals omap_obj_11216_3
+2025-04-15 00:25:15,126 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap listomapvals omap_obj_11216_3 on 10.0.195.24
+2025-04-15 00:25:20,351 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap listomapvals omap_obj_11216_3 on 10.0.195.24 took 5.224655 seconds
+2025-04-15 00:25:20,544 - cephci - test_osd_compaction:104 - INFO - Printing last few OMAP keys and values present for Object omap_obj_11216_3: key_99996
+value (11 bytes) :
+00000000  76 61 6c 75 65 5f 39 39  39 39 36                 |value_99996|
+0000000b
+
+key_99997
+value (11 bytes) :
+00000000  76 61 6c 75 65 5f 39 39  39 39 37                 |value_99997|
+0000000b
+
+key_99998
+value (11 bytes) :
+00000000  76 61 6c 75 65 5f 39 39  39 39 38                 |value_99998|
+0000000b
+
+key_99999
+value (11 bytes) :
+00000000  76 61 6c 75 65 5f 39 39  39 39 39                 |value_99999|
+0000000b
+
+2025-04-15 00:25:20,545 - cephci - test_osd_compaction:111 - INFO - #3 Creating a custom OMAP key & value entry for obj: omap_obj_11216_0
+2025-04-15 00:25:20,545 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_0 
+Operation selected: setomapval
+2025-04-15 00:25:20,546 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap setomapval omap_obj_11216_0 key_186291 186291
+2025-04-15 00:25:20,548 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap setomapval omap_obj_11216_0 key_186291 186291 on 10.0.195.24
+2025-04-15 00:25:58,591 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap setomapval omap_obj_11216_0 key_186291 186291 on 10.0.195.24 took 38.042081 seconds
+2025-04-15 00:26:03,597 - cephci - test_osd_compaction:125 - INFO - #4 Fetching value of a particular OMAP key obj: omap_obj_11216_0
+2025-04-15 00:26:03,597 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_0 
+Operation selected: getomapval
+2025-04-15 00:26:03,597 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap getomapval omap_obj_11216_0 key_186291
+2025-04-15 00:26:03,599 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap getomapval omap_obj_11216_0 key_186291 on 10.0.195.24
+2025-04-15 00:26:04,603 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap getomapval omap_obj_11216_0 key_186291 on 10.0.195.24 took 1.003907 seconds
+2025-04-15 00:26:04,604 - cephci - test_osd_compaction:130 - INFO - Value of OMAP key key_186291 is: value (6 bytes) :
+00000000  31 38 36 32 39 31                                 |186291|
+00000006
+
+
+2025-04-15 00:26:04,604 - cephci - test_osd_compaction:133 - INFO - #5 Removing a custom OMAP entry for obj: omap_obj_11216_0
+2025-04-15 00:26:04,604 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_0 
+Operation selected: rmomapkey
+2025-04-15 00:26:04,604 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap rmomapkey omap_obj_11216_0 key_186291
+2025-04-15 00:26:04,605 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap rmomapkey omap_obj_11216_0 key_186291 on 10.0.195.24
+2025-04-15 00:26:05,609 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap rmomapkey omap_obj_11216_0 key_186291 on 10.0.195.24 took 1.003364 seconds
+2025-04-15 00:26:10,615 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_0 
+Operation selected: listomapkeys
+2025-04-15 00:26:10,615 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap listomapkeys omap_obj_11216_0
+2025-04-15 00:26:10,617 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap listomapkeys omap_obj_11216_0 on 10.0.195.24
+2025-04-15 00:26:13,010 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap listomapkeys omap_obj_11216_0 on 10.0.195.24 took 2.392362 seconds
+2025-04-15 00:26:13,012 - cephci - test_osd_compaction:154 - INFO - key_186291 key successfully removed from OMAP entries
+2025-04-15 00:26:13,012 - cephci - test_osd_compaction:159 - INFO - #6 Clearing all OMAP entries for obj: omap_obj_11216_0
+2025-04-15 00:26:13,012 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_0 
+Operation selected: clearomap
+2025-04-15 00:26:13,013 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap clearomap omap_obj_11216_0
+2025-04-15 00:26:13,014 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap clearomap omap_obj_11216_0 on 10.0.195.24
+2025-04-15 00:26:14,017 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap clearomap omap_obj_11216_0 on 10.0.195.24 took 1.003225 seconds
+2025-04-15 00:26:19,021 - cephci - pool_workflows:685 - DEBUG - Inputs provided: 
+Pool name: re_pool_large_omap 
+Object name: omap_obj_11216_0 
+Operation selected: listomapkeys
+2025-04-15 00:26:19,022 - cephci - pool_workflows:719 - INFO - Executing command: rados -p re_pool_large_omap listomapkeys omap_obj_11216_0
+2025-04-15 00:26:19,023 - cephci - ceph:1576 - INFO - Execute rados -p re_pool_large_omap listomapkeys omap_obj_11216_0 on 10.0.195.24
+2025-04-15 00:26:20,028 - cephci - ceph:1606 - INFO - Execution of rados -p re_pool_large_omap listomapkeys omap_obj_11216_0 on 10.0.195.24 took 1.003906 seconds
+2025-04-15 00:26:20,029 - cephci - test_osd_compaction:168 - INFO - All OMAP entries succesfully removed for obj: omap_obj_11216_0
+2025-04-15 00:26:20,029 - cephci - test_osd_compaction:170 - INFO - OMAP operations have been successfully executed
+2025-04-15 00:26:20,030 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd map re_pool_large_omap omap_obj_11216_2 -f json on 10.0.195.193
+2025-04-15 00:26:22,885 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd map re_pool_large_omap omap_obj_11216_2 -f json on 10.0.195.193 took 2.854471 seconds
+2025-04-15 00:26:22,886 - cephci - test_osd_compaction:177 - INFO - Primary OSD of the object omap_obj_11216_2 to be used for compaction: 0
+2025-04-15 00:26:22,886 - cephci - test_osd_compaction:182 - DEBUG - Fetching the initial use % for the chosen OSD before compaction
+2025-04-15 00:26:22,887 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd df osd.0 -f json on 10.0.195.193
+2025-04-15 00:26:24,643 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd df osd.0 -f json on 10.0.195.193 took 1.755518 seconds
+2025-04-15 00:26:24,644 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 00:26:24,644 - cephci - ceph:1186 - DEBUG - {"nodes":[{"id":0,"device_class":"hdd","name":"osd.0","type":"osd","type_id":0,"crush_weight":0.0243988037109375,"depth":2,"pool_weights":{},"reweight":1,"kb":26210304,"kb_used":668132,"kb_used_data":321292,"kb_used_omap":6,"kb_used_meta":346809,"kb_avail":25542172,"utilization":2.5491196134161589,"var":1,"pgs":151,"status":"up"}],"stray":[],"summary":{"total_kb":26210304,"total_kb_used":668132,"total_kb_used_data":321292,"total_kb_used_omap":6,"total_kb_used_meta":346809,"total_kb_avail":25542172,"average_utilization":2.5491196134161589,"min_var":1,"max_var":1,"dev":0}}
+2025-04-15 00:26:24,645 - cephci - test_osd_compaction:187 - INFO - Starting OSD compaction for OSD 0
+2025-04-15 00:26:24,685 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph tell osd.0 compact on 10.0.195.193
+2025-04-15 00:26:26,347 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph tell osd.0 compact on 10.0.195.193 took 1.661367 seconds
+2025-04-15 00:26:26,348 - cephci - shell:64 - DEBUG - 
+2025-04-15 00:26:26,348 - cephci - test_osd_compaction:189 - INFO - 
+2025-04-15 00:26:26,348 - cephci - test_osd_compaction:241 - ERROR - Failed with exception: Assertion failed.
+2025-04-15 00:26:26,348 - cephci - test_osd_compaction:242 - ERROR - 
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_osd_compaction.py", line 190, in run
+    assert "elapsed_time" in out
+AssertionError
+2025-04-15 00:26:26,349 - cephci - test_osd_compaction:245 - INFO - 
+ 
+ ************** Execution of finally block begins here *************** 
+ 
+
+2025-04-15 00:26:26,351 - cephci - ceph:1576 - INFO - Execute ceph config set mon mon_allow_pool_delete true on 10.0.195.24
+2025-04-15 00:26:27,355 - cephci - ceph:1606 - INFO - Execution of ceph config set mon mon_allow_pool_delete true on 10.0.195.24 took 1.0043 seconds
+2025-04-15 00:26:27,358 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.24
+2025-04-15 00:26:28,362 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.24 took 1.004022 seconds
+2025-04-15 00:26:28,365 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool ls detail -f json on 10.0.195.193
+2025-04-15 00:26:30,224 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool ls detail -f json on 10.0.195.193 took 1.857928 seconds
+2025-04-15 00:26:30,224 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 00:26:30,225 - cephci - ceph:1186 - DEBUG - [{"pool_id":1,"pool_name":".smb","create_time":"2025-04-14T22:25:40.612369+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"427","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"34","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"smb":{}},"read_balance":{"score_type":"Fair distribution","score_acting":1.8700000047683716,"score_stable":1.8700000047683716,"optimal_score":1,"raw_score_acting":1.8700000047683716,"raw_score_stable":1.8700000047683716,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":2,"pool_name":".mgr","create_time":"2025-04-14T22:39:52.697399+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_co
+2025-04-15 00:26:30,225 - cephci - ceph:1186 - DEBUG - unt":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":1,"pg_placement_num":1,"pg_placement_num_target":1,"pg_num_target":1,"pg_num_pending":1,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"29","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"0","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{"pg_num_max":32,"pg_num_min":1},"application_metadata":{"mgr":{}},"read_balance":{"score_type":"Fair distribution","score_acting":15,"score_stable":15,"optimal_score":0.20000000298023224,"raw_score_acting":3,"raw_score_stable":3,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":3,"pool_name":"cephfs.cephfs.meta","create_time":"2025-04-14T22:43:54.410484+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":16,
+2025-04-15 00:26:30,225 - cephci - ceph:1186 - DEBUG - "pg_placement_num":16,"pg_placement_num_target":16,"pg_num_target":16,"pg_num_pending":16,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"521","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"65","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{"pg_autoscale_bias":4,"pg_num_min":16,"recovery_priority":5},"application_metadata":{"cephfs":{"metadata":"cephfs"}},"read_balance":{"score_type":"Fair distribution","score_acting":2.8299999237060547,"score_stable":2.8299999237060547,"optimal_score":0.93000000715255737,"raw_score_acting":2.630000114440918,"raw_score_stable":2.630000114440918,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":4,"pool_name":"cephfs.cephfs.data","create_time":"2025-04-14T22:43:55.331222+0000","flags":131073,"flags_names":"hashpspool,bulk","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":512,"pg_placement_num":512,"pg_placement_num_target":512,"pg_num_target
+2025-04-15 00:26:30,226 - cephci - ceph:1186 - DEBUG - ":512,"pg_num_pending":512,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"467","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"461","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"cephfs":{"data":"cephfs"}},"read_balance":{"score_type":"Fair distribution","score_acting":1.3200000524520874,"score_stable":1.3200000524520874,"optimal_score":1,"raw_score_acting":1.3200000524520874,"raw_score_stable":1.3200000524520874,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":5,"pool_name":".rgw.root","create_time":"2025-04-14T22:44:05.297596+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_versi
+2025-04-15 00:26:30,227 - cephci - ceph:1186 - DEBUG - on":"0'0"},"last_change":"427","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"78","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":2.3399999141693115,"score_stable":2.3399999141693115,"optimal_score":1,"raw_score_acting":2.3399999141693115,"raw_score_stable":2.3399999141693115,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":6,"pool_name":"default.rgw.log","create_time":"2025-04-14T22:44:07.272767+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"631","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"80","auid":0,"snap_mode":"selfmanaged","snap_
+2025-04-15 00:26:30,227 - cephci - ceph:1186 - DEBUG - seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":2.3399999141693115,"score_stable":2.3399999141693115,"optimal_score":1,"raw_score_acting":2.3399999141693115,"raw_score_stable":2.3399999141693115,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":7,"pool_name":"default.rgw.control","create_time":"2025-04-14T22:44:08.906714+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"427","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"80","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none
+2025-04-15 00:26:30,228 - cephci - ceph:1186 - DEBUG - ","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":2.809999942779541,"score_stable":2.809999942779541,"optimal_score":1,"raw_score_acting":2.809999942779541,"raw_score_stable":2.809999942779541,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":8,"pool_name":"default.rgw.meta","create_time":"2025-04-14T22:44:12.076066+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"427","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"82","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_
+2025-04-15 00:26:30,228 - cephci - ceph:1186 - DEBUG - flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{"pg_autoscale_bias":4},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":2.3399999141693115,"score_stable":2.3399999141693115,"optimal_score":1,"raw_score_acting":2.3399999141693115,"raw_score_stable":2.3399999141693115,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":14,"pool_name":"re_pool_large_omap","create_time":"2025-04-15T00:12:25.385459+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":16,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"853","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"699","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":tr
+2025-04-15 00:26:30,229 - cephci - ceph:1186 - DEBUG - ue,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rados":{}},"read_balance":{"score_type":"Fair distribution","score_acting":2.809999942779541,"score_stable":2.809999942779541,"optimal_score":1,"raw_score_acting":2.809999942779541,"raw_score_stable":2.809999942779541,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}}]
+2025-04-15 00:26:30,231 - cephci - ceph:1576 - INFO - Execute ceph osd pool delete re_pool_large_omap re_pool_large_omap --yes-i-really-really-mean-it on 10.0.195.24
+2025-04-15 00:26:32,237 - cephci - ceph:1606 - INFO - Execution of ceph osd pool delete re_pool_large_omap re_pool_large_omap --yes-i-really-really-mean-it on 10.0.195.24 took 2.005353 seconds
+2025-04-15 00:26:34,241 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.24
+2025-04-15 00:26:35,246 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.24 took 1.004375 seconds
+2025-04-15 00:26:35,247 - cephci - core_workflows:1199 - INFO - Pool:re_pool_large_omap deleted Successfully
+2025-04-15 00:26:35,249 - cephci - ceph:1576 - INFO - Execute ceph config set mon mon_allow_pool_delete true on 10.0.195.24
+2025-04-15 00:26:36,253 - cephci - ceph:1606 - INFO - Execution of ceph config set mon mon_allow_pool_delete true on 10.0.195.24 took 1.004065 seconds
+2025-04-15 00:26:36,256 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.24
+2025-04-15 00:26:37,261 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.24 took 1.003916 seconds
+2025-04-15 00:26:37,261 - cephci - core_workflows:1166 - ERROR - Pool:re_pool_bench does not exist on cluster, cannot delete
+2025-04-15 00:26:37,263 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph fsid -f json on 10.0.195.193
+2025-04-15 00:26:39,157 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph fsid -f json on 10.0.195.193 took 1.893727 seconds
+2025-04-15 00:26:39,158 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 00:26:39,159 - cephci - ceph:1186 - DEBUG - {"fsid":"26a1a2d8-197f-11f0-bfb5-fa163e9d0e7a"}
+2025-04-15 00:26:39,200 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 0 -f json on 10.0.195.193
+2025-04-15 00:26:41,128 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 0 -f json on 10.0.195.193 took 1.927799 seconds
+2025-04-15 00:26:41,128 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 00:26:41,129 - cephci - ceph:1186 - DEBUG - [{"container_id": "e408e89a578c", "container_image_digests": ["cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:ef6bebc203b9e271330f00b51d0616aa3de5cff643d4c6bf13e526801a5c18ee", "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6"], "container_image_id": "3b1483211cc850965b5b32c6080476272f17b6b386903025fa3d9ab5f6e784ef", "container_image_name": "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6", "cpu_percentage": "3.01%", "created": "2025-04-14T22:39:35.230725Z", "daemon_id": "0", "daemon_name": "osd.0", "daemon_type": "osd", "events": ["2025-04-14T22:39:35.330093Z daemon:osd.0 [INFO] \"Deployed osd.0 on host 'ceph-regression-5v4xpn-ykok4e-node4'\""], "hostname": "ceph-regression-5v4xpn-ykok4e-node4", "is_active": false, "last_refresh": "2025-04-15T00:21:41.087870Z", "memory_request": 4294967296, "memory_usage": 334500000, "pending_daemon_config": false, "ports": [], "service_name": "osd.all-available-devices", "started": "2025-04-14T23:13:49.765406Z", "status": 1, "status_desc": "running", "systemd_unit": "ceph-26a1a2d8-197f-11f0-bfb5-fa163e9d0e7a@osd.0", "version": "19.2.1-126.el9cp"}]
+2025-04-15 00:26:41,129 - cephci - core_workflows:1593 - DEBUG - Hostname of target host : ceph-regression-5v4xpn-ykok4e-node4
+2025-04-15 00:26:41,132 - cephci - ceph:1576 - INFO - Execute sudo date '+%Y-%m-%d %H:%M:%S' on 10.0.195.9
+2025-04-15 00:26:42,137 - cephci - ceph:1606 - INFO - Execution of sudo date '+%Y-%m-%d %H:%M:%S' on 10.0.195.9 took 1.004845 seconds
+2025-04-15 00:26:42,142 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 0 --refresh -f json on 10.0.195.193
+2025-04-15 00:26:43,935 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 0 --refresh -f json on 10.0.195.193 took 1.792316 seconds
+2025-04-15 00:26:43,936 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 00:26:43,936 - cephci - ceph:1186 - DEBUG - [{"container_id": "e408e89a578c", "container_image_digests": ["cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:ef6bebc203b9e271330f00b51d0616aa3de5cff643d4c6bf13e526801a5c18ee", "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6"], "container_image_id": "3b1483211cc850965b5b32c6080476272f17b6b386903025fa3d9ab5f6e784ef", "container_image_name": "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6", "cpu_percentage": "3.01%", "created": "2025-04-14T22:39:35.230725Z", "daemon_id": "0", "daemon_name": "osd.0", "daemon_type": "osd", "events": ["2025-04-14T22:39:35.330093Z daemon:osd.0 [INFO] \"Deployed osd.0 on host 'ceph-regression-5v4xpn-ykok4e-node4'\""], "hostname": "ceph-regression-5v4xpn-ykok4e-node4", "is_active": false, "last_refresh": "2025-04-15T00:21:41.087870Z", "memory_request": 4294967296, "memory_usage": 334500000, "pending_daemon_config": false, "ports": [], "service_name": "osd.all-available-devices", "started": "2025-04-14T23:13:49.765406Z", "status": 1, "status_desc": "running", "systemd_unit": "ceph-26a1a2d8-197f-11f0-bfb5-fa163e9d0e7a@osd.0", "version": "19.2.1-126.el9cp"}]
+2025-04-15 00:26:43,937 - cephci - core_workflows:2089 - DEBUG - [{'container_id': 'e408e89a578c', 'container_image_digests': ['cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:ef6bebc203b9e271330f00b51d0616aa3de5cff643d4c6bf13e526801a5c18ee', 'cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6'], 'container_image_id': '3b1483211cc850965b5b32c6080476272f17b6b386903025fa3d9ab5f6e784ef', 'container_image_name': 'cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6', 'cpu_percentage': '3.01%', 'created': '2025-04-14T22:39:35.230725Z', 'daemon_id': '0', 'daemon_name': 'osd.0', 'daemon_type': 'osd', 'events': ['2025-04-14T22:39:35.330093Z daemon:osd.0 [INFO] "Deployed osd.0 on host \'ceph-regression-5v4xpn-ykok4e-node4\'"'], 'hostname': 'ceph-regression-5v4xpn-ykok4e-node4', 'is_active': False, 'last_refresh': '2025-04-15T00:21:41.087870Z', 'memory_request': 4294967296, 'memory_usage': 334500000, 'pending_daemon_config': False, 'ports': [], 'service_name': 'osd.all-available-devices', 'started': '2025-04-14T23:13:49.765406Z', 'status': 1, 'status_desc': 'running', 'systemd_unit': 'ceph-26a1a2d8-197f-11f0-bfb5-fa163e9d0e7a@osd.0', 'version': '19.2.1-126.el9cp'}]
+2025-04-15 00:26:43,938 - cephci - core_workflows:1603 - INFO - OSD 0 already in desired state: start
+2025-04-15 00:26:43,938 - cephci - core_workflows:4558 - DEBUG - Printing cluster health and status
+2025-04-15 00:26:43,977 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph health detail on 10.0.195.193
+2025-04-15 00:26:47,391 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph health detail on 10.0.195.193 took 3.413285 seconds
+2025-04-15 00:26:47,392 - cephci - shell:64 - DEBUG - HEALTH_WARN 4 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+[WRN] BLUESTORE_SLOW_OP_ALERT: 4 OSD(s) experiencing slow operations in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-5v4xpn-ykok4e-node1-installer on ceph-regression-5v4xpn-ykok4e-node1-installer is in error state
+
+2025-04-15 00:26:47,392 - cephci - core_workflows:4560 - INFO - 
+****
+ Cluster health detail: 
+ HEALTH_WARN 4 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+[WRN] BLUESTORE_SLOW_OP_ALERT: 4 OSD(s) experiencing slow operations in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-5v4xpn-ykok4e-node1-installer on ceph-regression-5v4xpn-ykok4e-node1-installer is in error state
+ 
+****
+2025-04-15 00:26:47,395 - cephci - ceph:1576 - INFO - Execute ceph -s on 10.0.195.24
+2025-04-15 00:26:48,399 - cephci - ceph:1606 - INFO - Execution of ceph -s on 10.0.195.24 took 1.00337 seconds
+2025-04-15 00:26:48,400 - cephci - core_workflows:4561 - INFO - 
+****
+ Cluster status: 
+   cluster:
+    id:     26a1a2d8-197f-11f0-bfb5-fa163e9d0e7a
+    health: HEALTH_WARN
+            4 OSD(s) experiencing slow operations in BlueStore
+            1 failed cephadm daemon(s)
+ 
+  services:
+    mon: 3 daemons, quorum ceph-regression-5v4xpn-ykok4e-node1-installer,ceph-regression-5v4xpn-ykok4e-node6,ceph-regression-5v4xpn-ykok4e-node2 (age 29m)
+    mgr: ceph-regression-5v4xpn-ykok4e-node1-installer.jmtwhq(active, since 119m), standbys: ceph-regression-5v4xpn-ykok4e-node6.dazpnd, ceph-regression-5v4xpn-ykok4e-node2.lahkym
+    mds: 1/1 daemons up, 1 standby
+    osd: 15 osds: 15 up (since 16m), 15 in (since 95m)
+    rgw: 2 daemons active (2 hosts, 1 zones)
+ 
+  data:
+    volumes: 1/1 healthy
+    pools:   8 pools, 689 pgs
+    objects: 250 objects, 456 KiB
+    usage:   3.1 GiB used, 372 GiB / 375 GiB avail
+    pgs:     689 active+clean
+ 
+  io:
+    client:   25 KiB/s rd, 0 B/s wr, 25 op/s rd, 16 op/s wr
+ 
+ 
+****
+2025-04-15 00:26:48,402 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph crash ls-new -f json on 10.0.195.193
+2025-04-15 00:26:50,563 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph crash ls-new -f json on 10.0.195.193 took 2.159869 seconds
+2025-04-15 00:26:50,563 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 00:26:50,564 - cephci - ceph:1186 - DEBUG - []
+2025-04-15 00:26:50,605 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.193
+2025-04-15 00:26:51,609 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.193 took 1.003994 seconds
+2025-04-15 00:26:51,610 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-15 00:26:51,612 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.193
+2025-04-15 00:26:52,616 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.193 took 1.004222 seconds
+2025-04-15 00:26:52,619 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.24
+2025-04-15 00:26:53,624 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.24 took 1.0042 seconds
+2025-04-15 00:26:53,624 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-15 00:26:53,626 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-5v4xpn-YKOK4E
+2025-04-15 00:26:53,626 - cephci - run:927 - INFO - Test <module 'test_osd_compaction' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_osd_compaction.py'> failed
+2025-04-15 00:26:53,626 - cephci - run:964 - INFO - 
+All test logs located here: /home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/logs/tier-2_rados_trim_tests

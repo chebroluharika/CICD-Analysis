@@ -1,0 +1,251 @@
+2025-04-14 17:33:19,699 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-14 17:33:19,701 - cephci - run:722 - INFO - Running test clients.verify_user_read_write_permissions.py
+2025-04-14 17:33:19,702 - cephci - verify_user_read_write_permissions:32 - INFO - checking Pre-requisites
+2025-04-14 17:33:19,703 - cephci - ceph:1576 - INFO - Execute yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.192
+2025-04-14 17:33:20,707 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 17:33:21,244 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:21,244 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 17:33:21,244 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:22,054 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:36:35 ago on Mon Apr 14 16:56:26 2025.
+2025-04-14 17:33:22,314 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:22,315 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 17:33:22,317 - cephci - ceph:1186 - DEBUG - Package fio-3.35-1.el9.x86_64 is already installed.
+2025-04-14 17:33:22,318 - cephci - ceph:1186 - DEBUG - Package fuse-2.9.9-16.el9.x86_64 is already installed.
+2025-04-14 17:33:22,319 - cephci - ceph:1186 - DEBUG - Package ceph-fuse-2:19.2.1-126.el9cp.x86_64 is already installed.
+2025-04-14 17:33:22,321 - cephci - ceph:1186 - DEBUG - Package attr-2.5.1-3.el9.x86_64 is already installed.
+2025-04-14 17:33:22,322 - cephci - ceph:1186 - DEBUG - Package gcc-11.5.0-5.el9_5.x86_64 is already installed.
+2025-04-14 17:33:22,323 - cephci - ceph:1186 - DEBUG - Package python3-devel-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:22,324 - cephci - ceph:1186 - DEBUG - Package git-2.43.5-2.el9_5.x86_64 is already installed.
+2025-04-14 17:33:22,325 - cephci - ceph:1186 - DEBUG - Package lua-5.4.4-4.el9.x86_64 is already installed.
+2025-04-14 17:33:22,420 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 17:33:22,420 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 17:33:22,421 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 17:33:22,547 - cephci - ceph:1606 - INFO - Execution of yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.192 took 2.843905 seconds
+2025-04-14 17:33:22,589 - cephci - ceph:1576 - INFO - Execute pip3 install xattr numpy scipy on 10.0.195.192
+2025-04-14 17:33:23,593 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 17:33:23,594 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: numpy in /usr/local/lib64/python3.9/site-packages (2.0.2)
+2025-04-14 17:33:23,594 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: scipy in /usr/local/lib64/python3.9/site-packages (1.13.1)
+2025-04-14 17:33:23,594 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 17:33:23,594 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 17:33:23,594 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 17:33:23,594 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr numpy scipy on 10.0.195.192 took 1.004655 seconds
+2025-04-14 17:33:23,596 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.192
+2025-04-14 17:33:24,599 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.192 took 1.003449 seconds
+2025-04-14 17:33:24,601 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'dbench' on 10.0.195.192
+2025-04-14 17:33:25,604 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'dbench' on 10.0.195.192 took 1.003234 seconds
+2025-04-14 17:33:25,607 - cephci - ceph:1576 - INFO - Execute yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.94
+2025-04-14 17:33:26,611 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 17:33:27,197 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:27,197 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 17:33:27,197 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:28,080 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:28:33 ago on Mon Apr 14 17:04:34 2025.
+2025-04-14 17:33:28,328 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:28,329 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 17:33:28,330 - cephci - ceph:1186 - DEBUG - Package fio-3.35-1.el9.x86_64 is already installed.
+2025-04-14 17:33:28,331 - cephci - ceph:1186 - DEBUG - Package fuse-2.9.9-16.el9.x86_64 is already installed.
+2025-04-14 17:33:28,332 - cephci - ceph:1186 - DEBUG - Package ceph-fuse-2:19.2.1-126.el9cp.x86_64 is already installed.
+2025-04-14 17:33:28,333 - cephci - ceph:1186 - DEBUG - Package attr-2.5.1-3.el9.x86_64 is already installed.
+2025-04-14 17:33:28,335 - cephci - ceph:1186 - DEBUG - Package gcc-11.5.0-5.el9_5.x86_64 is already installed.
+2025-04-14 17:33:28,336 - cephci - ceph:1186 - DEBUG - Package python3-devel-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:28,337 - cephci - ceph:1186 - DEBUG - Package git-2.43.5-2.el9_5.x86_64 is already installed.
+2025-04-14 17:33:28,338 - cephci - ceph:1186 - DEBUG - Package lua-5.4.4-4.el9.x86_64 is already installed.
+2025-04-14 17:33:28,434 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 17:33:28,435 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 17:33:28,435 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 17:33:28,553 - cephci - ceph:1606 - INFO - Execution of yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.94 took 2.945686 seconds
+2025-04-14 17:33:28,594 - cephci - ceph:1576 - INFO - Execute pip3 install xattr numpy scipy on 10.0.195.94
+2025-04-14 17:33:29,597 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 17:33:29,598 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: numpy in /usr/local/lib64/python3.9/site-packages (2.0.2)
+2025-04-14 17:33:29,598 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: scipy in /usr/local/lib64/python3.9/site-packages (1.13.1)
+2025-04-14 17:33:29,598 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 17:33:29,598 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 17:33:29,598 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 17:33:29,599 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr numpy scipy on 10.0.195.94 took 1.004138 seconds
+2025-04-14 17:33:29,600 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.94
+2025-04-14 17:33:30,603 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.94 took 1.003192 seconds
+2025-04-14 17:33:30,605 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'dbench' on 10.0.195.94
+2025-04-14 17:33:31,609 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'dbench' on 10.0.195.94 took 1.003462 seconds
+2025-04-14 17:33:31,610 - cephci - ceph:1576 - INFO - Execute yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.5
+2025-04-14 17:33:32,615 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 17:33:33,136 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:33,136 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 17:33:33,136 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:33,889 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 2:52:17 ago on Mon Apr 14 14:40:56 2025.
+2025-04-14 17:33:34,127 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:34,128 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 17:33:34,129 - cephci - ceph:1186 - DEBUG - Package fio-3.35-1.el9.x86_64 is already installed.
+2025-04-14 17:33:34,130 - cephci - ceph:1186 - DEBUG - Package fuse-2.9.9-16.el9.x86_64 is already installed.
+2025-04-14 17:33:34,131 - cephci - ceph:1186 - DEBUG - Package ceph-fuse-2:19.2.1-126.el9cp.x86_64 is already installed.
+2025-04-14 17:33:34,132 - cephci - ceph:1186 - DEBUG - Package attr-2.5.1-3.el9.x86_64 is already installed.
+2025-04-14 17:33:34,133 - cephci - ceph:1186 - DEBUG - Package gcc-11.5.0-5.el9_5.x86_64 is already installed.
+2025-04-14 17:33:34,134 - cephci - ceph:1186 - DEBUG - Package python3-devel-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:34,136 - cephci - ceph:1186 - DEBUG - Package git-2.43.5-2.el9_5.x86_64 is already installed.
+2025-04-14 17:33:34,137 - cephci - ceph:1186 - DEBUG - Package lua-5.4.4-4.el9.x86_64 is already installed.
+2025-04-14 17:33:34,229 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 17:33:34,230 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 17:33:34,230 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 17:33:34,376 - cephci - ceph:1606 - INFO - Execution of yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.5 took 2.764913 seconds
+2025-04-14 17:33:34,418 - cephci - ceph:1576 - INFO - Execute pip3 install xattr numpy scipy on 10.0.195.5
+2025-04-14 17:33:35,422 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 17:33:35,422 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: numpy in /usr/local/lib64/python3.9/site-packages (2.0.2)
+2025-04-14 17:33:35,422 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: scipy in /usr/local/lib64/python3.9/site-packages (1.13.1)
+2025-04-14 17:33:35,423 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 17:33:35,423 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 17:33:35,423 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 17:33:35,423 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr numpy scipy on 10.0.195.5 took 1.00507 seconds
+2025-04-14 17:33:35,425 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.5
+2025-04-14 17:33:36,428 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.5 took 1.002849 seconds
+2025-04-14 17:33:36,430 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'dbench' on 10.0.195.5
+2025-04-14 17:33:37,433 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'dbench' on 10.0.195.5 took 1.003163 seconds
+2025-04-14 17:33:37,435 - cephci - ceph:1576 - INFO - Execute yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.217
+2025-04-14 17:33:38,439 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-14 17:33:39,021 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:39,021 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-14 17:33:39,021 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 17:33:39,845 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:39:43 ago on Mon Apr 14 16:53:36 2025.
+2025-04-14 17:33:40,097 - cephci - ceph:1186 - DEBUG - Package python3-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:40,098 - cephci - ceph:1186 - DEBUG - Package python3-pip-21.3.1-1.el9.noarch is already installed.
+2025-04-14 17:33:40,099 - cephci - ceph:1186 - DEBUG - Package fio-3.35-1.el9.x86_64 is already installed.
+2025-04-14 17:33:40,101 - cephci - ceph:1186 - DEBUG - Package fuse-2.9.9-16.el9.x86_64 is already installed.
+2025-04-14 17:33:40,102 - cephci - ceph:1186 - DEBUG - Package ceph-fuse-2:19.2.1-126.el9cp.x86_64 is already installed.
+2025-04-14 17:33:40,103 - cephci - ceph:1186 - DEBUG - Package attr-2.5.1-3.el9.x86_64 is already installed.
+2025-04-14 17:33:40,104 - cephci - ceph:1186 - DEBUG - Package gcc-11.5.0-5.el9_5.x86_64 is already installed.
+2025-04-14 17:33:40,106 - cephci - ceph:1186 - DEBUG - Package python3-devel-3.9.21-1.el9_5.x86_64 is already installed.
+2025-04-14 17:33:40,107 - cephci - ceph:1186 - DEBUG - Package git-2.43.5-2.el9_5.x86_64 is already installed.
+2025-04-14 17:33:40,108 - cephci - ceph:1186 - DEBUG - Package lua-5.4.4-4.el9.x86_64 is already installed.
+2025-04-14 17:33:40,201 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-14 17:33:40,202 - cephci - ceph:1186 - DEBUG - Nothing to do.
+2025-04-14 17:33:40,202 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-14 17:33:41,331 - cephci - ceph:1606 - INFO - Execution of yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua on 10.0.195.217 took 3.896027 seconds
+2025-04-14 17:33:41,334 - cephci - ceph:1576 - INFO - Execute pip3 install xattr numpy scipy on 10.0.195.217
+2025-04-14 17:33:42,338 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: xattr in /usr/local/lib64/python3.9/site-packages (1.1.4)
+2025-04-14 17:33:42,338 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: numpy in /usr/local/lib64/python3.9/site-packages (2.0.2)
+2025-04-14 17:33:42,338 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: scipy in /usr/local/lib64/python3.9/site-packages (1.13.1)
+2025-04-14 17:33:42,338 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: cffi>=1.16.0 in /usr/local/lib64/python3.9/site-packages (from xattr) (1.17.1)
+2025-04-14 17:33:42,339 - cephci - ceph:1186 - DEBUG - Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.16.0->xattr) (2.22)
+2025-04-14 17:33:42,339 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 17:33:42,339 - cephci - ceph:1606 - INFO - Execution of pip3 install xattr numpy scipy on 10.0.195.217 took 1.004677 seconds
+2025-04-14 17:33:42,340 - cephci - ceph:1576 - INFO - Execute ls /home/cephuser on 10.0.195.217
+2025-04-14 17:33:43,344 - cephci - ceph:1606 - INFO - Execution of ls /home/cephuser on 10.0.195.217 took 1.003234 seconds
+2025-04-14 17:33:43,346 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep -w 'dbench' on 10.0.195.217
+2025-04-14 17:33:44,350 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep -w 'dbench' on 10.0.195.217 took 1.003804 seconds
+2025-04-14 17:33:44,352 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.192
+2025-04-14 17:33:45,356 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.192 took 1.003583 seconds
+2025-04-14 17:33:45,357 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 17:33:45,358 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192
+2025-04-14 17:33:46,363 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node8 on 10.0.195.192 took 1.004159 seconds
+2025-04-14 17:33:46,365 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node8 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192
+2025-04-14 17:33:47,369 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node8 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192 took 1.003963 seconds
+2025-04-14 17:33:47,371 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192
+2025-04-14 17:33:48,375 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node8.keyring on 10.0.195.192 took 1.00317 seconds
+2025-04-14 17:33:48,376 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 17:33:48,377 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94
+2025-04-14 17:33:49,381 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94 took 1.00341 seconds
+2025-04-14 17:33:49,383 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94
+2025-04-14 17:33:50,387 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node9 on 10.0.195.94 took 1.003464 seconds
+2025-04-14 17:33:50,388 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node9 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94
+2025-04-14 17:33:51,392 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node9 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94 took 1.00325 seconds
+2025-04-14 17:33:51,394 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94
+2025-04-14 17:33:52,399 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node9.keyring on 10.0.195.94 took 1.003748 seconds
+2025-04-14 17:33:52,399 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 17:33:52,401 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5
+2025-04-14 17:33:53,405 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5 took 1.003745 seconds
+2025-04-14 17:33:53,407 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5
+2025-04-14 17:33:54,410 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node10 on 10.0.195.5 took 1.002575 seconds
+2025-04-14 17:33:54,412 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node10 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5
+2025-04-14 17:33:55,416 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node10 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5 took 1.003285 seconds
+2025-04-14 17:33:55,418 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5
+2025-04-14 17:33:56,422 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node10.keyring on 10.0.195.5 took 1.003325 seconds
+2025-04-14 17:33:56,422 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 17:33:56,425 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217
+2025-04-14 17:33:57,429 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217 took 1.003681 seconds
+2025-04-14 17:33:57,431 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217
+2025-04-14 17:33:58,433 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-rpbzec-wrs7oy-node11 on 10.0.195.217 took 1.002553 seconds
+2025-04-14 17:33:58,435 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node11 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217
+2025-04-14 17:33:59,439 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-rpbzec-wrs7oy-node11 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217 took 1.003224 seconds
+2025-04-14 17:33:59,460 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217
+2025-04-14 17:34:00,464 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-rpbzec-wrs7oy-node11.keyring on 10.0.195.217 took 1.003312 seconds
+2025-04-14 17:34:00,468 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.192
+2025-04-14 17:34:01,472 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.192 took 1.003922 seconds
+2025-04-14 17:34:01,474 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.6dthu mon 'allow *' mds 'allow * path=/' -o /etc/ceph/ceph.client.6dthu.keyring on 10.0.195.192
+2025-04-14 17:34:02,479 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.6dthu mon 'allow *' mds 'allow * path=/' -o /etc/ceph/ceph.client.6dthu.keyring on 10.0.195.192 took 1.003814 seconds
+2025-04-14 17:34:02,480 - cephci - cephfs_utilsV1:1048 - INFO - Creating mounting dir:
+2025-04-14 17:34:02,481 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/cephfs_kernelhwa3h_1/ on 10.0.195.192
+2025-04-14 17:34:03,484 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/cephfs_kernelhwa3h_1/ on 10.0.195.192 took 1.00234 seconds
+2025-04-14 17:34:03,486 - cephci - ceph:1576 - INFO - Execute ceph auth get-key client.ceph-regression-rpbzec-wrs7oy-node8 -o /etc/ceph/ceph-regression-rpbzec-wrs7oy-node8.secret on 10.0.195.192
+2025-04-14 17:34:04,490 - cephci - ceph:1606 - INFO - Execution of ceph auth get-key client.ceph-regression-rpbzec-wrs7oy-node8 -o /etc/ceph/ceph-regression-rpbzec-wrs7oy-node8.secret on 10.0.195.192 took 1.003692 seconds
+2025-04-14 17:34:04,492 - cephci - ceph:1576 - INFO - Execute mount -t ceph 10.0.195.83,10.0.195.151,10.0.195.106:/ /mnt/cephfs_kernelhwa3h_1/ -o name=ceph-regression-rpbzec-wrs7oy-node8,secretfile=/etc/ceph/ceph-regression-rpbzec-wrs7oy-node8.secret,noshare,fs=cephfs on 10.0.195.192
+2025-04-14 17:34:05,495 - cephci - ceph:1606 - INFO - Execution of mount -t ceph 10.0.195.83,10.0.195.151,10.0.195.106:/ /mnt/cephfs_kernelhwa3h_1/ -o name=ceph-regression-rpbzec-wrs7oy-node8,secretfile=/etc/ceph/ceph-regression-rpbzec-wrs7oy-node8.secret,noshare,fs=cephfs on 10.0.195.192 took 1.003423 seconds
+2025-04-14 17:34:05,496 - cephci - cephfs_utilsV1:1068 - INFO - validate kernel mount:
+2025-04-14 17:34:05,496 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 17:34:05,497 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.192
+2025-04-14 17:34:06,501 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.192 took 1.003468 seconds
+2025-04-14 17:34:06,501 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=21997)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=22680)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.83,10.0.195.151,10.0.195.106:/ on /mnt/cephfs_kernelhwa3h_1 type ceph (rw,relatime,seclabel,name=ceph-regression-rpbzec-wrs7oy-node8,secret=<hidden>,fsid=f69a23f6-1930-11f0-b91e-fa163ef8a5c7,noshare,acl,mds_namespace=cephfs)
+
+2025-04-14 17:34:06,502 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 17:34:06,503 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/cephfs_fusehwa3h_1/ on 10.0.195.192
+2025-04-14 17:34:07,506 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/cephfs_fusehwa3h_1/ on 10.0.195.192 took 1.003218 seconds
+2025-04-14 17:34:07,508 - cephci - ceph:1576 - INFO - Execute ceph-fuse -n client.6dthu /mnt/cephfs_fusehwa3h_1/ --client_fs cephfs on 10.0.195.192
+2025-04-14 17:34:08,513 - cephci - ceph:1606 - INFO - Execution of ceph-fuse -n client.6dthu /mnt/cephfs_fusehwa3h_1/ --client_fs cephfs on 10.0.195.192 took 1.003811 seconds
+2025-04-14 17:34:08,513 - cephci - verify_user_read_write_permissions:69 - INFO - checking if the client has the permission to write
+2025-04-14 17:34:08,514 - cephci - ceph:1576 - INFO - Execute dd if=/dev/zero of=/mnt/cephfs_fusehwa3h_1/_dd bs=100M count=5 on 10.0.195.192
+2025-04-14 17:39:08,841 - cephci - ceph:1632 - ERROR - dd if=/dev/zero of=/mnt/cephfs_fusehwa3h_1/_dd bs=100M count=5 failed to execute within 300s.
+2025-04-14 17:39:08,842 - cephci - verify_user_read_write_permissions:88 - ERROR - Command exceed the allocated execution time.
+2025-04-14 17:39:08,843 - cephci - verify_user_read_write_permissions:89 - ERROR - Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 1603, in long_running
+    check_timeout(_end_time, timeout)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 1157, in check_timeout
+    raise TimeoutException("Command exceed the allocated execution time.")
+ceph.ceph.TimeoutException: Command exceed the allocated execution time.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/clients/verify_user_read_write_permissions.py", line 70, in run
+    client1.exec_command(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 2305, in exec_command
+    return self.node.exec_command(cmd=cmd, **kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 1668, in exec_command
+    _out, _err, _exit, _time = self.long_running(**kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 1633, in long_running
+    raise CommandFailed(tex)
+ceph.ceph.CommandFailed: Command exceed the allocated execution time.
+
+2025-04-14 17:39:08,846 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.83
+2025-04-14 17:39:09,849 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.83 took 1.003031 seconds
+2025-04-14 17:39:09,849 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-14 17:39:09,850 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.83
+2025-04-14 17:39:10,854 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.83 took 1.003245 seconds
+2025-04-14 17:39:10,856 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.192
+2025-04-14 17:39:11,859 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.192 took 1.003252 seconds
+2025-04-14 17:39:11,860 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-14 17:39:11,860 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-RPBZEc-WRS7OY
+2025-04-14 17:39:11,861 - cephci - run:927 - INFO - Test <module 'clients.verify_user_read_write_permissions' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/clients/verify_user_read_write_permissions.py'> failed
