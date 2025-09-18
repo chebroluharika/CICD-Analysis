@@ -1,0 +1,1876 @@
+
+    <html>
+    <head>
+        <title>CephCI Log Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; }
+            th { background-color: #f2f2f2; }
+            .directory-title { 
+                font-size: 1.2em; 
+                margin-top: 25px; 
+                margin-bottom: 10px; 
+                color: #2c3e50; 
+                background-color: #ecf0f1; 
+                padding: 8px; 
+                border-left: 4px solid #3498db; 
+            }
+            .log-name { font-weight: bold; color: #2980b9; }
+            .feedback-buttons { display: flex; gap: 5px; justify-content: center; }
+            .feedback-btn { 
+                cursor: pointer; 
+                border: none; 
+                border-radius: 4px; 
+                padding: 2px 8px; 
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+            .like-btn { background-color: #2ecc71; color: white; }
+            .like-btn.active { background-color: #27ae60; }
+            .dislike-btn { background-color: #e74c3c; color: white; }
+            .dislike-btn.active { background-color: #c0392b; }
+            .skip-btn { background-color: #f39c12; color: white; }
+            .skip-btn.active { background-color: #d35400; }
+            .feedback-form {
+                display: none;
+                margin-top: 5px;
+            }
+            textarea {
+                width: 100%;
+                min-height: 50px;
+                padding: 5px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+            .submit-all-btn {
+                background-color: #e67e22;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 20px auto;
+                display: block;
+                font-size: 16px;
+            }
+            .submit-all-btn:hover {
+                background-color: #d35400;
+            }
+            .raw-analysis {
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-radius: 4px;
+                margin-top: 5px;
+            }
+        </style>
+        <script>
+            function toggleRawAnalysis(logId) {
+                var rawDiv = document.getElementById('raw-' + logId);
+                var toggleBtn = document.getElementById('toggle-' + logId);
+                if (rawDiv.style.display === 'none') {
+                    rawDiv.style.display = 'block';
+                    toggleBtn.textContent = '▼';
+                } else {
+                    rawDiv.style.display = 'none';
+                    toggleBtn.textContent = '➤';
+                }
+            }
+
+            function showFeedbackForm(logId, btnType) {
+                // Remove active class from all buttons for this log
+                document.querySelectorAll(`.feedback-btn[data-log-id="${logId}"]`).forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Set active class on clicked button
+                document.getElementById(btnType + '-btn-' + logId).classList.add('active');
+                
+                // Show/hide textarea
+                var form = document.getElementById('feedback-form-' + logId);
+                if (btnType === 'dislike') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            }
+
+            function submitAllFeedback() {
+                const feedbacks = [];
+                const logItems = document.querySelectorAll('.log-item');
+                
+                logItems.forEach(item => {
+                    const logId = item.dataset.logId;
+                    const activeBtn = item.querySelector('.feedback-btn.active');
+                    const vote = activeBtn ? activeBtn.dataset.vote : 'skip';
+                    const comment = item.querySelector('textarea')?.value || '';
+                    
+                    feedbacks.push({
+                        log_id: logId,
+                        log_name: item.dataset.logName,
+                        vote: vote,
+                        comment: comment,
+                        build_stamp: new Date().toISOString()
+                    });
+                });
+
+                fetch('/submit-feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(feedbacks)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Successfully submitted feedback');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to submit feedback');
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <h2>CephCI Log Analysis Report</h2>
+        <p><strong>Generated at:</strong> 2025-08-19 19:01:26</p>
+        <p><strong>Test Suite:</strong> Regression | <strong>RHEL:</strong> RHEL-9</p>
+        <hr>
+        
+        
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_file-dir-lay_vol-mgmt_nfs</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="cephfs_nfs_export_creation_using_config_file_0log18fd61" data-log-name="cephfs_nfs_export_creation_using_config_file_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_export_creation_using_config_file_0log18fd61" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_export_creation_using_config_file_0log18fd61')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_export_creation_using_config_file_0.log" target="_blank" class="log-name">cephfs_nfs_export_creation_using_config_file_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to incorrect dependencies being installed.</td>
+                <td>Run `yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua` to install the correct dependencies.</td>
+                <td>1. Run `yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua` to install the correct dependencies.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_export_creation_using_config_file_0log18fd61" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_creation_using_config_file_0log18fd61', 'like')"
+                                data-log-id="cephfs_nfs_export_creation_using_config_file_0log18fd61" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_export_creation_using_config_file_0log18fd61" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_creation_using_config_file_0log18fd61', 'dislike')"
+                                data-log-id="cephfs_nfs_export_creation_using_config_file_0log18fd61" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_export_creation_using_config_file_0log18fd61" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_creation_using_config_file_0log18fd61', 'skip')"
+                                data-log-id="cephfs_nfs_export_creation_using_config_file_0log18fd61" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_export_creation_using_config_file_0log18fd61" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_export_creation_using_config_file_0log18fd61" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_export_creation_using_config_file_0log18fd61" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to incorrect dependencies being installed.
+Fix: Run `yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua` to install the correct dependencies.
+Steps:
+1. Run `yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua` to install the correct dependencies.
+2. Verify that the dependencies are installed correctly by running `yum list installed | grep -w &quot;python3&quot;` and checking if all the dependencies are listed.
+3. If any of the dependencies are not installed, run `yum install -y --nogpgcheck &lt;dependency_name&gt;` to install them.
+4. Verify that the system is receiving updates by running `yum update`. If the system is not receiving updates, run `yum clean all` and then `yum update`.
+
+Explanation:
+The log file indicates that there are failures in installing dependencies. Specifically, the `pip3` package is not installed, and the `xattr` package is not installed correctly. Running `yum install -y --nogpgcheck python3 python3-pip fio fuse ceph-fuse attr gcc python3-devel git lua` will install the correct dependencies, including `pip3`. Additionally, running `yum list installed | grep -w &quot;python3&quot;` will verify that the `python3` package and its dependencies are installed correctly. If any of the dependencies are not installed, running `yum install -y --nogpgcheck &lt;dependency_name&gt;` will install them. Finally, verifying that the system is receiving updates by running `yum update` will ensure that the system is up-to-date and functioning correctly.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_with_io_and_network_failures_0log6e850a" data-log-name="cephfs_nfs_with_io_and_network_failures_0.log">
+                <td>2</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_with_io_and_network_failures_0log6e850a" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_with_io_and_network_failures_0log6e850a')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_with_io_and_network_failures_0.log" target="_blank" class="log-name">cephfs_nfs_with_io_and_network_failures_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the NFS client failing to mount the shared folder with error code 32.</td>
+                <td>1. Check and verify if there are any network issues or connectivity problems between the clients and servers.</td>
+                <td>1. Run the `nfsstat` command to check for any errors or issues with the NFS client.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_with_io_and_network_failures_0log6e850a" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_with_io_and_network_failures_0log6e850a', 'like')"
+                                data-log-id="cephfs_nfs_with_io_and_network_failures_0log6e850a" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_with_io_and_network_failures_0log6e850a" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_with_io_and_network_failures_0log6e850a', 'dislike')"
+                                data-log-id="cephfs_nfs_with_io_and_network_failures_0log6e850a" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_with_io_and_network_failures_0log6e850a" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_with_io_and_network_failures_0log6e850a', 'skip')"
+                                data-log-id="cephfs_nfs_with_io_and_network_failures_0log6e850a" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_with_io_and_network_failures_0log6e850a" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_with_io_and_network_failures_0log6e850a" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_with_io_and_network_failures_0log6e850a" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the NFS client failing to mount the shared folder with error code 32.
+
+Fix:
+
+1. Check and verify if there are any network issues or connectivity problems between the clients and servers.
+2. Ensure that the NFS client configuration is correct and up-to-date, including the IP address and port number of the server.
+3. Verify that the shared folder has sufficient permissions and access control lists (ACLs) to allow the NFS client to mount it successfully.
+4. Check for any software or hardware issues on the server or clients that may be causing the failures.
+5. If none of the above steps resolve the issue, try resetting the NFS client configuration or reinstalling the NFS client software.
+
+Steps:
+
+1. Run the `nfsstat` command to check for any errors or issues with the NFS client.
+2. Use the `mount` command to mount the shared folder and verify if it is mounted successfully.
+3. Check the system logs (e.g., `/var/log/nfs`) for any error messages or warnings related to the NFS client.
+4. Try restarting the NFS client service or the server to see if the issue persists.
+5. If the issue persists, try using a different NFS client software or configuration.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" data-log-name="backup_and_restore_data_bw_nfs_exports_and_local_dir_0.log">
+                <td>3</td>
+                <td>
+                    <span id="toggle-backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" class="toggle-raw" onclick="toggleRawAnalysis('backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/backup_and_restore_data_bw_nfs_exports_and_local_dir_0.log" target="_blank" class="log-name">backup_and_restore_data_bw_nfs_exports_and_local_dir_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to issues with the ceph-regression-vhr823-futhjo-node7 mount.</td>
+                <td>Re-run the ceph-regression-vhr823-futhjo-node7 command with the -t nfs option set to 2049 instead of 2048. This will ensure that the mount is successful and avoid any further failures.</td>
+                <td>1. Re-run the ceph-regression-vhr823-futhjo-node7 command with the -t nfs option set to 2049.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93', 'like')"
+                                data-log-id="backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" data-vote="like">👍</button>
+                        <button id="dislike-btn-backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93', 'dislike')"
+                                data-log-id="backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" data-vote="dislike">👎</button>
+                        <button id="skip-btn-backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93', 'skip')"
+                                data-log-id="backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" class="feedback-form">
+                        <textarea id="feedback-text-backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-backup_and_restore_data_bw_nfs_exports_and_local_dir_0loge5bf93" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to issues with the ceph-regression-vhr823-futhjo-node7 mount.
+Fix: Re-run the ceph-regression-vhr823-futhjo-node7 command with the -t nfs option set to 2049 instead of 2048. This will ensure that the mount is successful and avoid any further failures.
+Steps:
+1. Re-run the ceph-regression-vhr823-futhjo-node7 command with the -t nfs option set to 2049.
+2. Monitor the mount closely to ensure that it is successful and does not fail again.
+Answer: The root cause of the failures is due to issues with the ceph-regression-vhr823-futhjo-node7 mount, specifically the -t nfs option being set to 2048 instead of 2049. Re-running the command with the correct option will fix the issue and prevent any further failures.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_export_for_subvolume_0logd9ee20" data-log-name="cephfs_nfs_export_for_subvolume_0.log">
+                <td>4</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_export_for_subvolume_0logd9ee20" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_export_for_subvolume_0logd9ee20')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_export_for_subvolume_0.log" target="_blank" class="log-name">cephfs_nfs_export_for_subvolume_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the connection refused error when trying to mount the NFS share. This is likely due to a network issue or misconfiguration of the NFS client.</td>
+                <td>1. Check and ensure that the NFS server is running and accessible on the network.</td>
+                <td>1. Check the NFS server logs for any errors or issues.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_export_for_subvolume_0logd9ee20" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_for_subvolume_0logd9ee20', 'like')"
+                                data-log-id="cephfs_nfs_export_for_subvolume_0logd9ee20" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_export_for_subvolume_0logd9ee20" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_for_subvolume_0logd9ee20', 'dislike')"
+                                data-log-id="cephfs_nfs_export_for_subvolume_0logd9ee20" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_export_for_subvolume_0logd9ee20" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_for_subvolume_0logd9ee20', 'skip')"
+                                data-log-id="cephfs_nfs_export_for_subvolume_0logd9ee20" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_export_for_subvolume_0logd9ee20" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_export_for_subvolume_0logd9ee20" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_export_for_subvolume_0logd9ee20" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the connection refused error when trying to mount the NFS share. This is likely due to a network issue or misconfiguration of the NFS client.
+
+Fix:
+1. Check and ensure that the NFS server is running and accessible on the network.
+2. Verify that the NFS client configuration is correct and up-to-date.
+3. Try restarting the NFS client and/or server to see if that resolves the issue.
+
+Steps:
+1. Check the NFS server logs for any errors or issues.
+2. Use a network scanning tool to check the network connectivity between the NFS client and server.
+3. Try mounting the NFS share using a different client or server to see if the issue is specific to the current configuration.
+4. If the issue persists, try resetting the NFS client and/or server configuration to its default state.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="data_integrity_between_cephfs__nfs_mounts_0log22827f" data-log-name="data_integrity_between_cephfs_&_nfs_mounts_0.log">
+                <td>5</td>
+                <td>
+                    <span id="toggle-data_integrity_between_cephfs__nfs_mounts_0log22827f" class="toggle-raw" onclick="toggleRawAnalysis('data_integrity_between_cephfs__nfs_mounts_0log22827f')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/data_integrity_between_cephfs_&_nfs_mounts_0.log" target="_blank" class="log-name">data_integrity_between_cephfs_&_nfs_mounts_0.log</a>
+                </td>
+                <td>The root cause of the failures is a combination of issues with the cephfs mount and the nfs client.</td>
+                <td>1. Ensure that the cephfs mount is properly configured and mounted correctly on the system. Check the cephfs documentation for proper configuration and mounting instructions.</td>
+                <td>1. Review and verify the cephfs mount configuration and ensure it is properly set up on the system.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-data_integrity_between_cephfs__nfs_mounts_0log22827f" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('data_integrity_between_cephfs__nfs_mounts_0log22827f', 'like')"
+                                data-log-id="data_integrity_between_cephfs__nfs_mounts_0log22827f" data-vote="like">👍</button>
+                        <button id="dislike-btn-data_integrity_between_cephfs__nfs_mounts_0log22827f" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('data_integrity_between_cephfs__nfs_mounts_0log22827f', 'dislike')"
+                                data-log-id="data_integrity_between_cephfs__nfs_mounts_0log22827f" data-vote="dislike">👎</button>
+                        <button id="skip-btn-data_integrity_between_cephfs__nfs_mounts_0log22827f" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('data_integrity_between_cephfs__nfs_mounts_0log22827f', 'skip')"
+                                data-log-id="data_integrity_between_cephfs__nfs_mounts_0log22827f" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-data_integrity_between_cephfs__nfs_mounts_0log22827f" class="feedback-form">
+                        <textarea id="feedback-text-data_integrity_between_cephfs__nfs_mounts_0log22827f" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-data_integrity_between_cephfs__nfs_mounts_0log22827f" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is a combination of issues with the cephfs mount and the nfs client.
+
+Fix:
+1. Ensure that the cephfs mount is properly configured and mounted correctly on the system. Check the cephfs documentation for proper configuration and mounting instructions.
+2. Verify that the nfs client is properly installed and configured on the system. Check the nfs documentation for proper installation and configuration instructions.
+3. Ensure that the nfs client is properly connected to the cephfs server. Check the cephfs documentation for proper connection instructions.
+4. If necessary, update the nfs client to the latest version.
+5. If necessary, update the cephfs server to the latest version.
+
+Steps:
+
+1. Review and verify the cephfs mount configuration and ensure it is properly set up on the system.
+2. Verify that the nfs client is properly installed and configured on the system.
+3. Check the network connectivity between the nfs client and cephfs server to ensure proper communication.
+4. If necessary, update the nfs client or cephfs server to the latest version.
+5. Test the cephfs mount again to confirm that the issue has been resolved.
+
+Answer: The root cause of the failures is a combination of issues with the cephfs mount and the nfs client. To resolve the issue, ensure that the cephfs mount is properly configured and mounted correctly on the system, verify that the nfs client is properly installed and configured on the system, and ensure that the nfs client is properly connected to the cephfs server. If necessary, update the nfs client or cephfs server to the latest version, and test the cephfs mount again to confirm that the issue has been resolved.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="nfs_multiple_export_using_single_conf_0log8c10d8" data-log-name="nfs_multiple_export_using_single_conf_0.log">
+                <td>6</td>
+                <td>
+                    <span id="toggle-nfs_multiple_export_using_single_conf_0log8c10d8" class="toggle-raw" onclick="toggleRawAnalysis('nfs_multiple_export_using_single_conf_0log8c10d8')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/nfs_multiple_export_using_single_conf_0.log" target="_blank" class="log-name">nfs_multiple_export_using_single_conf_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to issues with the Ceph cluster, specifically with the nfs exports.</td>
+                <td>1. Check and fix any issues with the Ceph cluster, such as incorrect configuration or hardware problems.</td>
+                <td>1. Review the Ceph cluster configuration and make any necessary adjustments.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-nfs_multiple_export_using_single_conf_0log8c10d8" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('nfs_multiple_export_using_single_conf_0log8c10d8', 'like')"
+                                data-log-id="nfs_multiple_export_using_single_conf_0log8c10d8" data-vote="like">👍</button>
+                        <button id="dislike-btn-nfs_multiple_export_using_single_conf_0log8c10d8" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('nfs_multiple_export_using_single_conf_0log8c10d8', 'dislike')"
+                                data-log-id="nfs_multiple_export_using_single_conf_0log8c10d8" data-vote="dislike">👎</button>
+                        <button id="skip-btn-nfs_multiple_export_using_single_conf_0log8c10d8" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('nfs_multiple_export_using_single_conf_0log8c10d8', 'skip')"
+                                data-log-id="nfs_multiple_export_using_single_conf_0log8c10d8" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-nfs_multiple_export_using_single_conf_0log8c10d8" class="feedback-form">
+                        <textarea id="feedback-text-nfs_multiple_export_using_single_conf_0log8c10d8" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-nfs_multiple_export_using_single_conf_0log8c10d8" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to issues with the Ceph cluster, specifically with the nfs exports.
+
+Fix:
+
+1. Check and fix any issues with the Ceph cluster, such as incorrect configuration or hardware problems.
+2. Ensure that the nfs exports are properly configured and working correctly.
+3. Check and update any outdated packages related to Ceph.
+
+Steps:
+
+1. Review the Ceph cluster configuration and make any necessary adjustments.
+2. Run a thorough diagnostic test on the Ceph cluster to identify any hardware or software issues.
+3. Update any outdated packages related to Ceph.
+4. Test the nfs exports again to ensure they are working correctly.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" data-log-name="cephfs_nfs_subvolume_&_subvolumegroup_operations_0.log">
+                <td>7</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_subvolume_&_subvolumegroup_operations_0.log" target="_blank" class="log-name">cephfs_nfs_subvolume_&_subvolumegroup_operations_0.log</a>
+                </td>
+                <td>Insufficient package installations</td>
+                <td>Install missing packages (python3-pip, python3-pip-21.3.1, fio, fuse, ceph-fuse, attr, gcc, python3-devel, git, lua) and ensure they are up to date.</td>
+                <td>1. Check the package list using `yum list` command to identify missing packages.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20', 'like')"
+                                data-log-id="cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20', 'dislike')"
+                                data-log-id="cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20', 'skip')"
+                                data-log-id="cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_subvolume__subvolumegroup_operations_0logd9ed20" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Based on the provided log file, the root cause of the failures can be identified as insufficient package installations. The following is a concise analysis of the log file:
+
+Reason: Insufficient package installations
+Fix: Install missing packages (python3-pip, python3-pip-21.3.1, fio, fuse, ceph-fuse, attr, gcc, python3-devel, git, lua) and ensure they are up to date.
+Steps:
+
+1. Check the package list using `yum list` command to identify missing packages.
+2. Install missing packages using `yum install` command.
+3. Update the packages to the latest version using `yum update` command.
+4. Verify the installation of the packages using `yum list` command again to ensure they are installed and up to date.
+
+By following these steps, the insufficient package installations can be addressed, and the failures should no longer occur.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" data-log-name="Mount_same_volume_on_fuse,kernel_and_nfs_and_runIOs_0.log">
+                <td>8</td>
+                <td>
+                    <span id="toggle-Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" class="toggle-raw" onclick="toggleRawAnalysis('Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/Mount_same_volume_on_fuse,kernel_and_nfs_and_runIOs_0.log" target="_blank" class="log-name">Mount_same_volume_on_fuse,kernel_and_nfs_and_runIOs_0.log</a>
+                </td>
+                <td>The root cause of the failures in the log file is a combination of issues with the Ceph cluster, including connection refused errors and mount failed errors. These issues are likely caused by network problems, configuration mistakes, or hardware failures.</td>
+                <td>To fix these issues, the following steps can be taken:</td>
+                <td>1. Check the network connectivity between the nodes in the Ceph cluster using tools such as `ping` or `traceroute`.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068', 'like')"
+                                data-log-id="Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" data-vote="like">👍</button>
+                        <button id="dislike-btn-Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068', 'dislike')"
+                                data-log-id="Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068', 'skip')"
+                                data-log-id="Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" class="feedback-form">
+                        <textarea id="feedback-text-Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Mount_same_volume_on_fusekernel_and_nfs_and_runIOs_0log9bc068" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures in the log file is a combination of issues with the Ceph cluster, including connection refused errors and mount failed errors. These issues are likely caused by network problems, configuration mistakes, or hardware failures.
+
+Fix: To fix these issues, the following steps can be taken:
+
+1. Check the network connectivity between the nodes in the Ceph cluster to ensure that there are no network issues causing connection refused errors.
+2. Review the Ceph cluster configuration to ensure that it is properly set up and configured for the environment.
+3. Check the hardware health of the nodes in the Ceph cluster to ensure that there are no hardware failures causing mount failed errors.
+4. Retry the failed commands with different options or retries to see if the issue persists.
+5. If the issue persists, try running the command with additional debugging information to gather more detailed information about the failure.
+
+Steps:
+
+1. Check the network connectivity between the nodes in the Ceph cluster using tools such as `ping` or `traceroute`.
+2. Review the Ceph cluster configuration using tools such as `ceph config` or `ceph status`.
+3. Check the hardware health of the nodes in the Ceph cluster using tools such as `htop` or `nmon`.
+4. Retry the failed commands with different options or retries using tools such as `ceph nfs` or `ceph mount`.
+5. If the issue persists, try running the command with additional debugging information using tools such as `ceph debug` or `gdb`.
+
+Answer: The root cause of the failures in the log file is a combination of issues with the Ceph cluster, including connection refused errors and mount failed errors. These issues are likely caused by network problems, configuration mistakes, or hardware failures. To fix these issues, it is recommended to check the network connectivity between the nodes in the Ceph cluster, review the Ceph cluster configuration, check the hardware health of the nodes in the Ceph cluster, retry the failed commands with different options or retries, and if the issue persists, try running the command with additional debugging information.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="rename_scenarios_0logc20330" data-log-name="rename_scenarios_0.log">
+                <td>9</td>
+                <td>
+                    <span id="toggle-rename_scenarios_0logc20330" class="toggle-raw" onclick="toggleRawAnalysis('rename_scenarios_0logc20330')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/rename_scenarios_0.log" target="_blank" class="log-name">rename_scenarios_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient resources, specifically CPU and memory.</td>
+                <td>Increase the number of CPU cores and allocate more memory to the system. Additionally, ensure that the system is running with enough free disk space.</td>
+                <td>1. Check the system configuration and adjust the number of CPU cores accordingly.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-rename_scenarios_0logc20330" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('rename_scenarios_0logc20330', 'like')"
+                                data-log-id="rename_scenarios_0logc20330" data-vote="like">👍</button>
+                        <button id="dislike-btn-rename_scenarios_0logc20330" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('rename_scenarios_0logc20330', 'dislike')"
+                                data-log-id="rename_scenarios_0logc20330" data-vote="dislike">👎</button>
+                        <button id="skip-btn-rename_scenarios_0logc20330" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('rename_scenarios_0logc20330', 'skip')"
+                                data-log-id="rename_scenarios_0logc20330" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-rename_scenarios_0logc20330" class="feedback-form">
+                        <textarea id="feedback-text-rename_scenarios_0logc20330" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-rename_scenarios_0logc20330" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient resources, specifically CPU and memory.
+
+Fix: Increase the number of CPU cores and allocate more memory to the system. Additionally, ensure that the system is running with enough free disk space.
+
+Steps:
+
+1. Check the system configuration and adjust the number of CPU cores accordingly.
+2. Monitor the system&#x27;s resource usage and adjust the allocation of memory and CPU resources as needed.
+3. Ensure that the system has enough free disk space for the Ceph cluster to operate effectively.
+4. If necessary, consider upgrading the hardware to provide more resources.
+
+Answer: The root cause of the failures is due to insufficient resources, specifically CPU and memory. To fix this issue, increase the number of CPU cores and allocate more memory to the system, and ensure that the system has enough free disk space for the Ceph cluster to operate effectively.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="2_node_nfs_cluster_0log9c7b4d" data-log-name="2_node_nfs_cluster_0.log">
+                <td>10</td>
+                <td>
+                    <span id="toggle-2_node_nfs_cluster_0log9c7b4d" class="toggle-raw" onclick="toggleRawAnalysis('2_node_nfs_cluster_0log9c7b4d')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/2_node_nfs_cluster_0.log" target="_blank" class="log-name">2_node_nfs_cluster_0.log</a>
+                </td>
+                <td>The mount command for the NFS share failed due to a connection refused error.</td>
+                <td>Retry the mount command after waiting for 120 seconds to allow the NFS server to become available again.</td>
+                <td>1. Wait for 120 seconds to allow the NFS server to become available again.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-2_node_nfs_cluster_0log9c7b4d" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('2_node_nfs_cluster_0log9c7b4d', 'like')"
+                                data-log-id="2_node_nfs_cluster_0log9c7b4d" data-vote="like">👍</button>
+                        <button id="dislike-btn-2_node_nfs_cluster_0log9c7b4d" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('2_node_nfs_cluster_0log9c7b4d', 'dislike')"
+                                data-log-id="2_node_nfs_cluster_0log9c7b4d" data-vote="dislike">👎</button>
+                        <button id="skip-btn-2_node_nfs_cluster_0log9c7b4d" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('2_node_nfs_cluster_0log9c7b4d', 'skip')"
+                                data-log-id="2_node_nfs_cluster_0log9c7b4d" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-2_node_nfs_cluster_0log9c7b4d" class="feedback-form">
+                        <textarea id="feedback-text-2_node_nfs_cluster_0log9c7b4d" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-2_node_nfs_cluster_0log9c7b4d" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Based on the provided log file, the root cause of the failures can be identified as follows:
+
+Reason: The mount command for the NFS share failed due to a connection refused error.
+
+Fix: Retry the mount command after waiting for 120 seconds to allow the NFS server to become available again.
+
+Steps:
+
+1. Wait for 120 seconds to allow the NFS server to become available again.
+2. Try running the mount command again.
+
+Answer: The root cause of the failures is a connection refused error when trying to mount the NFS share. To fix this issue, try retrying the mount command after waiting for 120 seconds to allow the NFS server to become available again.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="recreate_same_name_nfs_cluster_0logdd9c92" data-log-name="recreate_same_name_nfs_cluster_0.log">
+                <td>11</td>
+                <td>
+                    <span id="toggle-recreate_same_name_nfs_cluster_0logdd9c92" class="toggle-raw" onclick="toggleRawAnalysis('recreate_same_name_nfs_cluster_0logdd9c92')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/recreate_same_name_nfs_cluster_0.log" target="_blank" class="log-name">recreate_same_name_nfs_cluster_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the connection refused error in mounting the cephfs volume.</td>
+                <td>1. Check the ceph-client configuration file /etc/ceph/ceph.conf to ensure that the monitors are properly configured and running.</td>
+                <td>1. Check the ceph-client and ceph-common configuration files to ensure that they are properly configured.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-recreate_same_name_nfs_cluster_0logdd9c92" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('recreate_same_name_nfs_cluster_0logdd9c92', 'like')"
+                                data-log-id="recreate_same_name_nfs_cluster_0logdd9c92" data-vote="like">👍</button>
+                        <button id="dislike-btn-recreate_same_name_nfs_cluster_0logdd9c92" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('recreate_same_name_nfs_cluster_0logdd9c92', 'dislike')"
+                                data-log-id="recreate_same_name_nfs_cluster_0logdd9c92" data-vote="dislike">👎</button>
+                        <button id="skip-btn-recreate_same_name_nfs_cluster_0logdd9c92" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('recreate_same_name_nfs_cluster_0logdd9c92', 'skip')"
+                                data-log-id="recreate_same_name_nfs_cluster_0logdd9c92" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-recreate_same_name_nfs_cluster_0logdd9c92" class="feedback-form">
+                        <textarea id="feedback-text-recreate_same_name_nfs_cluster_0logdd9c92" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-recreate_same_name_nfs_cluster_0logdd9c92" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the connection refused error in mounting the cephfs volume.
+
+Fix:
+
+1. Check the ceph-client configuration file /etc/ceph/ceph.conf to ensure that the monitors are properly configured and running.
+2. Check the ceph-common configuration file /etc/ceph/ceph.conf to ensure that the mgr is properly configured and running.
+3. Check the network connectivity between the client and the monitors to ensure that there are no issues with the network.
+4. Try running the `cephfs` command with the `--monitor-status` option to see if it can provide more information about the monitor status.
+5. If none of the above steps resolve the issue, try running the `cephfs` command with the `--debug` option to see if it can provide more detailed information about the error.
+
+Steps:
+
+1. Check the ceph-client and ceph-common configuration files to ensure that they are properly configured.
+2. Check the network connectivity between the client and the monitors.
+3. Run the `cephfs` command with the `--monitor-status` option to see if it can provide more information about the monitor status.
+4. If none of the above steps resolve the issue, run the `cephfs` command with the `--debug` option to see if it can provide more detailed information about the error.
+
+Answer: The root cause of the failures is due to the connection refused error in mounting the cephfs volume. The suggested solution is to check the ceph-client and ceph-common configuration files, network connectivity between the client and the monitors, and try running the `cephfs` command with the `--monitor-status` or `--debug` options to gather more information about the error.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_snapshot_clone_operations_0log20ecb7" data-log-name="cephfs_nfs_snapshot_clone_operations_0.log">
+                <td>12</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_snapshot_clone_operations_0log20ecb7" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_snapshot_clone_operations_0log20ecb7')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_snapshot_clone_operations_0.log" target="_blank" class="log-name">cephfs_nfs_snapshot_clone_operations_0.log</a>
+                </td>
+                <td>The log file indicates that there are issues with the Ceph cluster, specifically with the nfs mount. The connection to the client was refused, and the command failed.</td>
+                <td>To fix the issue, we need to identify the root cause of the problem. Based on the log file, it seems that the connection to the client was refused due to a network issue. Therefore, we need to check the network connectivity between the Ceph nodes and the client. If the network is unstable or unreachable, we need to troubleshoot and resolve the issue before proceeding with the mount command.</td>
+                <td>1. Check the network connectivity between the Ceph nodes and the client using tools such as `ping` or `traceroute`.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_snapshot_clone_operations_0log20ecb7" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_snapshot_clone_operations_0log20ecb7', 'like')"
+                                data-log-id="cephfs_nfs_snapshot_clone_operations_0log20ecb7" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_snapshot_clone_operations_0log20ecb7" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_snapshot_clone_operations_0log20ecb7', 'dislike')"
+                                data-log-id="cephfs_nfs_snapshot_clone_operations_0log20ecb7" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_snapshot_clone_operations_0log20ecb7" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_snapshot_clone_operations_0log20ecb7', 'skip')"
+                                data-log-id="cephfs_nfs_snapshot_clone_operations_0log20ecb7" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_snapshot_clone_operations_0log20ecb7" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_snapshot_clone_operations_0log20ecb7" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_snapshot_clone_operations_0log20ecb7" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The log file indicates that there are issues with the Ceph cluster, specifically with the nfs mount. The connection to the client was refused, and the command failed.
+
+Fix:
+To fix the issue, we need to identify the root cause of the problem. Based on the log file, it seems that the connection to the client was refused due to a network issue. Therefore, we need to check the network connectivity between the Ceph nodes and the client. If the network is unstable or unreachable, we need to troubleshoot and resolve the issue before proceeding with the mount command.
+
+Steps:
+
+1. Check the network connectivity between the Ceph nodes and the client using tools such as `ping` or `traceroute`.
+2. If the network is unstable or unreachable, troubleshoot and resolve the issue. This may involve checking the network cables, switches, or routers, or contacting the network administrator for assistance.
+3. Once the network connectivity is stable, try mounting the nfs share again using the `mount` command. If the issue persists, try running the command with different options or parameters to see if that resolves the problem.
+
+Answer: The root cause of the failure is a network issue preventing the connection to the client. To fix the issue, we need to troubleshoot and resolve the network connectivity problem before attempting to mount the nfs share again.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_export_creation_using_config_file_1logef2c8a" data-log-name="cephfs_nfs_export_creation_using_config_file_1.log">
+                <td>13</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_export_creation_using_config_file_1logef2c8a" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_export_creation_using_config_file_1logef2c8a')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_export_creation_using_config_file_1.log" target="_blank" class="log-name">cephfs_nfs_export_creation_using_config_file_1.log</a>
+                </td>
+                <td>The root cause of the failures is due to incorrect dependencies being installed.</td>
+                <td>Run `pip3 install --no-binary :all` to install all required dependencies and then run `cephci -r` to reset the ceph configuration.</td>
+                <td>1. Run `pip3 install --no-binary :all` in the terminal.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_export_creation_using_config_file_1logef2c8a" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_creation_using_config_file_1logef2c8a', 'like')"
+                                data-log-id="cephfs_nfs_export_creation_using_config_file_1logef2c8a" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_export_creation_using_config_file_1logef2c8a" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_creation_using_config_file_1logef2c8a', 'dislike')"
+                                data-log-id="cephfs_nfs_export_creation_using_config_file_1logef2c8a" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_export_creation_using_config_file_1logef2c8a" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_export_creation_using_config_file_1logef2c8a', 'skip')"
+                                data-log-id="cephfs_nfs_export_creation_using_config_file_1logef2c8a" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_export_creation_using_config_file_1logef2c8a" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_export_creation_using_config_file_1logef2c8a" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_export_creation_using_config_file_1logef2c8a" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to incorrect dependencies being installed.
+Fix: Run `pip3 install --no-binary :all` to install all required dependencies and then run `cephci -r` to reset the ceph configuration.
+Steps:
+
+1. Run `pip3 install --no-binary :all` in the terminal.
+2. Wait for the installation to complete.
+3. Run `cephci -r` in the terminal to reset the ceph configuration.
+
+Explanation:
+The log file indicates that there are issues with the dependencies being installed, specifically with the `xattr`, `numpy`, and `scipy` packages. Running `pip3 install --no-binary :all` will install all required dependencies, including the ones that were not installed correctly earlier. After installing the dependencies, running `cephci -r` will reset the ceph configuration to its default state, which should fix any issues with the ceph daemon.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="modifying_nfs_cluster_invalid_value_0logf3032c" data-log-name="modifying_nfs_cluster_invalid_value_0.log">
+                <td>14</td>
+                <td>
+                    <span id="toggle-modifying_nfs_cluster_invalid_value_0logf3032c" class="toggle-raw" onclick="toggleRawAnalysis('modifying_nfs_cluster_invalid_value_0logf3032c')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/modifying_nfs_cluster_invalid_value_0.log" target="_blank" class="log-name">modifying_nfs_cluster_invalid_value_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to incorrect configuration of the NFS cluster.</td>
+                <td>Update the NFS cluster configuration file to include the correct protocols and security label.</td>
+                <td>1. Review the NFS cluster configuration file to ensure it includes the correct protocols (3,4) and security label.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-modifying_nfs_cluster_invalid_value_0logf3032c" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('modifying_nfs_cluster_invalid_value_0logf3032c', 'like')"
+                                data-log-id="modifying_nfs_cluster_invalid_value_0logf3032c" data-vote="like">👍</button>
+                        <button id="dislike-btn-modifying_nfs_cluster_invalid_value_0logf3032c" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('modifying_nfs_cluster_invalid_value_0logf3032c', 'dislike')"
+                                data-log-id="modifying_nfs_cluster_invalid_value_0logf3032c" data-vote="dislike">👎</button>
+                        <button id="skip-btn-modifying_nfs_cluster_invalid_value_0logf3032c" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('modifying_nfs_cluster_invalid_value_0logf3032c', 'skip')"
+                                data-log-id="modifying_nfs_cluster_invalid_value_0logf3032c" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-modifying_nfs_cluster_invalid_value_0logf3032c" class="feedback-form">
+                        <textarea id="feedback-text-modifying_nfs_cluster_invalid_value_0logf3032c" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-modifying_nfs_cluster_invalid_value_0logf3032c" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to incorrect configuration of the NFS cluster.
+Fix: Update the NFS cluster configuration file to include the correct protocols and security label.
+Steps:
+1. Review the NFS cluster configuration file to ensure it includes the correct protocols (3,4) and security label.
+2. Apply the updated configuration to the NFS cluster using the `ceph nfs export apply` command.
+3. Verify that the NFS cluster is functioning correctly by running a series of tests to ensure the NFS client can connect to the NFS server and access the shared files.
+Answer: The root cause of the failures is due to incorrect configuration of the NFS cluster. To fix the issue, update the NFS cluster configuration file to include the correct protocols and security label, and apply the updated configuration using the `ceph nfs export apply` command. Verify that the NFS cluster is functioning correctly by running a series of tests to ensure the NFS client can connect to the NFS server and access the shared files.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_RO_and_RW_export_0logd53f1b" data-log-name="cephfs_nfs_RO_and_RW_export_0.log">
+                <td>15</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_RO_and_RW_export_0logd53f1b" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_RO_and_RW_export_0logd53f1b')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_RO_and_RW_export_0.log" target="_blank" class="log-name">cephfs_nfs_RO_and_RW_export_0.log</a>
+                </td>
+                <td>The mount command for the NFS share failed due to a connection refused error.</td>
+                <td>Retry the mount command after a short delay to see if the issue resolves itself. If the issue persists, check the network connectivity and ensure that the NFS server is running and accessible.</td>
+                <td>1. Retry the mount command after a short delay (e.g., 30 seconds).</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_RO_and_RW_export_0logd53f1b" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_RO_and_RW_export_0logd53f1b', 'like')"
+                                data-log-id="cephfs_nfs_RO_and_RW_export_0logd53f1b" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_RO_and_RW_export_0logd53f1b" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_RO_and_RW_export_0logd53f1b', 'dislike')"
+                                data-log-id="cephfs_nfs_RO_and_RW_export_0logd53f1b" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_RO_and_RW_export_0logd53f1b" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_RO_and_RW_export_0logd53f1b', 'skip')"
+                                data-log-id="cephfs_nfs_RO_and_RW_export_0logd53f1b" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_RO_and_RW_export_0logd53f1b" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_RO_and_RW_export_0logd53f1b" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_RO_and_RW_export_0logd53f1b" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Based on the provided log file, the root cause of the failures can be identified as follows:
+
+Reason: The mount command for the NFS share failed due to a connection refused error.
+
+Fix: Retry the mount command after a short delay to see if the issue resolves itself. If the issue persists, check the network connectivity and ensure that the NFS server is running and accessible.
+
+Steps:
+
+1. Retry the mount command after a short delay (e.g., 30 seconds).
+2. Check the network connectivity and ensure that the NFS server is running and accessible.
+3. If the issue persists, try resetting the NFS client or increasing the timeout value for the mount command.
+
+Answer: The root cause of the failures is a connection refused error when trying to mount the NFS share. To fix the issue, try retrying the mount command after a short delay and check the network connectivity and NFS server status.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="zipping__unzipping_files_on_nfs_export_0log238b4b" data-log-name="zipping_&_unzipping_files_on_nfs_export_0.log">
+                <td>16</td>
+                <td>
+                    <span id="toggle-zipping__unzipping_files_on_nfs_export_0log238b4b" class="toggle-raw" onclick="toggleRawAnalysis('zipping__unzipping_files_on_nfs_export_0log238b4b')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/zipping_&_unzipping_files_on_nfs_export_0.log" target="_blank" class="log-name">zipping_&_unzipping_files_on_nfs_export_0.log</a>
+                </td>
+                <td>The root cause of the failures is a connection refused error on the mount command.</td>
+                <td>Retry the mount command after waiting for a short period to allow the connection to stabilize. Alternatively, check if there are any network issues or firewall rules that may be blocking the connection.</td>
+                <td>1. Retry the mount command after waiting for 1-2 minutes to allow the connection to stabilize.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-zipping__unzipping_files_on_nfs_export_0log238b4b" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('zipping__unzipping_files_on_nfs_export_0log238b4b', 'like')"
+                                data-log-id="zipping__unzipping_files_on_nfs_export_0log238b4b" data-vote="like">👍</button>
+                        <button id="dislike-btn-zipping__unzipping_files_on_nfs_export_0log238b4b" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('zipping__unzipping_files_on_nfs_export_0log238b4b', 'dislike')"
+                                data-log-id="zipping__unzipping_files_on_nfs_export_0log238b4b" data-vote="dislike">👎</button>
+                        <button id="skip-btn-zipping__unzipping_files_on_nfs_export_0log238b4b" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('zipping__unzipping_files_on_nfs_export_0log238b4b', 'skip')"
+                                data-log-id="zipping__unzipping_files_on_nfs_export_0log238b4b" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-zipping__unzipping_files_on_nfs_export_0log238b4b" class="feedback-form">
+                        <textarea id="feedback-text-zipping__unzipping_files_on_nfs_export_0log238b4b" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-zipping__unzipping_files_on_nfs_export_0log238b4b" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is a connection refused error on the mount command.
+
+Fix: Retry the mount command after waiting for a short period to allow the connection to stabilize. Alternatively, check if there are any network issues or firewall rules that may be blocking the connection.
+
+Steps:
+
+1. Retry the mount command after waiting for 1-2 minutes to allow the connection to stabilize.
+2. Check if there are any network issues or firewall rules that may be blocking the connection. If so, resolve them and try again.
+3. If the issue persists, check if there are any other dependencies that may be causing the problem.
+
+Answer: The root cause of the failures is a connection refused error on the mount command. To fix the issue, try retrying the command after waiting for a short period or check if there are any network issues or firewall rules that may be blocking the connection.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_mount_with_fstab_entry_0logf579f6" data-log-name="cephfs_nfs_mount_with_fstab_entry_0.log">
+                <td>17</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_mount_with_fstab_entry_0logf579f6" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_mount_with_fstab_entry_0logf579f6')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_mount_with_fstab_entry_0.log" target="_blank" class="log-name">cephfs_nfs_mount_with_fstab_entry_0.log</a>
+                </td>
+                <td>The failures are caused by a combination of factors, including dependency issues, package conflicts, and incorrect configuration.</td>
+                <td>To fix the issues, the following steps can be taken:</td>
+                <td>1. Run `sudo yum update --security-fixups` to update Subscription Management repositories.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_mount_with_fstab_entry_0logf579f6" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_mount_with_fstab_entry_0logf579f6', 'like')"
+                                data-log-id="cephfs_nfs_mount_with_fstab_entry_0logf579f6" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_mount_with_fstab_entry_0logf579f6" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_mount_with_fstab_entry_0logf579f6', 'dislike')"
+                                data-log-id="cephfs_nfs_mount_with_fstab_entry_0logf579f6" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_mount_with_fstab_entry_0logf579f6" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_mount_with_fstab_entry_0logf579f6', 'skip')"
+                                data-log-id="cephfs_nfs_mount_with_fstab_entry_0logf579f6" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_mount_with_fstab_entry_0logf579f6" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_mount_with_fstab_entry_0logf579f6" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_mount_with_fstab_entry_0logf579f6" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The failures are caused by a combination of factors, including dependency issues, package conflicts, and incorrect configuration.
+
+Fix: To fix the issues, the following steps can be taken:
+
+1. Update Subscription Management repositories to ensure that all dependencies are up-to-date.
+2. Use `pip3` instead of `pip` to install packages, as `pip` is not recommended for use as the system package manager.
+3. Install `xattr` and `dbench` packages to resolve dependency conflicts.
+4. Configure `yum` to use the correct configuration file.
+
+Steps:
+
+1. Run `sudo yum update --security-fixups` to update Subscription Management repositories.
+2. Install `pip3` by running `sudo easy_install pip3`.
+3. Install `xattr` and `dbench` packages by running `sudo yum install xattr dbench`.
+4. Configure `yum` by editing `/etc/yum.conf` and setting `security_fixups=1`.
+5. Run `sudo yum update` to apply the configuration changes.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Move_Data_bw_nfs_and_cephfs_exports_0log87d604" data-log-name="Move_Data_bw_nfs_and_cephfs_exports_0.log">
+                <td>18</td>
+                <td>
+                    <span id="toggle-Move_Data_bw_nfs_and_cephfs_exports_0log87d604" class="toggle-raw" onclick="toggleRawAnalysis('Move_Data_bw_nfs_and_cephfs_exports_0log87d604')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/Move_Data_bw_nfs_and_cephfs_exports_0.log" target="_blank" class="log-name">Move_Data_bw_nfs_and_cephfs_exports_0.log</a>
+                </td>
+                <td>The system is experiencing issues with package dependencies and version conflicts.</td>
+                <td>1. Update the package dependencies to their latest versions using `yum update -y`.</td>
+                <td>1. Run `yum update -y` to update all packages to their latest versions.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Move_Data_bw_nfs_and_cephfs_exports_0log87d604" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Move_Data_bw_nfs_and_cephfs_exports_0log87d604', 'like')"
+                                data-log-id="Move_Data_bw_nfs_and_cephfs_exports_0log87d604" data-vote="like">👍</button>
+                        <button id="dislike-btn-Move_Data_bw_nfs_and_cephfs_exports_0log87d604" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Move_Data_bw_nfs_and_cephfs_exports_0log87d604', 'dislike')"
+                                data-log-id="Move_Data_bw_nfs_and_cephfs_exports_0log87d604" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Move_Data_bw_nfs_and_cephfs_exports_0log87d604" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Move_Data_bw_nfs_and_cephfs_exports_0log87d604', 'skip')"
+                                data-log-id="Move_Data_bw_nfs_and_cephfs_exports_0log87d604" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Move_Data_bw_nfs_and_cephfs_exports_0log87d604" class="feedback-form">
+                        <textarea id="feedback-text-Move_Data_bw_nfs_and_cephfs_exports_0log87d604" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Move_Data_bw_nfs_and_cephfs_exports_0log87d604" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Based on the provided log file, the root cause of failures can be identified as follows:
+
+Reason: The system is experiencing issues with package dependencies and version conflicts.
+
+Fix:
+
+1. Update the package dependencies to their latest versions using `yum update -y`.
+2. Install any required packages that are missing using `yum install -y`.
+3. Check for any version conflicts and resolve them by updating the package versions or removing unused packages.
+
+Steps:
+
+1. Run `yum update -y` to update all packages to their latest versions.
+2. Check the output of `yum update -y` to identify any package dependencies that are not satisfied.
+3. Install any required packages using `yum install -y`.
+4. Check the output of `yum install -y` to identify any version conflicts and resolve them by updating the package versions or removing unused packages.
+
+Answer: The root cause of failures is due to package dependency issues, and the suggested solution is to update all packages to their latest versions, check for any version conflicts, and resolve them as needed.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="cephfs_nfs_read_only_export_0logaaad74" data-log-name="cephfs_nfs_read_only_export_0.log">
+                <td>19</td>
+                <td>
+                    <span id="toggle-cephfs_nfs_read_only_export_0logaaad74" class="toggle-raw" onclick="toggleRawAnalysis('cephfs_nfs_read_only_export_0logaaad74')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_file-dir-lay_vol-mgmt_nfs/cephfs_nfs_read_only_export_0.log" target="_blank" class="log-name">cephfs_nfs_read_only_export_0.log</a>
+                </td>
+                <td>The root cause of the failures is the connection refused error received when trying to mount the NFS share.</td>
+                <td>1. Check the NFS server configuration and make sure it is running and accessible.</td>
+                <td>1. Check the NFS server configuration file (e.g., /etc/nfs.conf) to ensure it is properly configured.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cephfs_nfs_read_only_export_0logaaad74" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_read_only_export_0logaaad74', 'like')"
+                                data-log-id="cephfs_nfs_read_only_export_0logaaad74" data-vote="like">👍</button>
+                        <button id="dislike-btn-cephfs_nfs_read_only_export_0logaaad74" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_read_only_export_0logaaad74', 'dislike')"
+                                data-log-id="cephfs_nfs_read_only_export_0logaaad74" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cephfs_nfs_read_only_export_0logaaad74" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cephfs_nfs_read_only_export_0logaaad74', 'skip')"
+                                data-log-id="cephfs_nfs_read_only_export_0logaaad74" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cephfs_nfs_read_only_export_0logaaad74" class="feedback-form">
+                        <textarea id="feedback-text-cephfs_nfs_read_only_export_0logaaad74" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cephfs_nfs_read_only_export_0logaaad74" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is the connection refused error received when trying to mount the NFS share.
+
+Fix:
+
+1. Check the NFS server configuration and make sure it is running and accessible.
+2. Verify that the NFS share is properly configured and available for mounting.
+3. Ensure that the mount command is correct and the path is valid.
+4. Try to mount the NFS share using a different client or server to isolate the issue.
+
+Steps:
+
+1. Check the NFS server configuration file (e.g., /etc/nfs.conf) to ensure it is properly configured.
+2. Verify that the NFS share is properly configured and available for mounting by running the command `mount -t nfs &lt;share_path&gt;` in the terminal.
+3. Check the client configuration file (e.g., /etc/fstab) to ensure it is properly configured.
+4. Try to mount the NFS share using a different client or server to isolate the issue.
+
+Answer: The root cause of the failures is the connection refused error received when trying to mount the NFS share. The suggested solution is to check the NFS server configuration and make sure it is running and accessible, verify that the NFS share is properly configured and available for mounting, ensure that the mount command is correct and the path is valid, and try to mount the NFS share using a different client or server to isolate the issue.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_cephfs_test-clients</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" data-log-name="smallfile_IO_on_multiple_clients_with_diff_operations_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" class="toggle-raw" onclick="toggleRawAnalysis('smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/smallfile_IO_on_multiple_clients_with_diff_operations_0.log" target="_blank" class="log-name">smallfile_IO_on_multiple_clients_with_diff_operations_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient resources, such as CPU, memory, and disk space.</td>
+                <td>1. Increase the number of CPU cores allocated to the Ceph cluster.</td>
+                <td>1. Monitor the Ceph cluster&#x27;s resource usage using tools like `ceph-status` or `systemd-analyze`.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6', 'like')"
+                                data-log-id="smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" data-vote="like">👍</button>
+                        <button id="dislike-btn-smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6', 'dislike')"
+                                data-log-id="smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" data-vote="dislike">👎</button>
+                        <button id="skip-btn-smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6', 'skip')"
+                                data-log-id="smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" class="feedback-form">
+                        <textarea id="feedback-text-smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-smallfile_IO_on_multiple_clients_with_diff_operations_0log0908b6" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient resources, such as CPU, memory, and disk space.
+
+Fix:
+
+1. Increase the number of CPU cores allocated to the Ceph cluster.
+2. Add more RAM to the nodes to improve performance.
+3. Check if there are any disk-intensive operations running on the nodes and optimize them.
+4. Consider upgrading the hardware components, such as the hard drives or SSDs, to improve performance.
+
+Steps:
+
+1. Monitor the Ceph cluster&#x27;s resource usage using tools like `ceph-status` or `systemd-analyze`.
+2. Identify the bottleneck resources (CPU, memory, disk I/O) and prioritize them for optimization.
+3. Implement the suggested solutions based on the root cause analysis.
+4. Monitor the Ceph cluster&#x27;s performance after implementing the fixes to ensure the issues are resolved.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="client_caps_update_validation_0log0b71c4" data-log-name="client_caps_update_validation_0.log">
+                <td>2</td>
+                <td>
+                    <span id="toggle-client_caps_update_validation_0log0b71c4" class="toggle-raw" onclick="toggleRawAnalysis('client_caps_update_validation_0log0b71c4')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/client_caps_update_validation_0.log" target="_blank" class="log-name">client_caps_update_validation_0.log</a>
+                </td>
+                <td>The Ceph cluster is experiencing slow operations and failures due to a combination of factors, including hardware issues, software bugs, and insufficient resources.</td>
+                <td>1. Hardware issues: Check the hardware components for any signs of failure or degradation. Replace any failing components to improve performance.</td>
+                <td>1. Check the Ceph cluster logs for any error messages or warnings related to hardware, software, or resource issues.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-client_caps_update_validation_0log0b71c4" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('client_caps_update_validation_0log0b71c4', 'like')"
+                                data-log-id="client_caps_update_validation_0log0b71c4" data-vote="like">👍</button>
+                        <button id="dislike-btn-client_caps_update_validation_0log0b71c4" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('client_caps_update_validation_0log0b71c4', 'dislike')"
+                                data-log-id="client_caps_update_validation_0log0b71c4" data-vote="dislike">👎</button>
+                        <button id="skip-btn-client_caps_update_validation_0log0b71c4" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('client_caps_update_validation_0log0b71c4', 'skip')"
+                                data-log-id="client_caps_update_validation_0log0b71c4" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-client_caps_update_validation_0log0b71c4" class="feedback-form">
+                        <textarea id="feedback-text-client_caps_update_validation_0log0b71c4" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-client_caps_update_validation_0log0b71c4" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The Ceph cluster is experiencing slow operations and failures due to a combination of factors, including hardware issues, software bugs, and insufficient resources.
+
+Fix:
+
+1. Hardware issues: Check the hardware components for any signs of failure or degradation. Replace any failing components to improve performance.
+2. Software bugs: Identify and fix any software bugs that may be causing slow operations.
+3. Insufficient resources: Ensure that the cluster has sufficient resources, including CPU, memory, and storage, to handle the workload. Add more resources if necessary.
+
+Steps:
+
+1. Check the Ceph cluster logs for any error messages or warnings related to hardware, software, or resource issues.
+2. Use tools like `ceph-smapi` or `ceph-csm` to monitor the Ceph cluster&#x27;s performance and identify any bottlenecks or issues.
+3. Check the Ceph cluster&#x27;s configuration files for any incorrect settings that may be causing problems.
+4. Test the Ceph cluster with a reduced workload to identify any resource constraints.
+5. Implement resource-efficient solutions, such as using a smaller number of OSDs or reducing the number of replicas.
+6. Consider upgrading to a newer version of Ceph that may address some of the issues.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" data-log-name="Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0.log">
+                <td>3</td>
+                <td>
+                    <span id="toggle-Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" class="toggle-raw" onclick="toggleRawAnalysis('Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0.log" target="_blank" class="log-name">Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0.log</a>
+                </td>
+                <td>The root cause of the failures is a combination of software and hardware issues.</td>
+                <td>To fix the issue, I would suggest the following steps:</td>
+                <td>1. Check the system logs for any error messages or warnings that may indicate the cause of the failures.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f', 'like')"
+                                data-log-id="Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" data-vote="like">👍</button>
+                        <button id="dislike-btn-Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f', 'dislike')"
+                                data-log-id="Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f', 'skip')"
+                                data-log-id="Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" class="feedback-form">
+                        <textarea id="feedback-text-Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Mount_single_directory_and_perform_IO_ops_from_multiple_clients_0log37a87f" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is a combination of software and hardware issues.
+
+Fix: To fix the issue, I would suggest the following steps:
+
+1. Check the system logs for any error messages or warnings that may indicate the cause of the failures.
+2. Review the system configuration files to ensure that they are properly formatted and do not contain any syntax errors.
+3. Check the hardware components, such as the CPU, memory, and storage devices, to ensure that they are functioning properly.
+4. Run a diagnostic tool, such as `systemd-analyze`, to gather more detailed information about the system&#x27;s state and identify potential issues.
+5. Apply any necessary updates or patches to the system software to address any identified vulnerabilities or bugs.
+6. If the issue persists, consider seeking additional support from the system administrator or a professional IT consultant.
+
+Steps:
+
+1. Check the system logs for error messages or warnings related to the failures.
+2. Review the system configuration files for proper formatting and syntax.
+3. Check the hardware components for any signs of failure or malfunction.
+4. Run `systemd-analyze` to gather more detailed information about the system&#x27;s state.
+5. Apply updates or patches to address any identified vulnerabilities or bugs.
+6. If necessary, seek additional support from a system administrator or professional IT consultant.
+
+Answer: The root cause of the failures is likely a combination of software and hardware issues. To fix the issue, follow the steps outlined above, including checking the system logs, reviewing the configuration files, checking the hardware components, running `systemd-analyze`, and applying updates or patches as necessary. If the issue persists, seek additional support from a system administrator or professional IT consultant.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" data-log-name="Validate_Root_Sqaush_operations_on_Cephfs_0.log">
+                <td>4</td>
+                <td>
+                    <span id="toggle-Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" class="toggle-raw" onclick="toggleRawAnalysis('Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/Validate_Root_Sqaush_operations_on_Cephfs_0.log" target="_blank" class="log-name">Validate_Root_Sqaush_operations_on_Cephfs_0.log</a>
+                </td>
+                <td>The log file indicates that there are issues with the Ceph cluster, specifically with the client nodes.</td>
+                <td>To fix the issue, we need to identify and resolve the root cause of the failures. Based on the log file analysis, it seems that the client nodes are experiencing problems with their network connections, leading to errors in the Ceph cluster. Here are some suggested solutions:</td>
+                <td>1. Review network connectivity and make necessary adjustments.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae', 'like')"
+                                data-log-id="Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" data-vote="like">👍</button>
+                        <button id="dislike-btn-Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae', 'dislike')"
+                                data-log-id="Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae', 'skip')"
+                                data-log-id="Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" class="feedback-form">
+                        <textarea id="feedback-text-Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Validate_Root_Sqaush_operations_on_Cephfs_0log91a9ae" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The log file indicates that there are issues with the Ceph cluster, specifically with the client nodes.
+
+Fix: To fix the issue, we need to identify and resolve the root cause of the failures. Based on the log file analysis, it seems that the client nodes are experiencing problems with their network connections, leading to errors in the Ceph cluster. Here are some suggested solutions:
+
+1. Check network connectivity: Ensure that all client nodes have a stable and reliable network connection. This may involve checking network cables, configuring network settings, or troubleshooting network issues.
+2. Update Ceph software: Make sure that the Ceph software on the client nodes is up-to-date and compatible with the current version of the Ceph cluster. Outdated software can cause compatibility issues and lead to errors.
+3. Check disk usage: Monitor the disk usage of the client nodes to ensure that they have sufficient free space for data storage. If the disks are almost full, it may cause errors in the Ceph cluster.
+4. Verify Ceph configuration: Review the Ceph configuration files to ensure that they are correctly formatted and consistent across all client nodes. Any inconsistencies can lead to errors in the Ceph cluster.
+5. Check for hardware issues: Identify any potential hardware issues on the client nodes, such as disk failures or network card problems, and address them accordingly.
+
+Steps:
+
+1. Review network connectivity and make necessary adjustments.
+2. Update Ceph software on client nodes.
+3. Monitor disk usage and free up space if necessary.
+4. Verify Ceph configuration files and ensure consistency across all client nodes.
+5. Check for any potential hardware issues on client nodes and address them.
+
+Answer: By following these steps, you should be able to identify and resolve the root cause of the failures in the Ceph cluster.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" data-log-name="Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0.log">
+                <td>5</td>
+                <td>
+                    <span id="toggle-Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" class="toggle-raw" onclick="toggleRawAnalysis('Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0.log" target="_blank" class="log-name">Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the lack of proper permissions and configuration issues in the Ceph cluster.</td>
+                <td>To fix the issue, the following steps can be taken:</td>
+                <td>1. Check the Ceph configuration file to ensure that it is correctly formatted and has the necessary settings for the cluster.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9', 'like')"
+                                data-log-id="Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" data-vote="like">👍</button>
+                        <button id="dislike-btn-Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9', 'dislike')"
+                                data-log-id="Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9', 'skip')"
+                                data-log-id="Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" class="feedback-form">
+                        <textarea id="feedback-text-Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Verify_Client_is_blocklisted_if_session_metadata_is_bloated_0log84e1d9" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the lack of proper permissions and configuration issues in the Ceph cluster.
+
+Fix: To fix the issue, the following steps can be taken:
+
+1. Ensure that the Ceph cluster is properly configured with the correct permission settings for clients.
+2. Review and update the Ceph configuration file to ensure that it is correctly formatted and has the necessary settings for the cluster.
+3. Run the `ceph auth get client.ceph-regression-rpbzec-wrs7oy-node8` command to obtain the required permissions for the clients.
+
+Steps:
+
+1. Check the Ceph configuration file to ensure that it is correctly formatted and has the necessary settings for the cluster.
+2. Review the permission settings for clients and ensure that they are properly configured.
+3. Run the `ceph auth get client.ceph-regression-rpbzec-wrs7oy-node8` command to obtain the required permissions for the clients.
+4. Test the Ceph cluster to ensure that it is functioning correctly and that there are no further issues.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" data-log-name="multiple_clients_run_IO's_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0.log">
+                <td>6</td>
+                <td>
+                    <span id="toggle-multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" class="toggle-raw" onclick="toggleRawAnalysis('multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/multiple_clients_run_IO's_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0.log" target="_blank" class="log-name">multiple_clients_run_IO's_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient IOPS and Bandwidth in the Ceph cluster.</td>
+                <td>Increase the number of disks in each node to at least 4096 MB, and ensure that the disk size is sufficient for the workload. Also, increase the ceph-regression-ioengine-depth value to at least 10 to allow for more IOPS.</td>
+                <td>1. Increase the number of disks in each node to at least 4096 MB.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87', 'like')"
+                                data-log-id="multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" data-vote="like">👍</button>
+                        <button id="dislike-btn-multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87', 'dislike')"
+                                data-log-id="multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" data-vote="dislike">👎</button>
+                        <button id="skip-btn-multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87', 'skip')"
+                                data-log-id="multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" class="feedback-form">
+                        <textarea id="feedback-text-multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-multiple_clients_run_IOs_on_same_directory_from_each_clients_and_exersize_POSIX_locks_0log5b9d87" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient IOPS and Bandwidth in the Ceph cluster.
+
+Fix: Increase the number of disks in each node to at least 4096 MB, and ensure that the disk size is sufficient for the workload. Also, increase the ceph-regression-ioengine-depth value to at least 10 to allow for more IOPS.
+
+Steps:
+
+1. Increase the number of disks in each node to at least 4096 MB.
+2. Ensure that the disk size is sufficient for the workload by monitoring the disk usage and adjusting the disk size as needed.
+3. Increase the ceph-regression-ioengine-depth value to at least 10 to allow for more IOPS.
+4. Monitor the Ceph cluster for any performance issues and adjust the configuration as needed.
+
+Note: The above steps are just a general guideline, and the specific actions may vary depending on the actual workload and environment of the Ceph cluster.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="verify_user_read_and_write_permissions_0log530f64" data-log-name="verify_user_read_and_write_permissions_0.log">
+                <td>7</td>
+                <td>
+                    <span id="toggle-verify_user_read_and_write_permissions_0log530f64" class="toggle-raw" onclick="toggleRawAnalysis('verify_user_read_and_write_permissions_0log530f64')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/verify_user_read_and_write_permissions_0.log" target="_blank" class="log-name">verify_user_read_and_write_permissions_0.log</a>
+                </td>
+                <td>The command exceeded the allocated execution time, which caused the failures.</td>
+                <td>Increase the timeout value in the cephci configuration file or reduce the execution time of the command.</td>
+                <td>Review the cephci configuration file and increase the timeout value if necessary. Alternatively, optimize the command execution time by reducing the number of arguments passed to the command or using a faster command execution tool.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-verify_user_read_and_write_permissions_0log530f64" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('verify_user_read_and_write_permissions_0log530f64', 'like')"
+                                data-log-id="verify_user_read_and_write_permissions_0log530f64" data-vote="like">👍</button>
+                        <button id="dislike-btn-verify_user_read_and_write_permissions_0log530f64" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('verify_user_read_and_write_permissions_0log530f64', 'dislike')"
+                                data-log-id="verify_user_read_and_write_permissions_0log530f64" data-vote="dislike">👎</button>
+                        <button id="skip-btn-verify_user_read_and_write_permissions_0log530f64" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('verify_user_read_and_write_permissions_0log530f64', 'skip')"
+                                data-log-id="verify_user_read_and_write_permissions_0log530f64" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-verify_user_read_and_write_permissions_0log530f64" class="feedback-form">
+                        <textarea id="feedback-text-verify_user_read_and_write_permissions_0log530f64" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-verify_user_read_and_write_permissions_0log530f64" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The command exceeded the allocated execution time, which caused the failures.
+
+Fix: Increase the timeout value in the cephci configuration file or reduce the execution time of the command.
+
+Steps: Review the cephci configuration file and increase the timeout value if necessary. Alternatively, optimize the command execution time by reducing the number of arguments passed to the command or using a faster command execution tool.
+
+Answer: The root cause of the failures is the exceeded allocated execution time in the cephci command. To fix this issue, review the cephci configuration file and increase the timeout value if necessary, or optimize the command execution time by reducing the number of arguments passed to the command or using a faster command execution tool.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="mds_scrub_only_with_one_mds_after_failover_0log0597f0" data-log-name="mds_scrub_only_with_one_mds_after_failover_0.log">
+                <td>8</td>
+                <td>
+                    <span id="toggle-mds_scrub_only_with_one_mds_after_failover_0log0597f0" class="toggle-raw" onclick="toggleRawAnalysis('mds_scrub_only_with_one_mds_after_failover_0log0597f0')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/mds_scrub_only_with_one_mds_after_failover_0.log" target="_blank" class="log-name">mds_scrub_only_with_one_mds_after_failover_0.log</a>
+                </td>
+                <td>Analysis incomplete</td>
+                <td>See raw analysis for details</td>
+                <td>Review full log</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-mds_scrub_only_with_one_mds_after_failover_0log0597f0" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('mds_scrub_only_with_one_mds_after_failover_0log0597f0', 'like')"
+                                data-log-id="mds_scrub_only_with_one_mds_after_failover_0log0597f0" data-vote="like">👍</button>
+                        <button id="dislike-btn-mds_scrub_only_with_one_mds_after_failover_0log0597f0" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('mds_scrub_only_with_one_mds_after_failover_0log0597f0', 'dislike')"
+                                data-log-id="mds_scrub_only_with_one_mds_after_failover_0log0597f0" data-vote="dislike">👎</button>
+                        <button id="skip-btn-mds_scrub_only_with_one_mds_after_failover_0log0597f0" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('mds_scrub_only_with_one_mds_after_failover_0log0597f0', 'skip')"
+                                data-log-id="mds_scrub_only_with_one_mds_after_failover_0log0597f0" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-mds_scrub_only_with_one_mds_after_failover_0log0597f0" class="feedback-form">
+                        <textarea id="feedback-text-mds_scrub_only_with_one_mds_after_failover_0log0597f0" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-mds_scrub_only_with_one_mds_after_failover_0log0597f0" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Based on the provided log file, there are several reasons for the failures observed:
+
+1. Insufficient storage space: The log file mentions that the shared directory /mnt/cephfs_kernel8a9rulir1a_1/dir_kernel_2 is not accessible from this host and every remote host in test. This suggests that there may be insufficient storage space available on the system, which could be causing the failures.
+2. Incorrect configuration: The log file mentions that the Ceph cluster is not able to verify read operations. This could be due to incorrect configuration of the Ceph cluster or the underlying hardware.
+3. Network connectivity issues: The log file mentions that the shared directory /mnt/cephfs_kernel8a9rulir1a_1/dir_kernel_2 is not accessible from this host and every remote host in test. This suggests that there may be network connectivity issues preventing the Ceph cluster from accessing the shared directory.
+
+To fix these issues, the following steps can be taken:
+
+1. Increase storage space: Ensure that there is sufficient storage space available on the system to accommodate the Ceph cluster&#x27;s needs. This may involve adding more storage devices or increasing the size of existing storage devices.
+2. Review configuration: Review the Ceph cluster&#x27;s configuration to ensure that it is correct and consistent with the underlying hardware. Make any necessary adjustments to the configuration to improve the Ceph cluster&#x27;s functionality.
+3. Check network connectivity: Check the network connectivity between the Ceph cluster and the shared directory to ensure that there are no issues preventing the Ceph cluster from accessing the shared directory. This may involve checking the network cables, routers, and switches to ensure that they are functioning correctly.
+
+By taking these steps, it should be possible to identify and fix the root cause of the failures observed in the log file.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Client_eviction_0log484dd9" data-log-name="Client_eviction_0.log">
+                <td>9</td>
+                <td>
+                    <span id="toggle-Client_eviction_0log484dd9" class="toggle-raw" onclick="toggleRawAnalysis('Client_eviction_0log484dd9')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/Client_eviction_0.log" target="_blank" class="log-name">Client_eviction_0.log</a>
+                </td>
+                <td>The system is experiencing frequent failures due to insufficient resources, particularly CPU and memory.</td>
+                <td>1. Increase the amount of CPU and memory allocated to the Ceph cluster. This can be done by adjusting the configuration files or by adding more nodes to the cluster.</td>
+                <td>1. Review the Ceph configuration files to ensure that they are optimized for the current workload.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Client_eviction_0log484dd9" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Client_eviction_0log484dd9', 'like')"
+                                data-log-id="Client_eviction_0log484dd9" data-vote="like">👍</button>
+                        <button id="dislike-btn-Client_eviction_0log484dd9" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Client_eviction_0log484dd9', 'dislike')"
+                                data-log-id="Client_eviction_0log484dd9" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Client_eviction_0log484dd9" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Client_eviction_0log484dd9', 'skip')"
+                                data-log-id="Client_eviction_0log484dd9" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Client_eviction_0log484dd9" class="feedback-form">
+                        <textarea id="feedback-text-Client_eviction_0log484dd9" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Client_eviction_0log484dd9" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The system is experiencing frequent failures due to insufficient resources, particularly CPU and memory.
+
+Fix:
+
+1. Increase the amount of CPU and memory allocated to the Ceph cluster. This can be done by adjusting the configuration files or by adding more nodes to the cluster.
+2. Implement a load balancing mechanism to distribute the workload across multiple nodes, reducing the strain on any single node.
+3. Monitor the system for potential bottlenecks and optimize the configuration accordingly.
+
+Steps:
+
+1. Review the Ceph configuration files to ensure that they are optimized for the current workload.
+2. Use tools like `ceph-status` or `ceph-mon` to monitor the system&#x27;s resource usage and identify potential bottlenecks.
+3. Adjust the configuration files to allocate more resources to the Ceph cluster, such as increasing the number of nodes or adjusting the CPU and memory allocations.
+4. Implement a load balancing mechanism, such as `ceph-loadbalance`, to distribute the workload across multiple nodes.
+5. Monitor the system&#x27;s performance after making these changes to ensure that the issues have been resolved.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Client_File_locking_on_mounts_0log635e6e" data-log-name="Client_File_locking_on_mounts_0.log">
+                <td>10</td>
+                <td>
+                    <span id="toggle-Client_File_locking_on_mounts_0log635e6e" class="toggle-raw" onclick="toggleRawAnalysis('Client_File_locking_on_mounts_0log635e6e')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/Client_File_locking_on_mounts_0.log" target="_blank" class="log-name">Client_File_locking_on_mounts_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to a combination of issues, including a faulty ceph client installation, incorrect configuration, and insufficient permissions.</td>
+                <td>To fix the issue, the following steps can be taken:</td>
+                <td>1. Review the ceph client installation and configuration logs to identify any potential issues.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Client_File_locking_on_mounts_0log635e6e" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Client_File_locking_on_mounts_0log635e6e', 'like')"
+                                data-log-id="Client_File_locking_on_mounts_0log635e6e" data-vote="like">👍</button>
+                        <button id="dislike-btn-Client_File_locking_on_mounts_0log635e6e" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Client_File_locking_on_mounts_0log635e6e', 'dislike')"
+                                data-log-id="Client_File_locking_on_mounts_0log635e6e" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Client_File_locking_on_mounts_0log635e6e" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Client_File_locking_on_mounts_0log635e6e', 'skip')"
+                                data-log-id="Client_File_locking_on_mounts_0log635e6e" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Client_File_locking_on_mounts_0log635e6e" class="feedback-form">
+                        <textarea id="feedback-text-Client_File_locking_on_mounts_0log635e6e" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Client_File_locking_on_mounts_0log635e6e" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to a combination of issues, including a faulty ceph client installation, incorrect configuration, and insufficient permissions.
+
+Fix: To fix the issue, the following steps can be taken:
+
+1. Review and correct the ceph client installation and configuration to ensure it is properly set up and functioning correctly.
+2. Ensure that the necessary permissions are in place for the ceph client to function correctly.
+3. Check for any potential issues with the cephfs mount point and ensure that it is properly configured and accessible.
+
+Steps:
+
+1. Review the ceph client installation and configuration logs to identify any potential issues.
+2. Correct any identified issues with the ceph client installation and configuration.
+3. Ensure that the necessary permissions are in place for the ceph client to function correctly.
+4. Check for any potential issues with the cephfs mount point and ensure that it is properly configured and accessible.
+5. Test the ceph client functionality after making any corrections to ensure that it is working correctly.</pre>
+                    </div>
+                </td>
+            </tr>
+            
+            <tr class="log-item" data-log-id="Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" data-log-name="Running_basic_bash_commands_on_fuse,Kernel_and_NFS_mounts_0.log">
+                <td>11</td>
+                <td>
+                    <span id="toggle-Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" class="toggle-raw" onclick="toggleRawAnalysis('Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_cephfs_test-clients/Running_basic_bash_commands_on_fuse,Kernel_and_NFS_mounts_0.log" target="_blank" class="log-name">Running_basic_bash_commands_on_fuse,Kernel_and_NFS_mounts_0.log</a>
+                </td>
+                <td>The root cause of the failures in the log file can be attributed to issues with the Ceph cluster, specifically with the RBD (Ray Ball Dash) daemon.</td>
+                <td>To fix the issue, we need to identify and resolve the underlying problem. Here are some suggested solutions:</td>
+                <td>1. Review the Ceph configuration files to ensure they are properly formatted and contain no syntax errors.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f', 'like')"
+                                data-log-id="Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" data-vote="like">👍</button>
+                        <button id="dislike-btn-Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f', 'dislike')"
+                                data-log-id="Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f', 'skip')"
+                                data-log-id="Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" class="feedback-form">
+                        <textarea id="feedback-text-Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Running_basic_bash_commands_on_fuseKernel_and_NFS_mounts_0logce198f" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures in the log file can be attributed to issues with the Ceph cluster, specifically with the RBD (Ray Ball Dash) daemon.
+
+Fix: To fix the issue, we need to identify and resolve the underlying problem. Here are some suggested solutions:
+
+1. Check the Ceph configuration files: Review the Ceph configuration files to ensure that they are properly formatted and contain no syntax errors. This may help resolve issues with the RBD daemon.
+2. Check the RBD daemon logs: Examine the logs of the RBD daemon to identify any error messages or warnings that may indicate a problem. Common issues include disk I/O errors, network connectivity problems, or configuration file issues.
+3. Check the Ceph cluster status: Use the `ceph status` command to check the status of the Ceph cluster. This can help identify any issues with the cluster, such as disk usage, memory usage, or network connectivity problems.
+4. Restart the RBD daemon: If you suspect a problem with the RBD daemon, try restarting it. This may help resolve any issues and get the daemon running smoothly again.
+
+Steps:
+
+1. Review the Ceph configuration files to ensure they are properly formatted and contain no syntax errors.
+2. Examine the logs of the RBD daemon to identify any error messages or warnings that may indicate a problem.
+3. Use the `ceph status` command to check the status of the Ceph cluster and identify any issues.
+4. Restart the RBD daemon if you suspect a problem.
+
+Answer: The root cause of the failures in the log file is likely related to issues with the RBD daemon. To fix the issue, review the Ceph configuration files, examine the logs of the RBD daemon, use the `ceph status` command to check the status of the Ceph cluster, and restart the RBD daemon if necessary.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_fs_mutlifs_quota_snaphost</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0log3f2ff3" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0log3f2ff3" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0log3f2ff3')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-2_fs_mutlifs_quota_snaphost/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>The traceback indicates that the `cephci` process failed to execute the `long_running` function, which is likely due to a timeout issue.</td>
+                <td>1. Increase the maximum execution time for the `cephci` process in the configuration file.</td>
+                <td>1. Review the `cephci` configuration file to increase the maximum execution time.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0log3f2ff3" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log3f2ff3', 'like')"
+                                data-log-id="setup_install_prerequisistes_0log3f2ff3" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0log3f2ff3" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log3f2ff3', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0log3f2ff3" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0log3f2ff3" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log3f2ff3', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0log3f2ff3" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0log3f2ff3" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0log3f2ff3" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0log3f2ff3" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The traceback indicates that the `cephci` process failed to execute the `long_running` function, which is likely due to a timeout issue.
+
+Fix:
+
+1. Increase the maximum execution time for the `cephci` process in the configuration file.
+2. Check if there are any bottlenecks or resource constraints that could be causing the timeouts.
+3. Implement a mechanism to handle failures gracefully and restart the process if necessary.
+
+Steps:
+
+1. Review the `cephci` configuration file to increase the maximum execution time.
+2. Monitor the system resources (CPU, memory, disk usage) to identify any bottlenecks or constraints that could be causing the timeouts.
+3. Implement a mechanism to handle failures gracefully, such as retrying the command after a delay or escalating the issue to a human operator for manual intervention.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-1_fs</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0log55e33e" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0log55e33e" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0log55e33e')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-1_fs/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>The traceback indicates that the `cephci` process failed to execute the `long_running` function due to a TimeoutException.</td>
+                <td>The suggested solution is to increase the allocated execution time for the `cephci` process. This can be done by modifying the ` ceph.conf` file and increasing the `timeout` value. For example, you can set the `timeout` value to 300 seconds or more.</td>
+                <td>1. Open the `ceph.conf` file in a text editor using the appropriate permissions.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0log55e33e" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log55e33e', 'like')"
+                                data-log-id="setup_install_prerequisistes_0log55e33e" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0log55e33e" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log55e33e', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0log55e33e" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0log55e33e" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log55e33e', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0log55e33e" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0log55e33e" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0log55e33e" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0log55e33e" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The traceback indicates that the `cephci` process failed to execute the `long_running` function due to a TimeoutException.
+
+Fix: The suggested solution is to increase the allocated execution time for the `cephci` process. This can be done by modifying the ` ceph.conf` file and increasing the `timeout` value. For example, you can set the `timeout` value to 300 seconds or more.
+
+Steps:
+
+1. Open the `ceph.conf` file in a text editor using the appropriate permissions.
+2. Locate the `timeout` setting and increase the value by at least 100 seconds. For example, you can set `timeout=300`.
+3. Save the changes to the `ceph.conf` file.
+4. Restart the `cephci` process to apply the changes.
+
+Answer: The root cause of the failures is a TimeoutException in the `long_running` function of the `cephci` process. To fix this issue, increase the allocated execution time for the `cephci` process by modifying the `timeout` value in the `ceph.conf` file.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-1_cephfs_mirror</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0log12ac7a" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0log12ac7a" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0log12ac7a')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-1_cephfs_mirror/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>The traceback indicates that the `cephci` process failed to execute a command within the allocated execution time, resulting in a TimeoutException.</td>
+                <td>To fix this issue, increase the allocated execution time for the `cephci` process by modifying the `CEPH_EXEC_TIMEOUT` environment variable before running the `cephci` command. For example, you can set the variable to a higher value using the following command:</td>
+                <td>1. Set the `CEPH_EXEC_TIMEOUT` environment variable to a higher value before running the `cephci` command.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0log12ac7a" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log12ac7a', 'like')"
+                                data-log-id="setup_install_prerequisistes_0log12ac7a" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0log12ac7a" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log12ac7a', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0log12ac7a" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0log12ac7a" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log12ac7a', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0log12ac7a" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0log12ac7a" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0log12ac7a" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0log12ac7a" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The traceback indicates that the `cephci` process failed to execute a command within the allocated execution time, resulting in a TimeoutException.
+
+Fix: To fix this issue, increase the allocated execution time for the `cephci` process by modifying the `CEPH_EXEC_TIMEOUT` environment variable before running the `cephci` command. For example, you can set the variable to a higher value using the following command:
+```bash
+export CEPH_EXEC_TIMEOUT=300
+```
+Steps:
+
+1. Set the `CEPH_EXEC_TIMEOUT` environment variable to a higher value before running the `cephci` command.
+2. Run the `cephci` command again and monitor the output for any errors or warnings.
+
+Answer: The root cause of the failures is the allocated execution time for the `cephci` process, which was not sufficient to complete the command within the allocated time frame. By increasing the allocated execution time, you can mitigate this issue and prevent timeouts from occurring in the future.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-1_cephfs_cg_quiesce</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="setup_install_prerequisistes_0log06cc9d" data-log-name="setup_install_pre-requisistes_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-setup_install_prerequisistes_0log06cc9d" class="toggle-raw" onclick="toggleRawAnalysis('setup_install_prerequisistes_0log06cc9d')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/tier-1_cephfs_cg_quiesce/setup_install_pre-requisistes_0.log" target="_blank" class="log-name">setup_install_pre-requisistes_0.log</a>
+                </td>
+                <td>The traceback indicates that the `cephci` process failed to execute a command within the allocated execution time, resulting in a TimeoutException.</td>
+                <td>To fix this issue, you can increase the allocated execution time for the `cephci` process by modifying the ` ceph.conf` file. You can do this by increasing the `max_time` parameter in the `[ceph]` section of the configuration file. For example, you can set the `max_time` to 300 seconds (5 minutes) by adding the following line to the `ceph` section of the configuration file:</td>
+                <td>1. Edit the `ceph.conf` file using a text editor or an IDE of your choice.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-setup_install_prerequisistes_0log06cc9d" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log06cc9d', 'like')"
+                                data-log-id="setup_install_prerequisistes_0log06cc9d" data-vote="like">👍</button>
+                        <button id="dislike-btn-setup_install_prerequisistes_0log06cc9d" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log06cc9d', 'dislike')"
+                                data-log-id="setup_install_prerequisistes_0log06cc9d" data-vote="dislike">👎</button>
+                        <button id="skip-btn-setup_install_prerequisistes_0log06cc9d" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('setup_install_prerequisistes_0log06cc9d', 'skip')"
+                                data-log-id="setup_install_prerequisistes_0log06cc9d" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-setup_install_prerequisistes_0log06cc9d" class="feedback-form">
+                        <textarea id="feedback-text-setup_install_prerequisistes_0log06cc9d" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-setup_install_prerequisistes_0log06cc9d" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The traceback indicates that the `cephci` process failed to execute a command within the allocated execution time, resulting in a TimeoutException.
+
+Fix:
+To fix this issue, you can increase the allocated execution time for the `cephci` process by modifying the ` ceph.conf` file. You can do this by increasing the `max_time` parameter in the `[ceph]` section of the configuration file. For example, you can set the `max_time` to 300 seconds (5 minutes) by adding the following line to the `ceph` section of the configuration file:
+```
+[ceph]
+max_time = 300
+```
+Steps:
+
+1. Edit the `ceph.conf` file using a text editor or an IDE of your choice.
+2. Locate the `[ceph]` section in the configuration file.
+3. Increase the value of the `max_time` parameter to the desired amount (in seconds).
+4. Save the modified configuration file.
+5. Restart the `cephci` process to apply the changes.
+
+Answer: The root cause of the failures is the `cephci` process exceeding the allocated execution time, resulting in a TimeoutException. To fix this issue, you can increase the maximum execution time for the `cephci` process by modifying the `max_time` parameter in the `ceph.conf` file.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        
+        <button class="submit-all-btn" onclick="submitAllFeedback()">
+            Submit All Feedback (34 logs)
+        </button>
+    </body>
+    </html>
+    

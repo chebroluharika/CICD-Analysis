@@ -1,0 +1,1147 @@
+2025-04-14 22:44:43,632 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-14 22:44:43,636 - cephci - run:722 - INFO - Running test test_scrub_omap.py
+2025-04-14 22:44:43,636 - cephci - test_scrub_omap:29 - INFO - 
+    Test to create a large number of omap entries on the single PG pool and test osd resiliency
+    Returns:
+        1 -> Fail, 0 -> Pass
+    
+2025-04-14 22:44:43,637 - cephci - test_scrub_omap:43 - DEBUG - Creating replicated pool on the cluster with name Test
+2025-04-14 22:44:43,637 - cephci - core_workflows:563 - DEBUG - creating pool_name Test
+2025-04-14 22:44:43,639 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool create Test 1 1 on 10.0.195.177
+2025-04-14 22:44:45,640 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool create Test 1 1 on 10.0.195.177 took 2.000044 seconds
+2025-04-14 22:44:45,641 - cephci - shell:64 - DEBUG - 
+2025-04-14 22:44:45,682 - cephci - ceph:1576 - INFO - Execute cephadm shell -- sudo ceph osd pool application enable Test rados on 10.0.195.177
+2025-04-14 22:44:49,366 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- sudo ceph osd pool application enable Test rados on 10.0.195.177 took 3.683732 seconds
+2025-04-14 22:44:49,367 - cephci - shell:64 - DEBUG - 
+2025-04-14 22:44:54,372 - cephci - core_workflows:620 - INFO - Created pool Test successfully
+2025-04-14 22:44:54,373 - cephci - utils:1858 - DEBUG - The <bound method RadosOrchestrator.create_pool of <ceph.rados.core_workflows.RadosOrchestrator object at 0x7f9bfcc5dac0>> return status is True
+2025-04-14 22:44:54,373 - cephci - test_scrub_omap:51 - INFO - Created the pool Test. beginning to create large number of omap entries on the pool
+2025-04-14 22:44:54,385 - cephci - ceph:1576 - INFO - Execute ceph osd pool stats Test -f json on 10.0.195.201
+2025-04-14 22:44:55,390 - cephci - ceph:1606 - INFO - Execution of ceph osd pool stats Test -f json on 10.0.195.201 took 1.004665 seconds
+2025-04-14 22:44:55,391 - cephci - pool_workflows:123 - DEBUG - Writing 60000000 Key pairs to increase the omap entries on pool Test
+2025-04-14 22:44:55,394 - cephci - ceph:1576 - INFO - Execute curl -k https://raw.githubusercontent.com/red-hat-storage/cephci/refs/heads/main/utility/generate_omap_entries.py -O on 10.0.195.201
+2025-04-14 22:44:56,398 - cephci - ceph:1606 - INFO - Execution of curl -k https://raw.githubusercontent.com/red-hat-storage/cephci/refs/heads/main/utility/generate_omap_entries.py -O on 10.0.195.201 took 1.003754 seconds
+2025-04-14 22:44:56,400 - cephci - ceph:1576 - INFO - Execute pip3 install docopt on 10.0.195.201
+2025-04-14 22:45:22,434 - cephci - ceph:1186 - DEBUG - Collecting docopt
+2025-04-14 22:45:34,301 - cephci - ceph:1186 - DEBUG -   Downloading docopt-0.6.2.tar.gz (25 kB)
+2025-04-14 22:45:34,320 - cephci - ceph:1186 - DEBUG -   Preparing metadata (setup.py): started
+2025-04-14 22:45:34,509 - cephci - ceph:1186 - DEBUG -   Preparing metadata (setup.py): finished with status 'done'
+2025-04-14 22:45:34,513 - cephci - ceph:1186 - DEBUG - Using legacy 'setup.py install' for docopt, since package 'wheel' is not installed.
+2025-04-14 22:45:34,573 - cephci - ceph:1186 - DEBUG - Installing collected packages: docopt
+2025-04-14 22:45:34,575 - cephci - ceph:1186 - DEBUG -     Running setup.py install for docopt: started
+2025-04-14 22:45:34,798 - cephci - ceph:1186 - DEBUG -     Running setup.py install for docopt: finished with status 'done'
+2025-04-14 22:45:34,801 - cephci - ceph:1186 - DEBUG - Successfully installed docopt-0.6.2
+2025-04-14 22:45:34,875 - cephci - ceph:1186 - ERROR - WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+2025-04-14 22:45:34,876 - cephci - ceph:1606 - INFO - Execution of pip3 install docopt on 10.0.195.201 took 38.475636 seconds
+2025-04-14 22:45:34,879 - cephci - ceph:1576 - INFO - Execute python3 generate_omap_entries.py --pool Test --start 0 --end 200 --key-count 300000 on 10.0.195.201
+2025-04-14 22:45:41,893 - cephci - ceph:1186 - DEBUG - wrote 300000 of 60000000 omap entries
+2025-04-14 22:45:46,324 - cephci - ceph:1186 - DEBUG - wrote 600000 of 60000000 omap entries
+2025-04-14 22:45:54,420 - cephci - ceph:1186 - DEBUG - wrote 900000 of 60000000 omap entries
+2025-04-14 22:46:06,613 - cephci - ceph:1186 - DEBUG - wrote 1200000 of 60000000 omap entries
+2025-04-14 22:46:14,104 - cephci - ceph:1186 - DEBUG - wrote 1500000 of 60000000 omap entries
+2025-04-14 22:46:20,705 - cephci - ceph:1186 - DEBUG - wrote 1800000 of 60000000 omap entries
+2025-04-14 22:46:31,942 - cephci - ceph:1186 - DEBUG - wrote 2100000 of 60000000 omap entries
+2025-04-14 22:46:38,076 - cephci - ceph:1186 - DEBUG - wrote 2400000 of 60000000 omap entries
+2025-04-14 22:46:46,497 - cephci - ceph:1186 - DEBUG - wrote 2700000 of 60000000 omap entries
+2025-04-14 22:46:52,017 - cephci - ceph:1186 - DEBUG - wrote 3000000 of 60000000 omap entries
+2025-04-14 22:46:58,602 - cephci - ceph:1186 - DEBUG - wrote 3300000 of 60000000 omap entries
+2025-04-14 22:47:07,160 - cephci - ceph:1186 - DEBUG - wrote 3600000 of 60000000 omap entries
+2025-04-14 22:47:13,583 - cephci - ceph:1186 - DEBUG - wrote 3900000 of 60000000 omap entries
+2025-04-14 22:47:19,019 - cephci - ceph:1186 - DEBUG - wrote 4200000 of 60000000 omap entries
+2025-04-14 22:47:26,176 - cephci - ceph:1186 - DEBUG - wrote 4500000 of 60000000 omap entries
+2025-04-14 22:47:37,689 - cephci - ceph:1186 - DEBUG - wrote 4800000 of 60000000 omap entries
+2025-04-14 22:47:45,075 - cephci - ceph:1186 - DEBUG - wrote 5100000 of 60000000 omap entries
+2025-04-14 22:47:51,030 - cephci - ceph:1186 - DEBUG - wrote 5400000 of 60000000 omap entries
+2025-04-14 22:48:00,274 - cephci - ceph:1186 - DEBUG - wrote 5700000 of 60000000 omap entries
+2025-04-14 22:48:07,359 - cephci - ceph:1186 - DEBUG - wrote 6000000 of 60000000 omap entries
+2025-04-14 22:48:16,107 - cephci - ceph:1186 - DEBUG - wrote 6300000 of 60000000 omap entries
+2025-04-14 22:48:21,335 - cephci - ceph:1186 - DEBUG - wrote 6600000 of 60000000 omap entries
+2025-04-14 22:48:27,978 - cephci - ceph:1186 - DEBUG - wrote 6900000 of 60000000 omap entries
+2025-04-14 22:48:33,943 - cephci - ceph:1186 - DEBUG - wrote 7200000 of 60000000 omap entries
+2025-04-14 22:48:45,480 - cephci - ceph:1186 - DEBUG - wrote 7500000 of 60000000 omap entries
+2025-04-14 22:48:51,991 - cephci - ceph:1186 - DEBUG - wrote 7800000 of 60000000 omap entries
+2025-04-14 22:49:00,042 - cephci - ceph:1186 - DEBUG - wrote 8100000 of 60000000 omap entries
+2025-04-14 22:49:07,648 - cephci - ceph:1186 - DEBUG - wrote 8400000 of 60000000 omap entries
+2025-04-14 22:49:12,613 - cephci - ceph:1186 - DEBUG - wrote 8700000 of 60000000 omap entries
+2025-04-14 22:49:19,077 - cephci - ceph:1186 - DEBUG - wrote 9000000 of 60000000 omap entries
+2025-04-14 22:49:24,622 - cephci - ceph:1186 - DEBUG - wrote 9300000 of 60000000 omap entries
+2025-04-14 22:49:34,818 - cephci - ceph:1186 - DEBUG - wrote 9600000 of 60000000 omap entries
+2025-04-14 22:49:44,499 - cephci - ceph:1186 - DEBUG - wrote 9900000 of 60000000 omap entries
+2025-04-14 22:49:54,102 - cephci - ceph:1186 - DEBUG - wrote 10200000 of 60000000 omap entries
+2025-04-14 22:50:05,885 - cephci - ceph:1186 - DEBUG - wrote 10500000 of 60000000 omap entries
+2025-04-14 22:50:13,524 - cephci - ceph:1186 - DEBUG - wrote 10800000 of 60000000 omap entries
+2025-04-14 22:50:24,905 - cephci - ceph:1186 - DEBUG - wrote 11100000 of 60000000 omap entries
+2025-04-14 22:50:37,057 - cephci - ceph:1186 - DEBUG - wrote 11400000 of 60000000 omap entries
+2025-04-14 22:50:45,688 - cephci - ceph:1186 - DEBUG - wrote 11700000 of 60000000 omap entries
+2025-04-14 22:50:56,402 - cephci - ceph:1186 - DEBUG - wrote 12000000 of 60000000 omap entries
+2025-04-14 22:51:02,198 - cephci - ceph:1186 - DEBUG - wrote 12300000 of 60000000 omap entries
+2025-04-14 22:51:15,382 - cephci - ceph:1186 - DEBUG - wrote 12600000 of 60000000 omap entries
+2025-04-14 22:51:21,228 - cephci - ceph:1186 - DEBUG - wrote 12900000 of 60000000 omap entries
+2025-04-14 22:51:26,650 - cephci - ceph:1186 - DEBUG - wrote 13200000 of 60000000 omap entries
+2025-04-14 22:51:38,749 - cephci - ceph:1186 - DEBUG - wrote 13500000 of 60000000 omap entries
+2025-04-14 22:51:46,448 - cephci - ceph:1186 - DEBUG - wrote 13800000 of 60000000 omap entries
+2025-04-14 22:51:52,670 - cephci - ceph:1186 - DEBUG - wrote 14100000 of 60000000 omap entries
+2025-04-14 22:52:03,832 - cephci - ceph:1186 - DEBUG - wrote 14400000 of 60000000 omap entries
+2025-04-14 22:52:12,198 - cephci - ceph:1186 - DEBUG - wrote 14700000 of 60000000 omap entries
+2025-04-14 22:53:09,036 - cephci - ceph:1186 - DEBUG - wrote 15000000 of 60000000 omap entries
+2025-04-14 22:53:17,150 - cephci - ceph:1186 - DEBUG - wrote 15300000 of 60000000 omap entries
+2025-04-14 22:53:23,310 - cephci - ceph:1186 - DEBUG - wrote 15600000 of 60000000 omap entries
+2025-04-14 22:53:32,098 - cephci - ceph:1186 - DEBUG - wrote 15900000 of 60000000 omap entries
+2025-04-14 22:53:41,189 - cephci - ceph:1186 - DEBUG - wrote 16200000 of 60000000 omap entries
+2025-04-14 22:53:46,721 - cephci - ceph:1186 - DEBUG - wrote 16500000 of 60000000 omap entries
+2025-04-14 22:53:53,199 - cephci - ceph:1186 - DEBUG - wrote 16800000 of 60000000 omap entries
+2025-04-14 22:53:59,510 - cephci - ceph:1186 - DEBUG - wrote 17100000 of 60000000 omap entries
+2025-04-14 22:54:05,582 - cephci - ceph:1186 - DEBUG - wrote 17400000 of 60000000 omap entries
+2025-04-14 22:54:13,514 - cephci - ceph:1186 - DEBUG - wrote 17700000 of 60000000 omap entries
+2025-04-14 22:54:20,487 - cephci - ceph:1186 - DEBUG - wrote 18000000 of 60000000 omap entries
+2025-04-14 22:54:25,228 - cephci - ceph:1186 - DEBUG - wrote 18300000 of 60000000 omap entries
+2025-04-14 22:54:31,788 - cephci - ceph:1186 - DEBUG - wrote 18600000 of 60000000 omap entries
+2025-04-14 22:54:37,327 - cephci - ceph:1186 - DEBUG - wrote 18900000 of 60000000 omap entries
+2025-04-14 22:54:46,089 - cephci - ceph:1186 - DEBUG - wrote 19200000 of 60000000 omap entries
+2025-04-14 22:54:55,982 - cephci - ceph:1186 - DEBUG - wrote 19500000 of 60000000 omap entries
+2025-04-14 22:55:03,291 - cephci - ceph:1186 - DEBUG - wrote 19800000 of 60000000 omap entries
+2025-04-14 22:55:08,428 - cephci - ceph:1186 - DEBUG - wrote 20100000 of 60000000 omap entries
+2025-04-14 22:55:16,414 - cephci - ceph:1186 - DEBUG - wrote 20400000 of 60000000 omap entries
+2025-04-14 22:55:21,456 - cephci - ceph:1186 - DEBUG - wrote 20700000 of 60000000 omap entries
+2025-04-14 22:55:30,613 - cephci - ceph:1186 - DEBUG - wrote 21000000 of 60000000 omap entries
+2025-04-14 22:55:36,391 - cephci - ceph:1186 - DEBUG - wrote 21300000 of 60000000 omap entries
+2025-04-14 22:55:41,846 - cephci - ceph:1186 - DEBUG - wrote 21600000 of 60000000 omap entries
+2025-04-14 22:55:50,554 - cephci - ceph:1186 - DEBUG - wrote 21900000 of 60000000 omap entries
+2025-04-14 22:55:58,084 - cephci - ceph:1186 - DEBUG - wrote 22200000 of 60000000 omap entries
+2025-04-14 22:56:05,877 - cephci - ceph:1186 - DEBUG - wrote 22500000 of 60000000 omap entries
+2025-04-14 22:56:12,932 - cephci - ceph:1186 - DEBUG - wrote 22800000 of 60000000 omap entries
+2025-04-14 22:56:19,213 - cephci - ceph:1186 - DEBUG - wrote 23100000 of 60000000 omap entries
+2025-04-14 22:56:24,948 - cephci - ceph:1186 - DEBUG - wrote 23400000 of 60000000 omap entries
+2025-04-14 22:56:31,795 - cephci - ceph:1186 - DEBUG - wrote 23700000 of 60000000 omap entries
+2025-04-14 22:56:38,198 - cephci - ceph:1186 - DEBUG - wrote 24000000 of 60000000 omap entries
+2025-04-14 22:56:43,080 - cephci - ceph:1186 - DEBUG - wrote 24300000 of 60000000 omap entries
+2025-04-14 22:56:48,865 - cephci - ceph:1186 - DEBUG - wrote 24600000 of 60000000 omap entries
+2025-04-14 22:56:56,446 - cephci - ceph:1186 - DEBUG - wrote 24900000 of 60000000 omap entries
+2025-04-14 22:57:03,668 - cephci - ceph:1186 - DEBUG - wrote 25200000 of 60000000 omap entries
+2025-04-14 22:57:11,610 - cephci - ceph:1186 - DEBUG - wrote 25500000 of 60000000 omap entries
+2025-04-14 22:57:16,266 - cephci - ceph:1186 - DEBUG - wrote 25800000 of 60000000 omap entries
+2025-04-14 22:57:25,084 - cephci - ceph:1186 - DEBUG - wrote 26100000 of 60000000 omap entries
+2025-04-14 22:57:32,432 - cephci - ceph:1186 - DEBUG - wrote 26400000 of 60000000 omap entries
+2025-04-14 22:57:39,776 - cephci - ceph:1186 - DEBUG - wrote 26700000 of 60000000 omap entries
+2025-04-14 22:57:56,445 - cephci - ceph:1186 - DEBUG - wrote 27000000 of 60000000 omap entries
+2025-04-14 22:58:09,167 - cephci - ceph:1186 - DEBUG - wrote 27300000 of 60000000 omap entries
+2025-04-14 22:58:13,624 - cephci - ceph:1186 - DEBUG - wrote 27600000 of 60000000 omap entries
+2025-04-14 22:58:18,663 - cephci - ceph:1186 - DEBUG - wrote 27900000 of 60000000 omap entries
+2025-04-14 22:58:25,794 - cephci - ceph:1186 - DEBUG - wrote 28200000 of 60000000 omap entries
+2025-04-14 22:58:34,580 - cephci - ceph:1186 - DEBUG - wrote 28500000 of 60000000 omap entries
+2025-04-14 22:58:39,969 - cephci - ceph:1186 - DEBUG - wrote 28800000 of 60000000 omap entries
+2025-04-14 22:58:46,293 - cephci - ceph:1186 - DEBUG - wrote 29100000 of 60000000 omap entries
+2025-04-14 22:58:56,659 - cephci - ceph:1186 - DEBUG - wrote 29400000 of 60000000 omap entries
+2025-04-14 22:59:03,592 - cephci - ceph:1186 - DEBUG - wrote 29700000 of 60000000 omap entries
+2025-04-14 22:59:08,813 - cephci - ceph:1186 - DEBUG - wrote 30000000 of 60000000 omap entries
+2025-04-14 22:59:15,314 - cephci - ceph:1186 - DEBUG - wrote 30300000 of 60000000 omap entries
+2025-04-14 22:59:20,440 - cephci - ceph:1186 - DEBUG - wrote 30600000 of 60000000 omap entries
+2025-04-14 22:59:26,836 - cephci - ceph:1186 - DEBUG - wrote 30900000 of 60000000 omap entries
+2025-04-14 22:59:32,110 - cephci - ceph:1186 - DEBUG - wrote 31200000 of 60000000 omap entries
+2025-04-14 22:59:38,218 - cephci - ceph:1186 - DEBUG - wrote 31500000 of 60000000 omap entries
+2025-04-14 22:59:43,663 - cephci - ceph:1186 - DEBUG - wrote 31800000 of 60000000 omap entries
+2025-04-14 22:59:48,086 - cephci - ceph:1186 - DEBUG - wrote 32100000 of 60000000 omap entries
+2025-04-14 22:59:53,501 - cephci - ceph:1186 - DEBUG - wrote 32400000 of 60000000 omap entries
+2025-04-14 22:59:59,222 - cephci - ceph:1186 - DEBUG - wrote 32700000 of 60000000 omap entries
+2025-04-14 23:00:04,929 - cephci - ceph:1186 - DEBUG - wrote 33000000 of 60000000 omap entries
+2025-04-14 23:00:09,649 - cephci - ceph:1186 - DEBUG - wrote 33300000 of 60000000 omap entries
+2025-04-14 23:00:15,416 - cephci - ceph:1186 - DEBUG - wrote 33600000 of 60000000 omap entries
+2025-04-14 23:00:20,338 - cephci - ceph:1186 - DEBUG - wrote 33900000 of 60000000 omap entries
+2025-04-14 23:00:34,949 - cephci - ceph:1186 - DEBUG - wrote 34200000 of 60000000 omap entries
+2025-04-14 23:00:41,854 - cephci - ceph:1186 - DEBUG - wrote 34500000 of 60000000 omap entries
+2025-04-14 23:00:47,507 - cephci - ceph:1186 - DEBUG - wrote 34800000 of 60000000 omap entries
+2025-04-14 23:00:55,162 - cephci - ceph:1186 - DEBUG - wrote 35100000 of 60000000 omap entries
+2025-04-14 23:01:12,853 - cephci - ceph:1186 - DEBUG - wrote 35400000 of 60000000 omap entries
+2025-04-14 23:01:19,360 - cephci - ceph:1186 - DEBUG - wrote 35700000 of 60000000 omap entries
+2025-04-14 23:01:28,395 - cephci - ceph:1186 - DEBUG - wrote 36000000 of 60000000 omap entries
+2025-04-14 23:01:38,540 - cephci - ceph:1186 - DEBUG - wrote 36300000 of 60000000 omap entries
+2025-04-14 23:01:46,892 - cephci - ceph:1186 - DEBUG - wrote 36600000 of 60000000 omap entries
+2025-04-14 23:01:57,219 - cephci - ceph:1186 - DEBUG - wrote 36900000 of 60000000 omap entries
+2025-04-14 23:02:05,267 - cephci - ceph:1186 - DEBUG - wrote 37200000 of 60000000 omap entries
+2025-04-14 23:02:15,353 - cephci - ceph:1186 - DEBUG - wrote 37500000 of 60000000 omap entries
+2025-04-14 23:02:20,846 - cephci - ceph:1186 - DEBUG - wrote 37800000 of 60000000 omap entries
+2025-04-14 23:02:27,559 - cephci - ceph:1186 - DEBUG - wrote 38100000 of 60000000 omap entries
+2025-04-14 23:02:41,173 - cephci - ceph:1186 - DEBUG - wrote 38400000 of 60000000 omap entries
+2025-04-14 23:02:47,899 - cephci - ceph:1186 - DEBUG - wrote 38700000 of 60000000 omap entries
+2025-04-14 23:02:56,228 - cephci - ceph:1186 - DEBUG - wrote 39000000 of 60000000 omap entries
+2025-04-14 23:03:03,225 - cephci - ceph:1186 - DEBUG - wrote 39300000 of 60000000 omap entries
+2025-04-14 23:03:09,988 - cephci - ceph:1186 - DEBUG - wrote 39600000 of 60000000 omap entries
+2025-04-14 23:03:17,005 - cephci - ceph:1186 - DEBUG - wrote 39900000 of 60000000 omap entries
+2025-04-14 23:03:26,100 - cephci - ceph:1186 - DEBUG - wrote 40200000 of 60000000 omap entries
+2025-04-14 23:03:32,325 - cephci - ceph:1186 - DEBUG - wrote 40500000 of 60000000 omap entries
+2025-04-14 23:03:38,379 - cephci - ceph:1186 - DEBUG - wrote 40800000 of 60000000 omap entries
+2025-04-14 23:03:43,193 - cephci - ceph:1186 - DEBUG - wrote 41100000 of 60000000 omap entries
+2025-04-14 23:03:55,860 - cephci - ceph:1186 - DEBUG - wrote 41400000 of 60000000 omap entries
+2025-04-14 23:04:02,337 - cephci - ceph:1186 - DEBUG - wrote 41700000 of 60000000 omap entries
+2025-04-14 23:04:07,936 - cephci - ceph:1186 - DEBUG - wrote 42000000 of 60000000 omap entries
+2025-04-14 23:04:12,692 - cephci - ceph:1186 - DEBUG - wrote 42300000 of 60000000 omap entries
+2025-04-14 23:04:20,144 - cephci - ceph:1186 - DEBUG - wrote 42600000 of 60000000 omap entries
+2025-04-14 23:04:26,116 - cephci - ceph:1186 - DEBUG - wrote 42900000 of 60000000 omap entries
+2025-04-14 23:04:31,648 - cephci - ceph:1186 - DEBUG - wrote 43200000 of 60000000 omap entries
+2025-04-14 23:04:36,060 - cephci - ceph:1186 - DEBUG - wrote 43500000 of 60000000 omap entries
+2025-04-14 23:04:42,809 - cephci - ceph:1186 - DEBUG - wrote 43800000 of 60000000 omap entries
+2025-04-14 23:04:49,839 - cephci - ceph:1186 - DEBUG - wrote 44100000 of 60000000 omap entries
+2025-04-14 23:04:55,219 - cephci - ceph:1186 - DEBUG - wrote 44400000 of 60000000 omap entries
+2025-04-14 23:04:59,929 - cephci - ceph:1186 - DEBUG - wrote 44700000 of 60000000 omap entries
+2025-04-14 23:05:03,777 - cephci - ceph:1186 - DEBUG - wrote 45000000 of 60000000 omap entries
+2025-04-14 23:05:11,593 - cephci - ceph:1186 - DEBUG - wrote 45300000 of 60000000 omap entries
+2025-04-14 23:05:18,153 - cephci - ceph:1186 - DEBUG - wrote 45600000 of 60000000 omap entries
+2025-04-14 23:05:25,035 - cephci - ceph:1186 - DEBUG - wrote 45900000 of 60000000 omap entries
+2025-04-14 23:05:29,294 - cephci - ceph:1186 - DEBUG - wrote 46200000 of 60000000 omap entries
+2025-04-14 23:05:39,198 - cephci - ceph:1186 - DEBUG - wrote 46500000 of 60000000 omap entries
+2025-04-14 23:05:45,682 - cephci - ceph:1186 - DEBUG - wrote 46800000 of 60000000 omap entries
+2025-04-14 23:05:50,330 - cephci - ceph:1186 - DEBUG - wrote 47100000 of 60000000 omap entries
+2025-04-14 23:05:56,008 - cephci - ceph:1186 - DEBUG - wrote 47400000 of 60000000 omap entries
+2025-04-14 23:06:00,687 - cephci - ceph:1186 - DEBUG - wrote 47700000 of 60000000 omap entries
+2025-04-14 23:06:06,349 - cephci - ceph:1186 - DEBUG - wrote 48000000 of 60000000 omap entries
+2025-04-14 23:06:10,705 - cephci - ceph:1186 - DEBUG - wrote 48300000 of 60000000 omap entries
+2025-04-14 23:06:15,008 - cephci - ceph:1186 - DEBUG - wrote 48600000 of 60000000 omap entries
+2025-04-14 23:06:20,531 - cephci - ceph:1186 - DEBUG - wrote 48900000 of 60000000 omap entries
+2025-04-14 23:06:26,846 - cephci - ceph:1186 - DEBUG - wrote 49200000 of 60000000 omap entries
+2025-04-14 23:06:31,565 - cephci - ceph:1186 - DEBUG - wrote 49500000 of 60000000 omap entries
+2025-04-14 23:06:36,778 - cephci - ceph:1186 - DEBUG - wrote 49800000 of 60000000 omap entries
+2025-04-14 23:06:42,243 - cephci - ceph:1186 - DEBUG - wrote 50100000 of 60000000 omap entries
+2025-04-14 23:06:49,394 - cephci - ceph:1186 - DEBUG - wrote 50400000 of 60000000 omap entries
+2025-04-14 23:06:54,794 - cephci - ceph:1186 - DEBUG - wrote 50700000 of 60000000 omap entries
+2025-04-14 23:07:01,092 - cephci - ceph:1186 - DEBUG - wrote 51000000 of 60000000 omap entries
+2025-04-14 23:07:08,191 - cephci - ceph:1186 - DEBUG - wrote 51300000 of 60000000 omap entries
+2025-04-14 23:07:18,380 - cephci - ceph:1186 - DEBUG - wrote 51600000 of 60000000 omap entries
+2025-04-14 23:07:26,975 - cephci - ceph:1186 - DEBUG - wrote 51900000 of 60000000 omap entries
+2025-04-14 23:07:31,065 - cephci - ceph:1186 - DEBUG - wrote 52200000 of 60000000 omap entries
+2025-04-14 23:07:36,779 - cephci - ceph:1186 - DEBUG - wrote 52500000 of 60000000 omap entries
+2025-04-14 23:07:41,729 - cephci - ceph:1186 - DEBUG - wrote 52800000 of 60000000 omap entries
+2025-04-14 23:07:48,595 - cephci - ceph:1186 - DEBUG - wrote 53100000 of 60000000 omap entries
+2025-04-14 23:07:53,169 - cephci - ceph:1186 - DEBUG - wrote 53400000 of 60000000 omap entries
+2025-04-14 23:07:59,995 - cephci - ceph:1186 - DEBUG - wrote 53700000 of 60000000 omap entries
+2025-04-14 23:08:05,116 - cephci - ceph:1186 - DEBUG - wrote 54000000 of 60000000 omap entries
+2025-04-14 23:08:16,908 - cephci - ceph:1186 - DEBUG - wrote 54300000 of 60000000 omap entries
+2025-04-14 23:08:22,355 - cephci - ceph:1186 - DEBUG - wrote 54600000 of 60000000 omap entries
+2025-04-14 23:08:27,077 - cephci - ceph:1186 - DEBUG - wrote 54900000 of 60000000 omap entries
+2025-04-14 23:08:31,268 - cephci - ceph:1186 - DEBUG - wrote 55200000 of 60000000 omap entries
+2025-04-14 23:08:44,614 - cephci - ceph:1186 - DEBUG - wrote 55500000 of 60000000 omap entries
+2025-04-14 23:08:50,648 - cephci - ceph:1186 - DEBUG - wrote 55800000 of 60000000 omap entries
+2025-04-14 23:08:55,797 - cephci - ceph:1186 - DEBUG - wrote 56100000 of 60000000 omap entries
+2025-04-14 23:09:00,160 - cephci - ceph:1186 - DEBUG - wrote 56400000 of 60000000 omap entries
+2025-04-14 23:09:10,734 - cephci - ceph:1186 - DEBUG - wrote 56700000 of 60000000 omap entries
+2025-04-14 23:09:16,685 - cephci - ceph:1186 - DEBUG - wrote 57000000 of 60000000 omap entries
+2025-04-14 23:09:23,502 - cephci - ceph:1186 - DEBUG - wrote 57300000 of 60000000 omap entries
+2025-04-14 23:09:27,654 - cephci - ceph:1186 - DEBUG - wrote 57600000 of 60000000 omap entries
+2025-04-14 23:09:33,022 - cephci - ceph:1186 - DEBUG - wrote 57900000 of 60000000 omap entries
+2025-04-14 23:09:37,641 - cephci - ceph:1186 - DEBUG - wrote 58200000 of 60000000 omap entries
+2025-04-14 23:09:41,842 - cephci - ceph:1186 - DEBUG - wrote 58500000 of 60000000 omap entries
+2025-04-14 23:09:49,315 - cephci - ceph:1186 - DEBUG - wrote 58800000 of 60000000 omap entries
+2025-04-14 23:09:54,692 - cephci - ceph:1186 - DEBUG - wrote 59100000 of 60000000 omap entries
+2025-04-14 23:09:58,628 - cephci - ceph:1186 - DEBUG - wrote 59400000 of 60000000 omap entries
+2025-04-14 23:10:03,395 - cephci - ceph:1186 - DEBUG - wrote 59700000 of 60000000 omap entries
+2025-04-14 23:10:07,508 - cephci - ceph:1186 - DEBUG - wrote 60000000 of 60000000 omap entries
+2025-04-14 23:10:07,525 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:10:07,525 - cephci - ceph:1186 - DEBUG - Done!
+2025-04-14 23:10:08,538 - cephci - ceph:1606 - INFO - Execution of python3 generate_omap_entries.py --pool Test --start 0 --end 200 --key-count 300000 on 10.0.195.201 took 1473.658413 seconds
+2025-04-14 23:10:08,542 - cephci - ceph:1576 - INFO - Execute rm -rf generate_omap_entries.py on 10.0.195.201
+2025-04-14 23:10:09,548 - cephci - ceph:1606 - INFO - Execution of rm -rf generate_omap_entries.py on 10.0.195.201 took 1.005433 seconds
+2025-04-14 23:10:09,550 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:10:10,555 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004254 seconds
+2025-04-14 23:10:10,556 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:10:50,592 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:10:51,599 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.006213 seconds
+2025-04-14 23:10:51,600 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 3300000
+2025-04-14 23:10:51,600 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 3300000
+2025-04-14 23:10:51,603 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:10:52,607 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003787 seconds
+2025-04-14 23:10:52,607 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:11:32,646 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:11:33,656 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.009168 seconds
+2025-04-14 23:11:33,657 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 6300000
+2025-04-14 23:11:33,657 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 6300000
+2025-04-14 23:11:33,659 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:11:34,664 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.005009 seconds
+2025-04-14 23:11:34,665 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:12:14,705 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:12:15,712 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.005796 seconds
+2025-04-14 23:12:15,713 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 24000000
+2025-04-14 23:12:15,716 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 24000000
+2025-04-14 23:12:15,718 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:12:16,722 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.00441 seconds
+2025-04-14 23:12:16,723 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:12:56,760 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:12:57,768 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.0073 seconds
+2025-04-14 23:12:57,769 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 39900000
+2025-04-14 23:12:57,770 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 39900000
+2025-04-14 23:12:57,775 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:12:58,783 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.00775 seconds
+2025-04-14 23:12:58,784 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:13:38,824 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:13:39,831 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.005703 seconds
+2025-04-14 23:13:39,832 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:13:39,832 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:13:39,835 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:13:40,841 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004821 seconds
+2025-04-14 23:13:40,842 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:14:20,895 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:14:21,901 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.005074 seconds
+2025-04-14 23:14:21,902 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:14:21,902 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:14:21,909 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:14:22,919 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.008623 seconds
+2025-04-14 23:14:22,919 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:15:02,957 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:15:03,962 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004257 seconds
+2025-04-14 23:15:03,963 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:15:03,964 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:15:03,966 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:15:04,970 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004365 seconds
+2025-04-14 23:15:04,971 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:15:45,016 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:15:46,022 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.005209 seconds
+2025-04-14 23:15:46,023 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:15:46,023 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:15:46,025 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:15:47,035 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.008769 seconds
+2025-04-14 23:15:47,035 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:16:27,076 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:16:28,081 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004473 seconds
+2025-04-14 23:16:28,082 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:16:28,082 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:16:28,084 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:16:29,088 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003731 seconds
+2025-04-14 23:16:29,089 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:17:09,126 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:17:10,132 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.00509 seconds
+2025-04-14 23:17:10,133 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:17:10,133 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:17:10,135 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:17:11,139 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.00366 seconds
+2025-04-14 23:17:11,140 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:17:51,183 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:17:52,189 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.00465 seconds
+2025-04-14 23:17:52,190 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:17:52,190 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:17:52,192 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:17:53,196 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003826 seconds
+2025-04-14 23:17:53,197 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:18:33,239 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:18:34,244 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004389 seconds
+2025-04-14 23:18:34,245 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:18:34,245 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:18:34,247 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:18:35,251 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003825 seconds
+2025-04-14 23:18:35,252 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:19:15,291 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:19:16,296 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004975 seconds
+2025-04-14 23:19:16,297 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:19:16,298 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:19:16,302 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:19:17,308 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.005723 seconds
+2025-04-14 23:19:17,309 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:19:57,351 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:19:58,357 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.00486 seconds
+2025-04-14 23:19:58,358 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:19:58,358 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:19:58,360 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:19:59,364 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003563 seconds
+2025-04-14 23:19:59,365 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:20:39,404 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:20:43,413 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 4.008429 seconds
+2025-04-14 23:20:43,414 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:20:43,414 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:20:43,416 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:20:44,420 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004035 seconds
+2025-04-14 23:20:44,421 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:21:24,462 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:21:25,467 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004129 seconds
+2025-04-14 23:21:25,468 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:21:25,469 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:21:25,471 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:21:26,475 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004166 seconds
+2025-04-14 23:21:26,476 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:22:06,515 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:22:07,519 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.003957 seconds
+2025-04-14 23:22:07,520 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 47100000
+2025-04-14 23:22:07,520 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 47100000
+2025-04-14 23:22:07,522 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:22:08,527 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004229 seconds
+2025-04-14 23:22:08,528 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:22:48,572 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:22:49,577 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004786 seconds
+2025-04-14 23:22:49,578 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 49800000
+2025-04-14 23:22:49,579 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 49800000
+2025-04-14 23:22:49,583 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:22:50,588 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004728 seconds
+2025-04-14 23:22:50,589 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:23:30,632 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:23:31,638 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.005073 seconds
+2025-04-14 23:23:31,639 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 51000000
+2025-04-14 23:23:31,639 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 51000000
+2025-04-14 23:23:31,641 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:23:32,646 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004539 seconds
+2025-04-14 23:23:32,647 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:24:12,680 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:24:13,686 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.005587 seconds
+2025-04-14 23:24:13,687 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 51000000
+2025-04-14 23:24:13,688 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 51000000
+2025-04-14 23:24:13,690 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:24:14,695 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004255 seconds
+2025-04-14 23:24:14,696 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:24:54,729 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:24:55,734 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004764 seconds
+2025-04-14 23:24:55,735 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 57000000
+2025-04-14 23:24:55,735 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 57000000
+2025-04-14 23:24:55,737 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:24:56,741 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003851 seconds
+2025-04-14 23:24:56,742 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:25:36,777 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:25:37,783 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.005244 seconds
+2025-04-14 23:25:37,784 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 57000000
+2025-04-14 23:25:37,785 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 57000000
+2025-04-14 23:25:37,787 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:25:38,791 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004224 seconds
+2025-04-14 23:25:38,792 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:26:18,828 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:26:19,833 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004777 seconds
+2025-04-14 23:26:19,834 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 52800000
+2025-04-14 23:26:19,835 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 52800000
+2025-04-14 23:26:19,836 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:26:20,841 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003751 seconds
+2025-04-14 23:26:20,841 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:27:00,885 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:27:01,891 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.00503 seconds
+2025-04-14 23:27:01,892 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 52800000
+2025-04-14 23:27:01,893 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 52800000
+2025-04-14 23:27:01,895 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:27:02,900 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004011 seconds
+2025-04-14 23:27:02,901 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:27:42,945 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:27:43,950 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004414 seconds
+2025-04-14 23:27:43,951 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 52800000
+2025-04-14 23:27:43,951 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 52800000
+2025-04-14 23:27:43,953 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:27:44,958 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003709 seconds
+2025-04-14 23:27:44,958 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:28:24,999 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:28:26,004 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.0042 seconds
+2025-04-14 23:28:26,005 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 52800000
+2025-04-14 23:28:26,005 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 52800000
+2025-04-14 23:28:26,007 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:28:27,012 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004007 seconds
+2025-04-14 23:28:27,013 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:29:07,050 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:29:08,055 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004517 seconds
+2025-04-14 23:29:08,056 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 52800000
+2025-04-14 23:29:08,057 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 52800000
+2025-04-14 23:29:08,058 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:29:09,064 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004851 seconds
+2025-04-14 23:29:09,065 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:29:49,106 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:29:50,112 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004885 seconds
+2025-04-14 23:29:50,113 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 52800000
+2025-04-14 23:29:50,113 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 52800000
+2025-04-14 23:29:50,115 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:29:51,121 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004894 seconds
+2025-04-14 23:29:51,121 - cephci - pool_workflows:151 - DEBUG - Triggered deep-scrub on the pool, and checking for omap entries present
+2025-04-14 23:30:31,153 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:30:32,157 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.003675 seconds
+2025-04-14 23:30:32,158 - cephci - pool_workflows:101 - INFO - Current value of OMAP keys: 52800000
+2025-04-14 23:30:32,159 - cephci - pool_workflows:108 - ERROR - OMAP key yet to reach expected value of 60000000 for pool Test. Current entries : 52800000
+2025-04-14 23:30:32,160 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:30:33,163 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.002582 seconds
+2025-04-14 23:30:33,165 - cephci - ceph:1576 - INFO - Execute ceph pg dump_pools_json on 10.0.195.201
+2025-04-14 23:30:34,170 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_pools_json on 10.0.195.201 took 1.004219 seconds
+2025-04-14 23:30:34,171 - cephci - pool_workflows:163 - INFO - Wrote 52800000 keys with 614044640 bytes of OMAP data on the pool.
+2025-04-14 23:30:34,173 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd osd_deep_scrub_large_omap_object_key_threshold on 10.0.195.177
+2025-04-14 23:30:36,801 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd osd_deep_scrub_large_omap_object_key_threshold on 10.0.195.177 took 2.626863 seconds
+2025-04-14 23:30:36,801 - cephci - shell:64 - DEBUG - 200000
+
+2025-04-14 23:30:36,803 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:30:37,807 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.003996 seconds
+2025-04-14 23:30:37,811 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph health detail on 10.0.195.177
+2025-04-14 23:30:39,583 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph health detail on 10.0.195.177 took 1.771594 seconds
+2025-04-14 23:30:39,585 - cephci - ceph:1186 - DEBUG - HEALTH_WARN 8 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 176 large omap objects; Degraded data redundancy: 50/1248 objects degraded (4.006%), 5 pgs degraded, 2 pgs undersized
+2025-04-14 23:30:39,585 - cephci - ceph:1186 - DEBUG - [WRN] BLUESTORE_SLOW_OP_ALERT: 8 OSD(s) experiencing slow operations in BlueStore
+2025-04-14 23:30:39,585 - cephci - ceph:1186 - DEBUG -      osd.1 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,585 - cephci - ceph:1186 - DEBUG -      osd.7 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,585 - cephci - ceph:1186 - DEBUG -      osd.9 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,585 - cephci - ceph:1186 - DEBUG -      osd.10 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG -      osd.11 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG -      osd.12 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG -      osd.13 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG -      osd.14 observed slow operation indications in BlueStore
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG - [WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG -     daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in error state
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG - [WRN] LARGE_OMAP_OBJECTS: 176 large omap objects
+2025-04-14 23:30:39,586 - cephci - ceph:1186 - DEBUG -     176 large objects found in pool 'Test'
+2025-04-14 23:30:39,587 - cephci - ceph:1186 - DEBUG -     Search the cluster log for 'Large omap object found' for more details.
+2025-04-14 23:30:39,587 - cephci - ceph:1186 - DEBUG - [WRN] PG_DEGRADED: Degraded data redundancy: 50/1248 objects degraded (4.006%), 5 pgs degraded, 2 pgs undersized
+2025-04-14 23:30:39,587 - cephci - ceph:1186 - DEBUG -     pg 6.16 is stuck undersized for 4m, current state active+recovery_wait+undersized+degraded+remapped, last acting [3,8]
+2025-04-14 23:30:39,587 - cephci - ceph:1186 - DEBUG -     pg 6.1e is stuck undersized for 4m, current state active+recovery_wait+undersized+degraded+remapped, last acting [3,8]
+2025-04-14 23:30:39,587 - cephci - ceph:1186 - DEBUG -     pg 9.6 is active+recovery_wait+degraded, acting [5,12,8]
+2025-04-14 23:30:39,588 - cephci - ceph:1186 - DEBUG -     pg 9.d is active+recovery_wait+degraded, acting [14,5,0]
+2025-04-14 23:30:39,588 - cephci - ceph:1186 - DEBUG -     pg 9.1d is active+recovery_wait+degraded, acting [14,5,0]
+2025-04-14 23:30:39,588 - cephci - shell:64 - DEBUG - HEALTH_WARN 8 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 176 large omap objects; Degraded data redundancy: 50/1248 objects degraded (4.006%), 5 pgs degraded, 2 pgs undersized
+[WRN] BLUESTORE_SLOW_OP_ALERT: 8 OSD(s) experiencing slow operations in BlueStore
+     osd.1 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in error state
+[WRN] LARGE_OMAP_OBJECTS: 176 large omap objects
+    176 large objects found in pool 'Test'
+    Search the cluster log for 'Large omap object found' for more details.
+[WRN] PG_DEGRADED: Degraded data redundancy: 50/1248 objects degraded (4.006%), 5 pgs degraded, 2 pgs undersized
+    pg 6.16 is stuck undersized for 4m, current state active+recovery_wait+undersized+degraded+remapped, last acting [3,8]
+    pg 6.1e is stuck undersized for 4m, current state active+recovery_wait+undersized+degraded+remapped, last acting [3,8]
+    pg 9.6 is active+recovery_wait+degraded, acting [5,12,8]
+    pg 9.d is active+recovery_wait+degraded, acting [14,5,0]
+    pg 9.1d is active+recovery_wait+degraded, acting [14,5,0]
+
+2025-04-14 23:30:39,588 - cephci - pool_workflows:644 - INFO - HEALTH_WARN 8 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); 176 large omap objects; Degraded data redundancy: 50/1248 objects degraded (4.006%), 5 pgs degraded, 2 pgs undersized
+[WRN] BLUESTORE_SLOW_OP_ALERT: 8 OSD(s) experiencing slow operations in BlueStore
+     osd.1 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in error state
+[WRN] LARGE_OMAP_OBJECTS: 176 large omap objects
+    176 large objects found in pool 'Test'
+    Search the cluster log for 'Large omap object found' for more details.
+[WRN] PG_DEGRADED: Degraded data redundancy: 50/1248 objects degraded (4.006%), 5 pgs degraded, 2 pgs undersized
+    pg 6.16 is stuck undersized for 4m, current state active+recovery_wait+undersized+degraded+remapped, last acting [3,8]
+    pg 6.1e is stuck undersized for 4m, current state active+recovery_wait+undersized+degraded+remapped, last acting [3,8]
+    pg 9.6 is active+recovery_wait+degraded, acting [5,12,8]
+    pg 9.d is active+recovery_wait+degraded, acting [14,5,0]
+    pg 9.1d is active+recovery_wait+degraded, acting [14,5,0]
+
+2025-04-14 23:30:39,589 - cephci - pool_workflows:655 - INFO - Large omap objects warning found: True | Expected: True
+2025-04-14 23:30:39,589 - cephci - test_scrub_omap:66 - INFO - Generated Large OMAP warning on the cluster
+2025-04-14 23:30:39,589 - cephci - test_scrub_omap:75 - INFO - Starting scrubbing thread
+2025-04-14 23:30:39,590 - cephci - test_scrub_omap:77 - INFO - Starting OSD state verification thread
+2025-04-14 23:30:39,592 - cephci - ceph:1576 - INFO - Execute ceph pg ls-by-pool Test -f json on 10.0.195.201
+2025-04-14 23:30:39,626 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:30:40,597 - cephci - ceph:1606 - INFO - Execution of ceph pg ls-by-pool Test -f json on 10.0.195.201 took 1.004732 seconds
+2025-04-14 23:30:40,601 - cephci - ceph:1576 - INFO - Execute ceph pg dump_json pgs on 10.0.195.201
+2025-04-14 23:30:41,315 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.688308 seconds
+2025-04-14 23:30:41,316 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:30:41,316 - cephci - ceph:1186 - DEBUG - {"epoch":192,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:30:41,316 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 192, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:30:41,652 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_json pgs on 10.0.195.201 took 1.051152 seconds
+2025-04-14 23:30:41,692 - cephci - test_scrub_omap:114 - INFO - last_scrub: 175'16
+2025-04-14 23:30:41,692 - cephci - test_scrub_omap:115 - INFO - last_scrub_stamp: 2025-04-14T23:25:59.181987+0000
+2025-04-14 23:30:41,693 - cephci - test_scrub_omap:116 - INFO - last_deep_scrub: 175'16
+2025-04-14 23:30:41,693 - cephci - test_scrub_omap:117 - INFO - last_deep_scrub_stamp: 2025-04-14T23:25:59.181987+0000
+2025-04-14 23:30:41,694 - cephci - ceph:1576 - INFO - Execute ceph osd pool scrub Test on 10.0.195.201
+2025-04-14 23:30:42,698 - cephci - ceph:1606 - INFO - Execution of ceph osd pool scrub Test on 10.0.195.201 took 1.003403 seconds
+2025-04-14 23:30:42,701 - cephci - ceph:1576 - INFO - Execute ceph osd pool deep-scrub Test on 10.0.195.201
+2025-04-14 23:30:43,706 - cephci - ceph:1606 - INFO - Execution of ceph osd pool deep-scrub Test on 10.0.195.201 took 1.004505 seconds
+2025-04-14 23:30:43,706 - cephci - test_scrub_omap:124 - INFO - Scrubbing has been triggered for the pool Test
+2025-04-14 23:31:11,342 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:31:11,342 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:31:11,344 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:31:13,709 - cephci - ceph:1576 - INFO - Execute ceph pg dump_json pgs on 10.0.195.201
+2025-04-14 23:31:13,991 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.647015 seconds
+2025-04-14 23:31:13,992 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 194, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:31:14,759 - cephci - ceph:1606 - INFO - Execution of ceph pg dump_json pgs on 10.0.195.201 took 1.049593 seconds
+2025-04-14 23:31:44,011 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:31:44,011 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:31:44,013 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:31:45,663 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.649487 seconds
+2025-04-14 23:31:45,664 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:31:45,664 - cephci - ceph:1186 - DEBUG - {"epoch":194,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:31:45,664 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 194, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:32:15,670 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:32:15,670 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:32:15,672 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:32:17,400 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.728131 seconds
+2025-04-14 23:32:17,402 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:32:17,402 - cephci - ceph:1186 - DEBUG - {"epoch":194,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:32:17,402 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 194, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:32:47,432 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:32:47,432 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:32:47,434 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:32:49,260 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.825902 seconds
+2025-04-14 23:32:49,261 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:32:49,262 - cephci - ceph:1186 - DEBUG - {"epoch":194,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:32:49,262 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 194, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:33:19,285 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:33:19,286 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:33:19,288 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:33:21,112 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.82323 seconds
+2025-04-14 23:33:21,113 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:33:21,113 - cephci - ceph:1186 - DEBUG - {"epoch":194,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:33:21,113 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 194, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:33:51,132 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:33:51,132 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:33:51,134 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:33:53,767 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.632222 seconds
+2025-04-14 23:33:53,767 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 196, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:34:23,790 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:34:23,790 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:34:23,793 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:34:25,539 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.745382 seconds
+2025-04-14 23:34:25,540 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:34:25,540 - cephci - ceph:1186 - DEBUG - {"epoch":196,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":0}
+2025-04-14 23:34:25,541 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 196, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:34:55,570 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:34:55,570 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:34:55,572 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:34:58,187 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.614249 seconds
+2025-04-14 23:34:58,188 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 203, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 8}
+2025-04-14 23:35:28,219 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:35:28,220 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:35:28,222 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:35:31,061 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.837888 seconds
+2025-04-14 23:35:31,062 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 205, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 7}
+2025-04-14 23:36:01,070 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:36:01,071 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:36:01,072 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:36:02,854 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.780722 seconds
+2025-04-14 23:36:02,855 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:36:02,855 - cephci - ceph:1186 - DEBUG - {"epoch":207,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":6}
+2025-04-14 23:36:02,856 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 207, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 6}
+2025-04-14 23:36:32,861 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:36:32,862 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:36:32,864 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:36:34,448 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.583612 seconds
+2025-04-14 23:36:34,449 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:36:34,449 - cephci - ceph:1186 - DEBUG - {"epoch":210,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":3}
+2025-04-14 23:36:34,449 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 210, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 3}
+2025-04-14 23:37:04,480 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:37:04,480 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:37:04,483 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:37:06,630 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.146402 seconds
+2025-04-14 23:37:06,630 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:37:06,631 - cephci - ceph:1186 - DEBUG - {"epoch":210,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":3}
+2025-04-14 23:37:06,631 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 210, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 3}
+2025-04-14 23:37:36,659 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:37:36,660 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:37:36,662 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:37:38,385 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.722268 seconds
+2025-04-14 23:37:38,385 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:37:38,386 - cephci - ceph:1186 - DEBUG - {"epoch":210,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":3}
+2025-04-14 23:37:38,387 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 210, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 3}
+2025-04-14 23:38:08,417 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:38:08,418 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:38:08,422 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:38:09,928 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.505615 seconds
+2025-04-14 23:38:09,928 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:38:09,929 - cephci - ceph:1186 - DEBUG - {"epoch":212,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:38:09,929 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 212, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:38:39,959 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:38:39,960 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:38:39,963 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:38:41,512 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.547744 seconds
+2025-04-14 23:38:41,512 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:38:41,513 - cephci - ceph:1186 - DEBUG - {"epoch":212,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:38:41,513 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 212, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:39:11,538 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:39:11,538 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:39:11,541 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:39:14,239 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.697956 seconds
+2025-04-14 23:39:14,240 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 212, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:39:44,270 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:39:44,271 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:39:44,275 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:39:45,823 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.547229 seconds
+2025-04-14 23:39:45,824 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:39:45,824 - cephci - ceph:1186 - DEBUG - {"epoch":212,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:39:45,824 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 212, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:40:15,850 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:40:15,850 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:40:15,852 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:40:17,515 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.661967 seconds
+2025-04-14 23:40:17,516 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:40:17,516 - cephci - ceph:1186 - DEBUG - {"epoch":212,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:40:17,517 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 212, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:40:47,546 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:40:47,546 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:40:47,547 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:40:49,374 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.825932 seconds
+2025-04-14 23:40:49,375 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:40:49,375 - cephci - ceph:1186 - DEBUG - {"epoch":212,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:40:49,376 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 212, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:41:19,402 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:41:19,402 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:41:19,404 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:41:21,099 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.695002 seconds
+2025-04-14 23:41:21,101 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:41:21,101 - cephci - ceph:1186 - DEBUG - {"epoch":212,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:41:21,102 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 212, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:41:51,128 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:41:51,129 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:41:51,132 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:41:52,978 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.845736 seconds
+2025-04-14 23:41:52,979 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:41:52,979 - cephci - ceph:1186 - DEBUG - {"epoch":214,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:41:52,980 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 214, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:42:22,998 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:42:23,000 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:42:23,001 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:42:25,472 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.470411 seconds
+2025-04-14 23:42:25,473 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 214, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:42:55,501 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:42:55,501 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:42:55,503 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:42:57,260 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.756319 seconds
+2025-04-14 23:42:57,261 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:42:57,261 - cephci - ceph:1186 - DEBUG - {"epoch":214,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:42:57,261 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 214, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:43:27,289 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:43:27,289 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:43:27,292 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:43:30,066 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.773852 seconds
+2025-04-14 23:43:30,067 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 216, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:44:00,094 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:44:00,095 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:44:00,099 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:44:01,740 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.639723 seconds
+2025-04-14 23:44:01,741 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:44:01,741 - cephci - ceph:1186 - DEBUG - {"epoch":216,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":0}
+2025-04-14 23:44:01,741 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 216, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:44:31,758 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:44:31,759 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:44:31,762 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:44:33,672 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.909703 seconds
+2025-04-14 23:44:33,673 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:44:33,673 - cephci - ceph:1186 - DEBUG - {"epoch":216,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":0}
+2025-04-14 23:44:33,673 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 216, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:45:03,696 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:45:03,697 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:45:03,699 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:45:06,357 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.658105 seconds
+2025-04-14 23:45:06,358 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 220, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:45:36,389 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:45:36,390 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:45:36,392 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:45:37,930 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.537425 seconds
+2025-04-14 23:45:37,931 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:45:37,932 - cephci - ceph:1186 - DEBUG - {"epoch":220,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":2}
+2025-04-14 23:45:37,932 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 220, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:46:07,959 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:46:07,960 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:46:07,962 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:46:09,581 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.618583 seconds
+2025-04-14 23:46:09,583 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:46:09,583 - cephci - ceph:1186 - DEBUG - {"epoch":222,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:46:09,583 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 222, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:46:39,612 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:46:39,616 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:46:39,623 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:46:41,180 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.556005 seconds
+2025-04-14 23:46:41,181 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:46:41,181 - cephci - ceph:1186 - DEBUG - {"epoch":222,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:46:41,182 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 222, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:47:11,206 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:47:11,207 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:47:11,209 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:47:13,705 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.495997 seconds
+2025-04-14 23:47:13,706 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 233, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 2}
+2025-04-14 23:47:43,735 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:47:43,735 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:47:43,737 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:47:45,468 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.730576 seconds
+2025-04-14 23:47:45,469 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:47:45,470 - cephci - ceph:1186 - DEBUG - {"epoch":236,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:47:45,470 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 236, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:48:15,500 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:48:15,500 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:48:15,504 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:48:17,079 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.574218 seconds
+2025-04-14 23:48:17,080 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:48:17,080 - cephci - ceph:1186 - DEBUG - {"epoch":238,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":0}
+2025-04-14 23:48:17,081 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 238, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:48:47,110 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:48:47,111 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:48:47,118 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:48:49,609 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.491188 seconds
+2025-04-14 23:48:49,610 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 238, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:49:19,629 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:49:19,630 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:49:19,632 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:49:21,256 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.623405 seconds
+2025-04-14 23:49:21,257 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:49:21,257 - cephci - ceph:1186 - DEBUG - {"epoch":238,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":0}
+2025-04-14 23:49:21,257 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 238, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:49:51,286 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:49:51,286 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:49:51,288 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:49:52,816 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.526883 seconds
+2025-04-14 23:49:52,817 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:49:52,817 - cephci - ceph:1186 - DEBUG - {"epoch":248,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":0}
+2025-04-14 23:49:52,817 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 248, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:50:22,843 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:50:22,844 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:50:22,845 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:50:25,698 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.852521 seconds
+2025-04-14 23:50:25,699 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 249, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:50:55,726 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:50:55,727 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:50:55,728 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:50:57,317 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.588106 seconds
+2025-04-14 23:50:57,318 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:50:57,318 - cephci - ceph:1186 - DEBUG - {"epoch":249,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":0}
+2025-04-14 23:50:57,319 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 249, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 0}
+2025-04-14 23:51:27,340 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:51:27,340 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:51:27,342 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:51:28,873 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.530241 seconds
+2025-04-14 23:51:28,874 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:51:28,874 - cephci - ceph:1186 - DEBUG - {"epoch":256,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:51:28,875 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 256, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:51:58,905 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:51:58,906 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:51:58,907 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:52:00,666 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.758434 seconds
+2025-04-14 23:52:00,667 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:52:00,668 - cephci - ceph:1186 - DEBUG - {"epoch":256,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:52:00,668 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 256, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:52:30,694 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:52:30,695 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:52:30,697 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:52:33,249 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 2.551654 seconds
+2025-04-14 23:52:33,250 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 256, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:53:03,275 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:53:03,276 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:53:03,278 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:53:05,076 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.797486 seconds
+2025-04-14 23:53:05,077 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:53:05,077 - cephci - ceph:1186 - DEBUG - {"epoch":256,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:53:05,077 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 256, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:53:35,098 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:53:35,098 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:53:35,100 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:53:40,526 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 5.425687 seconds
+2025-04-14 23:53:40,527 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 256, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:54:10,557 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:54:10,558 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:54:10,560 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:54:12,292 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.73158 seconds
+2025-04-14 23:54:12,293 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:54:12,293 - cephci - ceph:1186 - DEBUG - {"epoch":262,"num_osds":15,"num_up_osds":15,"osd_up_since":1744670732,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:54:12,293 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 262, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744670732, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:54:42,320 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:54:42,320 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:15
+2025-04-14 23:54:42,322 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd stat -f json on 10.0.195.177
+2025-04-14 23:54:43,851 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd stat -f json on 10.0.195.177 took 1.528322 seconds
+2025-04-14 23:54:43,852 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:54:43,852 - cephci - ceph:1186 - DEBUG - {"epoch":267,"num_osds":15,"num_up_osds":10,"osd_up_since":1744674855,"num_in_osds":15,"osd_in_since":1744670229,"num_remapped_pgs":1}
+2025-04-14 23:54:43,852 - cephci - core_workflows:2408 - DEBUG -  The OSD Statistics are : {'epoch': 267, 'num_osds': 15, 'num_up_osds': 10, 'osd_up_since': 1744674855, 'num_in_osds': 15, 'osd_in_since': 1744670229, 'num_remapped_pgs': 1}
+2025-04-14 23:55:13,873 - cephci - test_scrub_omap:178 - INFO - The total number of osd are:15
+2025-04-14 23:55:13,873 - cephci - test_scrub_omap:180 - INFO - The total number of osd up are:10
+2025-04-14 23:55:13,874 - cephci - test_scrub_omap:182 - ERROR - The total osd are not equal to up OSDs
+2025-04-14 23:55:13,874 - cephci - test_scrub_omap:186 - INFO - The total osd are  equal to up OSDs
+2025-04-14 23:55:13,874 - cephci - test_scrub_omap:88 - INFO - 
+ 
+ ************** Execution of finally block begins here *************** 
+ 
+
+2025-04-14 23:55:13,877 - cephci - ceph:1576 - INFO - Execute ceph osd pool ls detail -f json on 10.0.195.201
+2025-04-14 23:55:14,882 - cephci - ceph:1606 - INFO - Execution of ceph osd pool ls detail -f json on 10.0.195.201 took 1.004328 seconds
+2025-04-14 23:55:14,885 - cephci - ceph:1576 - INFO - Execute ceph config set mon mon_allow_pool_delete true on 10.0.195.201
+2025-04-14 23:55:15,890 - cephci - ceph:1606 - INFO - Execution of ceph config set mon mon_allow_pool_delete true on 10.0.195.201 took 1.004193 seconds
+2025-04-14 23:55:15,892 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.201
+2025-04-14 23:55:16,898 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.201 took 1.005372 seconds
+2025-04-14 23:55:16,900 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool ls detail -f json on 10.0.195.177
+2025-04-14 23:55:19,803 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool ls detail -f json on 10.0.195.177 took 2.903022 seconds
+2025-04-14 23:55:19,806 - cephci - ceph:1576 - INFO - Execute ceph osd pool delete Test Test --yes-i-really-really-mean-it on 10.0.195.201
+2025-04-14 23:55:20,810 - cephci - ceph:1606 - INFO - Execution of ceph osd pool delete Test Test --yes-i-really-really-mean-it on 10.0.195.201 took 1.003633 seconds
+2025-04-14 23:55:22,814 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.201
+2025-04-14 23:55:23,819 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.201 took 1.004278 seconds
+2025-04-14 23:55:23,820 - cephci - core_workflows:1199 - INFO - Pool:Test deleted Successfully
+2025-04-14 23:55:23,821 - cephci - core_workflows:4548 - INFO - Pool Test deleted successfully
+2025-04-14 23:55:23,821 - cephci - core_workflows:4558 - DEBUG - Printing cluster health and status
+2025-04-14 23:55:23,825 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph health detail on 10.0.195.177
+2025-04-14 23:55:25,650 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph health detail on 10.0.195.177 took 1.824088 seconds
+2025-04-14 23:55:25,651 - cephci - ceph:1186 - DEBUG - HEALTH_WARN 9 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); failed to probe daemons or devices; 5 osds down; 1 host (5 osds) down; Degraded data redundancy: 213/651 objects degraded (32.719%), 58 pgs degraded
+2025-04-14 23:55:25,651 - cephci - ceph:1186 - DEBUG - [WRN] BLUESTORE_SLOW_OP_ALERT: 9 OSD(s) experiencing slow operations in BlueStore
+2025-04-14 23:55:25,651 - cephci - ceph:1186 - DEBUG -      osd.1 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.5 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.7 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.9 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.10 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.11 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.12 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.13 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -      osd.14 observed slow operation indications in BlueStore
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG - [WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG -     daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in error state
+2025-04-14 23:55:25,652 - cephci - ceph:1186 - DEBUG - [WRN] CEPHADM_REFRESH_FAILED: failed to probe daemons or devices
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     host ceph-regression-mfyctl-w265dr-node5 `cephadm gather-facts` failed: Unable to reach remote host ceph-regression-mfyctl-w265dr-node5. SSH connection closed
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG - [WRN] OSD_DOWN: 5 osds down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     osd.1 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     osd.3 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     osd.5 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     osd.7 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     osd.9 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG - [WRN] OSD_HOST_DOWN: 1 host (5 osds) down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     host ceph-regression-mfyctl-w265dr-node5 (root=default) (5 osds) is down
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG - [WRN] PG_DEGRADED: Degraded data redundancy: 213/651 objects degraded (32.719%), 58 pgs degraded
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     pg 2.0 is active+undersized+degraded, acting [10,6]
+2025-04-14 23:55:25,653 - cephci - ceph:1186 - DEBUG -     pg 3.0 is active+undersized+degraded, acting [12,0]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.3 is active+undersized+
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG - degraded, acting [4,11]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.4 is active+undersized+degraded, acting [8,13]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.5 is active+undersized+degraded, acting [6,11]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.6 is active+undersized+degraded, acting [0,14]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.7 is active+undersized+degraded, acting [4,11]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.b is active+undersized+degraded, acting [4,11]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.c is active+undersized+degraded, acting [8,10]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.d is active+undersized+degraded, acting [13,8]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.e is active+undersized+degraded, acting [13,8]
+2025-04-14 23:55:25,654 - cephci - ceph:1186 - DEBUG -     pg 3.f is active+undersized+degraded, acting [13,0]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 5.1 is active+undersized+degraded, acting [4,12]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 5.2 is active+undersized+degraded, acting [8,10]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 5.6 is active+undersized+degraded, acting [6,14]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 5.d is active+undersized+degraded, acting [11,0]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 5.19 is active+undersized+degraded, acting [4,13]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 6.0 is active+undersized+degraded, acting [6,13]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 6.1 is active+undersized+degraded, acting [14,6]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 6.2 is active+undersized+degraded, acting [4,11]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 6.3 is active+undersized+degraded, acting [14,6]
+2025-04-14 23:55:25,655 - cephci - ceph:1186 - DEBUG -     pg 6.4 is active+undersized+degraded, acting [4,12]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.5 is active+undersized+degraded, acting [13,2]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.6 is active+undersized+degraded, acting [8,12]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.7 is active+undersized+degraded, acting [2,10]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.8 is active+undersized+degraded, acting [14,8]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.9 is active+undersized+degraded, acting [4,10]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.a is active+undersized+degraded, acting [4,10]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.b is active+undersized+degraded, acting [8,14]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.c is active+undersized+degraded, acting [6,12]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.d is active+undersized+degraded, acting [4,12]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.e is active+undersized+degraded, acting [6,11]
+2025-04-14 23:55:25,656 - cephci - ceph:1186 - DEBUG -     pg 6.f is active+undersized+degraded, acting [4,10]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.11 is active+undersized+degraded, acting [6,11]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.13 is active+undersized+degraded, acting [14,6]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.14 is active+undersized+degraded, acting [4,12]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.15 is active+undersized+degraded, acting [13,2]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.16 is active+undersized+degraded, acting [8,12]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.17 is active+undersized+degraded, acting [2,10]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -  
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -    pg 6.18 is active+undersized+degraded, acting [14,8]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.19 is active+undersized+degraded, acting [4,10]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.1a is active+undersized+degraded, acting [4,10]
+2025-04-14 23:55:25,657 - cephci - ceph:1186 - DEBUG -     pg 6.1b is active+undersized+degraded, acting [8,14]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 7.1 is active+undersized+degraded, acting [10,8]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 7.3 is active+undersized+degraded, acting [0,12]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 7.7 is active+undersized+degraded, acting [10,8]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 7.9 is active+undersized+degraded, acting [0,11]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 7.e is active+undersized+degraded, acting [2,10]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 7.14 is active+undersized+degraded, acting [13,6]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 8.1b is active+undersized+degraded, acting [2,12]
+2025-04-14 23:55:25,658 - cephci - ceph:1186 - DEBUG -     pg 8.1c is active+undersized+degraded, acting [12,0]
+2025-04-14 23:55:25,658 - cephci - shell:64 - DEBUG - HEALTH_WARN 9 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); failed to probe daemons or devices; 5 osds down; 1 host (5 osds) down; Degraded data redundancy: 213/651 objects degraded (32.719%), 58 pgs degraded
+[WRN] BLUESTORE_SLOW_OP_ALERT: 9 OSD(s) experiencing slow operations in BlueStore
+     osd.1 observed slow operation indications in BlueStore
+     osd.5 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in error state
+[WRN] CEPHADM_REFRESH_FAILED: failed to probe daemons or devices
+    host ceph-regression-mfyctl-w265dr-node5 `cephadm gather-facts` failed: Unable to reach remote host ceph-regression-mfyctl-w265dr-node5. SSH connection closed
+[WRN] OSD_DOWN: 5 osds down
+    osd.1 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.3 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.5 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.7 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.9 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+[WRN] OSD_HOST_DOWN: 1 host (5 osds) down
+    host ceph-regression-mfyctl-w265dr-node5 (root=default) (5 osds) is down
+[WRN] PG_DEGRADED: Degraded data redundancy: 213/651 objects degraded (32.719%), 58 pgs degraded
+    pg 2.0 is active+undersized+degraded, acting [10,6]
+    pg 3.0 is active+undersized+degraded, acting [12,0]
+    pg 3.3 is active+undersized+degraded, acting [4,11]
+    pg 3.4 is active+undersized+degraded, acting [8,13]
+    pg 3.5 is active+undersized+degraded, acting [6,11]
+    pg 3.6 is active+undersized+degraded, acting [0,14]
+    pg 3.7 is active+undersized+degraded, acting [4,11]
+    pg 3.b is active+undersized+degraded, acting [4,11]
+    pg 3.c is active+undersized+degraded, acting [8,10]
+    pg 3.d is active+undersized+degraded, acting [13,8]
+    pg 3.e is active+undersized+degraded, acting [13,8]
+    pg 3.f is active+undersized+degraded, acting [13,0]
+    pg 5.1 is active+undersized+degraded, acting [4,12]
+    pg 5.2 is active+undersized+degraded, acting [8,10]
+    pg 5.6 is active+undersized+degraded, acting [6,14]
+    pg 5.d is active+undersized+degraded, acting [11,0]
+    pg 5.19 is active+undersized+degraded, acting [4,13]
+    pg 6.0 is active+undersized+degraded, acting [6,13]
+    pg 6.1 is active+undersized+degraded, acting [14,6]
+    pg 6.2 is active+undersized+degraded, acting [4,11]
+    pg 6.3 is active+undersized+degraded, acting [14,6]
+    pg 6.4 is active+undersized+degraded, acting [4,12]
+    pg 6.5 is active+undersized+degraded, acting [13,2]
+    pg 6.6 is active+undersized+degraded, acting [8,12]
+    pg 6.7 is active+undersized+degraded, acting [2,10]
+    pg 6.8 is active+undersized+degraded, acting [14,8]
+    pg 6.9 is active+undersized+degraded, acting [4,10]
+    pg 6.a is active+undersized+degraded, acting [4,10]
+    pg 6.b is active+undersized+degraded, acting [8,14]
+    pg 6.c is active+undersized+degraded, acting [6,12]
+    pg 6.d is active+undersized+degraded, acting [4,12]
+    pg 6.e is active+undersized+degraded, acting [6,11]
+    pg 6.f is active+undersized+degraded, acting [4,10]
+    pg 6.11 is active+undersized+degraded, acting [6,11]
+    pg 6.13 is active+undersized+degraded, acting [14,6]
+    pg 6.14 is active+undersized+degraded, acting [4,12]
+    pg 6.15 is active+undersized+degraded, acting [13,2]
+    pg 6.16 is active+undersized+degraded, acting [8,12]
+    pg 6.17 is active+undersized+degraded, acting [2,10]
+    pg 6.18 is active+undersized+degraded, acting [14,8]
+    pg 6.19 is active+undersized+degraded, acting [4,10]
+    pg 6.1a is active+undersized+degraded, acting [4,10]
+    pg 6.1b is active+undersized+degraded, acting [8,14]
+    pg 7.1 is active+undersized+degraded, acting [10,8]
+    pg 7.3 is active+undersized+degraded, acting [0,12]
+    pg 7.7 is active+undersized+degraded, acting [10,8]
+    pg 7.9 is active+undersized+degraded, acting [0,11]
+    pg 7.e is active+undersized+degraded, acting [2,10]
+    pg 7.14 is active+undersized+degraded, acting [13,6]
+    pg 8.1b is active+undersized+degraded, acting [2,12]
+    pg 8.1c is active+undersized+degraded, acting [12,0]
+
+2025-04-14 23:55:25,659 - cephci - core_workflows:4560 - INFO - 
+****
+ Cluster health detail: 
+ HEALTH_WARN 9 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s); failed to probe daemons or devices; 5 osds down; 1 host (5 osds) down; Degraded data redundancy: 213/651 objects degraded (32.719%), 58 pgs degraded
+[WRN] BLUESTORE_SLOW_OP_ALERT: 9 OSD(s) experiencing slow operations in BlueStore
+     osd.1 observed slow operation indications in BlueStore
+     osd.5 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in error state
+[WRN] CEPHADM_REFRESH_FAILED: failed to probe daemons or devices
+    host ceph-regression-mfyctl-w265dr-node5 `cephadm gather-facts` failed: Unable to reach remote host ceph-regression-mfyctl-w265dr-node5. SSH connection closed
+[WRN] OSD_DOWN: 5 osds down
+    osd.1 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.3 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.5 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.7 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+    osd.9 (root=default,host=ceph-regression-mfyctl-w265dr-node5) is down
+[WRN] OSD_HOST_DOWN: 1 host (5 osds) down
+    host ceph-regression-mfyctl-w265dr-node5 (root=default) (5 osds) is down
+[WRN] PG_DEGRADED: Degraded data redundancy: 213/651 objects degraded (32.719%), 58 pgs degraded
+    pg 2.0 is active+undersized+degraded, acting [10,6]
+    pg 3.0 is active+undersized+degraded, acting [12,0]
+    pg 3.3 is active+undersized+degraded, acting [4,11]
+    pg 3.4 is active+undersized+degraded, acting [8,13]
+    pg 3.5 is active+undersized+degraded, acting [6,11]
+    pg 3.6 is active+undersized+degraded, acting [0,14]
+    pg 3.7 is active+undersized+degraded, acting [4,11]
+    pg 3.b is active+undersized+degraded, acting [4,11]
+    pg 3.c is active+undersized+degraded, acting [8,10]
+    pg 3.d is active+undersized+degraded, acting [13,8]
+    pg 3.e is active+undersized+degraded, acting [13,8]
+    pg 3.f is active+undersized+degraded, acting [13,0]
+    pg 5.1 is active+undersized+degraded, acting [4,12]
+    pg 5.2 is active+undersized+degraded, acting [8,10]
+    pg 5.6 is active+undersized+degraded, acting [6,14]
+    pg 5.d is active+undersized+degraded, acting [11,0]
+    pg 5.19 is active+undersized+degraded, acting [4,13]
+    pg 6.0 is active+undersized+degraded, acting [6,13]
+    pg 6.1 is active+undersized+degraded, acting [14,6]
+    pg 6.2 is active+undersized+degraded, acting [4,11]
+    pg 6.3 is active+undersized+degraded, acting [14,6]
+    pg 6.4 is active+undersized+degraded, acting [4,12]
+    pg 6.5 is active+undersized+degraded, acting [13,2]
+    pg 6.6 is active+undersized+degraded, acting [8,12]
+    pg 6.7 is active+undersized+degraded, acting [2,10]
+    pg 6.8 is active+undersized+degraded, acting [14,8]
+    pg 6.9 is active+undersized+degraded, acting [4,10]
+    pg 6.a is active+undersized+degraded, acting [4,10]
+    pg 6.b is active+undersized+degraded, acting [8,14]
+    pg 6.c is active+undersized+degraded, acting [6,12]
+    pg 6.d is active+undersized+degraded, acting [4,12]
+    pg 6.e is active+undersized+degraded, acting [6,11]
+    pg 6.f is active+undersized+degraded, acting [4,10]
+    pg 6.11 is active+undersized+degraded, acting [6,11]
+    pg 6.13 is active+undersized+degraded, acting [14,6]
+    pg 6.14 is active+undersized+degraded, acting [4,12]
+    pg 6.15 is active+undersized+degraded, acting [13,2]
+    pg 6.16 is active+undersized+degraded, acting [8,12]
+    pg 6.17 is active+undersized+degraded, acting [2,10]
+    pg 6.18 is active+undersized+degraded, acting [14,8]
+    pg 6.19 is active+undersized+degraded, acting [4,10]
+    pg 6.1a is active+undersized+degraded, acting [4,10]
+    pg 6.1b is active+undersized+degraded, acting [8,14]
+    pg 7.1 is active+undersized+degraded, acting [10,8]
+    pg 7.3 is active+undersized+degraded, acting [0,12]
+    pg 7.7 is active+undersized+degraded, acting [10,8]
+    pg 7.9 is active+undersized+degraded, acting [0,11]
+    pg 7.e is active+undersized+degraded, acting [2,10]
+    pg 7.14 is active+undersized+degraded, acting [13,6]
+    pg 8.1b is active+undersized+degraded, acting [2,12]
+    pg 8.1c is active+undersized+degraded, acting [12,0]
+ 
+****
+2025-04-14 23:55:25,662 - cephci - ceph:1576 - INFO - Execute ceph -s on 10.0.195.201
+2025-04-14 23:55:26,667 - cephci - ceph:1606 - INFO - Execution of ceph -s on 10.0.195.201 took 1.004702 seconds
+2025-04-14 23:55:26,667 - cephci - core_workflows:4561 - INFO - 
+****
+ Cluster status: 
+   cluster:
+    id:     bfe6bdbc-197e-11f0-a0a3-fa163e4fa5cf
+    health: HEALTH_WARN
+            9 OSD(s) experiencing slow operations in BlueStore
+            1 failed cephadm daemon(s)
+            failed to probe daemons or devices
+            5 osds down
+            1 host (5 osds) down
+            Degraded data redundancy: 213/651 objects degraded (32.719%), 58 pgs degraded
+ 
+  services:
+    mon: 3 daemons, quorum ceph-regression-mfyctl-w265dr-node1-installer,ceph-regression-mfyctl-w265dr-node6,ceph-regression-mfyctl-w265dr-node2 (age 83m)
+    mgr: ceph-regression-mfyctl-w265dr-node1-installer.xdzcdu(active, since 92m), standbys: ceph-regression-mfyctl-w265dr-node6.mrjkhg, ceph-regression-mfyctl-w265dr-node2.yzdorn
+    mds: 1/1 daemons up, 1 standby
+    osd: 15 osds: 10 up (since 49s), 15 in (since 77m); 1 remapped pgs
+    rgw: 2 daemons active (2 hosts, 1 zones)
+ 
+  data:
+    volumes: 1/1 healthy
+    pools:   8 pools, 689 pgs
+    objects: 217 objects, 457 KiB
+    usage:   11 GiB used, 364 GiB / 375 GiB avail
+    pgs:     213/651 objects degraded (32.719%)
+             4/651 objects misplaced (0.614%)
+             630 active+undersized
+             58  active+undersized+degraded
+             1   active+clean+remapped
+ 
+  progress:
+    Global Recovery Event (91m)
+      [............................] (remaining: 6w)
+ 
+ 
+****
+2025-04-14 23:55:26,670 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph crash ls-new -f json on 10.0.195.177
+2025-04-14 23:55:28,304 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph crash ls-new -f json on 10.0.195.177 took 1.633288 seconds
+2025-04-14 23:55:28,304 - cephci - ceph:1186 - DEBUG - 
+2025-04-14 23:55:28,305 - cephci - ceph:1186 - DEBUG - []
+2025-04-14 23:55:28,347 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.177
+2025-04-14 23:55:29,352 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.177 took 1.00397 seconds
+2025-04-14 23:55:29,353 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-14 23:55:29,354 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.177
+2025-04-14 23:55:30,359 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.177 took 1.004169 seconds
+2025-04-14 23:55:30,361 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.201
+2025-04-14 23:55:31,366 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.201 took 1.004183 seconds
+2025-04-14 23:55:31,366 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-14 23:55:31,367 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-MFYctl-W265DR
+2025-04-14 23:55:31,368 - cephci - run:927 - INFO - Test <module 'test_scrub_omap' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_scrub_omap.py'> failed

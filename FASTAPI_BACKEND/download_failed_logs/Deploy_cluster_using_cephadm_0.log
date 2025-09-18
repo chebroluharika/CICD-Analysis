@@ -1,0 +1,550 @@
+2025-04-10 00:01:53,713 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-10 00:01:53,726 - cephci - run:722 - INFO - Running test test_cephadm.py
+2025-04-10 00:01:53,726 - cephci - test_cephadm:125 - INFO - Starting Ceph cluster deployment.
+2025-04-10 00:01:53,736 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.182
+2025-04-10 00:01:54,742 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.182 took 1.005058 seconds
+2025-04-10 00:01:54,743 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.182
+2025-04-10 00:01:55,746 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.182 took 1.002799 seconds
+2025-04-10 00:01:55,749 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.194.182
+2025-04-10 00:01:56,752 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.194.182 took 1.003261 seconds
+2025-04-10 00:01:56,754 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.194.182
+2025-04-10 00:01:57,757 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.194.182 took 1.003249 seconds
+2025-04-10 00:01:57,758 - cephci - ceph:1549 - INFO - ceph-sanity-xmhkwe-ydz4mo-node3
+
+2025-04-10 00:01:57,760 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.182
+2025-04-10 00:01:58,764 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.182 took 1.003662 seconds
+2025-04-10 00:01:58,766 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.250
+2025-04-10 00:01:59,769 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.250 took 1.003397 seconds
+2025-04-10 00:01:59,771 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.250
+2025-04-10 00:02:00,775 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.250 took 1.003255 seconds
+2025-04-10 00:02:00,777 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.194.250
+2025-04-10 00:02:01,781 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.194.250 took 1.003694 seconds
+2025-04-10 00:02:01,783 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.194.250
+2025-04-10 00:02:02,786 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.194.250 took 1.002745 seconds
+2025-04-10 00:02:02,789 - cephci - ceph:1549 - INFO - ceph-sanity-xmhkwe-ydz4mo-node4
+
+2025-04-10 00:02:02,791 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.250
+2025-04-10 00:02:03,794 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.250 took 1.003034 seconds
+2025-04-10 00:02:03,796 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.195.194
+2025-04-10 00:02:04,800 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.195.194 took 1.003782 seconds
+2025-04-10 00:02:04,802 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.195.194
+2025-04-10 00:02:05,806 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.195.194 took 1.003821 seconds
+2025-04-10 00:02:05,808 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.195.194
+2025-04-10 00:02:06,812 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.195.194 took 1.003744 seconds
+2025-04-10 00:02:06,814 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.195.194
+2025-04-10 00:02:07,817 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.195.194 took 1.003201 seconds
+2025-04-10 00:02:07,818 - cephci - ceph:1549 - INFO - ceph-sanity-xmhkwe-ydz4mo-node2
+
+2025-04-10 00:02:07,822 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.195.194
+2025-04-10 00:02:08,825 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.195.194 took 1.003218 seconds
+2025-04-10 00:02:08,828 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.241
+2025-04-10 00:02:09,832 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.241 took 1.004071 seconds
+2025-04-10 00:02:09,834 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.241
+2025-04-10 00:02:10,838 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.241 took 1.003297 seconds
+2025-04-10 00:02:10,839 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.194.241
+2025-04-10 00:02:11,843 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.194.241 took 1.00325 seconds
+2025-04-10 00:02:11,845 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.194.241
+2025-04-10 00:02:12,848 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.194.241 took 1.00325 seconds
+2025-04-10 00:02:12,851 - cephci - ceph:1549 - INFO - ceph-sanity-xmhkwe-ydz4mo-node5
+
+2025-04-10 00:02:12,853 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.241
+2025-04-10 00:02:13,856 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.241 took 1.003414 seconds
+2025-04-10 00:02:13,858 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.195.136
+2025-04-10 00:02:14,862 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.195.136 took 1.003437 seconds
+2025-04-10 00:02:14,864 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.195.136
+2025-04-10 00:02:15,869 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.195.136 took 1.003883 seconds
+2025-04-10 00:02:15,871 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.195.136
+2025-04-10 00:02:16,875 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.195.136 took 1.004082 seconds
+2025-04-10 00:02:16,877 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.195.136
+2025-04-10 00:02:17,880 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.195.136 took 1.003109 seconds
+2025-04-10 00:02:17,883 - cephci - ceph:1549 - INFO - ceph-sanity-xmhkwe-ydz4mo-node1-installer
+
+2025-04-10 00:02:17,884 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.195.136
+2025-04-10 00:02:18,888 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.195.136 took 1.003535 seconds
+2025-04-10 00:02:18,890 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.109
+2025-04-10 00:02:19,894 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.109 took 1.003911 seconds
+2025-04-10 00:02:19,896 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.109
+2025-04-10 00:02:20,899 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.109 took 1.003206 seconds
+2025-04-10 00:02:20,901 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.194.109
+2025-04-10 00:02:21,905 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.194.109 took 1.003445 seconds
+2025-04-10 00:02:21,906 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.194.109
+2025-04-10 00:02:22,910 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.194.109 took 1.003282 seconds
+2025-04-10 00:02:22,910 - cephci - ceph:1549 - INFO - ceph-sanity-xmhkwe-ydz4mo-node6
+
+2025-04-10 00:02:22,914 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.109
+2025-04-10 00:02:23,918 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.109 took 1.003294 seconds
+2025-04-10 00:02:23,921 - cephci - ceph:1576 - INFO - Execute test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.143
+2025-04-10 00:02:24,925 - cephci - ceph:1606 - INFO - Execution of test -f ~/.ssh/id_rsa.pub && rm -f ~/.ssh/id* on 10.0.194.143 took 1.003812 seconds
+2025-04-10 00:02:24,927 - cephci - ceph:1576 - INFO - Execute ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.143
+2025-04-10 00:02:25,931 - cephci - ceph:1606 - INFO - Execution of ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N '' on 10.0.194.143 took 1.003696 seconds
+2025-04-10 00:02:25,933 - cephci - ceph:1576 - INFO - Execute cat ~/.ssh/id_rsa.pub on 10.0.194.143
+2025-04-10 00:02:26,937 - cephci - ceph:1606 - INFO - Execution of cat ~/.ssh/id_rsa.pub on 10.0.194.143 took 1.004012 seconds
+2025-04-10 00:02:26,939 - cephci - ceph:1576 - INFO - Execute sudo hostname on 10.0.194.143
+2025-04-10 00:02:27,943 - cephci - ceph:1606 - INFO - Execution of sudo hostname on 10.0.194.143 took 1.003845 seconds
+2025-04-10 00:02:27,944 - cephci - ceph:1549 - INFO - ceph-sanity-xmhkwe-ydz4mo-node7
+
+2025-04-10 00:02:27,945 - cephci - ceph:1576 - INFO - Execute sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.143
+2025-04-10 00:02:28,949 - cephci - ceph:1606 - INFO - Execution of sudo hostnamectl set-hostname $(hostname -s) on 10.0.194.143 took 1.003578 seconds
+2025-04-10 00:02:29,013 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.182
+2025-04-10 00:02:30,016 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.182 took 1.003384 seconds
+2025-04-10 00:02:30,049 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.194.182
+2025-04-10 00:02:31,053 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.194.182 took 1.003396 seconds
+2025-04-10 00:02:31,055 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.194.182
+2025-04-10 00:02:32,059 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.194.182 took 1.003651 seconds
+2025-04-10 00:02:32,117 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.250
+2025-04-10 00:02:33,121 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.250 took 1.003457 seconds
+2025-04-10 00:02:33,154 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.194.250
+2025-04-10 00:02:34,157 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.194.250 took 1.002851 seconds
+2025-04-10 00:02:34,158 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.194.250
+2025-04-10 00:02:35,162 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.194.250 took 1.003027 seconds
+2025-04-10 00:02:35,235 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.195.194
+2025-04-10 00:02:36,239 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.195.194 took 1.003218 seconds
+2025-04-10 00:02:36,274 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.195.194
+2025-04-10 00:02:37,278 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.195.194 took 1.003448 seconds
+2025-04-10 00:02:37,280 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.195.194
+2025-04-10 00:02:38,283 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.195.194 took 1.003027 seconds
+2025-04-10 00:02:38,346 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.241
+2025-04-10 00:02:39,349 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.241 took 1.002178 seconds
+2025-04-10 00:02:39,381 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.194.241
+2025-04-10 00:02:40,384 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.194.241 took 1.003181 seconds
+2025-04-10 00:02:40,386 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.194.241
+2025-04-10 00:02:41,390 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.194.241 took 1.003692 seconds
+2025-04-10 00:02:41,456 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.195.136
+2025-04-10 00:02:42,460 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.195.136 took 1.003228 seconds
+2025-04-10 00:02:42,496 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.195.136
+2025-04-10 00:02:43,500 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.195.136 took 1.002924 seconds
+2025-04-10 00:02:43,501 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.195.136
+2025-04-10 00:02:44,504 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.195.136 took 1.002929 seconds
+2025-04-10 00:02:44,559 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.109
+2025-04-10 00:02:45,563 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.109 took 1.002828 seconds
+2025-04-10 00:02:45,598 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.194.109
+2025-04-10 00:02:46,601 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.194.109 took 1.002912 seconds
+2025-04-10 00:02:46,603 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.194.109
+2025-04-10 00:02:47,606 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.194.109 took 1.002964 seconds
+2025-04-10 00:02:47,672 - cephci - ceph:1576 - INFO - Execute [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.143
+2025-04-10 00:02:48,676 - cephci - ceph:1606 - INFO - Execution of [ -f ~/.ssh/config ] && chmod 700 ~/.ssh/config on 10.0.194.143 took 1.003615 seconds
+2025-04-10 00:02:48,714 - cephci - ceph:1576 - INFO - Execute chmod 600 ~/.ssh/authorized_keys on 10.0.194.143
+2025-04-10 00:02:49,718 - cephci - ceph:1606 - INFO - Execution of chmod 600 ~/.ssh/authorized_keys on 10.0.194.143 took 1.003465 seconds
+2025-04-10 00:02:49,719 - cephci - ceph:1576 - INFO - Execute chmod 400 ~/.ssh/config on 10.0.194.143
+2025-04-10 00:02:50,724 - cephci - ceph:1606 - INFO - Execution of chmod 400 ~/.ssh/config on 10.0.194.143 took 1.004046 seconds
+2025-04-10 00:02:50,726 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.182
+2025-04-10 00:02:53,199 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.182 took 2.47269 seconds
+2025-04-10 00:02:53,201 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.250
+2025-04-10 00:02:55,324 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.250 took 2.122243 seconds
+2025-04-10 00:02:55,326 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.195.194
+2025-04-10 00:02:57,560 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.195.194 took 2.233764 seconds
+2025-04-10 00:02:57,562 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.241
+2025-04-10 00:02:59,706 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.241 took 2.144488 seconds
+2025-04-10 00:02:59,708 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.195.136
+2025-04-10 00:03:02,088 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.195.136 took 2.379651 seconds
+2025-04-10 00:03:02,091 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.109
+2025-04-10 00:03:04,235 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.109 took 2.14307 seconds
+2025-04-10 00:03:04,238 - cephci - ceph:1576 - INFO - Execute yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.143
+2025-04-10 00:03:07,356 - cephci - ceph:1606 - INFO - Execution of yum-config-manager --add-repo https://public.dhe.ibm.com/ibmdl/export/pub/storage/ceph/testing/IBM-CEPH-8.1-202504081305.ci.0/IBM-CEPH-8.1-202504081305.ci.0-rhel9.repo on 10.0.194.143 took 3.118269 seconds
+2025-04-10 00:03:07,358 - cephci - ceph:1576 - INFO - Execute ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.194.182
+2025-04-10 00:03:08,361 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-10 00:03:08,984 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:08,985 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-10 00:03:08,985 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:10,096 - cephci - ceph:1186 - DEBUG - IBM-CEPH-8.1-202504081305.ci.0                   38 kB/s |  32 kB     00:00    
+2025-04-10 00:03:10,906 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-10 00:03:10,907 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:10,907 - cephci - ceph:1186 - DEBUG -  Package                  Arch   Version   Repository                      Size
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - Installing:
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG -  ibm-storage-ceph-license noarch 8-2.el9cp IBM-CEPH-8.1-202504081305.ci.0 449 k
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - Transaction Summary
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - Install  1 Package
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - Total download size: 449 k
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - Installed size: 5.7 M
+2025-04-10 00:03:10,908 - cephci - ceph:1186 - DEBUG - Downloading Packages:
+2025-04-10 00:03:11,531 - cephci - ceph:1186 - DEBUG - ibm-storage-ceph-license-8-2.el9cp.noarch.rpm   721 kB/s | 449 kB     00:00    
+2025-04-10 00:03:11,532 - cephci - ceph:1186 - DEBUG - --------------------------------------------------------------------------------
+2025-04-10 00:03:11,532 - cephci - ceph:1186 - DEBUG - Total                                           719 kB/s | 449 kB     00:00     
+2025-04-10 00:03:11,533 - cephci - ceph:1186 - DEBUG - Running transaction check
+2025-04-10 00:03:11,538 - cephci - ceph:1186 - DEBUG - Transaction check succeeded.
+2025-04-10 00:03:11,539 - cephci - ceph:1186 - DEBUG - Running transaction test
+2025-04-10 00:03:11,543 - cephci - ceph:1186 - DEBUG - Transaction test succeeded.
+2025-04-10 00:03:11,544 - cephci - ceph:1186 - DEBUG - Running transaction
+2025-04-10 00:03:11,579 - cephci - ceph:1186 - DEBUG -   Preparing        :                                                        1/1
+2025-04-10 00:03:11,633 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:11,634 - cephci - ceph:1186 - DEBUG -   Installing       : ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:11,642 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:11,643 - cephci - ceph:1186 - DEBUG -   Running scriptlet: ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:11,864 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:11,864 - cephci - ceph:1186 - DEBUG -   Verifying        : ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:12,389 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:12,389 - cephci - ceph:1186 - DEBUG - Installed products updated.
+2025-04-10 00:03:12,638 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:12,639 - cephci - ceph:1186 - DEBUG - Installed:
+2025-04-10 00:03:12,639 - cephci - ceph:1186 - DEBUG -   ibm-storage-ceph-license-8-2.el9cp.noarch                                     
+2025-04-10 00:03:12,639 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:12,639 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-10 00:03:12,824 - cephci - ceph:1606 - INFO - Execution of ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.194.182 took 5.465921 seconds
+2025-04-10 00:03:12,867 - cephci - ceph:1576 - INFO - Execute cat /usr/share/ibm-storage-ceph-license/accept on 10.0.194.182
+2025-04-10 00:03:13,871 - cephci - ceph:1606 - INFO - Execution of cat /usr/share/ibm-storage-ceph-license/accept on 10.0.194.182 took 1.003364 seconds
+2025-04-10 00:03:13,872 - cephci - ceph:1576 - INFO - Execute yum install cephadm -y --nogpgcheck on 10.0.194.182
+2025-04-10 00:03:14,876 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-10 00:03:15,448 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:15,448 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-10 00:03:15,449 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:15,904 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:00:05 ago on Thu Apr 10 00:02:52 2025.
+2025-04-10 00:03:16,191 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-10 00:03:16,192 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:16,192 - cephci - ceph:1186 - DEBUG -  Package   Arch     Version              Repository                        Size
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - Installing:
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG -  cephadm   noarch   2:19.2.1-112.el9cp   IBM-CEPH-8.1-202504081305.ci.0   993 k
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - Transaction Summary
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - Install  1 Package
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - Total download size: 993 k
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - Installed size: 997 k
+2025-04-10 00:03:16,193 - cephci - ceph:1186 - DEBUG - Downloading Packages:
+2025-04-10 00:03:17,432 - cephci - ceph:1186 - DEBUG - cephadm-19.2.1-112.el9cp.noarch.rpm             802 kB/s | 993 kB     00:01    
+2025-04-10 00:03:17,432 - cephci - ceph:1186 - DEBUG - --------------------------------------------------------------------------------
+2025-04-10 00:03:17,433 - cephci - ceph:1186 - DEBUG - Total                                           800 kB/s | 993 kB     00:01     
+2025-04-10 00:03:17,433 - cephci - ceph:1186 - DEBUG - Running transaction check
+2025-04-10 00:03:17,438 - cephci - ceph:1186 - DEBUG - Transaction check succeeded.
+2025-04-10 00:03:17,438 - cephci - ceph:1186 - DEBUG - Running transaction test
+2025-04-10 00:03:17,446 - cephci - ceph:1186 - DEBUG - Transaction test succeeded.
+2025-04-10 00:03:17,446 - cephci - ceph:1186 - DEBUG - Running transaction
+2025-04-10 00:03:17,565 - cephci - ceph:1186 - DEBUG -   Running scriptlet: cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:17,578 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:17,578 - cephci - ceph:1186 - DEBUG - IBM license agreement found. Continuing.
+2025-04-10 00:03:17,579 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:17,579 - cephci - ceph:1186 - DEBUG -   Preparing        :                                                        1/1
+2025-04-10 00:03:17,603 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:17,604 - cephci - ceph:1186 - DEBUG -   Running scriptlet: cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:17,746 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:17,747 - cephci - ceph:1186 - DEBUG -   Installing       : cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:17,894 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:17,894 - cephci - ceph:1186 - DEBUG -   Verifying        : cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:18,509 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:18,509 - cephci - ceph:1186 - DEBUG - Installed products updated.
+2025-04-10 00:03:18,620 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:18,621 - cephci - ceph:1186 - DEBUG - Installed:
+2025-04-10 00:03:18,621 - cephci - ceph:1186 - DEBUG -   cephadm-2:19.2.1-112.el9cp.noarch                                             
+2025-04-10 00:03:18,621 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:18,621 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-10 00:03:18,777 - cephci - ceph:1606 - INFO - Execution of yum install cephadm -y --nogpgcheck on 10.0.194.182 took 4.904415 seconds
+2025-04-10 00:03:18,778 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep cephadm on 10.0.194.182
+2025-04-10 00:03:19,782 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep cephadm on 10.0.194.182 took 1.003776 seconds
+2025-04-10 00:03:19,784 - cephci - ceph:1576 - INFO - Execute ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.195.194
+2025-04-10 00:03:20,787 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-10 00:03:21,354 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:21,355 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-10 00:03:21,355 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:22,645 - cephci - ceph:1186 - DEBUG - IBM-CEPH-8.1-202504081305.ci.0                   32 kB/s |  32 kB     00:01    
+2025-04-10 00:03:24,063 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-10 00:03:24,063 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG -  Package                  Arch   Version   Repository                      Size
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - Installing:
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG -  ibm-storage-ceph-license noarch 8-2.el9cp IBM-CEPH-8.1-202504081305.ci.0 449 k
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - Transaction Summary
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - Install  1 Package
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - Total download size: 449 k
+2025-04-10 00:03:24,064 - cephci - ceph:1186 - DEBUG - Installed size: 5.7 M
+2025-04-10 00:03:24,065 - cephci - ceph:1186 - DEBUG - Downloading Packages:
+2025-04-10 00:03:24,722 - cephci - ceph:1186 - DEBUG - ibm-storage-ceph-license-8-2.el9cp.noarch.rpm   683 kB/s | 449 kB     00:00    
+2025-04-10 00:03:24,722 - cephci - ceph:1186 - DEBUG - --------------------------------------------------------------------------------
+2025-04-10 00:03:24,723 - cephci - ceph:1186 - DEBUG - Total                                           680 kB/s | 449 kB     00:00     
+2025-04-10 00:03:24,723 - cephci - ceph:1186 - DEBUG - Running transaction check
+2025-04-10 00:03:24,779 - cephci - ceph:1186 - DEBUG - Transaction check succeeded.
+2025-04-10 00:03:24,780 - cephci - ceph:1186 - DEBUG - Running transaction test
+2025-04-10 00:03:24,784 - cephci - ceph:1186 - DEBUG - Transaction test succeeded.
+2025-04-10 00:03:24,785 - cephci - ceph:1186 - DEBUG - Running transaction
+2025-04-10 00:03:24,833 - cephci - ceph:1186 - DEBUG -   Preparing        :                                                        1/1
+2025-04-10 00:03:24,891 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:24,891 - cephci - ceph:1186 - DEBUG -   Installing       : ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:24,924 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:24,925 - cephci - ceph:1186 - DEBUG -   Running scriptlet: ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:25,355 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:25,355 - cephci - ceph:1186 - DEBUG -   Verifying        : ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:25,877 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:25,877 - cephci - ceph:1186 - DEBUG - Installed products updated.
+2025-04-10 00:03:27,065 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:27,065 - cephci - ceph:1186 - DEBUG - Installed:
+2025-04-10 00:03:27,065 - cephci - ceph:1186 - DEBUG -   ibm-storage-ceph-license-8-2.el9cp.noarch                                     
+2025-04-10 00:03:27,066 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:27,066 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-10 00:03:27,245 - cephci - ceph:1606 - INFO - Execution of ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.195.194 took 7.460485 seconds
+2025-04-10 00:03:27,287 - cephci - ceph:1576 - INFO - Execute cat /usr/share/ibm-storage-ceph-license/accept on 10.0.195.194
+2025-04-10 00:03:28,292 - cephci - ceph:1606 - INFO - Execution of cat /usr/share/ibm-storage-ceph-license/accept on 10.0.195.194 took 1.004479 seconds
+2025-04-10 00:03:28,294 - cephci - ceph:1576 - INFO - Execute yum install cephadm -y --nogpgcheck on 10.0.195.194
+2025-04-10 00:03:29,297 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-10 00:03:29,808 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:29,808 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-10 00:03:29,808 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:30,368 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:00:08 ago on Thu Apr 10 00:03:04 2025.
+2025-04-10 00:03:30,678 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-10 00:03:30,679 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:30,679 - cephci - ceph:1186 - DEBUG -  Package   Arch     Version              Repository                        Size
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - Installing:
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG -  cephadm   noarch   2:19.2.1-112.el9cp   IBM-CEPH-8.1-202504081305.ci.0   993 k
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - Transaction Summary
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - Install  1 Package
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - Total download size: 993 k
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - Installed size: 997 k
+2025-04-10 00:03:30,680 - cephci - ceph:1186 - DEBUG - Downloading Packages:
+2025-04-10 00:03:31,504 - cephci - ceph:1186 - DEBUG - cephadm-19.2.1-112.el9cp.noarch.rpm             1.2 MB/s | 993 kB     00:00    
+2025-04-10 00:03:31,505 - cephci - ceph:1186 - DEBUG - --------------------------------------------------------------------------------
+2025-04-10 00:03:31,505 - cephci - ceph:1186 - DEBUG - Total                                           1.2 MB/s | 993 kB     00:00     
+2025-04-10 00:03:31,505 - cephci - ceph:1186 - DEBUG - Running transaction check
+2025-04-10 00:03:31,510 - cephci - ceph:1186 - DEBUG - Transaction check succeeded.
+2025-04-10 00:03:31,510 - cephci - ceph:1186 - DEBUG - Running transaction test
+2025-04-10 00:03:31,533 - cephci - ceph:1186 - DEBUG - Transaction test succeeded.
+2025-04-10 00:03:31,534 - cephci - ceph:1186 - DEBUG - Running transaction
+2025-04-10 00:03:31,590 - cephci - ceph:1186 - DEBUG -   Running scriptlet: cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:31,602 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:31,602 - cephci - ceph:1186 - DEBUG - IBM license agreement found. Continuing.
+2025-04-10 00:03:31,602 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:31,603 - cephci - ceph:1186 - DEBUG -   Preparing        :                                                        1/1
+2025-04-10 00:03:31,627 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:31,628 - cephci - ceph:1186 - DEBUG -   Running scriptlet: cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:32,946 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:32,946 - cephci - ceph:1186 - DEBUG -   Installing       : cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:33,221 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:33,221 - cephci - ceph:1186 - DEBUG -   Verifying        : cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:33,743 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:33,743 - cephci - ceph:1186 - DEBUG - Installed products updated.
+2025-04-10 00:03:33,858 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:33,859 - cephci - ceph:1186 - DEBUG - Installed:
+2025-04-10 00:03:33,859 - cephci - ceph:1186 - DEBUG -   cephadm-2:19.2.1-112.el9cp.noarch                                             
+2025-04-10 00:03:33,859 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:33,859 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-10 00:03:34,508 - cephci - ceph:1606 - INFO - Execution of yum install cephadm -y --nogpgcheck on 10.0.195.194 took 6.21451 seconds
+2025-04-10 00:03:34,510 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep cephadm on 10.0.195.194
+2025-04-10 00:03:35,514 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep cephadm on 10.0.195.194 took 1.003592 seconds
+2025-04-10 00:03:35,516 - cephci - ceph:1576 - INFO - Execute ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.195.136
+2025-04-10 00:03:36,519 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-10 00:03:37,201 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:37,202 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-10 00:03:37,202 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:38,341 - cephci - ceph:1186 - DEBUG - IBM-CEPH-8.1-202504081305.ci.0                   39 kB/s |  32 kB     00:00    
+2025-04-10 00:03:40,808 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-10 00:03:40,809 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:40,809 - cephci - ceph:1186 - DEBUG -  Package                  Arch   Version   Repository                      Size
+2025-04-10 00:03:40,809 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:40,809 - cephci - ceph:1186 - DEBUG - Installing:
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG -  ibm-storage-ceph-license noarch 8-2.el9cp IBM-CEPH-8.1-202504081305.ci.0 449 k
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - Transaction Summary
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - Install  1 Package
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - Total download size: 449 k
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - Installed size: 5.7 M
+2025-04-10 00:03:40,810 - cephci - ceph:1186 - DEBUG - Downloading Packages:
+2025-04-10 00:03:41,556 - cephci - ceph:1186 - DEBUG - ibm-storage-ceph-license-8-2.el9cp.noarch.rpm   602 kB/s | 449 kB     00:00    
+2025-04-10 00:03:41,556 - cephci - ceph:1186 - DEBUG - --------------------------------------------------------------------------------
+2025-04-10 00:03:41,557 - cephci - ceph:1186 - DEBUG - Total                                           600 kB/s | 449 kB     00:00     
+2025-04-10 00:03:41,557 - cephci - ceph:1186 - DEBUG - Running transaction check
+2025-04-10 00:03:41,574 - cephci - ceph:1186 - DEBUG - Transaction check succeeded.
+2025-04-10 00:03:41,574 - cephci - ceph:1186 - DEBUG - Running transaction test
+2025-04-10 00:03:41,578 - cephci - ceph:1186 - DEBUG - Transaction test succeeded.
+2025-04-10 00:03:41,578 - cephci - ceph:1186 - DEBUG - Running transaction
+2025-04-10 00:03:41,635 - cephci - ceph:1186 - DEBUG -   Preparing        :                                                        1/1
+2025-04-10 00:03:41,701 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:41,702 - cephci - ceph:1186 - DEBUG -   Installing       : ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:41,762 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:41,762 - cephci - ceph:1186 - DEBUG -   Running scriptlet: ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:42,553 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:42,553 - cephci - ceph:1186 - DEBUG -   Verifying        : ibm-storage-ceph-license-8-2.el9cp.noarch              1/1
+2025-04-10 00:03:43,079 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:43,080 - cephci - ceph:1186 - DEBUG - Installed products updated.
+2025-04-10 00:03:43,681 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:43,682 - cephci - ceph:1186 - DEBUG - Installed:
+2025-04-10 00:03:43,682 - cephci - ceph:1186 - DEBUG -   ibm-storage-ceph-license-8-2.el9cp.noarch                                     
+2025-04-10 00:03:43,683 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:43,683 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-10 00:03:43,866 - cephci - ceph:1606 - INFO - Execution of ACCEPT_EULA=Y yum install -y ibm-storage-ceph-license --nogpgcheck on 10.0.195.136 took 8.349861 seconds
+2025-04-10 00:03:43,908 - cephci - ceph:1576 - INFO - Execute cat /usr/share/ibm-storage-ceph-license/accept on 10.0.195.136
+2025-04-10 00:03:44,911 - cephci - ceph:1606 - INFO - Execution of cat /usr/share/ibm-storage-ceph-license/accept on 10.0.195.136 took 1.003084 seconds
+2025-04-10 00:03:44,913 - cephci - ceph:1576 - INFO - Execute yum install cephadm -y --nogpgcheck on 10.0.195.136
+2025-04-10 00:03:45,916 - cephci - ceph:1186 - DEBUG - Updating Subscription Management repositories.
+2025-04-10 00:03:46,522 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:46,522 - cephci - ceph:1186 - DEBUG - This system has release set to 9.5 and it receives updates only for this release.
+2025-04-10 00:03:46,522 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:47,108 - cephci - ceph:1186 - DEBUG - Last metadata expiration check: 0:00:08 ago on Thu Apr 10 00:03:20 2025.
+2025-04-10 00:03:47,417 - cephci - ceph:1186 - DEBUG - Dependencies resolved.
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG -  Package   Arch     Version              Repository                        Size
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG - Installing:
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG -  cephadm   noarch   2:19.2.1-112.el9cp   IBM-CEPH-8.1-202504081305.ci.0   993 k
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG - Transaction Summary
+2025-04-10 00:03:47,418 - cephci - ceph:1186 - DEBUG - ================================================================================
+2025-04-10 00:03:47,419 - cephci - ceph:1186 - DEBUG - Install  1 Package
+2025-04-10 00:03:47,419 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:47,419 - cephci - ceph:1186 - DEBUG - Total download size: 993 k
+2025-04-10 00:03:47,419 - cephci - ceph:1186 - DEBUG - Installed size: 997 k
+2025-04-10 00:03:47,419 - cephci - ceph:1186 - DEBUG - Downloading Packages:
+2025-04-10 00:03:48,514 - cephci - ceph:1186 - DEBUG - cephadm-19.2.1-112.el9cp.noarch.rpm             907 kB/s | 993 kB     00:01    
+2025-04-10 00:03:48,515 - cephci - ceph:1186 - DEBUG - --------------------------------------------------------------------------------
+2025-04-10 00:03:48,515 - cephci - ceph:1186 - DEBUG - Total                                           905 kB/s | 993 kB     00:01     
+2025-04-10 00:03:48,515 - cephci - ceph:1186 - DEBUG - Running transaction check
+2025-04-10 00:03:48,521 - cephci - ceph:1186 - DEBUG - Transaction check succeeded.
+2025-04-10 00:03:48,521 - cephci - ceph:1186 - DEBUG - Running transaction test
+2025-04-10 00:03:48,536 - cephci - ceph:1186 - DEBUG - Transaction test succeeded.
+2025-04-10 00:03:48,537 - cephci - ceph:1186 - DEBUG - Running transaction
+2025-04-10 00:03:48,585 - cephci - ceph:1186 - DEBUG -   Running scriptlet: cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:48,597 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:48,598 - cephci - ceph:1186 - DEBUG - IBM license agreement found. Continuing.
+2025-04-10 00:03:48,598 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:48,598 - cephci - ceph:1186 - DEBUG -   Preparing        :                                                        1/1
+2025-04-10 00:03:48,622 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:48,623 - cephci - ceph:1186 - DEBUG -   Running scriptlet: cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:48,914 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:48,914 - cephci - ceph:1186 - DEBUG -   Installing       : cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:49,410 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:49,411 - cephci - ceph:1186 - DEBUG -   Verifying        : cephadm-2:19.2.1-112.el9cp.noarch                      1/1
+2025-04-10 00:03:50,202 - cephci - ceph:1186 - DEBUG -  
+2025-04-10 00:03:50,203 - cephci - ceph:1186 - DEBUG - Installed products updated.
+2025-04-10 00:03:50,319 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:50,319 - cephci - ceph:1186 - DEBUG - Installed:
+2025-04-10 00:03:50,319 - cephci - ceph:1186 - DEBUG -   cephadm-2:19.2.1-112.el9cp.noarch                                             
+2025-04-10 00:03:50,319 - cephci - ceph:1186 - DEBUG - 
+2025-04-10 00:03:50,319 - cephci - ceph:1186 - DEBUG - Complete!
+2025-04-10 00:03:50,527 - cephci - ceph:1606 - INFO - Execution of yum install cephadm -y --nogpgcheck on 10.0.195.136 took 5.613784 seconds
+2025-04-10 00:03:50,529 - cephci - ceph:1576 - INFO - Execute rpm -qa | grep cephadm on 10.0.195.136
+2025-04-10 00:03:51,533 - cephci - ceph:1606 - INFO - Execution of rpm -qa | grep cephadm on 10.0.195.136 took 1.003711 seconds
+2025-04-10 00:03:51,548 - cephci - ceph:1576 - INFO - Execute cephadm --image cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 bootstrap --registry-url cp.stg.icr.io --registry-username cp --registry-password <masked> --mon-ip 10.0.195.136 on 10.0.195.136
+2025-04-10 00:05:36,360 - cephci - ceph:1606 - INFO - Execution of cephadm --image cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 bootstrap --registry-url cp.stg.icr.io --registry-username cp --registry-password <masked> --mon-ip 10.0.195.136 on 10.0.195.136 took 104.810951 seconds
+2025-04-10 00:05:36,360 - cephci - test_cephadm:189 - ERROR - cephadm --image cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 bootstrap --registry-url cp.stg.icr.io --registry-username cp --registry-password eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJQk0gTWFya2V0cGxhY2UiLCJlbnYiOiJzdGFnZSIsImlhdCI6MTY4Mzc3NDg1MSwianRpIjoiZWM4ODUyZDFhOWE0NGE3ODkwYWE0YzA1MDdlOTk1NDgifQ.o9Z2h1lbbA_zaeV55QMoTsSlkk-gFt0yJHiTFyApkHs --mon-ip 10.0.195.136 returned RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --authfile=/etc/ceph/podman-auth.json --net=host --entrypoint /usr/bin/ceph --init -e CONTAINER_IMAGE=cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 -e NODE_NAME=ceph-sanity-xmhkwe-ydz4mo-node1-installer -v /var/log/ceph/3ea216a8-159f-11f0-a24d-fa163e04951d:/var/log/ceph:z -v /tmp/ceph-tmpnrvhpxlo:/etc/ceph/ceph.client.admin.keyring:z -v /tmp/ceph-tmp_u2x0csy:/etc/ceph/ceph.conf:z cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 mgr module enable cephadm: Error ENOENT: module 'cephadm' reports that it cannot run on the active manager daemon: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process (pass --force to force enablement)
+
+Traceback (most recent call last):
+  File "/usr/lib64/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib64/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 6100, in <module>
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 6088, in main
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2698, in _rollback
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 458, in _default_image
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 3056, in command_bootstrap
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2437, in enable_cephadm_mgr_module
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2974, in cli
+  File "/tmp/tmp0t5fahao.cephadm.build/app/cephadmlib/container_types.py", line 430, in run
+  File "/tmp/tmp0t5fahao.cephadm.build/app/cephadmlib/call_wrappers.py", line 307, in call_throws
+RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --authfile=/etc/ceph/podman-auth.json --net=host --entrypoint /usr/bin/ceph --init -e CONTAINER_IMAGE=cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 -e NODE_NAME=ceph-sanity-xmhkwe-ydz4mo-node1-installer -v /var/log/ceph/3ea216a8-159f-11f0-a24d-fa163e04951d:/var/log/ceph:z -v /tmp/ceph-tmpnrvhpxlo:/etc/ceph/ceph.client.admin.keyring:z -v /tmp/ceph-tmp_u2x0csy:/etc/ceph/ceph.conf:z cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 mgr module enable cephadm: Error ENOENT: module 'cephadm' reports that it cannot run on the active manager daemon: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process (pass --force to force enablement)
+
+ and code 1 on 10.0.195.136
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/tests/ceph_installer/test_cephadm.py", line 173, in run
+    func(cfg)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph_admin/bootstrap.py", line 324, in bootstrap
+    out, err = self.installer.exec_command(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph.py", line 2305, in exec_command
+    return self.node.exec_command(cmd=cmd, **kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: cephadm --image cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 bootstrap --registry-url cp.stg.icr.io --registry-username cp --registry-password eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJQk0gTWFya2V0cGxhY2UiLCJlbnYiOiJzdGFnZSIsImlhdCI6MTY4Mzc3NDg1MSwianRpIjoiZWM4ODUyZDFhOWE0NGE3ODkwYWE0YzA1MDdlOTk1NDgifQ.o9Z2h1lbbA_zaeV55QMoTsSlkk-gFt0yJHiTFyApkHs --mon-ip 10.0.195.136 returned RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --authfile=/etc/ceph/podman-auth.json --net=host --entrypoint /usr/bin/ceph --init -e CONTAINER_IMAGE=cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 -e NODE_NAME=ceph-sanity-xmhkwe-ydz4mo-node1-installer -v /var/log/ceph/3ea216a8-159f-11f0-a24d-fa163e04951d:/var/log/ceph:z -v /tmp/ceph-tmpnrvhpxlo:/etc/ceph/ceph.client.admin.keyring:z -v /tmp/ceph-tmp_u2x0csy:/etc/ceph/ceph.conf:z cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 mgr module enable cephadm: Error ENOENT: module 'cephadm' reports that it cannot run on the active manager daemon: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process (pass --force to force enablement)
+
+Traceback (most recent call last):
+  File "/usr/lib64/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib64/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 6100, in <module>
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 6088, in main
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2698, in _rollback
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 458, in _default_image
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 3056, in command_bootstrap
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2437, in enable_cephadm_mgr_module
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2974, in cli
+  File "/tmp/tmp0t5fahao.cephadm.build/app/cephadmlib/container_types.py", line 430, in run
+  File "/tmp/tmp0t5fahao.cephadm.build/app/cephadmlib/call_wrappers.py", line 307, in call_throws
+RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --authfile=/etc/ceph/podman-auth.json --net=host --entrypoint /usr/bin/ceph --init -e CONTAINER_IMAGE=cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 -e NODE_NAME=ceph-sanity-xmhkwe-ydz4mo-node1-installer -v /var/log/ceph/3ea216a8-159f-11f0-a24d-fa163e04951d:/var/log/ceph:z -v /tmp/ceph-tmpnrvhpxlo:/etc/ceph/ceph.client.admin.keyring:z -v /tmp/ceph-tmp_u2x0csy:/etc/ceph/ceph.conf:z cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 mgr module enable cephadm: Error ENOENT: module 'cephadm' reports that it cannot run on the active manager daemon: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process (pass --force to force enablement)
+
+ and code 1 on 10.0.195.136
+2025-04-10 00:05:36,362 - cephci - test_cephadm:190 - DEBUG - Gathering cluster state after running test_cephadm
+2025-04-10 00:05:36,363 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph status on 10.0.195.136
+2025-04-10 00:05:38,171 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph status on 10.0.195.136 took 1.807854 seconds
+2025-04-10 00:05:38,172 - cephci - ceph:1682 - INFO - 
+Command:    cephadm shell -- ceph status
+Duration:   1.807854 seconds
+Exit Code:  1
+Stderr:      Using ceph image with id 'dd3e707f5692' and tag '8-107' created on 2025-04-08 12:45:21 +0000 UTC
+cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:4f9e0c979602a8ada163ea7b11122c37f67541177d90c9bb7d18cf11f4184828
+Error initializing cluster client: ObjectNotFound('RADOS object not found (error calling conf_read_file)')
+
+2025-04-10 00:05:38,172 - cephci - run:854 - ERROR - cephadm shell -- ceph status returned Using ceph image with id 'dd3e707f5692' and tag '8-107' created on 2025-04-08 12:45:21 +0000 UTC
+cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:4f9e0c979602a8ada163ea7b11122c37f67541177d90c9bb7d18cf11f4184828
+Error initializing cluster client: ObjectNotFound('RADOS object not found (error calling conf_read_file)')
+ and code 1 on 10.0.195.136
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/tests/ceph_installer/test_cephadm.py", line 173, in run
+    func(cfg)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph_admin/bootstrap.py", line 324, in bootstrap
+    out, err = self.installer.exec_command(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph.py", line 2305, in exec_command
+    return self.node.exec_command(cmd=cmd, **kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: cephadm --image cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 bootstrap --registry-url cp.stg.icr.io --registry-username cp --registry-password eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJQk0gTWFya2V0cGxhY2UiLCJlbnYiOiJzdGFnZSIsImlhdCI6MTY4Mzc3NDg1MSwianRpIjoiZWM4ODUyZDFhOWE0NGE3ODkwYWE0YzA1MDdlOTk1NDgifQ.o9Z2h1lbbA_zaeV55QMoTsSlkk-gFt0yJHiTFyApkHs --mon-ip 10.0.195.136 returned RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --authfile=/etc/ceph/podman-auth.json --net=host --entrypoint /usr/bin/ceph --init -e CONTAINER_IMAGE=cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 -e NODE_NAME=ceph-sanity-xmhkwe-ydz4mo-node1-installer -v /var/log/ceph/3ea216a8-159f-11f0-a24d-fa163e04951d:/var/log/ceph:z -v /tmp/ceph-tmpnrvhpxlo:/etc/ceph/ceph.client.admin.keyring:z -v /tmp/ceph-tmp_u2x0csy:/etc/ceph/ceph.conf:z cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 mgr module enable cephadm: Error ENOENT: module 'cephadm' reports that it cannot run on the active manager daemon: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process (pass --force to force enablement)
+
+Traceback (most recent call last):
+  File "/usr/lib64/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib64/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 6100, in <module>
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 6088, in main
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2698, in _rollback
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 458, in _default_image
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 3056, in command_bootstrap
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2437, in enable_cephadm_mgr_module
+  File "/tmp/tmp0t5fahao.cephadm.build/app/__main__.py", line 2974, in cli
+  File "/tmp/tmp0t5fahao.cephadm.build/app/cephadmlib/container_types.py", line 430, in run
+  File "/tmp/tmp0t5fahao.cephadm.build/app/cephadmlib/call_wrappers.py", line 307, in call_throws
+RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --authfile=/etc/ceph/podman-auth.json --net=host --entrypoint /usr/bin/ceph --init -e CONTAINER_IMAGE=cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 -e NODE_NAME=ceph-sanity-xmhkwe-ydz4mo-node1-installer -v /var/log/ceph/3ea216a8-159f-11f0-a24d-fa163e04951d:/var/log/ceph:z -v /tmp/ceph-tmpnrvhpxlo:/etc/ceph/ceph.client.admin.keyring:z -v /tmp/ceph-tmp_u2x0csy:/etc/ceph/ceph.conf:z cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9:8-107 mgr module enable cephadm: Error ENOENT: module 'cephadm' reports that it cannot run on the active manager daemon: PyO3 modules compiled for CPython 3.8 or older may only be initialized once per interpreter process (pass --force to force enablement)
+
+ and code 1 on 10.0.195.136
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/run.py", line 839, in run
+    rc = test_mod.run(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/tests/ceph_installer/test_cephadm.py", line 191, in run
+    get_cluster_state(cephadm)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph_admin/helper.py", line 915, in get_cluster_state
+    cls.shell(args=[cmd], pretty_print=True)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph_admin/shell.py", line 53, in shell
+    out = self.installer.exec_command(
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph.py", line 2305, in exec_command
+    return self.node.exec_command(cmd=cmd, **kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: cephadm shell -- ceph status returned Using ceph image with id 'dd3e707f5692' and tag '8-107' created on 2025-04-08 12:45:21 +0000 UTC
+cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:4f9e0c979602a8ada163ea7b11122c37f67541177d90c9bb7d18cf11f4184828
+Error initializing cluster client: ObjectNotFound('RADOS object not found (error calling conf_read_file)')
+ and code 1 on 10.0.195.136
+2025-04-10 00:05:38,213 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.136
+2025-04-10 00:05:39,217 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.136 took 1.003178 seconds
+2025-04-10 00:05:39,217 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-10 00:05:39,219 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.136
+2025-04-10 00:05:40,223 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.136 took 1.003764 seconds
+2025-04-10 00:05:40,225 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.194.250
+2025-04-10 00:05:41,228 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.194.250 took 1.003141 seconds
+2025-04-10 00:05:41,229 - cephci - run:1081 - INFO - ceph Version 
+2025-04-10 00:05:41,230 - cephci - run:1040 - INFO - ceph_clusters_file rerun/sanity-XmhkwE-YDZ4MO
+2025-04-10 00:05:41,230 - cephci - run:927 - INFO - Test <module 'test_cephadm' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/cephci/tests/ceph_installer/test_cephadm.py'> failed
+2025-04-10 00:05:41,230 - cephci - run:935 - INFO - Aborting on test failure
+2025-04-10 00:05:41,230 - cephci - run:964 - INFO - 
+All test logs located here: /home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/logs/tier0-nfs-ganesha-v3

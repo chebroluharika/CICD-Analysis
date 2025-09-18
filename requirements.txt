@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+requests
+beautifulsoup4
+motor
+pydantic
+llama-index
+llama-index-llms-ollama
+llama-index-embeddings-huggingface
+torch       # required for HuggingFaceEmbedding
+transformers
+numpy
+pandas

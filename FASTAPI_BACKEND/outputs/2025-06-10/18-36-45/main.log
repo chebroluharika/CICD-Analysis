@@ -1,0 +1,4 @@
+[2025-06-10 18:40:17,500][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: BAAI/bge-small-en-v1.5
+[2025-06-10 18:40:34,736][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'text']
+[2025-06-10 18:40:46,620][httpx][INFO] - HTTP Request: POST http://localhost:11434/api/show "HTTP/1.1 200 OK"
+[2025-06-10 18:41:11,613][httpx][INFO] - HTTP Request: POST http://localhost:11434/api/chat "HTTP/1.1 200 OK"

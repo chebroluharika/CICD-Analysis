@@ -1,0 +1,32 @@
+services:
+  backend:
+    image: docker.io/namratha4/rag-backend:latest
+    container_name: rag-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - BASE_URL=${BASE_URL}
+    # If DNS fails, uncomment and set the IP:
+    # extra_hosts:
+    #   - "magna002.ceph.redhat.com:10.70.xx.xx"
+    volumes:
+      - ./fastapi_backend/reports:/app/reports
+      - ./fastapi_backend/download_failed_logs:/app/download_failed_logs
+      - ./fastapi_backend/outputs:/app/outputs
+      - ./fastapi_backend/tmp:/app/tmp
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  frontend:
+    image: docker.io/namratha4/rag-frontend:latest
+    container_name: rag-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

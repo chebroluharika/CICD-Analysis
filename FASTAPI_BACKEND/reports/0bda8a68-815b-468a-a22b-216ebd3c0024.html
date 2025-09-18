@@ -1,0 +1,750 @@
+
+    <html>
+    <head>
+        <title>CephCI Log Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; }
+            th { background-color: #f2f2f2; }
+            .directory-title { 
+                font-size: 1.2em; 
+                margin-top: 25px; 
+                margin-bottom: 10px; 
+                color: #2c3e50; 
+                background-color: #ecf0f1; 
+                padding: 8px; 
+                border-left: 4px solid #3498db; 
+            }
+            .log-name { font-weight: bold; color: #2980b9; }
+            .feedback-buttons { display: flex; gap: 5px; justify-content: center; }
+            .feedback-btn { 
+                cursor: pointer; 
+                border: none; 
+                border-radius: 4px; 
+                padding: 2px 8px; 
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+            .like-btn { background-color: #2ecc71; color: white; }
+            .like-btn.active { background-color: #27ae60; }
+            .dislike-btn { background-color: #e74c3c; color: white; }
+            .dislike-btn.active { background-color: #c0392b; }
+            .skip-btn { background-color: #f39c12; color: white; }
+            .skip-btn.active { background-color: #d35400; }
+            .feedback-form {
+                display: none;
+                margin-top: 5px;
+            }
+            textarea {
+                width: 100%;
+                min-height: 50px;
+                padding: 5px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+            .submit-all-btn {
+                background-color: #e67e22;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 20px auto;
+                display: block;
+                font-size: 16px;
+            }
+            .submit-all-btn:hover {
+                background-color: #d35400;
+            }
+            .raw-analysis {
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-radius: 4px;
+                margin-top: 5px;
+            }
+        </style>
+        <script>
+            function toggleRawAnalysis(logId) {
+                var rawDiv = document.getElementById('raw-' + logId);
+                var toggleBtn = document.getElementById('toggle-' + logId);
+                if (rawDiv.style.display === 'none') {
+                    rawDiv.style.display = 'block';
+                    toggleBtn.textContent = '▼';
+                } else {
+                    rawDiv.style.display = 'none';
+                    toggleBtn.textContent = '➤';
+                }
+            }
+
+            function showFeedbackForm(logId, btnType) {
+                // Remove active class from all buttons for this log
+                document.querySelectorAll(`.feedback-btn[data-log-id="${logId}"]`).forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Set active class on clicked button
+                document.getElementById(btnType + '-btn-' + logId).classList.add('active');
+                
+                // Show/hide textarea
+                var form = document.getElementById('feedback-form-' + logId);
+                if (btnType === 'dislike') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            }
+
+            async function submitAllFeedback() {
+                const feedbacks = [];
+                const logItems = document.querySelectorAll('.log-item');
+                
+                logItems.forEach(item => {
+                    const logId = item.dataset.logId;
+                    const activeBtn = item.querySelector('.feedback-btn.active');
+                    const vote = activeBtn ? activeBtn.dataset.vote : 'skip';
+                    const comment = item.querySelector('textarea')?.value || '';
+                    
+                    feedbacks.push({
+                        log_id: logId,
+                        log_name: item.dataset.logName,
+                        vote: vote,
+                        comment: comment,
+                        build_stamp: new Date().toISOString()
+                    });
+                });
+
+                try {
+                    const response = await fetch('/submit-feedback', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(feedbacks)
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert('Successfully submitted feedback!');
+                    } else {
+                        alert('Failed to submit feedback: ' + data.error);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting feedback.');
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>CephCI Log Analysis Report</h2>
+        <p><strong>Generated at:</strong> 2025-08-20 17:16:18</p>
+        <p><strong>Test Suite:</strong> Sanity | <strong>RHEL:</strong> RHEL-9</p>
+        <hr>
+        
+        
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier0-nfs-ganesha-v3</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0logdd8a32" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0logdd8a32" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0logdd8a32')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier0-nfs-ganesha-v3/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0logdd8a32" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logdd8a32', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logdd8a32" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0logdd8a32" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logdd8a32', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logdd8a32" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0logdd8a32" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logdd8a32', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logdd8a32" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0logdd8a32" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0logdd8a32" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0logdd8a32" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: &#x27;WordListCorpusReader&#x27; object has no attribute &#x27;_LazyCorpusLoader__args&#x27;</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-0_fs</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="cluster_deployment_0loge33704" data-log-name="cluster_deployment_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-cluster_deployment_0loge33704" class="toggle-raw" onclick="toggleRawAnalysis('cluster_deployment_0loge33704')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-0_fs/cluster_deployment_0.log" target="_blank" class="log-name">cluster_deployment_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient bandwidth.</td>
+                <td>Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster internet connection or distributing the package downloads across multiple nodes to reduce the load on any single node.</td>
+                <td>1. Upgrade the network hardware to improve the bandwidth of the connection.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cluster_deployment_0loge33704" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0loge33704', 'like')"
+                                data-log-id="cluster_deployment_0loge33704" data-vote="like">👍</button>
+                        <button id="dislike-btn-cluster_deployment_0loge33704" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0loge33704', 'dislike')"
+                                data-log-id="cluster_deployment_0loge33704" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cluster_deployment_0loge33704" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0loge33704', 'skip')"
+                                data-log-id="cluster_deployment_0loge33704" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cluster_deployment_0loge33704" class="feedback-form">
+                        <textarea id="feedback-text-cluster_deployment_0loge33704" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cluster_deployment_0loge33704" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient bandwidth.
+
+Fix: Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster internet connection or distributing the package downloads across multiple nodes to reduce the load on any single node.
+
+Steps:
+
+1. Upgrade the network hardware to improve the bandwidth of the connection.
+2. Optimize the network configuration to maximize the available bandwidth.
+3. Consider using a faster internet connection, such as a fiber optic connection, to reduce the load on the current connection.
+4. Distribute the package downloads across multiple nodes to reduce the load on any single node.
+
+Answer: The root cause of the failures is due to insufficient bandwidth, and the suggested solutions are to increase the bandwidth of the network connection, upgrade the network hardware, optimize the network configuration, consider using a faster internet connection, and distribute the package downloads across multiple nodes.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rbd_encryption</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="deploy_cluster_0log802a72" data-log-name="deploy_cluster_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-deploy_cluster_0log802a72" class="toggle-raw" onclick="toggleRawAnalysis('deploy_cluster_0log802a72')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-2_rbd_encryption/deploy_cluster_0.log" target="_blank" class="log-name">deploy_cluster_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-deploy_cluster_0log802a72" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log802a72', 'like')"
+                                data-log-id="deploy_cluster_0log802a72" data-vote="like">👍</button>
+                        <button id="dislike-btn-deploy_cluster_0log802a72" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log802a72', 'dislike')"
+                                data-log-id="deploy_cluster_0log802a72" data-vote="dislike">👎</button>
+                        <button id="skip-btn-deploy_cluster_0log802a72" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log802a72', 'skip')"
+                                data-log-id="deploy_cluster_0log802a72" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-deploy_cluster_0log802a72" class="feedback-form">
+                        <textarea id="feedback-text-deploy_cluster_0log802a72" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-deploy_cluster_0log802a72" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: &#x27;WordListCorpusReader&#x27; object has no attribute &#x27;_LazyCorpusLoader__args&#x27;</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier0-nfs-ganesha-vers-4-2</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0logf0f2de" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0logf0f2de" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0logf0f2de')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier0-nfs-ganesha-vers-4-2/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient bandwidth.</td>
+                <td>Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster internet connection or distributing the package downloads across multiple nodes to reduce the load on any single node.</td>
+                <td>1. Upgrade the network hardware to improve the bandwidth of the connection.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0logf0f2de" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logf0f2de', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logf0f2de" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0logf0f2de" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logf0f2de', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logf0f2de" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0logf0f2de" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logf0f2de', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logf0f2de" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0logf0f2de" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0logf0f2de" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0logf0f2de" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient bandwidth.
+
+Fix: Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster internet connection or distributing the package downloads across multiple nodes to reduce the load on any single node.
+
+Steps:
+
+1. Upgrade the network hardware to improve the bandwidth of the connection.
+2. Optimize the network configuration to maximize the use of available bandwidth.
+3. Consider using a faster internet connection, such as a fiber optic connection, to reduce the load on the current connection.
+4. Distribute the package downloads across multiple nodes to reduce the load on any single node.
+
+Answer: The root cause of the failures is due to insufficient bandwidth, and the suggested solutions are to increase the bandwidth of the network connection, upgrade the network hardware, optimize the network configuration, consider using a faster internet connection, and distribute the package downloads across multiple nodes.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier0-nfs-ganesha</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0log7c2c03" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0log7c2c03" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0log7c2c03')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier0-nfs-ganesha/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0log7c2c03" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log7c2c03', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log7c2c03" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0log7c2c03" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log7c2c03', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log7c2c03" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0log7c2c03" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log7c2c03', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log7c2c03" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0log7c2c03" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0log7c2c03" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0log7c2c03" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-service-apply-spec</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Cephadm_Bootstrap_0log1693c0" data-log-name="Cephadm_Bootstrap_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Cephadm_Bootstrap_0log1693c0" class="toggle-raw" onclick="toggleRawAnalysis('Cephadm_Bootstrap_0log1693c0')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier1-service-apply-spec/Cephadm_Bootstrap_0.log" target="_blank" class="log-name">Cephadm_Bootstrap_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient bandwidth.</td>
+                <td>Increase the bandwidth of the network connection to improve the download speed of packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster mirror or repository server for the package updates.</td>
+                <td>1. Check the current network configuration and hardware specifications to identify any bottlenecks.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Cephadm_Bootstrap_0log1693c0" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_0log1693c0', 'like')"
+                                data-log-id="Cephadm_Bootstrap_0log1693c0" data-vote="like">👍</button>
+                        <button id="dislike-btn-Cephadm_Bootstrap_0log1693c0" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_0log1693c0', 'dislike')"
+                                data-log-id="Cephadm_Bootstrap_0log1693c0" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Cephadm_Bootstrap_0log1693c0" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_0log1693c0', 'skip')"
+                                data-log-id="Cephadm_Bootstrap_0log1693c0" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Cephadm_Bootstrap_0log1693c0" class="feedback-form">
+                        <textarea id="feedback-text-Cephadm_Bootstrap_0log1693c0" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Cephadm_Bootstrap_0log1693c0" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient bandwidth.
+
+Fix: Increase the bandwidth of the network connection to improve the download speed of packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster mirror or repository server for the package updates.
+
+Steps:
+
+1. Check the current network configuration and hardware specifications to identify any bottlenecks.
+2. Optimize the network configuration to improve download speeds, such as adjusting the cache settings or enabling QUIC.
+3. Upgrade the network hardware, such as the switches or routers, if necessary.
+4. Use a faster mirror or repository server for package updates.
+5. Monitor the network performance and adjust the configuration as needed to ensure optimal download speeds.
+
+Answer: The root cause of the failures is due to insufficient bandwidth, which can be addressed by increasing the bandwidth of the network connection, optimizing the network configuration, upgrading the network hardware, or using a faster mirror or repository server for package updates.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">bvt</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0logc2d2aa" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0logc2d2aa" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0logc2d2aa')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/bvt/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient bandwidth.</td>
+                <td>Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster mirror or repository server for the package updates.</td>
+                <td>1. Check and upgrade the network hardware to ensure it is capable of handling the increased bandwidth requirements.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0logc2d2aa" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logc2d2aa', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logc2d2aa" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0logc2d2aa" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logc2d2aa', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logc2d2aa" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0logc2d2aa" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logc2d2aa', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logc2d2aa" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0logc2d2aa" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0logc2d2aa" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0logc2d2aa" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient bandwidth.
+
+Fix: Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster mirror or repository server for the package updates.
+
+Steps:
+
+1. Check and upgrade the network hardware to ensure it is capable of handling the increased bandwidth requirements.
+2. Optimize the network configuration by adjusting settings such as packet size, queue length, and network latency to improve download speeds.
+3. Use a faster mirror or repository server for package updates to reduce the amount of time spent downloading packages.
+
+Answer: The root cause of the failures is due to insufficient bandwidth, which can be addressed by increasing the bandwidth of the network connection and optimizing the network configuration. Additionally, using a faster mirror or repository server for package updates can help reduce the download time and improve the overall performance.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rbd_regression</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="deploy_cluster_0log4f542e" data-log-name="deploy_cluster_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-deploy_cluster_0log4f542e" class="toggle-raw" onclick="toggleRawAnalysis('deploy_cluster_0log4f542e')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-2_rbd_regression/deploy_cluster_0.log" target="_blank" class="log-name">deploy_cluster_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient disk space.</td>
+                <td>Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.</td>
+                <td>1. Check the available disk space on the system using the `df` command.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-deploy_cluster_0log4f542e" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log4f542e', 'like')"
+                                data-log-id="deploy_cluster_0log4f542e" data-vote="like">👍</button>
+                        <button id="dislike-btn-deploy_cluster_0log4f542e" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log4f542e', 'dislike')"
+                                data-log-id="deploy_cluster_0log4f542e" data-vote="dislike">👎</button>
+                        <button id="skip-btn-deploy_cluster_0log4f542e" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log4f542e', 'skip')"
+                                data-log-id="deploy_cluster_0log4f542e" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-deploy_cluster_0log4f542e" class="feedback-form">
+                        <textarea id="feedback-text-deploy_cluster_0log4f542e" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-deploy_cluster_0log4f542e" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient disk space.
+
+Fix: Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.
+
+Steps:
+
+1. Check the available disk space on the system using the `df` command.
+2. Identify the largest consumers of disk space and prioritize them for optimization.
+3. Optimize the identified applications or files by either deleting unnecessary data or configuring them to use less disk space.
+4. Monitor the available disk space regularly to ensure it does not drop below a safe threshold.
+
+Answer:</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-0-smb</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0log923922" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0log923922" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0log923922')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-0-smb/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient bandwidth.</td>
+                <td>Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster mirror or repository server for the package updates.</td>
+                <td>1. Check and upgrade the network hardware to ensure it is capable of handling the increased bandwidth requirements.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0log923922" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log923922', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log923922" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0log923922" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log923922', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log923922" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0log923922" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log923922', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log923922" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0log923922" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0log923922" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0log923922" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient bandwidth.
+
+Fix: Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster mirror or repository server for the package updates.
+
+Steps:
+
+1. Check and upgrade the network hardware to ensure it is capable of handling the increased bandwidth requirements.
+2. Optimize the network configuration by adjusting settings such as packet size, queue length, and network latency to improve download speeds.
+3. Use a faster mirror or repository server for package updates to reduce the amount of time spent downloading packages.
+
+Answer: The root cause of the failures is due to insufficient bandwidth, which can be addressed by increasing the bandwidth of the network connection and optimizing the network configuration. Additionally, using a faster mirror or repository server for package updates can help reduce the download time and improve the overall performance.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-1_rbd</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log4dca44" data-log-name="Cephadm_Bootstrap_with_custom_user_option_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Cephadm_Bootstrap_with_custom_user_option_0log4dca44" class="toggle-raw" onclick="toggleRawAnalysis('Cephadm_Bootstrap_with_custom_user_option_0log4dca44')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-1_rbd/Cephadm_Bootstrap_with_custom_user_option_0.log" target="_blank" class="log-name">Cephadm_Bootstrap_with_custom_user_option_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to the package installation failing.</td>
+                <td>Try reinstalling the package by running the command `sudo apt-get install -f ibm-storage-ceph-license-8-2.el9cp` and see if it resolves the issue. If the issue persists, try checking the package dependencies and installing them manually.</td>
+                <td>1. Run the command `sudo apt-get install -f ibm-storage-ceph-license-8-2.el9cp` to reinstall the package.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Cephadm_Bootstrap_with_custom_user_option_0log4dca44" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_custom_user_option_0log4dca44', 'like')"
+                                data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log4dca44" data-vote="like">👍</button>
+                        <button id="dislike-btn-Cephadm_Bootstrap_with_custom_user_option_0log4dca44" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_custom_user_option_0log4dca44', 'dislike')"
+                                data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log4dca44" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Cephadm_Bootstrap_with_custom_user_option_0log4dca44" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_custom_user_option_0log4dca44', 'skip')"
+                                data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log4dca44" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Cephadm_Bootstrap_with_custom_user_option_0log4dca44" class="feedback-form">
+                        <textarea id="feedback-text-Cephadm_Bootstrap_with_custom_user_option_0log4dca44" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Cephadm_Bootstrap_with_custom_user_option_0log4dca44" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to the package installation failing.
+Fix: Try reinstalling the package by running the command `sudo apt-get install -f ibm-storage-ceph-license-8-2.el9cp` and see if it resolves the issue. If the issue persists, try checking the package dependencies and installing them manually.
+Steps:
+1. Run the command `sudo apt-get install -f ibm-storage-ceph-license-8-2.el9cp` to reinstall the package.
+2. Check the package dependencies and install them manually if the issue persists.
+Answer:</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-1_rgw_ibm</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="deploy_cluster_using_cephadm_0logee4c56" data-log-name="deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-deploy_cluster_using_cephadm_0logee4c56" class="toggle-raw" onclick="toggleRawAnalysis('deploy_cluster_using_cephadm_0logee4c56')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-1_rgw_ibm/deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient bandwidth.</td>
+                <td>Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster internet connection or distributing the package downloads across multiple nodes to reduce the load on any single node.</td>
+                <td>1. Upgrade the network hardware to improve the bandwidth of the connection.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-deploy_cluster_using_cephadm_0logee4c56" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_using_cephadm_0logee4c56', 'like')"
+                                data-log-id="deploy_cluster_using_cephadm_0logee4c56" data-vote="like">👍</button>
+                        <button id="dislike-btn-deploy_cluster_using_cephadm_0logee4c56" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_using_cephadm_0logee4c56', 'dislike')"
+                                data-log-id="deploy_cluster_using_cephadm_0logee4c56" data-vote="dislike">👎</button>
+                        <button id="skip-btn-deploy_cluster_using_cephadm_0logee4c56" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_using_cephadm_0logee4c56', 'skip')"
+                                data-log-id="deploy_cluster_using_cephadm_0logee4c56" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-deploy_cluster_using_cephadm_0logee4c56" class="feedback-form">
+                        <textarea id="feedback-text-deploy_cluster_using_cephadm_0logee4c56" 
+                                 placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-deploy_cluster_using_cephadm_0logee4c56" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient bandwidth.
+
+Fix: Increase the bandwidth of the network connection to improve the download speed of the packages. This can be done by upgrading the network hardware or optimizing the network configuration. Additionally, consider using a faster internet connection or distributing the package downloads across multiple nodes to reduce the load on any single node.
+
+Steps:
+
+1. Upgrade the network hardware to improve the bandwidth of the connection.
+2. Optimize the network configuration to reduce latency and improve download speeds.
+3. Consider using a faster internet connection, such as a fiber optic connection, to increase the available bandwidth.
+4. Distribute the package downloads across multiple nodes to reduce the load on any single node.
+
+Answer: The root cause of the failures is due to insufficient bandwidth, and the suggested solutions are to increase the bandwidth of the network connection, upgrade the network hardware, optimize the network configuration, consider using a faster internet connection, and distribute the package downloads across multiple nodes.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        
+        <button class="submit-all-btn" onclick="submitAllFeedback()">
+            Submit All Feedback (11 logs)
+        </button>
+    </body>
+    </html>
+    

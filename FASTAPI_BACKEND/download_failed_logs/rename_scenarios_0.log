@@ -1,0 +1,656 @@
+2025-04-14 18:04:35,304 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-14 18:04:35,317 - cephci - run:722 - INFO - Running test cephfs_vol_management.cephfs_vol_mgmt_rename_scenarios.py
+2025-04-14 18:04:35,317 - cephci - cephfs_vol_mgmt_rename_scenarios:970 - INFO - Running CephFS tests: CEPH-83607848
+2025-04-14 18:04:35,318 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.251
+2025-04-14 18:04:36,322 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.251 took 1.003098 seconds
+2025-04-14 18:04:36,323 - cephci - ceph:1576 - INFO - Execute ceph fs volume create cephfs_1 on 10.0.195.251
+2025-04-14 18:04:40,330 - cephci - ceph:1606 - INFO - Execution of ceph fs volume create cephfs_1 on 10.0.195.251 took 4.006462 seconds
+2025-04-14 18:04:40,332 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json on 10.0.195.251
+2025-04-14 18:04:41,336 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json on 10.0.195.251 took 1.003518 seconds
+2025-04-14 18:04:41,337 - cephci - cephfs_utilsV1:1518 - INFO - Validating the creation of pools
+2025-04-14 18:04:41,338 - cephci - ceph:1576 - INFO - Execute ceph osd lspools | grep -E 'cephfs.cephfs_1.data|cephfs.cephfs_1.meta' | wc -l on 10.0.195.251
+2025-04-14 18:04:43,343 - cephci - ceph:1606 - INFO - Execution of ceph osd lspools | grep -E 'cephfs.cephfs_1.data|cephfs.cephfs_1.meta' | wc -l on 10.0.195.251 took 2.004192 seconds
+2025-04-14 18:04:43,343 - cephci - cephfs_utilsV1:1527 - INFO - Creation of pools for cephfs_1 is successful
+2025-04-14 18:04:43,344 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json-pretty on 10.0.195.251
+2025-04-14 18:04:44,348 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json-pretty on 10.0.195.251 took 1.003416 seconds
+2025-04-14 18:04:44,348 - cephci - cephfs_utilsV1:729 - INFO - Giving required permissions for clients:
+2025-04-14 18:04:44,350 - cephci - ceph:1576 - INFO - Execute ceph auth get client.ceph-regression-vhr823-futhjo-node8 on 10.0.195.251
+2025-04-14 18:04:45,354 - cephci - ceph:1606 - INFO - Execution of ceph auth get client.ceph-regression-vhr823-futhjo-node8 on 10.0.195.251 took 1.004142 seconds
+2025-04-14 18:04:45,356 - cephci - ceph:1576 - INFO - Execute ceph auth del client.ceph-regression-vhr823-futhjo-node8 on 10.0.195.251
+2025-04-14 18:04:46,360 - cephci - ceph:1606 - INFO - Execution of ceph auth del client.ceph-regression-vhr823-futhjo-node8 on 10.0.195.251 took 1.003325 seconds
+2025-04-14 18:04:46,362 - cephci - ceph:1576 - INFO - Execute ceph auth get-or-create client.ceph-regression-vhr823-futhjo-node8 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-vhr823-futhjo-node8.keyring on 10.0.195.251
+2025-04-14 18:04:47,366 - cephci - ceph:1606 - INFO - Execution of ceph auth get-or-create client.ceph-regression-vhr823-futhjo-node8 mon 'allow *' mds 'allow *, allow * path=/' osd 'allow *' -o /etc/ceph/ceph.client.ceph-regression-vhr823-futhjo-node8.keyring on 10.0.195.251 took 1.003819 seconds
+2025-04-14 18:04:47,368 - cephci - ceph:1576 - INFO - Execute chmod 644 /etc/ceph/ceph.client.ceph-regression-vhr823-futhjo-node8.keyring on 10.0.195.251
+2025-04-14 18:04:48,373 - cephci - ceph:1606 - INFO - Execution of chmod 644 /etc/ceph/ceph.client.ceph-regression-vhr823-futhjo-node8.keyring on 10.0.195.251 took 1.003911 seconds
+2025-04-14 18:04:48,375 - cephci - ceph:1576 - INFO - Execute ceph nfs cluster create cephfs-nfs ceph-regression-vhr823-futhjo-node7 on 10.0.195.251
+2025-04-14 18:04:49,379 - cephci - ceph:1606 - INFO - Execution of ceph nfs cluster create cephfs-nfs ceph-regression-vhr823-futhjo-node7 on 10.0.195.251 took 1.003713 seconds
+2025-04-14 18:04:49,381 - cephci - ceph:1576 - INFO - Execute dnf install jq -y on 10.0.195.251
+2025-04-14 18:04:52,194 - cephci - ceph:1606 - INFO - Execution of dnf install jq -y on 10.0.195.251 took 2.812947 seconds
+2025-04-14 18:04:52,236 - cephci - ceph:1576 - INFO - Execute git clone https://github.com/distributed-system-analysis/smallfile.git on 10.0.195.251
+2025-04-14 18:04:53,240 - cephci - ceph:1606 - INFO - Execution of git clone https://github.com/distributed-system-analysis/smallfile.git on 10.0.195.251 took 1.003596 seconds
+2025-04-14 18:04:53,242 - cephci - ceph:1576 - INFO - Execute dnf install cephfs-top -y on 10.0.195.251
+2025-04-14 18:04:58,366 - cephci - ceph:1606 - INFO - Execution of dnf install cephfs-top -y on 10.0.195.251 took 5.124491 seconds
+2025-04-14 18:04:58,409 - cephci - ceph:1576 - INFO - Execute grep -q cephfs-nfs /etc/hosts || echo '10.0.195.219 cephfs-nfs' >> /etc/hosts on 10.0.195.251
+2025-04-14 18:04:59,413 - cephci - ceph:1606 - INFO - Execution of grep -q cephfs-nfs /etc/hosts || echo '10.0.195.219 cephfs-nfs' >> /etc/hosts on 10.0.195.251 took 1.00323 seconds
+2025-04-14 18:04:59,413 - cephci - cephfs_vol_mgmt_rename_scenarios:63 - INFO - Added cephfs-nfs (10.0.195.219) to /etc/hosts
+2025-04-14 18:04:59,414 - cephci - ceph:1576 - INFO - Execute ceph fs volume create cephfs_1 on 10.0.195.251
+2025-04-14 18:05:01,420 - cephci - ceph:1606 - INFO - Execution of ceph fs volume create cephfs_1 on 10.0.195.251 took 2.004957 seconds
+2025-04-14 18:05:01,422 - cephci - ceph:1576 - INFO - Execute ceph fs subvolumegroup create cephfs_1 subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:02,426 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolumegroup create cephfs_1 subvol_group_name_1 on 10.0.195.251 took 1.003706 seconds
+2025-04-14 18:05:02,428 - cephci - ceph:1576 - INFO - Execute ceph fs subvolumegroup ls cephfs_1 --format json on 10.0.195.251
+2025-04-14 18:05:03,431 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolumegroup ls cephfs_1 --format json on 10.0.195.251 took 1.003457 seconds
+2025-04-14 18:05:03,433 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_0 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:04,436 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_0 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003111 seconds
+2025-04-14 18:05:04,438 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:05,441 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003473 seconds
+2025-04-14 18:05:05,443 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_0 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:06,447 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_0 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003536 seconds
+2025-04-14 18:05:06,448 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_1 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:07,452 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_1 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003333 seconds
+2025-04-14 18:05:07,468 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:08,472 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003196 seconds
+2025-04-14 18:05:08,473 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_1 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:09,477 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_1 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.00349 seconds
+2025-04-14 18:05:09,478 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_2 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:10,482 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_2 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003441 seconds
+2025-04-14 18:05:10,485 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:11,489 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003472 seconds
+2025-04-14 18:05:11,491 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_2 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:12,495 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_2 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003485 seconds
+2025-04-14 18:05:12,496 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_3 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:13,501 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_3 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003735 seconds
+2025-04-14 18:05:13,502 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:14,506 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003181 seconds
+2025-04-14 18:05:14,507 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_3 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:15,511 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_3 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003374 seconds
+2025-04-14 18:05:15,512 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_4 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:16,516 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_4 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003054 seconds
+2025-04-14 18:05:16,550 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:17,554 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003449 seconds
+2025-04-14 18:05:17,555 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_4 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:18,558 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_4 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.002876 seconds
+2025-04-14 18:05:18,560 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_5 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:19,563 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_5 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003422 seconds
+2025-04-14 18:05:19,565 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:20,568 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003072 seconds
+2025-04-14 18:05:20,570 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_5 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:21,574 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_5 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003279 seconds
+2025-04-14 18:05:21,575 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_6 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:22,579 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_6 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003048 seconds
+2025-04-14 18:05:22,580 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:23,584 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003332 seconds
+2025-04-14 18:05:23,585 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_6 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:24,589 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_6 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003114 seconds
+2025-04-14 18:05:24,590 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_7 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:25,593 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_7 --group_name subvol_group_name_1 on 10.0.195.251 took 1.002506 seconds
+2025-04-14 18:05:25,618 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:26,621 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.002961 seconds
+2025-04-14 18:05:26,623 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_7 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:27,626 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_7 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.002954 seconds
+2025-04-14 18:05:27,628 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_8 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:29,632 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_8 --group_name subvol_group_name_1 on 10.0.195.251 took 2.004005 seconds
+2025-04-14 18:05:29,633 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:30,637 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.00303 seconds
+2025-04-14 18:05:30,638 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_8 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:31,641 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_8 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.002972 seconds
+2025-04-14 18:05:31,643 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_9 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:32,646 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_9 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003244 seconds
+2025-04-14 18:05:32,649 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:33,652 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003233 seconds
+2025-04-14 18:05:33,654 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_9 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:34,657 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_9 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003171 seconds
+2025-04-14 18:05:34,659 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_10 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:35,662 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_10 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003346 seconds
+2025-04-14 18:05:35,664 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:36,667 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003078 seconds
+2025-04-14 18:05:36,669 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_10 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:37,672 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_10 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003433 seconds
+2025-04-14 18:05:37,674 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume create cephfs_1 subvol_11 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:39,678 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume create cephfs_1 subvol_11 --group_name subvol_group_name_1 on 10.0.195.251 took 2.004283 seconds
+2025-04-14 18:05:39,680 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:05:40,684 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume ls cephfs_1 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003693 seconds
+2025-04-14 18:05:40,686 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume getpath cephfs_1 subvol_11 --group_name=subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:05:41,689 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume getpath cephfs_1 subvol_11 --group_name=subvol_group_name_1 on 10.0.195.251 took 1.003346 seconds
+2025-04-14 18:05:41,690 - cephci - cephfs_vol_mgmt_rename_scenarios:77 - INFO - Subvolumes are created
+2025-04-14 18:05:41,690 - cephci - cephfs_vol_mgmt_rename_scenarios:78 - INFO - Mount the subvolumes
+2025-04-14 18:05:41,690 - cephci - cephfs_vol_mgmt_rename_scenarios:97 - INFO - Fuse Mount
+2025-04-14 18:05:41,691 - cephci - cephfs_utilsV1:834 - INFO - Creating mounting dir:
+2025-04-14 18:05:41,692 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/fuse_1wah8_0 on 10.0.195.251
+2025-04-14 18:05:42,695 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/fuse_1wah8_0 on 10.0.195.251 took 1.003235 seconds
+2025-04-14 18:05:42,696 - cephci - cephfs_utilsV1:836 - INFO - Mounting fs with ceph-fuse on client ceph-regression-vhr823-futhjo-node8:
+2025-04-14 18:05:42,697 - cephci - ceph:1576 - INFO - Execute ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_0  -r /volumes/subvol_group_name_1/subvol_0/1ff87ab1-b445-41a9-a584-25fe8afb4048 --client_fs cephfs_1 on 10.0.195.251
+2025-04-14 18:05:43,701 - cephci - ceph:1186 - ERROR - 2025-04-14T18:05:22.226+0000 7fdad5fdd580 -1 init, newargv = 0x558f3ab5f470 newargc=15
+2025-04-14 18:05:43,702 - cephci - ceph:1186 - ERROR - ceph-fuse[66946]: starting ceph client
+2025-04-14 18:05:43,702 - cephci - ceph:1186 - ERROR - ceph-fuse[66946]: starting fuse
+2025-04-14 18:05:43,703 - cephci - ceph:1606 - INFO - Execution of ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_0  -r /volumes/subvol_group_name_1/subvol_0/1ff87ab1-b445-41a9-a584-25fe8afb4048 --client_fs cephfs_1 on 10.0.195.251 took 1.005434 seconds
+2025-04-14 18:05:43,703 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:05:43,705 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:05:44,709 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003619 seconds
+2025-04-14 18:05:44,709 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+
+2025-04-14 18:05:44,710 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:05:44,710 - cephci - cephfs_utilsV1:834 - INFO - Creating mounting dir:
+2025-04-14 18:05:44,711 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/fuse_1wah8_1 on 10.0.195.251
+2025-04-14 18:05:45,714 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/fuse_1wah8_1 on 10.0.195.251 took 1.002825 seconds
+2025-04-14 18:05:45,715 - cephci - cephfs_utilsV1:836 - INFO - Mounting fs with ceph-fuse on client ceph-regression-vhr823-futhjo-node8:
+2025-04-14 18:05:45,716 - cephci - ceph:1576 - INFO - Execute ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_1  -r /volumes/subvol_group_name_1/subvol_3/e297a3cf-b125-4c09-8089-310f472af692 --client_fs cephfs_1 on 10.0.195.251
+2025-04-14 18:05:46,719 - cephci - ceph:1186 - ERROR - 2025-04-14T18:05:25.185+0000 7f499dd24580 -1 init, newargv = 0x55827269f490 newargc=15
+2025-04-14 18:05:46,720 - cephci - ceph:1186 - ERROR - ceph-fuse[67032]: starting ceph client
+2025-04-14 18:05:46,720 - cephci - ceph:1186 - ERROR - ceph-fuse[67032]: starting fuse
+2025-04-14 18:05:46,720 - cephci - ceph:1606 - INFO - Execution of ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_1  -r /volumes/subvol_group_name_1/subvol_3/e297a3cf-b125-4c09-8089-310f472af692 --client_fs cephfs_1 on 10.0.195.251 took 1.004534 seconds
+2025-04-14 18:05:46,721 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:05:46,722 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:05:47,726 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003608 seconds
+2025-04-14 18:05:47,726 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+
+2025-04-14 18:05:47,727 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:05:47,727 - cephci - cephfs_utilsV1:834 - INFO - Creating mounting dir:
+2025-04-14 18:05:47,728 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/fuse_1wah8_2 on 10.0.195.251
+2025-04-14 18:05:48,732 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/fuse_1wah8_2 on 10.0.195.251 took 1.003244 seconds
+2025-04-14 18:05:48,733 - cephci - cephfs_utilsV1:836 - INFO - Mounting fs with ceph-fuse on client ceph-regression-vhr823-futhjo-node8:
+2025-04-14 18:05:48,734 - cephci - ceph:1576 - INFO - Execute ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_2  -r /volumes/subvol_group_name_1/subvol_6/b52a8dd3-d43a-4a8b-b907-dbb78e254037 --client_fs cephfs_1 on 10.0.195.251
+2025-04-14 18:05:49,736 - cephci - ceph:1186 - ERROR - 2025-04-14T18:05:28.202+0000 7f13f4f1d580 -1 init, newargv = 0x55dade03c400 newargc=15
+2025-04-14 18:05:49,737 - cephci - ceph:1186 - ERROR - ceph-fuse[67117]: starting ceph client
+2025-04-14 18:05:49,737 - cephci - ceph:1186 - ERROR - ceph-fuse[67117]: starting fuse
+2025-04-14 18:05:49,737 - cephci - ceph:1606 - INFO - Execution of ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_2  -r /volumes/subvol_group_name_1/subvol_6/b52a8dd3-d43a-4a8b-b907-dbb78e254037 --client_fs cephfs_1 on 10.0.195.251 took 1.003393 seconds
+2025-04-14 18:05:49,738 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:05:49,739 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:05:50,742 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003339 seconds
+2025-04-14 18:05:50,743 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_2 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+
+2025-04-14 18:05:50,743 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:05:50,744 - cephci - cephfs_utilsV1:834 - INFO - Creating mounting dir:
+2025-04-14 18:05:50,745 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/fuse_1wah8_3 on 10.0.195.251
+2025-04-14 18:05:51,748 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/fuse_1wah8_3 on 10.0.195.251 took 1.003166 seconds
+2025-04-14 18:05:51,749 - cephci - cephfs_utilsV1:836 - INFO - Mounting fs with ceph-fuse on client ceph-regression-vhr823-futhjo-node8:
+2025-04-14 18:05:51,750 - cephci - ceph:1576 - INFO - Execute ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_3  -r /volumes/subvol_group_name_1/subvol_9/1ec1faad-c977-4190-ab47-2aaa2cb0a7c1 --client_fs cephfs_1 on 10.0.195.251
+2025-04-14 18:05:52,753 - cephci - ceph:1186 - ERROR - 2025-04-14T18:05:31.221+0000 7f70c9634580 -1 init, newargv = 0x55672a3a3c10 newargc=15
+2025-04-14 18:05:52,754 - cephci - ceph:1186 - ERROR - ceph-fuse[67203]: starting ceph client
+2025-04-14 18:05:52,754 - cephci - ceph:1186 - ERROR - ceph-fuse[67203]: starting fuse
+2025-04-14 18:05:52,754 - cephci - ceph:1606 - INFO - Execution of ceph-fuse -n client.ceph-regression-vhr823-futhjo-node8 /mnt/fuse_1wah8_3  -r /volumes/subvol_group_name_1/subvol_9/1ec1faad-c977-4190-ab47-2aaa2cb0a7c1 --client_fs cephfs_1 on 10.0.195.251 took 1.00385 seconds
+2025-04-14 18:05:52,754 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:05:52,755 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:05:53,759 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003096 seconds
+2025-04-14 18:05:53,759 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_2 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_3 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+
+2025-04-14 18:05:53,760 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:05:53,760 - cephci - cephfs_utilsV1:1048 - INFO - Creating mounting dir:
+2025-04-14 18:05:53,761 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/kernel_1wah8_0 on 10.0.195.251
+2025-04-14 18:05:54,765 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/kernel_1wah8_0 on 10.0.195.251 took 1.003105 seconds
+2025-04-14 18:05:54,767 - cephci - ceph:1576 - INFO - Execute ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251
+2025-04-14 18:05:55,771 - cephci - ceph:1606 - INFO - Execution of ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251 took 1.003409 seconds
+2025-04-14 18:05:55,772 - cephci - ceph:1576 - INFO - Execute mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_1/4b9a4579-8713-4e1d-9bbe-86df169f0675 /mnt/kernel_1wah8_0 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251
+2025-04-14 18:05:56,776 - cephci - ceph:1606 - INFO - Execution of mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_1/4b9a4579-8713-4e1d-9bbe-86df169f0675 /mnt/kernel_1wah8_0 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251 took 1.003284 seconds
+2025-04-14 18:05:56,777 - cephci - cephfs_utilsV1:1068 - INFO - validate kernel mount:
+2025-04-14 18:05:56,778 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:05:56,779 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:05:57,783 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003884 seconds
+2025-04-14 18:05:57,784 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_2 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_3 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_1/4b9a4579-8713-4e1d-9bbe-86df169f0675 on /mnt/kernel_1wah8_0 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+
+2025-04-14 18:05:57,785 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:05:57,785 - cephci - cephfs_utilsV1:1048 - INFO - Creating mounting dir:
+2025-04-14 18:05:57,787 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/kernel_1wah8_1 on 10.0.195.251
+2025-04-14 18:05:58,790 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/kernel_1wah8_1 on 10.0.195.251 took 1.003005 seconds
+2025-04-14 18:05:58,792 - cephci - ceph:1576 - INFO - Execute ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251
+2025-04-14 18:05:59,796 - cephci - ceph:1606 - INFO - Execution of ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251 took 1.003312 seconds
+2025-04-14 18:05:59,797 - cephci - ceph:1576 - INFO - Execute mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_4/cdbd9bf0-0eb6-43d9-827a-ad1234533a4c /mnt/kernel_1wah8_1 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251
+2025-04-14 18:06:00,801 - cephci - ceph:1606 - INFO - Execution of mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_4/cdbd9bf0-0eb6-43d9-827a-ad1234533a4c /mnt/kernel_1wah8_1 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251 took 1.003113 seconds
+2025-04-14 18:06:00,801 - cephci - cephfs_utilsV1:1068 - INFO - validate kernel mount:
+2025-04-14 18:06:00,801 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:06:00,802 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:06:01,806 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003111 seconds
+2025-04-14 18:06:01,806 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_2 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_3 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_1/4b9a4579-8713-4e1d-9bbe-86df169f0675 on /mnt/kernel_1wah8_0 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_4/cdbd9bf0-0eb6-43d9-827a-ad1234533a4c on /mnt/kernel_1wah8_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+
+2025-04-14 18:06:01,807 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:06:01,807 - cephci - cephfs_utilsV1:1048 - INFO - Creating mounting dir:
+2025-04-14 18:06:01,808 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/kernel_1wah8_2 on 10.0.195.251
+2025-04-14 18:06:02,811 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/kernel_1wah8_2 on 10.0.195.251 took 1.002905 seconds
+2025-04-14 18:06:02,813 - cephci - ceph:1576 - INFO - Execute ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251
+2025-04-14 18:06:03,816 - cephci - ceph:1606 - INFO - Execution of ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251 took 1.003195 seconds
+2025-04-14 18:06:03,818 - cephci - ceph:1576 - INFO - Execute mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_7/73b9a920-ab99-4308-9648-e0aefabda8ee /mnt/kernel_1wah8_2 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251
+2025-04-14 18:06:04,821 - cephci - ceph:1606 - INFO - Execution of mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_7/73b9a920-ab99-4308-9648-e0aefabda8ee /mnt/kernel_1wah8_2 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251 took 1.002937 seconds
+2025-04-14 18:06:04,822 - cephci - cephfs_utilsV1:1068 - INFO - validate kernel mount:
+2025-04-14 18:06:04,822 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:06:04,823 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:06:05,827 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003314 seconds
+2025-04-14 18:06:05,827 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_2 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_3 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_1/4b9a4579-8713-4e1d-9bbe-86df169f0675 on /mnt/kernel_1wah8_0 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_4/cdbd9bf0-0eb6-43d9-827a-ad1234533a4c on /mnt/kernel_1wah8_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_7/73b9a920-ab99-4308-9648-e0aefabda8ee on /mnt/kernel_1wah8_2 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+
+2025-04-14 18:06:05,828 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:06:05,829 - cephci - cephfs_utilsV1:1048 - INFO - Creating mounting dir:
+2025-04-14 18:06:05,830 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/kernel_1wah8_3 on 10.0.195.251
+2025-04-14 18:06:06,833 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/kernel_1wah8_3 on 10.0.195.251 took 1.002976 seconds
+2025-04-14 18:06:06,835 - cephci - ceph:1576 - INFO - Execute ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251
+2025-04-14 18:06:07,839 - cephci - ceph:1606 - INFO - Execution of ceph auth get-key client.ceph-regression-vhr823-futhjo-node8 -o /etc/ceph/ceph-regression-vhr823-futhjo-node8.secret on 10.0.195.251 took 1.003263 seconds
+2025-04-14 18:06:07,841 - cephci - ceph:1576 - INFO - Execute mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_10/1c425b49-aa92-41b8-8138-b574d3b2712a /mnt/kernel_1wah8_3 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251
+2025-04-14 18:06:08,844 - cephci - ceph:1606 - INFO - Execution of mount -t ceph 10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_10/1c425b49-aa92-41b8-8138-b574d3b2712a /mnt/kernel_1wah8_3 -o name=ceph-regression-vhr823-futhjo-node8,secretfile=/etc/ceph/ceph-regression-vhr823-futhjo-node8.secret,noshare,fs=cephfs_1 on 10.0.195.251 took 1.003114 seconds
+2025-04-14 18:06:08,845 - cephci - cephfs_utilsV1:1068 - INFO - validate kernel mount:
+2025-04-14 18:06:08,845 - cephci - cephfs_utilsV1:1020 - INFO - Wait for the mount to appear
+2025-04-14 18:06:08,846 - cephci - ceph:1576 - INFO - Execute mount on 10.0.195.251
+2025-04-14 18:06:09,850 - cephci - ceph:1606 - INFO - Execution of mount on 10.0.195.251 took 1.003219 seconds
+2025-04-14 18:06:09,850 - cephci - cephfs_utilsV1:1023 - INFO - proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=4096k,nr_inodes=972991,mode=755,inode64)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,size=1573700k,nr_inodes=819200,mode=755,inode64)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime,seclabel)
+bpf on /sys/fs/bpf type bpf (rw,nosuid,nodev,noexec,relatime,mode=700)
+/dev/vda4 on / type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,nosuid,noexec,relatime)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=29,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=15646)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime,seclabel)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+none on /run/credentials/systemd-sysctl.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+none on /run/credentials/systemd-tmpfiles-setup-dev.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+systemd-1 on /efi type autofs (rw,relatime,fd=54,pgrp=1,timeout=120,minproto=5,maxproto=5,direct,pipe_ino=15756)
+/dev/vda3 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/vda2 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=winnt,errors=remount-ro)
+none on /run/credentials/systemd-tmpfiles-setup.service type ramfs (ro,nosuid,nodev,noexec,relatime,seclabel,mode=700)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,inode64)
+tmpfs on /run/user/1000 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=786848k,nr_inodes=196712,mode=700,uid=1000,gid=1000,inode64)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel3j2dva1gps_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse3j2dva1gps_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernel14svgrnapu_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvolgroup_1/subvol_1/881672c3-0614-47b6-a340-d7f3e9e436f7 on /mnt/cephfs_kernel412f5407ws_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+ceph-fuse on /mnt/cephfs_fuse412f5407ws_EC_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kerneltm4cy type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernellgnyysis8w_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs)
+10.0.195.131,10.0.195.21,10.0.195.244:/ on /mnt/cephfs_kernelgw0g6a4pod_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl)
+ceph-fuse on /mnt/cephfs_fusejrx8nqw7o3_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_01_avn2x/subvol_info_01_avn2x/78599067-9d20-4cd0-88fd-2e50012b3f00 on /mnt/cephfs_kerneljrx8nqw7o3_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=vol_info_avn2x)
+ceph-fuse on /mnt/fuse_1wah8_0 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_1 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_2 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+ceph-fuse on /mnt/fuse_1wah8_3 type fuse.ceph-fuse (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_1/4b9a4579-8713-4e1d-9bbe-86df169f0675 on /mnt/kernel_1wah8_0 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_4/cdbd9bf0-0eb6-43d9-827a-ad1234533a4c on /mnt/kernel_1wah8_1 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_7/73b9a920-ab99-4308-9648-e0aefabda8ee on /mnt/kernel_1wah8_2 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+10.0.195.131,10.0.195.21,10.0.195.244:/volumes/subvol_group_name_1/subvol_10/1c425b49-aa92-41b8-8138-b574d3b2712a on /mnt/kernel_1wah8_3 type ceph (rw,relatime,seclabel,name=ceph-regression-vhr823-futhjo-node8,secret=<hidden>,fsid=0b0969d2-1931-11f0-a789-fa163e1059f3,noshare,acl,mds_namespace=cephfs_1)
+
+2025-04-14 18:06:09,851 - cephci - cephfs_utilsV1:1025 - INFO - Validate Fuse Mount:
+2025-04-14 18:06:09,851 - cephci - cephfs_vol_mgmt_rename_scenarios:134 - INFO - ceph nfs export create cephfs cephfs-nfs /export_341 cephfs_1 --path=/volumes/subvol_group_name_1/subvol_2/814d0c17-e2c3-4f51-94bf-acaedcb468c1
+2025-04-14 18:06:09,852 - cephci - ceph:1576 - INFO - Execute ceph nfs export create cephfs cephfs-nfs /export_341 cephfs_1 --path=/volumes/subvol_group_name_1/subvol_2/814d0c17-e2c3-4f51-94bf-acaedcb468c1 on 10.0.195.251
+2025-04-14 18:06:10,855 - cephci - ceph:1606 - INFO - Execution of ceph nfs export create cephfs cephfs-nfs /export_341 cephfs_1 --path=/volumes/subvol_group_name_1/subvol_2/814d0c17-e2c3-4f51-94bf-acaedcb468c1 on 10.0.195.251 took 1.003039 seconds
+2025-04-14 18:06:10,857 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/nfs_1wah8_0 on 10.0.195.251
+2025-04-14 18:06:11,861 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/nfs_1wah8_0 on 10.0.195.251 took 1.003427 seconds
+2025-04-14 18:06:11,864 - cephci - ceph:1576 - INFO - Execute mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 on 10.0.195.251
+2025-04-14 18:08:20,004 - cephci - ceph:1606 - INFO - Execution of mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 on 10.0.195.251 took 128.140333 seconds
+2025-04-14 18:08:20,005 - cephci - retry:28 - WARNING - mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 returned mount.nfs: Connection refused
+ and code 32 on 10.0.195.251, Retrying in 60 seconds...
+2025-04-14 18:09:20,057 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/nfs_1wah8_0 on 10.0.195.251
+2025-04-14 18:09:21,062 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/nfs_1wah8_0 on 10.0.195.251 took 1.004559 seconds
+2025-04-14 18:09:21,064 - cephci - ceph:1576 - INFO - Execute mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 on 10.0.195.251
+2025-04-14 18:11:26,201 - cephci - ceph:1606 - INFO - Execution of mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 on 10.0.195.251 took 125.13766 seconds
+2025-04-14 18:11:26,202 - cephci - retry:28 - WARNING - mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 returned mount.nfs: Connection refused
+ and code 32 on 10.0.195.251, Retrying in 120 seconds...
+2025-04-14 18:13:26,302 - cephci - ceph:1576 - INFO - Execute mkdir -p /mnt/nfs_1wah8_0 on 10.0.195.251
+2025-04-14 18:13:27,306 - cephci - ceph:1606 - INFO - Execution of mkdir -p /mnt/nfs_1wah8_0 on 10.0.195.251 took 1.00309 seconds
+2025-04-14 18:13:27,307 - cephci - ceph:1576 - INFO - Execute mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 on 10.0.195.251
+2025-04-14 18:15:32,445 - cephci - ceph:1606 - INFO - Execution of mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 on 10.0.195.251 took 125.137831 seconds
+2025-04-14 18:15:32,446 - cephci - cephfs_vol_mgmt_rename_scenarios:1004 - ERROR - mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 returned mount.nfs: Connection refused
+ and code 32 on 10.0.195.251
+2025-04-14 18:15:32,447 - cephci - cephfs_vol_mgmt_rename_scenarios:1005 - ERROR - Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/cephfs_vol_management/cephfs_vol_mgmt_rename_scenarios.py", line 989, in run
+    mount_subvolumes(ceph_cluster)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/cephfs_vol_management/cephfs_vol_mgmt_rename_scenarios.py", line 136, in mount_subvolumes
+    fs_util.cephfs_nfs_mount(client1, nfs_server, nfs_export_name, nfs_mount_dir[i])
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/utility/retry.py", line 32, in f_retry
+    return f(*args, **kwargs)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/cephfs_utilsV1.py", line 3277, in cephfs_nfs_mount
+    client.exec_command(sudo=True, cmd=command)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 2305, in exec_command
+    return self.node.exec_command(cmd=cmd, **kw)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: mount -t nfs -o port=2049 cephfs-nfs:/export_341 /mnt/nfs_1wah8_0 returned mount.nfs: Connection refused
+ and code 32 on 10.0.195.251
+
+2025-04-14 18:15:32,448 - cephci - ceph:1576 - INFO - Execute ceph config set mon mon_allow_pool_delete true on 10.0.195.251
+2025-04-14 18:15:33,451 - cephci - ceph:1606 - INFO - Execution of ceph config set mon mon_allow_pool_delete true on 10.0.195.251 took 1.003094 seconds
+2025-04-14 18:15:33,452 - cephci - cephfs_vol_mgmt_rename_scenarios:1014 - INFO - ####cleanup####
+2025-04-14 18:15:33,453 - cephci - ceph:1576 - INFO - Execute ceph nfs cluster delete cephfs-nfs on 10.0.195.251
+2025-04-14 18:15:35,458 - cephci - ceph:1606 - INFO - Execution of ceph nfs cluster delete cephfs-nfs on 10.0.195.251 took 2.004631 seconds
+2025-04-14 18:15:35,460 - cephci - ceph:1576 - INFO - Execute ceph config set mon mon_allow_pool_delete true on 10.0.195.251
+2025-04-14 18:15:36,463 - cephci - ceph:1606 - INFO - Execution of ceph config set mon mon_allow_pool_delete true on 10.0.195.251 took 1.003084 seconds
+2025-04-14 18:15:36,465 - cephci - ceph:1576 - INFO - Execute ceph fs volume rm cephfs_multi --yes-i-really-mean-it on 10.0.195.251
+2025-04-14 18:15:37,469 - cephci - ceph:1606 - INFO - Execution of ceph fs volume rm cephfs_multi --yes-i-really-mean-it on 10.0.195.251 took 1.003127 seconds
+2025-04-14 18:15:37,471 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json on 10.0.195.251
+2025-04-14 18:15:38,475 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json on 10.0.195.251 took 1.003308 seconds
+2025-04-14 18:15:38,475 - cephci - cephfs_utilsV1:1996 - INFO - Validating the deletion of pools
+2025-04-14 18:15:38,477 - cephci - ceph:1576 - INFO - Execute ceph osd lspools | grep -E 'cephfs.cephfs_multi.data|cephfs.cephfs_multi.meta' | wc -l on 10.0.195.251
+2025-04-14 18:15:39,481 - cephci - ceph:1606 - INFO - Execution of ceph osd lspools | grep -E 'cephfs.cephfs_multi.data|cephfs.cephfs_multi.meta' | wc -l on 10.0.195.251 took 1.003502 seconds
+2025-04-14 18:15:39,481 - cephci - cephfs_utilsV1:2005 - INFO - Deletion of pools for cephfs_multi is successful
+2025-04-14 18:15:39,482 - cephci - ceph:1576 - INFO - Execute ceph osd pool rm   --yes-i-really-really-mean-it on 10.0.195.251
+2025-04-14 18:15:40,486 - cephci - ceph:1606 - INFO - Execution of ceph osd pool rm   --yes-i-really-really-mean-it on 10.0.195.251 took 1.003089 seconds
+2025-04-14 18:15:40,487 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume snapshot rm cephfs_1 subvol_4 snap_4 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:15:41,491 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume snapshot rm cephfs_1 subvol_4 snap_4 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003547 seconds
+2025-04-14 18:15:41,493 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume snapshot ls cephfs_1 subvol_4 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:15:42,496 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume snapshot ls cephfs_1 subvol_4 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.003127 seconds
+2025-04-14 18:15:42,498 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume snapshot rm cephfs_1 subvol_5 snap_5 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:15:43,501 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume snapshot rm cephfs_1 subvol_5 snap_5 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003036 seconds
+2025-04-14 18:15:43,503 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume snapshot ls cephfs_1 subvol_5 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:15:44,506 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume snapshot ls cephfs_1 subvol_5 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.002961 seconds
+2025-04-14 18:15:44,507 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume snapshot rm cephfs_1 subvol_6 snap_6 --group_name subvol_group_name_1 on 10.0.195.251
+2025-04-14 18:15:45,511 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume snapshot rm cephfs_1 subvol_6 snap_6 --group_name subvol_group_name_1 on 10.0.195.251 took 1.003141 seconds
+2025-04-14 18:15:45,513 - cephci - ceph:1576 - INFO - Execute ceph fs subvolume snapshot ls cephfs_1 subvol_6 --group_name subvol_group_name_1 --format json on 10.0.195.251
+2025-04-14 18:15:46,516 - cephci - ceph:1606 - INFO - Execution of ceph fs subvolume snapshot ls cephfs_1 subvol_6 --group_name subvol_group_name_1 --format json on 10.0.195.251 took 1.002994 seconds
+2025-04-14 18:15:46,518 - cephci - ceph:1576 - INFO - Execute ceph config set mon mon_allow_pool_delete true on 10.0.195.251
+2025-04-14 18:15:47,522 - cephci - ceph:1606 - INFO - Execution of ceph config set mon mon_allow_pool_delete true on 10.0.195.251 took 1.00325 seconds
+2025-04-14 18:15:47,523 - cephci - ceph:1576 - INFO - Execute ceph fs volume rm cephfs_1 --yes-i-really-mean-it on 10.0.195.251
+2025-04-14 18:15:51,530 - cephci - ceph:1606 - INFO - Execution of ceph fs volume rm cephfs_1 --yes-i-really-mean-it on 10.0.195.251 took 4.006673 seconds
+2025-04-14 18:15:51,532 - cephci - ceph:1576 - INFO - Execute ceph fs ls --format json on 10.0.195.251
+2025-04-14 18:15:52,535 - cephci - ceph:1606 - INFO - Execution of ceph fs ls --format json on 10.0.195.251 took 1.003162 seconds
+2025-04-14 18:15:52,536 - cephci - cephfs_utilsV1:1996 - INFO - Validating the deletion of pools
+2025-04-14 18:15:52,537 - cephci - ceph:1576 - INFO - Execute ceph osd lspools | grep -E 'cephfs.cephfs_1.data|cephfs.cephfs_1.meta' | wc -l on 10.0.195.251
+2025-04-14 18:15:53,540 - cephci - ceph:1606 - INFO - Execution of ceph osd lspools | grep -E 'cephfs.cephfs_1.data|cephfs.cephfs_1.meta' | wc -l on 10.0.195.251 took 1.00307 seconds
+2025-04-14 18:15:53,541 - cephci - cephfs_utilsV1:2005 - INFO - Deletion of pools for cephfs_1 is successful
+2025-04-14 18:15:53,541 - cephci - ceph:1576 - INFO - Execute ceph nfs export delete cephfs-nfs /export_341 on 10.0.195.251
+2025-04-14 18:15:54,545 - cephci - ceph:1606 - INFO - Execution of ceph nfs export delete cephfs-nfs /export_341 on 10.0.195.251 took 1.003008 seconds
+2025-04-14 18:15:54,546 - cephci - ceph:1576 - INFO - Execute ceph nfs export delete cephfs-nfs on 10.0.195.251
+2025-04-14 18:15:55,549 - cephci - ceph:1606 - INFO - Execution of ceph nfs export delete cephfs-nfs on 10.0.195.251 took 1.002922 seconds
+2025-04-14 18:15:55,551 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.21
+2025-04-14 18:15:56,557 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.21 took 1.003613 seconds
+2025-04-14 18:15:56,558 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-14 18:15:56,559 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.21
+2025-04-14 18:15:57,562 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.21 took 1.002299 seconds
+2025-04-14 18:15:57,564 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.251
+2025-04-14 18:15:58,568 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.251 took 1.003536 seconds
+2025-04-14 18:15:58,568 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-14 18:15:58,570 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-vHr823-FUTHJO
+2025-04-14 18:15:58,570 - cephci - run:927 - INFO - Test <module 'cephfs_vol_management.cephfs_vol_mgmt_rename_scenarios' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/cephci/tests/cephfs/cephfs_vol_management/cephfs_vol_mgmt_rename_scenarios.py'> failed
+2025-04-14 18:15:58,570 - cephci - run:964 - INFO - 
+All test logs located here: /home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/cephfs/99/logs/tier-2_file-dir-lay_vol-mgmt_nfs

@@ -1,0 +1,676 @@
+
+    <html>
+    <head>
+        <title>CephCI Log Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; }
+            th { background-color: #f2f2f2; }
+            .directory-title { 
+                font-size: 1.2em; 
+                margin-top: 25px; 
+                margin-bottom: 10px; 
+                color: #2c3e50; 
+                background-color: #ecf0f1; 
+                padding: 8px; 
+                border-left: 4px solid #3498db; 
+            }
+            .log-name { font-weight: bold; color: #2980b9; }
+            .feedback-buttons { display: flex; gap: 5px; justify-content: center; }
+            .feedback-btn { 
+                cursor: pointer; 
+                border: none; 
+                border-radius: 4px; 
+                padding: 2px 8px; 
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+            .like-btn { background-color: #2ecc71; color: white; }
+            .like-btn.active { background-color: #27ae60; }
+            .dislike-btn { background-color: #e74c3c; color: white; }
+            .dislike-btn.active { background-color: #c0392b; }
+            .skip-btn { background-color: #f39c12; color: white; }
+            .skip-btn.active { background-color: #d35400; }
+            .feedback-form {
+                display: none;
+                margin-top: 5px;
+            }
+            textarea {
+                width: 100%;
+                min-height: 50px;
+                padding: 5px;
+                border-radius: 4px;
+                border: 1px solid #ccc;
+            }
+            .submit-all-btn {
+                background-color: #e67e22;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 20px auto;
+                display: block;
+                font-size: 16px;
+            }
+            .submit-all-btn:hover {
+                background-color: #d35400;
+            }
+            .raw-analysis {
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-radius: 4px;
+                margin-top: 5px;
+            }
+        </style>
+        <script>
+            function toggleRawAnalysis(logId) {
+                var rawDiv = document.getElementById('raw-' + logId);
+                var toggleBtn = document.getElementById('toggle-' + logId);
+                if (rawDiv.style.display === 'none') {
+                    rawDiv.style.display = 'block';
+                    toggleBtn.textContent = '▼';
+                } else {
+                    rawDiv.style.display = 'none';
+                    toggleBtn.textContent = '➤';
+                }
+            }
+
+            function showFeedbackForm(logId, btnType) {
+                // Remove active class from all buttons for this log
+                document.querySelectorAll(`.feedback-btn[data-log-id="${logId}"]`).forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Set active class on clicked button
+                document.getElementById(btnType + '-btn-' + logId).classList.add('active');
+                
+                // Show/hide textarea
+                var form = document.getElementById('feedback-form-' + logId);
+                if (btnType === 'dislike') {
+                    form.style.display = 'block';
+                } else {
+                    form.style.display = 'none';
+                }
+            }
+
+            function submitAllFeedback() {
+                const feedbacks = [];
+                const logItems = document.querySelectorAll('.log-item');
+                
+                logItems.forEach(item => {
+                    const logId = item.dataset.logId;
+                    const activeBtn = item.querySelector('.feedback-btn.active');
+                    const vote = activeBtn ? activeBtn.dataset.vote : 'skip';
+                    const comment = item.querySelector('textarea')?.value || '';
+                    
+                    feedbacks.push({
+                        log_id: logId,
+                        log_name: item.dataset.logName,
+                        vote: vote,
+                        comment: comment,
+                        build_stamp: new Date().toISOString()
+                    });
+                });
+
+                fetch('/submit-feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(feedbacks)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Successfully submitted feedback');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to submit feedback');
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <h2>CephCI Log Analysis Report</h2>
+        <p><strong>Generated at:</strong> 2025-08-19 20:28:49</p>
+        <p><strong>Test Suite:</strong> Sanity | <strong>RHEL:</strong> RHEL-9</p>
+        <hr>
+        
+        
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier0-nfs-ganesha</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0logaf9ccb" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0logaf9ccb" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0logaf9ccb')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier0-nfs-ganesha/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0logaf9ccb" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logaf9ccb', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logaf9ccb" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0logaf9ccb" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logaf9ccb', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logaf9ccb" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0logaf9ccb" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logaf9ccb', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logaf9ccb" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0logaf9ccb" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0logaf9ccb" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0logaf9ccb" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-1_rbd</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log5580fd" data-log-name="Cephadm_Bootstrap_with_custom_user_option_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Cephadm_Bootstrap_with_custom_user_option_0log5580fd" class="toggle-raw" onclick="toggleRawAnalysis('Cephadm_Bootstrap_with_custom_user_option_0log5580fd')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-1_rbd/Cephadm_Bootstrap_with_custom_user_option_0.log" target="_blank" class="log-name">Cephadm_Bootstrap_with_custom_user_option_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Cephadm_Bootstrap_with_custom_user_option_0log5580fd" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_custom_user_option_0log5580fd', 'like')"
+                                data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log5580fd" data-vote="like">👍</button>
+                        <button id="dislike-btn-Cephadm_Bootstrap_with_custom_user_option_0log5580fd" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_custom_user_option_0log5580fd', 'dislike')"
+                                data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log5580fd" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Cephadm_Bootstrap_with_custom_user_option_0log5580fd" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_with_custom_user_option_0log5580fd', 'skip')"
+                                data-log-id="Cephadm_Bootstrap_with_custom_user_option_0log5580fd" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Cephadm_Bootstrap_with_custom_user_option_0log5580fd" class="feedback-form">
+                        <textarea id="feedback-text-Cephadm_Bootstrap_with_custom_user_option_0log5580fd" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Cephadm_Bootstrap_with_custom_user_option_0log5580fd" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rbd_encryption</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="deploy_cluster_0log35e5d7" data-log-name="deploy_cluster_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-deploy_cluster_0log35e5d7" class="toggle-raw" onclick="toggleRawAnalysis('deploy_cluster_0log35e5d7')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-2_rbd_encryption/deploy_cluster_0.log" target="_blank" class="log-name">deploy_cluster_0.log</a>
+                </td>
+                <td>The root cause of the failures is due to insufficient disk space.</td>
+                <td>Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.</td>
+                <td>1. Check the available disk space on the system using the `df` command.</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-deploy_cluster_0log35e5d7" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log35e5d7', 'like')"
+                                data-log-id="deploy_cluster_0log35e5d7" data-vote="like">👍</button>
+                        <button id="dislike-btn-deploy_cluster_0log35e5d7" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log35e5d7', 'dislike')"
+                                data-log-id="deploy_cluster_0log35e5d7" data-vote="dislike">👎</button>
+                        <button id="skip-btn-deploy_cluster_0log35e5d7" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0log35e5d7', 'skip')"
+                                data-log-id="deploy_cluster_0log35e5d7" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-deploy_cluster_0log35e5d7" class="feedback-form">
+                        <textarea id="feedback-text-deploy_cluster_0log35e5d7" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-deploy_cluster_0log35e5d7" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>Reason: The root cause of the failures is due to insufficient disk space.
+
+Fix: Increase the disk space available on the system by either adding more disks or deleting unnecessary files and applications.
+
+Steps:
+
+1. Check the available disk space on the system using the `df` command.
+2. Identify the largest consumers of disk space and prioritize them for optimization.
+3. Optimize the identified applications or files by either deleting unnecessary data or configuring them to use less disk space.
+4. Monitor the available disk space regularly to ensure it does not drop below a safe threshold.
+
+Answer:</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-0_fs</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="cluster_deployment_0log2e4aa9" data-log-name="cluster_deployment_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-cluster_deployment_0log2e4aa9" class="toggle-raw" onclick="toggleRawAnalysis('cluster_deployment_0log2e4aa9')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-0_fs/cluster_deployment_0.log" target="_blank" class="log-name">cluster_deployment_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-cluster_deployment_0log2e4aa9" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0log2e4aa9', 'like')"
+                                data-log-id="cluster_deployment_0log2e4aa9" data-vote="like">👍</button>
+                        <button id="dislike-btn-cluster_deployment_0log2e4aa9" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0log2e4aa9', 'dislike')"
+                                data-log-id="cluster_deployment_0log2e4aa9" data-vote="dislike">👎</button>
+                        <button id="skip-btn-cluster_deployment_0log2e4aa9" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('cluster_deployment_0log2e4aa9', 'skip')"
+                                data-log-id="cluster_deployment_0log2e4aa9" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-cluster_deployment_0log2e4aa9" class="feedback-form">
+                        <textarea id="feedback-text-cluster_deployment_0log2e4aa9" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-cluster_deployment_0log2e4aa9" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-1_rgw_ibm</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="deploy_cluster_using_cephadm_0logdc48e4" data-log-name="deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-deploy_cluster_using_cephadm_0logdc48e4" class="toggle-raw" onclick="toggleRawAnalysis('deploy_cluster_using_cephadm_0logdc48e4')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-1_rgw_ibm/deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-deploy_cluster_using_cephadm_0logdc48e4" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_using_cephadm_0logdc48e4', 'like')"
+                                data-log-id="deploy_cluster_using_cephadm_0logdc48e4" data-vote="like">👍</button>
+                        <button id="dislike-btn-deploy_cluster_using_cephadm_0logdc48e4" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_using_cephadm_0logdc48e4', 'dislike')"
+                                data-log-id="deploy_cluster_using_cephadm_0logdc48e4" data-vote="dislike">👎</button>
+                        <button id="skip-btn-deploy_cluster_using_cephadm_0logdc48e4" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_using_cephadm_0logdc48e4', 'skip')"
+                                data-log-id="deploy_cluster_using_cephadm_0logdc48e4" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-deploy_cluster_using_cephadm_0logdc48e4" class="feedback-form">
+                        <textarea id="feedback-text-deploy_cluster_using_cephadm_0logdc48e4" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-deploy_cluster_using_cephadm_0logdc48e4" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-2_rbd_regression</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="deploy_cluster_0logf4beb2" data-log-name="deploy_cluster_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-deploy_cluster_0logf4beb2" class="toggle-raw" onclick="toggleRawAnalysis('deploy_cluster_0logf4beb2')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-2_rbd_regression/deploy_cluster_0.log" target="_blank" class="log-name">deploy_cluster_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-deploy_cluster_0logf4beb2" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0logf4beb2', 'like')"
+                                data-log-id="deploy_cluster_0logf4beb2" data-vote="like">👍</button>
+                        <button id="dislike-btn-deploy_cluster_0logf4beb2" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0logf4beb2', 'dislike')"
+                                data-log-id="deploy_cluster_0logf4beb2" data-vote="dislike">👎</button>
+                        <button id="skip-btn-deploy_cluster_0logf4beb2" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('deploy_cluster_0logf4beb2', 'skip')"
+                                data-log-id="deploy_cluster_0logf4beb2" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-deploy_cluster_0logf4beb2" class="feedback-form">
+                        <textarea id="feedback-text-deploy_cluster_0logf4beb2" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-deploy_cluster_0logf4beb2" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">bvt</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0log4b7147" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0log4b7147" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0log4b7147')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/bvt/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0log4b7147" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log4b7147', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log4b7147" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0log4b7147" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log4b7147', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log4b7147" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0log4b7147" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log4b7147', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log4b7147" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0log4b7147" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0log4b7147" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0log4b7147" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier0-nfs-ganesha-v3</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0logf636c0" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0logf636c0" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0logf636c0')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier0-nfs-ganesha-v3/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0logf636c0" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logf636c0', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logf636c0" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0logf636c0" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logf636c0', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logf636c0" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0logf636c0" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logf636c0', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logf636c0" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0logf636c0" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0logf636c0" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0logf636c0" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier0-nfs-ganesha-vers-4-2</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0logbd1737" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0logbd1737" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0logbd1737')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier0-nfs-ganesha-vers-4-2/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0logbd1737" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logbd1737', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logbd1737" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0logbd1737" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logbd1737', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logbd1737" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0logbd1737" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0logbd1737', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0logbd1737" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0logbd1737" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0logbd1737" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0logbd1737" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier1-service-apply-spec</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Cephadm_Bootstrap_0log00fb4a" data-log-name="Cephadm_Bootstrap_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Cephadm_Bootstrap_0log00fb4a" class="toggle-raw" onclick="toggleRawAnalysis('Cephadm_Bootstrap_0log00fb4a')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier1-service-apply-spec/Cephadm_Bootstrap_0.log" target="_blank" class="log-name">Cephadm_Bootstrap_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Cephadm_Bootstrap_0log00fb4a" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_0log00fb4a', 'like')"
+                                data-log-id="Cephadm_Bootstrap_0log00fb4a" data-vote="like">👍</button>
+                        <button id="dislike-btn-Cephadm_Bootstrap_0log00fb4a" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_0log00fb4a', 'dislike')"
+                                data-log-id="Cephadm_Bootstrap_0log00fb4a" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Cephadm_Bootstrap_0log00fb4a" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Cephadm_Bootstrap_0log00fb4a', 'skip')"
+                                data-log-id="Cephadm_Bootstrap_0log00fb4a" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Cephadm_Bootstrap_0log00fb4a" class="feedback-form">
+                        <textarea id="feedback-text-Cephadm_Bootstrap_0log00fb4a" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Cephadm_Bootstrap_0log00fb4a" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        <div class="directory-title">📁 Test Suite: <span class="test-suite">tier-0-smb</span></div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Log Name</th>
+                <th>Reason</th>
+                <th>Fix</th>
+                <th>Next Steps</th>
+                <th>Feedback</th>
+            </tr>
+        
+            <tr class="log-item" data-log-id="Deploy_cluster_using_cephadm_0log39d64d" data-log-name="Deploy_cluster_using_cephadm_0.log">
+                <td>1</td>
+                <td>
+                    <span id="toggle-Deploy_cluster_using_cephadm_0log39d64d" class="toggle-raw" onclick="toggleRawAnalysis('Deploy_cluster_using_cephadm_0log39d64d')">➤</span>
+                    <a href="http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9/Sanity/19.2.1-112/301/tier-0-smb/Deploy_cluster_using_cephadm_0.log" target="_blank" class="log-name">Deploy_cluster_using_cephadm_0.log</a>
+                </td>
+                <td>Pipeline error</td>
+                <td>Check configuration</td>
+                <td>Verify Ollama service and network connection</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button id="like-btn-Deploy_cluster_using_cephadm_0log39d64d" class="feedback-btn like-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log39d64d', 'like')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log39d64d" data-vote="like">👍</button>
+                        <button id="dislike-btn-Deploy_cluster_using_cephadm_0log39d64d" class="feedback-btn dislike-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log39d64d', 'dislike')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log39d64d" data-vote="dislike">👎</button>
+                        <button id="skip-btn-Deploy_cluster_using_cephadm_0log39d64d" class="feedback-btn skip-btn" 
+                                onclick="showFeedbackForm('Deploy_cluster_using_cephadm_0log39d64d', 'skip')"
+                                data-log-id="Deploy_cluster_using_cephadm_0log39d64d" data-vote="skip">⏭️</button>
+                    </div>
+                    <div id="feedback-form-Deploy_cluster_using_cephadm_0log39d64d" class="feedback-form">
+                        <textarea id="feedback-text-Deploy_cluster_using_cephadm_0log39d64d" 
+                                  placeholder="What was incorrect?"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <div id="raw-Deploy_cluster_using_cephadm_0log39d64d" class="raw-analysis" style="display: none;">
+                        <strong>Raw Analysis:</strong><br>
+                        <pre>RAG analysis failed: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.</pre>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        
+        <button class="submit-all-btn" onclick="submitAllFeedback()">
+            Submit All Feedback (11 logs)
+        </button>
+    </body>
+    </html>
+    

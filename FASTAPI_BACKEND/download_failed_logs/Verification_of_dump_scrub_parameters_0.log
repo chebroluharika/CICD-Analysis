@@ -1,0 +1,757 @@
+2025-04-15 04:35:29,768 - cephci - log:161 - DEBUG - Completed log configuration
+2025-04-15 04:35:29,772 - cephci - run:722 - INFO - Running test test_scrub_parameters.py
+2025-04-15 04:35:29,772 - cephci - test_scrub_parameters:30 - INFO - 
+    1. Test to the forced flag during the scrubbing and deep-scrubbing
+    2. Test the scheduled time <=  osd_scrub_min_interval+
+        (osd_scrub_min_interval * osd_scrub_interval_randomized_ratio)
+    Returns:
+        1 -> Fail, 0 -> Pass
+    
+2025-04-15 04:35:29,773 - cephci - stretch_cluster:373 - DEBUG - Updating recovery thread and osd_op_queue to assist faster recovery
+2025-04-15 04:35:29,774 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177
+2025-04-15 04:35:31,295 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177 took 1.520112 seconds
+2025-04-15 04:35:31,296 - cephci - ceph:1186 - DEBUG - mclock_scheduler
+2025-04-15 04:35:31,296 - cephci - shell:64 - DEBUG - mclock_scheduler
+
+2025-04-15 04:35:31,337 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177
+2025-04-15 04:35:32,955 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177 took 1.618144 seconds
+2025-04-15 04:35:32,956 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:35:32,997 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_max_backfills 18 on 10.0.195.177
+2025-04-15 04:35:34,519 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_max_backfills 18 on 10.0.195.177 took 1.521755 seconds
+2025-04-15 04:35:34,520 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:35:34,562 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_recovery_max_active 18 on 10.0.195.177
+2025-04-15 04:35:36,078 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_recovery_max_active 18 on 10.0.195.177 took 1.515491 seconds
+2025-04-15 04:35:36,078 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:35:36,080 - cephci - ceph:1576 - INFO - Execute ceph report -f json on 10.0.195.201
+2025-04-15 04:35:37,085 - cephci - ceph:1606 - INFO - Execution of ceph report -f json on 10.0.195.201 took 1.004652 seconds
+2025-04-15 04:35:37,088 - cephci - stretch_cluster:425 - INFO - Waiting for active + clean. Active alerts: dict_keys(['BLUESTORE_SLOW_OP_ALERT', 'CEPHADM_FAILED_DAEMON']), PG States: [{'state': 'active+clean', 'num': 689}]. Checking status again in 120 seconds
+2025-04-15 04:35:37,090 - cephci - ceph:1576 - INFO - Execute ceph -s -f json on 10.0.195.201
+2025-04-15 04:35:38,095 - cephci - ceph:1606 - INFO - Execution of ceph -s -f json on 10.0.195.201 took 1.004466 seconds
+2025-04-15 04:35:38,096 - cephci - stretch_cluster:430 - INFO - 
+ceph status : {'fsid': 'bfe6bdbc-197e-11f0-a0a3-fa163e4fa5cf', 'health': {'status': 'HEALTH_WARN', 'checks': {'BLUESTORE_SLOW_OP_ALERT': {'severity': 'HEALTH_WARN', 'summary': {'message': '11 OSD(s) experiencing slow operations in BlueStore', 'count': 11}, 'muted': False}, 'CEPHADM_FAILED_DAEMON': {'severity': 'HEALTH_WARN', 'summary': {'message': '1 failed cephadm daemon(s)', 'count': 1}, 'muted': False}}, 'mutes': []}, 'election_epoch': 14, 'quorum': [0, 1, 2], 'quorum_names': ['ceph-regression-mfyctl-w265dr-node1-installer', 'ceph-regression-mfyctl-w265dr-node6', 'ceph-regression-mfyctl-w265dr-node2'], 'quorum_age': 21804, 'monmap': {'epoch': 3, 'min_mon_release_name': 'squid', 'num_mons': 3}, 'osdmap': {'epoch': 1132, 'num_osds': 15, 'num_up_osds': 15, 'osd_up_since': 1744691603, 'num_in_osds': 15, 'osd_in_since': 1744691603, 'num_remapped_pgs': 0}, 'pgmap': {'pgs_by_state': [{'state_name': 'active+clean', 'count': 689}], 'num_pgs': 689, 'num_pools': 8, 'num_objects': 250, 'data_bytes': 467441, 'bytes_used': 6841049088, 'bytes_avail': 395749220352, 'bytes_total': 402590269440}, 'fsmap': {'epoch': 15, 'btime': '2025-04-14T22:41:41:429511+0000', 'id': 1, 'up': 1, 'in': 1, 'max': 1, 'by_rank': [{'filesystem_id': 1, 'rank': 0, 'name': 'cephfs.ceph-regression-mfyctl-w265dr-node2.yfbxer', 'status': 'up:active', 'gid': 24437}], 'up:standby': 1}, 'mgrmap': {'available': True, 'num_standbys': 2, 'modules': ['cephadm', 'dashboard', 'iostat', 'nfs', 'prometheus', 'smb'], 'services': {'dashboard': 'https://10.0.195.177:8443/', 'prometheus': 'http://10.0.195.177:9283/'}}, 'servicemap': {'epoch': 326, 'modified': '2025-04-15T04:34:17.660297+0000', 'services': {'rgw': {'daemons': {'summary': '', '24424': {'start_epoch': 17, 'start_stamp': '2025-04-14T22:39:55.986331+0000', 'gid': 24424, 'addr': '10.0.195.151:0/2326825431', 'metadata': {'arch': 'x86_64', 'ceph_release': 'squid', 'ceph_version': 'ceph version 19.2.1-126.el9cp (cfd2907537ba633f7d638895efd70ef5d0f1c99b) squid (stable)', 'ceph_version_short': '19.2.1-126.el9cp', 'container_hostname': 'ceph-regression-mfyctl-w265dr-node6', 'container_image': 'cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6', 'cpu': 'AMD EPYC-Rome Processor', 'distro': 'rhel', 'distro_description': 'Red Hat Enterprise Linux 9.5 (Plow)', 'distro_version': '9.5', 'frontend_config#0': 'beast port=80', 'frontend_type#0': 'beast', 'hostname': 'ceph-regression-mfyctl-w265dr-node6', 'id': 'rgw.1.ceph-regression-mfyctl-w265dr-node6.szrsmt', 'kernel_description': '#1 SMP PREEMPT_DYNAMIC Mon Mar 24 11:15:27 EDT 2025', 'kernel_version': '5.14.0-503.35.1.el9_5.x86_64', 'mem_swap_kb': '0', 'mem_total_kb': '7868484', 'num_handles': '1', 'os': 'Linux', 'pid': '2', 'realm_id': '', 'realm_name': '', 'zone_id': 'd3dd4697-cf59-4aaa-8eba-c4712ab1e21c', 'zone_name': 'default', 'zonegroup_id': '9813163c-2373-42eb-a2ac-11cab402bb67', 'zonegroup_name': 'default'}, 'task_status': {}}, '24425': {'start_epoch': 17, 'start_stamp': '2025-04-14T22:39:55.952185+0000', 'gid': 24425, 'addr': '10.0.195.147:0/1044330565', 'metadata': {'arch': 'x86_64', 'ceph_release': 'squid', 'ceph_version': 'ceph version 19.2.1-126.el9cp (cfd2907537ba633f7d638895efd70ef5d0f1c99b) squid (stable)', 'ceph_version_short': '19.2.1-126.el9cp', 'container_hostname': 'ceph-regression-mfyctl-w265dr-node2', 'container_image': 'cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6', 'cpu': 'AMD EPYC-Rome Processor', 'distro': 'rhel', 'distro_description': 'Red Hat Enterprise Linux 9.5 (Plow)', 'distro_version': '9.5', 'frontend_config#0': 'beast port=80', 'frontend_type#0': 'beast', 'hostname': 'ceph-regression-mfyctl-w265dr-node2', 'id': 'rgw.1.ceph-regression-mfyctl-w265dr-node2.ybmufx', 'kernel_description': '#1 SMP PREEMPT_DYNAMIC Mon Mar 24 11:15:27 EDT 2025', 'kernel_version': '5.14.0-503.35.1.el9_5.x86_64', 'mem_swap_kb': '0', 'mem_total_kb': '7868476', 'num_handles': '1', 'os': 'Linux', 'pid': '2', 'realm_id': '', 'realm_name': '', 'zone_id': 'd3dd4697-cf59-4aaa-8eba-c4712ab1e21c', 'zone_name': 'default', 'zonegroup_id': '9813163c-2373-42eb-a2ac-11cab402bb67', 'zonegroup_name': 'default'}, 'task_status': {}}}}}}, 'progress_events': {}}
+
+2025-04-15 04:35:38,097 - cephci - stretch_cluster:438 - DEBUG - Removing recovery thread settings
+2025-04-15 04:35:38,098 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177
+2025-04-15 04:35:40,723 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177 took 2.623946 seconds
+2025-04-15 04:35:40,723 - cephci - shell:64 - DEBUG - mclock_scheduler
+
+2025-04-15 04:35:40,725 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177
+2025-04-15 04:35:43,239 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177 took 2.513828 seconds
+2025-04-15 04:35:43,239 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:35:43,241 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config rm osd osd_max_backfills on 10.0.195.177
+2025-04-15 04:35:45,835 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config rm osd osd_max_backfills on 10.0.195.177 took 2.594022 seconds
+2025-04-15 04:35:45,836 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:35:45,837 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config rm osd osd_recovery_max_active on 10.0.195.177
+2025-04-15 04:35:48,387 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config rm osd osd_recovery_max_active on 10.0.195.177 took 2.54901 seconds
+2025-04-15 04:35:48,387 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:35:48,388 - cephci - stretch_cluster:440 - INFO - The recovery and back-filling of the OSDs/Pool is completed
+2025-04-15 04:35:48,389 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph mgr module ls -f json on 10.0.195.177
+2025-04-15 04:35:50,906 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph mgr module ls -f json on 10.0.195.177 took 2.517267 seconds
+2025-04-15 04:35:50,911 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set global osd_pool_default_pg_autoscale_mode off on 10.0.195.177
+2025-04-15 04:35:53,375 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set global osd_pool_default_pg_autoscale_mode off on 10.0.195.177 took 2.462898 seconds
+2025-04-15 04:35:53,376 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:35:53,377 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool autoscale-status -f json on 10.0.195.177
+2025-04-15 04:35:54,873 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool autoscale-status -f json on 10.0.195.177 took 1.495484 seconds
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG - [
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 0.0,
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 0,
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 0.0,
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,874 - cephci - ceph:1186 - DEBUG -         "logical_used": 0.0,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "pool_id": 1,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "pool_name": ".smb",
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "raw_used": 0,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,875 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 4.598700317757983e-06,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 1851392,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 4.598700317757983e-06,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "logical_used": 617130.6666666666,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 1,
+2025-04-15 04:35:54,876 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 1,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "pool_id": 2,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "pool_name": ".mgr",
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "raw_used": 1851392,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 2.767329676272863e-07,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 111410,
+2025-04-15 04:35:54,877 - cephci - ceph:1186 - DEBUG -         "bias": 4.0,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 2.767329676272863e-07,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "logical_used": 37136.666666666664,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 16,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 16,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "pool_id": 3,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "pool_name": "cephfs.cephfs.meta",
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "raw_used": 111410,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,878 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 1.8313408345053914e-07,
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 73728,
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -  
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -        "bias": 1.0,
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:35:54,879 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 1.8313408345053914e-07,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "logical_used": 24576.0,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "pool_id": 5,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "pool_name": ".rgw.root",
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "raw_used": 73728,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,880 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 1.0377598062197218e-06,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 417792,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 1.0377598062197218e-06,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "logical_used": 139264.0,
+2025-04-15 04:35:54,881 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "pool_id": 6,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "pool_name": "default.rgw.log",
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "raw_used": 417792,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:35:54,882 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 0.0,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 0,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 0.0,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "logical_used": 0.0,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "pool_id": 7,
+2025-04-15 04:35:54,883 - cephci - ceph:1186 - DEBUG -         "pool_name": "default.rgw.control",
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "raw_used": 0,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 6.104469448351305e-08,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 24576,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "bias": 4.0,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:35:54,884 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 6.104469448351305e-08,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "cr
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG - ush_root_id": -1,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "logical_used": 8192.0,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "pool_id": 8,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "pool_name": "default.rgw.meta",
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "raw_used": 24576,
+2025-04-15 04:35:54,885 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 0.0,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 0,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "bulk": true,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 0.0,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:35:54,886 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "logical_used": 0.0,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 512,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 500,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 512,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "pool_id": 4,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "pool_name": "cephfs.cephfs.data",
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "raw_used": 0,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:35:54,887 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:35:54,888 - cephci - ceph:1186 - DEBUG -     }
+2025-04-15 04:35:54,888 - cephci - ceph:1186 - DEBUG - ]
+2025-04-15 04:35:54,888 - cephci - core_workflows:932 - INFO - [{'actual_capacity_ratio': 0.0, 'actual_raw_used': 0, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 0.0, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 0.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 1, 'pool_name': '.smb', 'raw_used': 0, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 4.598700317757983e-06, 'actual_raw_used': 1851392, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 4.598700317757983e-06, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 617130.6666666666, 'pg_autoscale_mode': 'on', 'pg_num_final': 1, 'pg_num_ideal': 0, 'pg_num_target': 1, 'pool_id': 2, 'pool_name': '.mgr', 'raw_used': 1851392, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 2.767329676272863e-07, 'actual_raw_used': 111410, 'bias': 4.0, 'bulk': False, 'capacity_ratio': 2.767329676272863e-07, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 37136.666666666664, 'pg_autoscale_mode': 'on', 'pg_num_final': 16, 'pg_num_ideal': 0, 'pg_num_target': 16, 'pool_id': 3, 'pool_name': 'cephfs.cephfs.meta', 'raw_used': 111410, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 1.8313408345053914e-07, 'actual_raw_used': 73728, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 1.8313408345053914e-07, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 24576.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 5, 'pool_name': '.rgw.root', 'raw_used': 73728, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 1.0377598062197218e-06, 'actual_raw_used': 417792, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 1.0377598062197218e-06, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 139264.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 6, 'pool_name': 'default.rgw.log', 'raw_used': 417792, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 0.0, 'actual_raw_used': 0, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 0.0, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 0.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 7, 'pool_name': 'default.rgw.control', 'raw_used': 0, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 6.104469448351305e-08, 'actual_raw_used': 24576, 'bias': 4.0, 'bulk': False, 'capacity_ratio': 6.104469448351305e-08, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 8192.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 8, 'pool_name': 'default.rgw.meta', 'raw_used': 24576, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 0.0, 'actual_raw_used': 0, 'bias': 1.0, 'bulk': True, 'capacity_ratio': 0.0, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 0.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 512, 'pg_num_ideal': 500, 'pg_num_target': 512, 'pool_id': 4, 'pool_name': 'cephfs.cephfs.data', 'raw_used': 0, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}]
+2025-04-15 04:36:04,899 - cephci - core_workflows:563 - DEBUG - creating pool_name scrub_rp_pool
+2025-04-15 04:36:04,901 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool create scrub_rp_pool 1 1 on 10.0.195.177
+2025-04-15 04:36:07,235 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool create scrub_rp_pool 1 1 on 10.0.195.177 took 2.333152 seconds
+2025-04-15 04:36:07,236 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:36:07,277 - cephci - ceph:1576 - INFO - Execute cephadm shell -- sudo ceph osd pool application enable scrub_rp_pool rados on 10.0.195.177
+2025-04-15 04:36:09,290 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- sudo ceph osd pool application enable scrub_rp_pool rados on 10.0.195.177 took 2.012527 seconds
+2025-04-15 04:36:09,291 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:36:14,296 - cephci - core_workflows:620 - INFO - Created pool scrub_rp_pool successfully
+2025-04-15 04:36:14,298 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.201
+2025-04-15 04:36:15,301 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.201 took 1.003091 seconds
+2025-04-15 04:36:15,302 - cephci - core_workflows:452 - INFO - check_ec: True
+2025-04-15 04:36:15,303 - cephci - ceph:1576 - INFO - Execute sudo rados --no-log-to-stderr -b 5M -p scrub_rp_pool bench 200 write --no-cleanup --max-objects 100 on 10.0.195.201
+2025-04-15 04:36:16,307 - cephci - ceph:1186 - DEBUG - hints = 1
+2025-04-15 04:36:16,307 - cephci - ceph:1186 - DEBUG - Maintaining 16 concurrent writes of 5242880 bytes to objects of size 5242880 for up to 200 seconds or 100 objects
+2025-04-15 04:36:16,308 - cephci - ceph:1186 - DEBUG - Object prefix: benchmark_data_ceph-regression-mfyctl-w265dr_41227
+2025-04-15 04:36:16,308 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 04:36:16,308 - cephci - ceph:1186 - DEBUG -     0       0         0         0         0         0           -           0
+2025-04-15 04:36:16,459 - cephci - ceph:1186 - DEBUG -     1      16        16         0         0         0           -           0
+2025-04-15 04:36:17,459 - cephci - ceph:1186 - DEBUG -     2      16        16         0         0         0           -           0
+2025-04-15 04:36:18,459 - cephci - ceph:1186 - DEBUG -     3      16        16         0         0         0           -           0
+2025-04-15 04:36:19,460 - cephci - ceph:1186 - DEBUG -     4      16        16         0         0         0           -           0
+2025-04-15 04:36:20,460 - cephci - ceph:1186 - DEBUG -     5      16        21         5   4.99822         5     4.95663     4.41594
+2025-04-15 04:36:21,461 - cephci - ceph:1186 - DEBUG -     6      16        22         6   4.99828         5     5.93563     4.66922
+2025-04-15 04:36:22,461 - cephci - ceph:1186 - DEBUG -     7      16        22         6   4.28424         0           -     4.66922
+2025-04-15 04:36:23,461 - cephci - ceph:1186 - DEBUG -     8      16        22         6    3.7487         0           -     4.66922
+2025-04-15 04:36:24,462 - cephci - ceph:1186 - DEBUG -     9      16        22         6    3.3321         0           -     4.66922
+2025-04-15 04:36:25,462 - cephci - ceph:1186 - DEBUG -    10      16        22         6   2.99889         0           -     4.66922
+2025-04-15 04:36:26,463 - cephci - ceph:1186 - DEBUG -    11      16        22         6   2.72625         0           -     4.66922
+2025-04-15 04:36:27,463 - cephci - ceph:1186 - DEBUG -    12      16        22         6   2.49906         0           -     4.66922
+2025-04-15 04:36:28,464 - cephci - ceph:1186 - DEBUG -    13      16        22         6   2.30682         0           -     4.66922
+2025-04-15 04:36:29,464 - cephci - ceph:1186 - DEBUG -    14      16        22         6   2.14205         0           -     4.66922
+2025-04-15 04:36:30,464 - cephci - ceph:1186 - DEBUG -    15      16        22         6   1.99925         0           -     4.66922
+2025-04-15 04:36:31,464 - cephci - ceph:1186 - DEBUG -    16      16        22         6    1.8743         0           -     4.66922
+2025-04-15 04:36:32,465 - cephci - ceph:1186 - DEBUG -    17      16        34        18   5.29215   5.45455     11.8443     11.8307
+2025-04-15 04:36:33,465 - cephci - ceph:1186 - DEBUG -    18      16        34        18   4.99814         0           -     11.8307
+2025-04-15 04:36:34,466 - cephci - ceph:1186 - DEBUG -    19      16        34        18   4.73506         0           -     11.8307
+2025-04-15 04:36:35,466 - cephci - ceph:1186 - DEBUG - 2025-04-15T04:36:14.643695+0000 min lat: 4.28071 max lat: 16.1249 avg lat: 11.8307
+2025-04-15 04:36:35,467 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 04:36:35,467 - cephci - ceph:1186 - DEBUG -    20      16        34        18   4.49831         0           -     11.8307
+2025-04-15 04:36:36,466 - cephci - ceph:1186 - DEBUG -    21      16        34        18   4.28409         0           -     11.8307
+2025-04-15 04:36:37,467 - cephci - ceph:1186 - DEBUG -    22      16        34        18   4.08937         0           -     11.8307
+2025-04-15 04:36:38,467 - cephci - ceph:1186 - DEBUG -    23      16        34        18   3.91157         0           -     11.8307
+2025-04-15 04:36:39,468 - cephci - ceph:1186 - DEBUG -    24      16        34        18   3.74859         0           -     11.8307
+2025-04-15 04:36:40,468 - cephci - ceph:1186 - DEBUG -    25      16        34        18   3.59865         0           -     11.8307
+2025-04-15 04:36:41,468 - cephci - ceph:1186 - DEBUG -    26      16        34        18   3.46024         0           -     11.8307
+2025-04-15 04:36:42,469 - cephci - ceph:1186 - DEBUG -    27      16        34        18   3.33205         0           -     11.8307
+2025-04-15 04:36:43,469 - cephci - ceph:1186 - DEBUG -    28      16        46        30   5.35509   5.45455     11.3664      13.146
+2025-04-15 04:36:44,470 - cephci - ceph:1186 - DEBUG -    29      16        46        30   5.17043         0           -      13.146
+2025-04-15 04:36:45,470 - cephci - ceph:1186 - DEBUG -    30      16        48        32    5.3313         5     13.0388     13.1393
+2025-04-15 04:36:46,470 - cephci - ceph:1186 - DEBUG -    31      16        48        32   5.15933         0           -     13.1393
+2025-04-15 04:36:47,470 - cephci - ceph:1186 - DEBUG -    32      16        48        32    4.9981         0           -     13.1393
+2025-04-15 04:36:48,471 - cephci - ceph:1186 - DEBUG -    33      16        48        32   4.84666         0           -     13.1393
+2025-04-15 04:36:49,471 - cephci - ceph:1186 - DEBUG -    34      16        48        32   4.70412         0           -     13.1393
+2025-04-15 04:36:50,472 - cephci - ceph:1186 - DEBUG -    35      16        48        32   4.56973         0           -     13.1393
+2025-04-15 04:36:51,472 - cephci - ceph:1186 - DEBUG -    36      16        48        32    4.4428         0           -     13.1393
+2025-04-15 04:36:52,472 - cephci - ceph:1186 - DEBUG -    37      16        48        32   4.32274         0           -     13.1393
+2025-04-15 04:36:53,473 - cephci - ceph:1186 - DEBUG -    38      16        48        32   4.20899         0           -     13.1393
+2025-04-15 04:36:54,473 - cephci - ceph:1186 - DEBUG -    39      16        48        32   4.10107         0           -     13.1393
+2025-04-15 04:36:55,473 - cephci - ceph:1186 - DEBUG - 2025-04-15T04:36:34.650636+0000 min lat: 4.28071 max lat: 23.6678 avg lat: 13.3788
+2025-04-15 04:36:55,474 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 04:36:55,474 - cephci - ceph:1186 - DEBUG -    40      16        62        46   5.74792         7     12.3015     13.3788
+2025-04-15 04:36:56,473 - cephci - ceph:1186 - DEBUG -    41      16        62        46   5.60773         0           -     13.3788
+2025-04-15 04:36:57,474 - cephci - ceph:1186 - DEBUG -    42      16        62        46   5.47423         0           -     13.3788
+2025-04-15 04:36:58,474 - cephci - ceph:1186 - DEBUG -    43      16        62        46   5.34693         0           -     13.3788
+2025-04-15 04:36:59,474 - cephci - ceph:1186 - DEBUG -    44      16        62        46   5.22541         0           -     13.3788
+2025-04-15 04:37:00,474 - cephci - ceph:1186 - DEBUG -    45      16        62        46    5.1093         0           -     13.3788
+2025-04-15 04:37:01,475 - cephci - ceph:1186 - DEBUG -    46      16        62        46   4.99824         0           -     13.3788
+2025-04-15 04:37:02,476 - cephci - ceph:1186 - DEBUG -    47      16        62        46   4.89191         0           -     13.3788
+2025-04-15 04:37:03,475 - cephci - ceph:1186 - DEBUG -    48      16        62        46      4.79         0           -     13.3788
+2025-04-15 04:37:04,476 - cephci - ceph:1186 - DEBUG -    49      16        62        46   4.69225         0           -     13.3788
+2025-04-15 04:37:05,476 - cephci - ceph:1186 - DEBUG -    50      16        62        46   4.59841         0           -     13.3788
+2025-04-15 04:37:06,476 - cephci - ceph:1186 - DEBUG -    51      16        76        60   5.88033   6.36364     10.8396     13.1406
+2025-04-15 04:37:07,477 - cephci - ceph:1186 - DEBUG -    52      16        76        60   5.76726         0           -     13.1406
+2025-04-15 04:37:08,477 - cephci - ceph:1186 - DEBUG -    53      16        76        60   5.65844         0           -     13.1406
+2025-04-15 04:37:09,477 - cephci - ceph:1186 - DEBUG -    54      16        76        60   5.55366         0           -     13.1406
+2025-04-15 04:37:10,477 - cephci - ceph:1186 - DEBUG -    55      16        84        68   6.17972        10     4.30213     12.4173
+2025-04-15 04:37:11,478 - cephci - ceph:1186 - DEBUG -    56      16        87        71   6.33714        15     5.36843     12.1194
+2025-04-15 04:37:12,478 - cephci - ceph:1186 - DEBUG -    57      16        87        71   6.22598         0           -     12.1194
+2025-04-15 04:37:13,478 - cephci - ceph:1186 - DEBUG -    58      16        87        71   6.11864         0           -     12.1194
+2025-04-15 04:37:14,478 - cephci - ceph:1186 - DEBUG -    59      16       100        84   7.11627   21.6667     3.79752     11.0894
+2025-04-15 04:37:15,479 - cephci - ceph:1186 - DEBUG - 2025-04-15T04:36:54.656209+0000 min lat: 3.79746 max lat: 23.6678 avg lat: 11.0894
+2025-04-15 04:37:15,480 - cephci - ceph:1186 - DEBUG -   sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)
+2025-04-15 04:37:15,480 - cephci - ceph:1186 - DEBUG -    60      16       100        84   6.99767         0           -     11.0894
+2025-04-15 04:37:16,479 - cephci - ceph:1186 - DEBUG -    61      16       100        84   6.88295         0           -     11.0894
+2025-04-15 04:37:17,479 - cephci - ceph:1186 - DEBUG - Total time run:         61.6375
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Total writes made:      100
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Write size:             5242880
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Object size:            5242880
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Bandwidth (MB/sec):     8.11195
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Stddev Bandwidth:       3.86732
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Max bandwidth (MB/sec): 21.6667
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Min bandwidth (MB/sec): 0
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Average IOPS:           1
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Stddev IOPS:            0.728049
+2025-04-15 04:37:17,480 - cephci - ceph:1186 - DEBUG - Max IOPS:               4
+2025-04-15 04:37:17,481 - cephci - ceph:1186 - DEBUG - Min IOPS:               0
+2025-04-15 04:37:17,481 - cephci - ceph:1186 - DEBUG - Average Latency(s):     9.81404
+2025-04-15 04:37:17,481 - cephci - ceph:1186 - DEBUG - Stddev Latency(s):      5.80704
+2025-04-15 04:37:17,481 - cephci - ceph:1186 - DEBUG - Max latency(s):         23.6678
+2025-04-15 04:37:17,481 - cephci - ceph:1186 - DEBUG - Min latency(s):         2.63719
+2025-04-15 04:37:17,512 - cephci - ceph:1606 - INFO - Execution of sudo rados --no-log-to-stderr -b 5M -p scrub_rp_pool bench 200 write --no-cleanup --max-objects 100 on 10.0.195.201 took 62.208923 seconds
+2025-04-15 04:37:17,513 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.201
+2025-04-15 04:37:18,517 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.201 took 1.003441 seconds
+2025-04-15 04:37:18,517 - cephci - core_workflows:493 - DEBUG - Objs in the pool post IOPS: 84 | Expected 100 or 101
+2025-04-15 04:37:18,518 - cephci - core_workflows:501 - DEBUG - Stats in the pool are yet to match expected object count 100
+2025-04-15 04:37:18,518 - cephci - core_workflows:502 - DEBUG - Retrying check after 15 seconds
+2025-04-15 04:37:23,520 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.201
+2025-04-15 04:37:24,525 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.201 took 1.004247 seconds
+2025-04-15 04:37:24,525 - cephci - core_workflows:493 - DEBUG - Objs in the pool post IOPS: 101 | Expected 100 or 101
+2025-04-15 04:37:24,526 - cephci - core_workflows:495 - INFO - Stats in the pool are as expected
+2025-04-15 04:37:24,526 - cephci - stretch_cluster:373 - DEBUG - Updating recovery thread and osd_op_queue to assist faster recovery
+2025-04-15 04:37:24,527 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177
+2025-04-15 04:37:26,223 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177 took 1.695913 seconds
+2025-04-15 04:37:26,224 - cephci - ceph:1186 - DEBUG - mclock_scheduler
+2025-04-15 04:37:26,225 - cephci - shell:64 - DEBUG - mclock_scheduler
+
+2025-04-15 04:37:26,266 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177
+2025-04-15 04:37:28,279 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177 took 2.012748 seconds
+2025-04-15 04:37:28,280 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:37:28,322 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_max_backfills 18 on 10.0.195.177
+2025-04-15 04:37:29,963 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_max_backfills 18 on 10.0.195.177 took 1.640262 seconds
+2025-04-15 04:37:29,963 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:37:30,004 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_recovery_max_active 18 on 10.0.195.177
+2025-04-15 04:37:31,593 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_recovery_max_active 18 on 10.0.195.177 took 1.588382 seconds
+2025-04-15 04:37:31,594 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:37:31,595 - cephci - stretch_cluster:397 - DEBUG - Checking for active + clean PGs on pool: scrub_rp_pool
+2025-04-15 04:37:31,596 - cephci - ceph:1576 - INFO - Execute ceph pg ls-by-pool scrub_rp_pool -f json on 10.0.195.201
+2025-04-15 04:37:32,601 - cephci - ceph:1606 - INFO - Execution of ceph pg ls-by-pool scrub_rp_pool -f json on 10.0.195.201 took 1.003972 seconds
+2025-04-15 04:37:32,603 - cephci - ceph:1576 - INFO - Execute ceph pg 16.0 query -f json on 10.0.195.201
+2025-04-15 04:37:33,608 - cephci - ceph:1606 - INFO - Execution of ceph pg 16.0 query -f json on 10.0.195.201 took 1.004237 seconds
+2025-04-15 04:37:33,609 - cephci - core_workflows:2031 - DEBUG - The status of pg : 16.0 is active+clean
+2025-04-15 04:37:33,609 - cephci - stretch_cluster:412 - INFO -  PG: 16.0 in state: active+clean. Checking status on next PG in the pool
+2025-04-15 04:37:33,609 - cephci - stretch_cluster:438 - DEBUG - Removing recovery thread settings
+2025-04-15 04:37:33,610 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177
+2025-04-15 04:37:36,539 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config get osd osd_op_queue on 10.0.195.177 took 2.928521 seconds
+2025-04-15 04:37:36,540 - cephci - shell:64 - DEBUG - mclock_scheduler
+
+2025-04-15 04:37:36,541 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177
+2025-04-15 04:37:39,294 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set osd osd_mclock_override_recovery_settings true on 10.0.195.177 took 2.752531 seconds
+2025-04-15 04:37:39,295 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:37:39,297 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config rm osd osd_max_backfills on 10.0.195.177
+2025-04-15 04:37:40,781 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config rm osd osd_max_backfills on 10.0.195.177 took 1.484385 seconds
+2025-04-15 04:37:40,782 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:37:40,823 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config rm osd osd_recovery_max_active on 10.0.195.177
+2025-04-15 04:37:42,712 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config rm osd osd_recovery_max_active on 10.0.195.177 took 1.888492 seconds
+2025-04-15 04:37:42,713 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:37:42,713 - cephci - stretch_cluster:440 - INFO - The recovery and back-filling of the OSDs/Pool is completed
+2025-04-15 04:37:42,715 - cephci - ceph:1576 - INFO - Execute ceph osd pool stats scrub_rp_pool -f json on 10.0.195.201
+2025-04-15 04:37:43,720 - cephci - ceph:1606 - INFO - Execution of ceph osd pool stats scrub_rp_pool -f json on 10.0.195.201 took 1.004707 seconds
+2025-04-15 04:37:43,720 - cephci - core_workflows:699 - DEBUG - Collecting the acting set for the PG : 16.0
+2025-04-15 04:37:43,722 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph pg map 16.0 -f json on 10.0.195.177
+2025-04-15 04:37:46,318 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph pg map 16.0 -f json on 10.0.195.177 took 2.595636 seconds
+2025-04-15 04:37:46,319 - cephci - core_workflows:702 - DEBUG - collected the acting set for the PG : 16.0. details of PG map : {'epoch': 1135, 'raw_pgid': '16.0', 'pgid': '16.0', 'up': [0, 7, 14], 'acting': [0, 7, 14]}
+2025-04-15 04:37:46,321 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 0 -f json on 10.0.195.177
+2025-04-15 04:37:47,861 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph orch ps --daemon_type osd --daemon_id 0 -f json on 10.0.195.177 took 1.539826 seconds
+2025-04-15 04:37:47,862 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 04:37:47,862 - cephci - ceph:1186 - DEBUG - [{"container_id": "76ace8c44bdb", "container_image_digests": ["cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6", "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:ef6bebc203b9e271330f00b51d0616aa3de5cff643d4c6bf13e526801a5c18ee"], "container_image_id": "3b1483211cc850965b5b32c6080476272f17b6b386903025fa3d9ab5f6e784ef", "container_image_name": "cp.stg.icr.io/cp/ibm-ceph/ceph-8-rhel9@sha256:eb77daa2b92c9d1d4fa9ccdaff1c53c069828e8e20247c2ad18dd55fae3ea2e6", "cpu_percentage": "1.55%", "created": "2025-04-14T22:36:02.624022Z", "daemon_id": "0", "daemon_name": "osd.0", "daemon_type": "osd", "events": ["2025-04-14T22:36:02.760664Z daemon:osd.0 [INFO] \"Deployed osd.0 on host 'ceph-regression-mfyctl-w265dr-node4'\""], "hostname": "ceph-regression-mfyctl-w265dr-node4", "is_active": false, "last_refresh": "2025-04-15T04:33:25.026335Z", "memory_request": 4294967296, "memory_usage": 898400000, "pending_daemon_config": false, "ports": [], "service_name": "osd.all-available-devices", "started": "2025-04-14T23:56:17.779905Z", "status": 1, "status_desc": "running", "systemd_unit": "ceph-bfe6bdbc-197e-11f0-a0a3-fa163e4fa5cf@osd.0", "version": "19.2.1-126.el9cp"}]
+2025-04-15 04:37:47,872 - cephci - ceph:1576 - INFO - Execute cephadm shell --name osd.0 ceph daemon  osd.0  dump_scrubs -f json 2>/dev/null on 10.0.195.27
+2025-04-15 04:37:50,877 - cephci - ceph:1606 - INFO - Execution of cephadm shell --name osd.0 ceph daemon  osd.0  dump_scrubs -f json 2>/dev/null on 10.0.195.27 took 3.004918 seconds
+2025-04-15 04:37:50,878 - cephci - test_scrub_parameters:125 - INFO - cephadm shell --name osd.0 ceph daemon  osd.0  dump_scrubs -f json 2>/dev/null returned  and code 22 on 10.0.195.27
+2025-04-15 04:37:50,879 - cephci - test_scrub_parameters:126 - INFO - Traceback (most recent call last):
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_scrub_parameters.py", line 59, in run
+    dump_scrub_before_scrub = scrub_object.get_dump_scrubs(selected_osd)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/rados/rados_scrub.py", line 205, in get_dump_scrubs
+    out_put_tuple = acting_osd_node.exec_command(sudo=True, cmd=base_cmd)
+  File "/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/ceph/ceph.py", line 1700, in exec_command
+    raise CommandFailed(
+ceph.ceph.CommandFailed: cephadm shell --name osd.0 ceph daemon  osd.0  dump_scrubs -f json 2>/dev/null returned  and code 22 on 10.0.195.27
+
+2025-04-15 04:37:50,879 - cephci - test_scrub_parameters:129 - INFO - Execution of finally block
+2025-04-15 04:37:50,880 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph mgr module ls -f json on 10.0.195.177
+2025-04-15 04:37:52,541 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph mgr module ls -f json on 10.0.195.177 took 1.659855 seconds
+2025-04-15 04:37:52,542 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 04:37:52,542 - cephci - ceph:1186 - DEBUG - {"always_on_modules":["balancer","crash","devicehealth","orchestrator","pg_autoscaler","progress","rbd_support","status","telemetry","volumes"],"force_disabled_modules":[],"enabled_modules":["cephadm","dashboard","iostat","nfs","prometheus","smb"],"disabled_modules":[{"name":"alerts","can_run":true,"error_string":"","module_options":{"interval":{"name":"interval","type":"secs","level":"advanced","flags":1,"default_value":"60","min":"","max":"","enum_allowed":[],"desc":"How frequently to reexamine health status","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"smtp_destination":{"name":"smtp_destination","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Email address to send alerts to","long_desc":"","tags":[],"see_also":[]},"smtp_from_name":{"name":"smtp_from_name","type":"str","level":"advanced","flags":1,"default_value":"Ceph","min":"","max":"","enum_allowed":[],"desc":"Email From: name","long_desc":"","tags":[],"see_also":[]},"smtp_host":{"name":"smtp_host","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"SMTP server","long_desc":"","tags":[],"see_also":[]},"smtp_p
+2025-04-15 04:37:52,542 - cephci - ceph:1186 - DEBUG - assword":{"name":"smtp_password","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Password <masked> authenticate with","long_desc":"","tags":[],"see_also":[]},"smtp_port":{"name":"smtp_port","type":"int","level":"advanced","flags":1,"default_value":"465","min":"","max":"","enum_allowed":[],"desc":"SMTP port","long_desc":"","tags":[],"see_also":[]},"smtp_sender":{"name":"smtp_sender","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"SMTP envelope sender","long_desc":"","tags":[],"see_also":[]},"smtp_ssl":{"name":"smtp_ssl","type":"bool","level":"advanced","flags":1,"default_value":"True","min":"","max":"","enum_allowed":[],"desc":"Use SSL to connect to SMTP server","long_desc":"","tags":[],"see_also":[]},"smtp_user":{"name":"smtp_user","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"User to authenticate as","long_desc":"","tags":[],"see_also":[]}}},{"name":"call_home_agent","can_run":true,"error_string":"","module_options":{"cooldown_timeout_upload_snap_1":{"name":"cooldown_timeout_upload_snap_1","type":"int","level":"advanced","flags":0,"default_value":"300","min":"","max":"","enum_allowed":[],"desc":"Time interval in seconds to allow a cooldown between level 1 upload snap requests","long_desc":"","tags":[],"see_also":[]},"cooldown_timeout_upload_snap_2":{"name":"cooldown_timeout_upload_snap_2","type":"int","level":"advanced","flags":0,"default_value":"7200","min":"","max":"","enum_allowed":[],"desc":"Time interval in seconds to allow a cooldown between level 2 upload snap requests","long_desc":"","tags":[],"see_also":[]},"customer_address":{"name":"customer_address","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Customer address","long_desc":"","tags":[],"see_also":[]},"customer_company_name":{"name":"customer_company_name","type":"str","level":"advanced","flags":0,"default_value":"","min":"","ma
+2025-04-15 04:37:52,542 - cephci - ceph:1186 - DEBUG - x":"","enum_allowed":[],"desc":"Customer phone","long_desc":"","tags":[],"see_also":[]},"customer_country_code":{"name":"customer_country_code","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Customer country code","long_desc":"","tags":[],"see_also":[]},"customer_email":{"name":"customer_email","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Customer contact email","long_desc":"","tags":[],"see_also":[]},"customer_first_name":{"name":"customer_first_name","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Customer first name","long_desc":"","tags":[],"see_also":[]},"customer_last_name":{"name":"customer_last_name","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Customer last name","long_desc":"","tags":[],"see_also":[]},"customer_phone":{"name":"customer_phone","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Customer phone","long_desc":"","tags":[],"see_also":[]},"ecurep_password":{"name":"ecurep_password","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Password <masked> from the IBM Transfer ID service","long_desc":"","tags":[],"see_also":[]},"ecurep_url":{"name":"ecurep_url","type":"str","level":"advanced","flags":0,"default_value":"https://www.secure.ecurep.ibm.com","min":"","max":"","enum_allowed":[],"desc":"ECuRep file exchange systems","long_desc":"","tags":[],"see_also":[]},"ecurep_userid":{"name":"ecurep_userid","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Userid obtained from the IBM Transfer ID service","long_desc":"","tags":[],"see_also":[]},"icn":{"name":"icn","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"IBM Customer Number","long_desc":"","tags":[],
+2025-04-15 04:37:52,543 - cephci - ceph:1186 - DEBUG - "see_also":[]},"interval_alerts_report_seconds":{"name":"interval_alerts_report_seconds","type":"int","level":"advanced","flags":0,"default_value":"300","min":"0","max":"","enum_allowed":[],"desc":"Time frequency for the alerts report","long_desc":"","tags":[],"see_also":[]},"interval_inventory_report_seconds":{"name":"interval_inventory_report_seconds","type":"int","level":"advanced","flags":0,"default_value":"86400","min":"0","max":"","enum_allowed":[],"desc":"Time frequency for the inventory report","long_desc":"","tags":[],"see_also":[]},"interval_last_contact_report_seconds":{"name":"interval_last_contact_report_seconds","type":"int","level":"advanced","flags":0,"default_value":"1800","min":"0","max":"","enum_allowed":[],"desc":"Time frequency for the last contact report","long_desc":"","tags":[],"see_also":[]},"interval_performance_report_seconds":{"name":"interval_performance_report_seconds","type":"int","level":"advanced","flags":0,"default_value":"300","min":"0","max":"","enum_allowed":[],"desc":"Time frequency for the performance report","long_desc":"","tags":[],"see_also":[]},"interval_status_report_seconds":{"name":"interval_status_report_seconds","type":"int","level":"advanced","flags":0,"default_value":"1800","min":"0","max":"","enum_allowed":[],"desc":"Time frequency for the status report","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_fil
+2025-04-15 04:37:52,543 - cephci - ceph:1186 - DEBUG - e":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"owner_company_name":{"name":"owner_company_name","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"User Company name for IBM storage Insights","long_desc":"","tags":[],"see_also":[]},"owner_email":{"name":"owner_email","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"User email for IBM storage Insights","long_desc":"","tags":[],"see_also":[]},"owner_first_name":{"name":"owner_first_name","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"User first name for IBM storage Insights","long_desc":"","tags":[],"see_also":[]},"owner_ibm_id":{"name":"owner_ibm_id","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"IBM w3id identifier for IBM Storage Insights","long_desc":"","tags":[],"see_also":[]},"owner_last_name":{"name":"owner_last_name","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"User last name for IBM storage Insights","long_desc":"","tags":[],"see_also":[]},"owner_tenant_id":{"name":"owner_tenant_id","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"IBM tenant Id for IBM Storage Insigths","long_desc":"","tags":[],"see_also":[]},"proxy":{"name":"proxy","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"Proxy to reach Call Home endpoint","long_desc":"","tags":[],"see_also":[]},"si_web_service_url":{"name":"si_web_service_url","type":"str","level":"advanced","flags":0,"default_value":"https://join.insights.ibm.com/api/v1/em-integration","min":"","max":"","enum_allowed":[],"desc":"URL used to register Ceph cluster in SI (staging or production)","long_desc":"","t
+2025-04-15 04:37:52,543 - cephci - ceph:1186 - DEBUG - ags":[],"see_also":[]},"stale_timeout":{"name":"stale_timeout","type":"int","level":"advanced","flags":0,"default_value":"864000","min":"","max":"","enum_allowed":[],"desc":"Time interval in seconds during which requests with a repeating SI request ID will be ignored","long_desc":"","tags":[],"see_also":[]},"target":{"name":"target","type":"str","level":"advanced","flags":0,"default_value":"https://esupport.ibm.com/connect/api/v1","min":"","max":"","enum_allowed":[],"desc":"Call Home endpoint","long_desc":"","tags":[],"see_also":[]},"target_space":{"name":"target_space","type":"str","level":"advanced","flags":0,"default_value":"prod","min":"","max":"","enum_allowed":[],"desc":"Target space for reports (dev, staging or production)","long_desc":"","tags":[],"see_also":[]},"valid_container_registry":{"name":"valid_container_registry","type":"str","level":"advanced","flags":0,"default_value":"^.+\\.icr\\.io","min":"","max":"","enum_allowed":[],"desc":"Container registry pattern for urls where cephadm credentials(JWT token <masked> are valid","long_desc":"","tags":[],"see_also":[]}}},{"name":"diskprediction_local","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"predict_interval"
+2025-04-15 04:37:52,544 - cephci - ceph:1186 - DEBUG - :{"name":"predict_interval","type":"str","level":"advanced","flags":0,"default_value":"86400","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"predictor_model":{"name":"predictor_model","type":"str","level":"advanced","flags":0,"default_value":"prophetstor","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"sleep_interval":{"name":"sleep_interval","type":"str","level":"advanced","flags":0,"default_value":"600","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"influx","can_run":false,"error_string":"influxdb python module not found","module_options":{"batch_size":{"name":"batch_size","type":"int","level":"advanced","flags":0,"default_value":"5000","min":"","max":"","enum_allowed":[],"desc":"How big batches of data points should be when sending to InfluxDB.","long_desc":"","tags":[],"see_also":[]},"database":{"name":"database","type":"str","level":"advanced","flags":0,"default_value":"ceph","min":"","max":"","enum_allowed":[],"desc":"InfluxDB database name. You will need to create this database and grant write privileges to the configured username or the username must have admin privileges to create it.","long_desc":"","tags":[],"see_also":[]},"hostname":{"name":"hostname","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"InfluxDB server hostname","long_desc":"","tags":[],"see_also":[]},"interval":{"name":"interval","type":"secs","level":"advanced","flags":0,"default_value":"30","min":"5","max":"","enum_allowed":[],"desc":"Time between reports to InfluxDB.  Default 30 seconds.","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"Fals
+2025-04-15 04:37:52,544 - cephci - ceph:1186 - DEBUG - e","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"password":{"name":"password","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"password <masked> InfluxDB server user","long_desc":"","tags":[],"see_also":[]},"port":{"name":"port","type":"int","level":"advanced","flags":0,"default_value":"8086","min":"","max":"","enum_allowed":[],"desc":"InfluxDB server port","long_desc":"","tags":[],"see_also":[]},"ssl":{"name":"ssl","type":"str","level":"advanced","flags":0,"default_value":"false","min":"","max":"","enum_allowed":[],"desc":"Use https connection for InfluxDB server. Use \"true\" or \"false\".","long_desc":"","tags":[],"see_also":[]},"threads":{"name":"threads","type":"int","level":"advanced","flags":0,"default_value":"5","min":"1","max":"32","enum_allowed":[],"desc":"How many worker threads should be spawned for sending data to InfluxDB.","long_desc":"","tags":[],"see_also":[]},"username":{"name":"username","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"username of InfluxDB server user","long_desc":"","tags":[],"see_also":[]},"verify_ssl":{"name":"verify_ssl","type":"str","level":"advanced","flags":0,"default_value":"true","min":"","max":"","enum_allowed":[],"desc":"Verify https cert for InfluxDB server. Use \"true\" or \"false\".","long_desc":"","tags":[],"see_also":[]}}},{"name":"insights","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","mi
+2025-04-15 04:37:52,544 - cephci - ceph:1186 - DEBUG - n":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"k8sevents","can_run":true,"error_string":"","module_options":{"ceph_event_retention_days":{"name":"ceph_event_retention_days","type":"int","level":"advanced","flags":0,"default_value":"7","min":"","max":"","enum_allowed":[],"desc":"Days to hold ceph event information within local cache","long_desc":"","tags":[],"see_also":[]},"config_check_secs":{"name":"config_check_secs","type":"int","level":"advanced","flags":0,"default_value":"10","min":"10","max":"","enum_allowed":[],"desc":"interval (secs) to check for cluster configuration changes","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"n
+2025-04-15 04:37:52,545 - cephci - ceph:1186 - DEBUG - ame":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"localpool","can_run":true,"error_string":"","module_options":{"failure_domain":{"name":"failure_domain","type":"str","level":"advanced","flags":1,"default_value":"host","min":"","max":"","enum_allowed":[],"desc":"failure domain for any created local pool","long_desc":"what failure domain we should separate data replicas across.","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"min_size":{"name":"min_size","type":"int","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"default min_size for any created local pool","long_desc":"value to set min_size to (unchanged from Ceph's default if this option is not set)","tags":[],"see_also":[]},"num_rep":{"name":"num_rep","type":"int","level":"advanced","flags":1,"default_value":"3","min":"","max":"","enum_allowed":[],"desc":"default replica count for any created local pool","long_desc":"","tags":[],"see_also":[]},"pg_num":{"name":"pg_num","type":"int","level":"advanced","flags":1,"default_value":"128","min":"","max":"","enum_allowed":
+2025-04-15 04:37:52,545 - cephci - ceph:1186 - DEBUG - [],"desc":"default pg_num for any created local pool","long_desc":"","tags":[],"see_also":[]},"prefix":{"name":"prefix","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"name prefix for any created local pool","long_desc":"","tags":[],"see_also":[]},"subtree":{"name":"subtree","type":"str","level":"advanced","flags":1,"default_value":"rack","min":"","max":"","enum_allowed":[],"desc":"CRUSH level for which to create a local pool","long_desc":"which CRUSH subtree type the module should create a pool for.","tags":[],"see_also":[]}}},{"name":"mds_autoscaler","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"mirroring","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"nam
+2025-04-15 04:37:52,545 - cephci - ceph:1186 - DEBUG - e":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"osd_perf_query","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"osd_support","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"d
+2025-04-15 04:37:52,546 - cephci - ceph:1186 - DEBUG - esc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"restful","can_run":true,"error_string":"","module_options":{"enable_auth":{"name":"enable_auth","type":"bool","level":"advanced","flags":0,"default_value":"True","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"key_file":{"name":"key_file","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"max_requests":{"name":"max_requests","type":"int","level":"advanced","flags":0,"default_value":"500","min":"","max":"","enum_allowed":[],"desc":"Maximum number of requests to keep in memory. When new request comes in, the oldest request will be removed if the number of requests exceeds the max request number. if un-finished request is removed, error message will be logged in the ceph-mgr log.","long_desc":"","tags":[],"see_also":[]},"server_addr":{"name":"server_addr","type":"str","level":"advanced","flags":0
+2025-04-15 04:37:52,546 - cephci - ceph:1186 - DEBUG - ,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"server_port":{"name":"server_port","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"rgw","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"secondary_zone_period_retry_limit":{"name":"secondary_zone_period_retry_limit","type":"int","level":"advanced","flags":0,"default_value":"5","min":"","max":"","enum_allowed":[],"desc":"RGW module period update retry limit for secondary site","long_desc":"","tags":[],"see_also":[]}}},{"name":"rook","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":
+2025-04-15 04:37:52,546 - cephci - ceph:1186 - DEBUG - "str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"storage_class":{"name":"storage_class","type":"str","level":"advanced","flags":0,"default_value":"local","min":"","max":"","enum_allowed":[],"desc":"storage class name for LSO-discovered PVs","long_desc":"","tags":[],"see_also":[]}}},{"name":"selftest","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"roption1":{"name":"roption1","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"roption2":{"name":"roption2","type":"str","level":"advanced","flags":0,"default_value":"xyz","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"rwoption1":{"name":"rwoption1","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_de
+2025-04-15 04:37:52,547 - cephci - ceph:1186 - DEBUG - sc":"","tags":[],"see_also":[]},"rwoption2":{"name":"rwoption2","type":"int","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"rwoption3":{"name":"rwoption3","type":"float","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"rwoption4":{"name":"rwoption4","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"rwoption5":{"name":"rwoption5","type":"bool","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"rwoption6":{"name":"rwoption6","type":"bool","level":"advanced","flags":0,"default_value":"True","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"rwoption7":{"name":"rwoption7","type":"int","level":"advanced","flags":0,"default_value":"","min":"1","max":"42","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"testkey":{"name":"testkey","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"testlkey":{"name":"testlkey","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"testnewline":{"name":"testnewline","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"snap_schedule","can_run":true,"error_string":"","module_options":{"allow_m_granularity":{"name":"allow_m_granularity","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"allow minute scheduled snapshots","long_desc":"","tags":[],"see_also":[]},"dump_on_update":{"name":"dump_on_update","type":"bool","level":"advanced","flags"
+2025-04-15 04:37:52,547 - cephci - ceph:1186 - DEBUG - :1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"dump database to debug log on update","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"stats","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"telegraf","can_run":true,"error_string":"","module_options":{"address":{"name":"address","type":"st
+2025-04-15 04:37:52,547 - cephci - ceph:1186 - DEBUG - r","level":"advanced","flags":0,"default_value":"unixgram:///tmp/telegraf.sock","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"interval":{"name":"interval","type":"secs","level":"advanced","flags":0,"default_value":"15","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"test_orchestrator","can_run":true,"error_string":"","module_options":{"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_va
+2025-04-15 04:37:52,548 - cephci - ceph:1186 - DEBUG - lue":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}},{"name":"zabbix","can_run":true,"error_string":"","module_options":{"discovery_interval":{"name":"discovery_interval","type":"uint","level":"advanced","flags":0,"default_value":"100","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"identifier":{"name":"identifier","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"interval":{"name":"interval","type":"secs","level":"advanced","flags":0,"default_value":"60","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_level":{"name":"log_level","type":"str","level":"advanced","flags":1,"default_value":"","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster":{"name":"log_to_cluster","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_cluster_level":{"name":"log_to_cluster_level","type":"str","level":"advanced","flags":1,"default_value":"info","min":"","max":"","enum_allowed":["","critical","debug","error","info","warning"],"desc":"","long_desc":"","tags":[],"see_also":[]},"log_to_file":{"name":"log_to_file","type":"bool","level":"advanced","flags":1,"default_value":"False","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"zabbix_host":{"name":"zabbix_host","type":"str","level":"advanced","flags":0,"default_value":"","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"zabbix_port":{"name":"zabbix_port","type":"int","level":"advanced","flags":0,"default_value":"10051","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]},"zabbix_sender":{"name":"zabbix_sender","type":"str","level":"advanced","flags":0,"def
+2025-04-15 04:37:52,548 - cephci - ceph:1186 - DEBUG - ault_value":"/usr/bin/zabbix_sender","min":"","max":"","enum_allowed":[],"desc":"","long_desc":"","tags":[],"see_also":[]}}}]}
+2025-04-15 04:37:52,583 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph config set global osd_pool_default_pg_autoscale_mode on on 10.0.195.177
+2025-04-15 04:37:55,318 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph config set global osd_pool_default_pg_autoscale_mode on on 10.0.195.177 took 2.734902 seconds
+2025-04-15 04:37:55,319 - cephci - shell:64 - DEBUG - 
+2025-04-15 04:37:55,320 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool autoscale-status -f json on 10.0.195.177
+2025-04-15 04:37:56,935 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool autoscale-status -f json on 10.0.195.177 took 1.614585 seconds
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG - [
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 0.0,
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 0,
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 0.0,
+2025-04-15 04:37:56,936 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "logical_used": 0.0,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "pool_id": 1,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "pool_name": ".smb",
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "raw_used": 0,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,937 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 4.598700317757983e-06,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 1851392,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 4.598700317757983e-06,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "logical_used": 617130.6666666666,
+2025-04-15 04:37:56,938 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 1,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 1,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "pool_id": 2,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "pool_name": ".mgr",
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "raw_used": 1851392,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,939 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 2.767329676272863e-07,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 111410,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "bias": 4.0,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 2.767329676272863e-07,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "logical_used": 37136.666666666664,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 16,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 16,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "pool_id": 3,
+2025-04-15 04:37:56,940 - cephci - ceph:1186 - DEBUG -         "pool_name": "cephfs.cephfs.meta",
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "raw_used": 111410,
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 1.8313408345053914e-07,
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 73728,
+2025-04-15 04:37:56,941 - cephci - ceph:1186 - DEBUG -  
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -        "bias": 1.0,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 1.8313408345053914e-07,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "logical_used": 24576.0,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:37:56,942 - cephci - ceph:1186 - DEBUG -         "pool_id": 5,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "pool_name": ".rgw.root",
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "raw_used": 73728,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 1.0377598062197218e-06,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 417792,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:37:56,943 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 1.0377598062197218e-06,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "logical_used": 139264.0,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:37:56,944 - cephci - ceph:1186 - DEBUG -         "pool_id": 6,
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -         "pool_name": "default.rgw.log",
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -         "raw_used": 417792,
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,945 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 0.0,
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 0,
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 0.0,
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,946 - cephci - ceph:1186 - DEBUG -         "logical_used": 0.0,
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "pool_id": 7,
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "pool_name": "default.rgw.control",
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "raw_used": 0,
+2025-04-15 04:37:56,947 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 6.104469448351305e-08,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 24576,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "bias": 4.0,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 6.104469448351305e-08,
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG -         "cr
+2025-04-15 04:37:56,948 - cephci - ceph:1186 - DEBUG - ush_root_id": -1,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "logical_used": 8192.0,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 0,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 32,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "pool_id": 8,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "pool_name": "default.rgw.meta",
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "raw_used": 24576,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,949 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 0.003906890969292077,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 1572876288,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "bulk": false,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 0.003906890969292077,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "logical_used": 524292096.0,
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "off",
+2025-04-15 04:37:56,950 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 32,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 1,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 1,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "pool_id": 16,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "pool_name": "scrub_rp_pool",
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "raw_used": 1572876288,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -     },
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -     {
+2025-04-15 04:37:56,951 - cephci - ceph:1186 - DEBUG -         "actual_capacity_ratio": 0.0,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "actual_raw_used": 0,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "bias": 1.0,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "bulk": true,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "capacity_ratio": 0.0,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "crush_root_id": -1,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "effective_target_ratio": 0.0,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "logical_used": 0.0,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "pg_autoscale_mode": "on",
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "pg_num_final": 512,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "pg_num_ideal": 498,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "pg_num_target": 512,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "pool_id": 4,
+2025-04-15 04:37:56,952 - cephci - ceph:1186 - DEBUG -         "pool_name": "cephfs.cephfs.data",
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG -         "raw_used": 0,
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG -         "raw_used_rate": 3.0,
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG -         "subtree_capacity": 402590269440,
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG -         "target_bytes": 0,
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG -         "target_ratio": 0.0,
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG -         "would_adjust": false
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG -     }
+2025-04-15 04:37:56,953 - cephci - ceph:1186 - DEBUG - ]
+2025-04-15 04:37:56,953 - cephci - core_workflows:932 - INFO - [{'actual_capacity_ratio': 0.0, 'actual_raw_used': 0, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 0.0, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 0.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 1, 'pool_name': '.smb', 'raw_used': 0, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 4.598700317757983e-06, 'actual_raw_used': 1851392, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 4.598700317757983e-06, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 617130.6666666666, 'pg_autoscale_mode': 'on', 'pg_num_final': 1, 'pg_num_ideal': 0, 'pg_num_target': 1, 'pool_id': 2, 'pool_name': '.mgr', 'raw_used': 1851392, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 2.767329676272863e-07, 'actual_raw_used': 111410, 'bias': 4.0, 'bulk': False, 'capacity_ratio': 2.767329676272863e-07, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 37136.666666666664, 'pg_autoscale_mode': 'on', 'pg_num_final': 16, 'pg_num_ideal': 0, 'pg_num_target': 16, 'pool_id': 3, 'pool_name': 'cephfs.cephfs.meta', 'raw_used': 111410, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 1.8313408345053914e-07, 'actual_raw_used': 73728, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 1.8313408345053914e-07, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 24576.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 5, 'pool_name': '.rgw.root', 'raw_used': 73728, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 1.0377598062197218e-06, 'actual_raw_used': 417792, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 1.0377598062197218e-06, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 139264.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 6, 'pool_name': 'default.rgw.log', 'raw_used': 417792, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 0.0, 'actual_raw_used': 0, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 0.0, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 0.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 7, 'pool_name': 'default.rgw.control', 'raw_used': 0, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 6.104469448351305e-08, 'actual_raw_used': 24576, 'bias': 4.0, 'bulk': False, 'capacity_ratio': 6.104469448351305e-08, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 8192.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 32, 'pg_num_ideal': 0, 'pg_num_target': 32, 'pool_id': 8, 'pool_name': 'default.rgw.meta', 'raw_used': 24576, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 0.003906890969292077, 'actual_raw_used': 1572876288, 'bias': 1.0, 'bulk': False, 'capacity_ratio': 0.003906890969292077, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 524292096.0, 'pg_autoscale_mode': 'off', 'pg_num_final': 32, 'pg_num_ideal': 1, 'pg_num_target': 1, 'pool_id': 16, 'pool_name': 'scrub_rp_pool', 'raw_used': 1572876288, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}, {'actual_capacity_ratio': 0.0, 'actual_raw_used': 0, 'bias': 1.0, 'bulk': True, 'capacity_ratio': 0.0, 'crush_root_id': -1, 'effective_target_ratio': 0.0, 'logical_used': 0.0, 'pg_autoscale_mode': 'on', 'pg_num_final': 512, 'pg_num_ideal': 498, 'pg_num_target': 512, 'pool_id': 4, 'pool_name': 'cephfs.cephfs.data', 'raw_used': 0, 'raw_used_rate': 3.0, 'subtree_capacity': 402590269440, 'target_bytes': 0, 'target_ratio': 0.0, 'would_adjust': False}]
+2025-04-15 04:37:56,956 - cephci - ceph:1576 - INFO - Execute ceph config set mon mon_allow_pool_delete true on 10.0.195.201
+2025-04-15 04:37:57,961 - cephci - ceph:1606 - INFO - Execution of ceph config set mon mon_allow_pool_delete true on 10.0.195.201 took 1.003966 seconds
+2025-04-15 04:37:57,963 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.201
+2025-04-15 04:37:58,967 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.201 took 1.004029 seconds
+2025-04-15 04:37:58,969 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph osd pool ls detail -f json on 10.0.195.177
+2025-04-15 04:38:00,418 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph osd pool ls detail -f json on 10.0.195.177 took 1.44826 seconds
+2025-04-15 04:38:00,421 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 04:38:00,421 - cephci - ceph:1186 - DEBUG - [{"pool_id":1,"pool_name":".smb","create_time":"2025-04-14T22:21:53.425433+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"134","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"52","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"smb":{}},"read_balance":{"score_type":"Fair distribution","score_acting":1.8700000047683716,"score_stable":1.8700000047683716,"optimal_score":1,"raw_score_acting":1.8700000047683716,"raw_score_stable":1.8700000047683716,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":2,"pool_name":".mgr","create_time":"2025-04-14T22:36:25.003390+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_co
+2025-04-15 04:38:00,422 - cephci - ceph:1186 - DEBUG - unt":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":1,"pg_placement_num":1,"pg_placement_num_target":1,"pg_num_target":1,"pg_num_pending":1,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"37","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"0","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{"pg_num_max":32,"pg_num_min":1},"application_metadata":{"mgr":{}},"read_balance":{"score_type":"Fair distribution","score_acting":15,"score_stable":15,"optimal_score":0.20000000298023224,"raw_score_acting":3,"raw_score_stable":3,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":3,"pool_name":"cephfs.cephfs.meta","create_time":"2025-04-14T22:39:36.706636+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":16,
+2025-04-15 04:38:00,422 - cephci - ceph:1186 - DEBUG - "pg_placement_num":16,"pg_placement_num_target":16,"pg_num_target":16,"pg_num_pending":16,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"241","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"85","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{"pg_autoscale_bias":4,"pg_num_min":16,"recovery_priority":5},"application_metadata":{"cephfs":{"metadata":"cephfs"}},"read_balance":{"score_type":"Fair distribution","score_acting":2.8299999237060547,"score_stable":2.8299999237060547,"optimal_score":0.93000000715255737,"raw_score_acting":2.630000114440918,"raw_score_stable":2.630000114440918,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":4,"pool_name":"cephfs.cephfs.data","create_time":"2025-04-14T22:39:37.727542+0000","flags":131073,"flags_names":"hashpspool,bulk","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":512,"pg_placement_num":512,"pg_placement_num_target":512,"pg_num_target
+2025-04-15 04:38:00,423 - cephci - ceph:1186 - DEBUG - ":512,"pg_num_pending":512,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"176","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"174","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"cephfs":{"data":"cephfs"}},"read_balance":{"score_type":"Fair distribution","score_acting":1.3200000524520874,"score_stable":1.3200000524520874,"optimal_score":1,"raw_score_acting":1.3200000524520874,"raw_score_stable":1.3200000524520874,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":5,"pool_name":".rgw.root","create_time":"2025-04-14T22:39:45.484609+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_versi
+2025-04-15 04:38:00,424 - cephci - ceph:1186 - DEBUG - on":"0'0"},"last_change":"134","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"85","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":1.8700000047683716,"score_stable":1.8700000047683716,"optimal_score":1,"raw_score_acting":1.8700000047683716,"raw_score_stable":1.8700000047683716,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":6,"pool_name":"default.rgw.log","create_time":"2025-04-14T22:39:48.188823+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"441","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"87","auid":0,"snap_mode":"selfmanaged","snap_
+2025-04-15 04:38:00,424 - cephci - ceph:1186 - DEBUG - seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":1.8700000047683716,"score_stable":1.8700000047683716,"optimal_score":1,"raw_score_acting":1.8700000047683716,"raw_score_stable":1.8700000047683716,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":7,"pool_name":"default.rgw.control","create_time":"2025-04-14T22:39:50.388024+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"134","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"87","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none
+2025-04-15 04:38:00,425 - cephci - ceph:1186 - DEBUG - ","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":2.809999942779541,"score_stable":2.809999942779541,"optimal_score":1,"raw_score_acting":2.809999942779541,"raw_score_stable":2.809999942779541,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":8,"pool_name":"default.rgw.meta","create_time":"2025-04-14T22:39:53.084405+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"on","pg_num":32,"pg_placement_num":32,"pg_placement_num_target":32,"pg_num_target":32,"pg_num_pending":32,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"134","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"89","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_
+2025-04-15 04:38:00,425 - cephci - ceph:1186 - DEBUG - flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_read_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{"pg_autoscale_bias":4},"application_metadata":{"rgw":{}},"read_balance":{"score_type":"Fair distribution","score_acting":2.3399999141693115,"score_stable":2.3399999141693115,"optimal_score":1,"raw_score_acting":2.3399999141693115,"raw_score_stable":2.3399999141693115,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}},{"pool_id":16,"pool_name":"scrub_rp_pool","create_time":"2025-04-15T04:35:45.720683+0000","flags":1,"flags_names":"hashpspool","type":1,"size":3,"min_size":2,"crush_rule":0,"peering_crush_bucket_count":0,"peering_crush_bucket_target":0,"peering_crush_bucket_barrier":0,"peering_crush_bucket_mandatory_member":2147483647,"is_stretch_pool":false,"object_hash":2,"pg_autoscale_mode":"off","pg_num":1,"pg_placement_num":1,"pg_placement_num_target":1,"pg_num_target":1,"pg_num_pending":1,"last_pg_merge_meta":{"source_pgid":"0.0","ready_epoch":0,"last_epoch_started":0,"last_epoch_clean":0,"source_version":"0'0","target_version":"0'0"},"last_change":"1135","last_force_op_resend":"0","last_force_op_resend_prenautilus":"0","last_force_op_resend_preluminous":"0","auid":0,"snap_mode":"selfmanaged","snap_seq":0,"snap_epoch":0,"pool_snaps":[],"removed_snaps":"[]","quota_max_bytes":0,"quota_max_objects":0,"tiers":[],"tier_of":-1,"read_tier":-1,"write_tier":-1,"cache_mode":"none","target_max_bytes":0,"target_max_objects":0,"cache_target_dirty_ratio_micro":400000,"cache_target_dirty_high_ratio_micro":600000,"cache_target_full_ratio_micro":800000,"cache_min_flush_age":0,"cache_min_evict_age":0,"erasure_code_profile":"","hit_set_params":{"type":"none"},"hit_set_period":0,"hit_set_count":0,"use_gmt_hitset":true,"min_re
+2025-04-15 04:38:00,426 - cephci - ceph:1186 - DEBUG - ad_recency_for_promote":0,"min_write_recency_for_promote":0,"hit_set_grade_decay_rate":0,"hit_set_search_last_n":0,"grade_table":[],"stripe_width":0,"expected_num_objects":0,"fast_read":false,"options":{},"application_metadata":{"rados":{}},"read_balance":{"score_type":"Fair distribution","score_acting":15,"score_stable":15,"optimal_score":0.20000000298023224,"raw_score_acting":3,"raw_score_stable":3,"primary_affinity_weighted":1,"average_primary_affinity":1,"average_primary_affinity_weighted":1}}]
+2025-04-15 04:38:00,428 - cephci - ceph:1576 - INFO - Execute ceph osd pool delete scrub_rp_pool scrub_rp_pool --yes-i-really-really-mean-it on 10.0.195.201
+2025-04-15 04:38:01,433 - cephci - ceph:1606 - INFO - Execution of ceph osd pool delete scrub_rp_pool scrub_rp_pool --yes-i-really-really-mean-it on 10.0.195.201 took 1.003996 seconds
+2025-04-15 04:38:03,437 - cephci - ceph:1576 - INFO - Execute ceph df -f json on 10.0.195.201
+2025-04-15 04:38:04,442 - cephci - ceph:1606 - INFO - Execution of ceph df -f json on 10.0.195.201 took 1.004384 seconds
+2025-04-15 04:38:04,442 - cephci - core_workflows:1199 - INFO - Pool:scrub_rp_pool deleted Successfully
+2025-04-15 04:38:04,442 - cephci - utils:1858 - DEBUG - The <bound method RadosOrchestrator.delete_pool of <ceph.rados.core_workflows.RadosOrchestrator object at 0x7f9bfcbd7d30>> return status is True
+2025-04-15 04:38:14,452 - cephci - core_workflows:4558 - DEBUG - Printing cluster health and status
+2025-04-15 04:38:14,454 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph health detail on 10.0.195.177
+2025-04-15 04:38:16,016 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph health detail on 10.0.195.177 took 1.561633 seconds
+2025-04-15 04:38:16,018 - cephci - ceph:1186 - DEBUG - HEALTH_WARN 11 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+2025-04-15 04:38:16,019 - cephci - ceph:1186 - DEBUG - [WRN] BLUESTORE_SLOW_OP_ALERT: 11 OSD(s) experiencing slow operations in BlueStore
+2025-04-15 04:38:16,019 - cephci - ceph:1186 - DEBUG -      osd.0 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,019 - cephci - ceph:1186 - DEBUG -      osd.3 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,019 - cephci - ceph:1186 - DEBUG -      osd.4 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,019 - cephci - ceph:1186 - DEBUG -      osd.5 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -      osd.7 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -      osd.9 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -      osd.10 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -      osd.11 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -      osd.12 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -      osd.13 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -      osd.14 observed slow operation indications in BlueStore
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG - [WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+2025-04-15 04:38:16,020 - cephci - ceph:1186 - DEBUG -     daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in unknown state
+2025-04-15 04:38:16,020 - cephci - shell:64 - DEBUG - HEALTH_WARN 11 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+[WRN] BLUESTORE_SLOW_OP_ALERT: 11 OSD(s) experiencing slow operations in BlueStore
+     osd.0 observed slow operation indications in BlueStore
+     osd.3 observed slow operation indications in BlueStore
+     osd.4 observed slow operation indications in BlueStore
+     osd.5 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in unknown state
+
+2025-04-15 04:38:16,021 - cephci - core_workflows:4560 - INFO - 
+****
+ Cluster health detail: 
+ HEALTH_WARN 11 OSD(s) experiencing slow operations in BlueStore; 1 failed cephadm daemon(s)
+[WRN] BLUESTORE_SLOW_OP_ALERT: 11 OSD(s) experiencing slow operations in BlueStore
+     osd.0 observed slow operation indications in BlueStore
+     osd.3 observed slow operation indications in BlueStore
+     osd.4 observed slow operation indications in BlueStore
+     osd.5 observed slow operation indications in BlueStore
+     osd.7 observed slow operation indications in BlueStore
+     osd.9 observed slow operation indications in BlueStore
+     osd.10 observed slow operation indications in BlueStore
+     osd.11 observed slow operation indications in BlueStore
+     osd.12 observed slow operation indications in BlueStore
+     osd.13 observed slow operation indications in BlueStore
+     osd.14 observed slow operation indications in BlueStore
+[WRN] CEPHADM_FAILED_DAEMON: 1 failed cephadm daemon(s)
+    daemon node-exporter.ceph-regression-mfyctl-w265dr-node1-installer on ceph-regression-mfyctl-w265dr-node1-installer is in unknown state
+ 
+****
+2025-04-15 04:38:16,030 - cephci - ceph:1576 - INFO - Execute ceph -s on 10.0.195.201
+2025-04-15 04:38:17,035 - cephci - ceph:1606 - INFO - Execution of ceph -s on 10.0.195.201 took 1.004903 seconds
+2025-04-15 04:38:17,036 - cephci - core_workflows:4561 - INFO - 
+****
+ Cluster status: 
+   cluster:
+    id:     bfe6bdbc-197e-11f0-a0a3-fa163e4fa5cf
+    health: HEALTH_WARN
+            11 OSD(s) experiencing slow operations in BlueStore
+            1 failed cephadm daemon(s)
+ 
+  services:
+    mon: 3 daemons, quorum ceph-regression-mfyctl-w265dr-node1-installer,ceph-regression-mfyctl-w265dr-node6,ceph-regression-mfyctl-w265dr-node2 (age 6h)
+    mgr: ceph-regression-mfyctl-w265dr-node1-installer.xdzcdu(active, since 6h), standbys: ceph-regression-mfyctl-w265dr-node6.mrjkhg, ceph-regression-mfyctl-w265dr-node2.yzdorn
+    mds: 1/1 daemons up, 1 standby
+    osd: 15 osds: 15 up (since 4m), 15 in (since 4m)
+    rgw: 2 daemons active (2 hosts, 1 zones)
+ 
+  data:
+    volumes: 1/1 healthy
+    pools:   8 pools, 689 pgs
+    objects: 250 objects, 456 KiB
+    usage:   6.4 GiB used, 369 GiB / 375 GiB avail
+    pgs:     689 active+clean
+ 
+ 
+****
+2025-04-15 04:38:17,038 - cephci - ceph:1576 - INFO - Execute cephadm shell -- ceph crash ls-new -f json on 10.0.195.177
+2025-04-15 04:38:18,518 - cephci - ceph:1606 - INFO - Execution of cephadm shell -- ceph crash ls-new -f json on 10.0.195.177 took 1.479962 seconds
+2025-04-15 04:38:18,519 - cephci - ceph:1186 - DEBUG - 
+2025-04-15 04:38:18,519 - cephci - ceph:1186 - DEBUG - []
+2025-04-15 04:38:18,561 - cephci - ceph:1576 - INFO - Execute podman --version | awk {'print $3'} on 10.0.195.177
+2025-04-15 04:38:19,566 - cephci - ceph:1606 - INFO - Execution of podman --version | awk {'print $3'} on 10.0.195.177 took 1.004294 seconds
+2025-04-15 04:38:19,566 - cephci - run:1065 - INFO - Podman Version 5.2.2
+2025-04-15 04:38:19,568 - cephci - ceph:1576 - INFO - Execute docker --version | awk {'print $3'} on 10.0.195.177
+2025-04-15 04:38:20,572 - cephci - ceph:1606 - INFO - Execution of docker --version | awk {'print $3'} on 10.0.195.177 took 1.003619 seconds
+2025-04-15 04:38:20,573 - cephci - ceph:1576 - INFO - Execute ceph --version | awk '{print $3}' on 10.0.195.201
+2025-04-15 04:38:21,577 - cephci - ceph:1606 - INFO - Execution of ceph --version | awk '{print $3}' on 10.0.195.201 took 1.003099 seconds
+2025-04-15 04:38:21,578 - cephci - run:1081 - INFO - ceph Version 19.2.1-126.el9cp
+2025-04-15 04:38:21,579 - cephci - run:1040 - INFO - ceph_clusters_file rerun/regression-MFYctl-W265DR
+2025-04-15 04:38:21,579 - cephci - run:927 - INFO - Test <module 'test_scrub_parameters' from '/home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/cephci/tests/rados/test_scrub_parameters.py'> failed
+2025-04-15 04:38:21,579 - cephci - run:964 - INFO - 
+All test logs located here: /home/jenkins/ceph-builds/openstack/IBM/8.1/rhel-9/Regression/19.2.1-126/rados/99/logs/tier-2_rados_test_omap

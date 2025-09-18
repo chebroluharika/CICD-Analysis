@@ -1,0 +1,578 @@
+[
+  {
+    "timestamp": "2025-08-19T19:13:03.091056",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logd0bd6d",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091060",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log889422",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091062",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log7d0428",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091064",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "deploy_cluster_0log8d7103",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091066",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "deploy_cluster_using_cephadm_0log024c42",
+    "log_name": "deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091068",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "deploy_cluster_0log9e4c53",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091070",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "cluster_deployment_0log0ec241",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091072",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log1f4fb7",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091074",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "Cephadm_Bootstrap_with_custom_user_option_0log25bc16",
+    "log_name": "Cephadm_Bootstrap_with_custom_user_option_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091076",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logb3b168",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-19T19:13:03.091078",
+    "build_stamp": "2025-08-19T19:13:03.087Z",
+    "log_id": "Cephadm_Bootstrap_0logd92cd2",
+    "log_name": "Cephadm_Bootstrap_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733508",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logdd8a32",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": "Suggest brief description."
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733511",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "cluster_deployment_0loge33704",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733514",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "deploy_cluster_0log802a72",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733516",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logf0f2de",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733518",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log7c2c03",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": "ellaborate"
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733520",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "Cephadm_Bootstrap_0log1693c0",
+    "log_name": "Cephadm_Bootstrap_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733522",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logc2d2aa",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733524",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "deploy_cluster_0log4f542e",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733526",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log923922",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733528",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "Cephadm_Bootstrap_with_custom_user_option_0log4dca44",
+    "log_name": "Cephadm_Bootstrap_with_custom_user_option_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-20T11:47:13.733530",
+    "build_stamp": "2025-08-20T11:47:13.724Z",
+    "log_id": "deploy_cluster_using_cephadm_0logee4c56",
+    "log_name": "deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578685",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logd71ae8",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": "More analysis required"
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578692",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log8dd48b",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578695",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "Deploy_cluster_using_cephadm_0loge601c6",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578697",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "deploy_cluster_0logc135b6",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578699",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "deploy_cluster_using_cephadm_0log17c33a",
+    "log_name": "deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578701",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "Cephadm_Bootstrap_0log957b33",
+    "log_name": "Cephadm_Bootstrap_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578703",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "deploy_cluster_0log0c781c",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578706",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log667c50",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578707",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log02f947",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578710",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "cluster_deployment_0logc60d85",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-21T06:27:45.578712",
+    "build_stamp": "2025-08-21T06:27:45.559Z",
+    "log_id": "Cephadm_Bootstrap_with_custom_user_option_0log9954ec",
+    "log_name": "Cephadm_Bootstrap_with_custom_user_option_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402896",
+    "build_stamp": "2025-08-25T09:22:22.380Z",
+    "log_id": "Setup_prerequisites_0log441c6d",
+    "log_name": "Setup_pre-requisites_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402901",
+    "build_stamp": "2025-08-25T09:22:22.380Z",
+    "log_id": "Setup_prerequisites_0logddc2cc",
+    "log_name": "Setup_pre-requisites_0.log",
+    "vote": "dislike",
+    "comment": "please give some detailed ananlysis."
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402904",
+    "build_stamp": "2025-08-25T09:22:22.381Z",
+    "log_id": "Setup_prerequisites_0log268c2a",
+    "log_name": "Setup_pre-requisites_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402907",
+    "build_stamp": "2025-08-25T09:22:22.381Z",
+    "log_id": "configure_ceph_cluster_0log52a9ab",
+    "log_name": "configure_ceph_cluster_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402909",
+    "build_stamp": "2025-08-25T09:22:22.381Z",
+    "log_id": "Setup_prerequisites_0log5e8f30",
+    "log_name": "Setup_pre-requisites_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402911",
+    "build_stamp": "2025-08-25T09:22:22.381Z",
+    "log_id": "Deploy_cluster_with_callhome_module_enabled_0logb840f3",
+    "log_name": "Deploy_cluster_with_callhome_module_enabled_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402913",
+    "build_stamp": "2025-08-25T09:22:22.381Z",
+    "log_id": "Deploy_cluster_with_callhome_module_enabled_0logafba7c",
+    "log_name": "Deploy_cluster_with_callhome_module_enabled_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-08-25T09:22:22.402915",
+    "build_stamp": "2025-08-25T09:22:22.381Z",
+    "log_id": "Setup_prerequisites_0log4edf59",
+    "log_name": "Setup_pre-requisites_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764542",
+    "build_stamp": "2025-09-02T06:41:36.729Z",
+    "log_id": "Deploy_cluster_using_cephadm_0logf51dd9",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": "More accurate explanation"
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764552",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log0cfe8e",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764555",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "deploy_cluster_0log8866d4",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764558",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log989b69",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764560",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "Cephadm_Bootstrap_0log28838e",
+    "log_name": "Cephadm_Bootstrap_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764563",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "cluster_deployment_0log9c8c06",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764565",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "deploy_cluster_using_cephadm_0loge22e93",
+    "log_name": "deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764567",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log734543",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764569",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "Deploy_cluster_using_cephadm_0log1a5307",
+    "log_name": "Deploy_cluster_using_cephadm_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764571",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "Cephadm_Bootstrap_with_custom_user_option_0logeb6f96",
+    "log_name": "Cephadm_Bootstrap_with_custom_user_option_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T06:41:36.764574",
+    "build_stamp": "2025-09-02T06:41:36.732Z",
+    "log_id": "deploy_cluster_0log62a8c5",
+    "log_name": "deploy_cluster_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885152",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "cluster_deployment_0log498207",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "dislike",
+    "comment": "Accurate"
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885156",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "setup_install_prerequisistes_0log4ca87c",
+    "log_name": "setup_install_pre-requisistes_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885159",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "cluster_deployment_0logd6f188",
+    "log_name": "cluster_deployment_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885161",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "OSD_compaction_with_failures_0log1450b0",
+    "log_name": "OSD_compaction_with_failures_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885163",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "verify_mon_parameter_mon_pg_warn_max_object_skew_0log0ccbc8",
+    "log_name": "verify_mon_parameter_'mon_pg_warn_max_object_skew'_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885166",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Test_Reads_Balancer_0log6431a4",
+    "log_name": "Test_Reads_Balancer_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885168",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Test_Reads_Balancer_1logd664ea",
+    "log_name": "Test_Reads_Balancer_1.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885170",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "OMAP_feature_0log7c63b7",
+    "log_name": "OMAP_feature_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885172",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Verification_of_dump_scrub_parameters_0log8c6d37",
+    "log_name": "Verification_of_dump_scrub_parameters_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885174",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "concurrent_and_parallel_IOPS_on_an_object_0log2c2bd3",
+    "log_name": "concurrent_and_parallel_IOPS_on_an_object_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885176",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "setup_install_prerequisistes_0logfaf2c9",
+    "log_name": "setup_install_pre-requisistes_0.log",
+    "vote": "like",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885178",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Inconsistent_objects_in_EC_pool_functionality_check_0log9f73ac",
+    "log_name": "Inconsistent_objects_in_EC_pool_functionality_check_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885180",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Inconsistent_objects_in_replicated_pool_functionality_check_0logf40fa4",
+    "log_name": "Inconsistent_objects_in_replicated_pool_functionality_check_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885182",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Mon_connection_scores_testing_0log8782e3",
+    "log_name": "Mon_connection_scores_testing_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885184",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Verify_read_crc_error_message_0logb71a58",
+    "log_name": "Verify_read_crc_error_message_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885186",
+    "build_stamp": "2025-09-02T10:52:30.871Z",
+    "log_id": "Install_ceph_prerequisites_0logaa9b7c",
+    "log_name": "Install_ceph_pre-requisites_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885188",
+    "build_stamp": "2025-09-02T10:52:30.872Z",
+    "log_id": "Ceph_bluestore_min_alloc_size_tests_1log336293",
+    "log_name": "Ceph_bluestore_min_alloc_size_tests_1.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885190",
+    "build_stamp": "2025-09-02T10:52:30.872Z",
+    "log_id": "setup_install_prerequisistes_0logd64516",
+    "log_name": "setup_install_pre-requisistes_0.log",
+    "vote": "skip",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885192",
+    "build_stamp": "2025-09-02T10:52:30.872Z",
+    "log_id": "Automatic_trimming_of_Mon_DB_0log64b2f6",
+    "log_name": "Automatic_trimming_of_Mon_DB_0.log",
+    "vote": "dislike",
+    "comment": ""
+  },
+  {
+    "timestamp": "2025-09-02T10:52:30.885194",
+    "build_stamp": "2025-09-02T10:52:30.872Z",
+    "log_id": "Cephadm_Bootstrap_with_applyspec_0logc22bc7",
+    "log_name": "Cephadm_Bootstrap_with_apply-spec_0.log",
+    "vote": "like",
+    "comment": ""
+  }
+]
