@@ -31,3 +31,5 @@ rag-ui/logs
 rag-ui/*.log
 rag-ui/dist
 rag-ui/.DS_Store
+
+__pycache__

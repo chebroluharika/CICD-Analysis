@@ -42,6 +42,8 @@ os.makedirs(LOG_DOWNLOAD_DIR, exist_ok=True)
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
 MONGO_DB_NAME = "log_analysis_feedback"
 MONGO_COLLECTION_NAME = "feedback"
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
+print("ollama host: ", OLLAMA_HOST)
 
 # --- Local Feedback File Configuration ---
 FEEDBACK_FILE = "feedback.csv"
@@ -164,11 +166,11 @@ def analyze_with_ai(log_path, model, log_url):
             with open(temp_log_path, 'w') as temp_f:
                 temp_f.write(log_content)
 
-            Settings.llm = Ollama(model=model, temperature=0.1, request_timeout=120)
+            Settings.llm = Ollama(base_url=OLLAMA_HOST, model=model, temperature=0.1, request_timeout=600)
             Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
-            Settings.node_parser = SentenceSplitter(chunk_size=1024, chunk_overlap=100, include_metadata=False)
+            Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=100, include_metadata=False)
             documents = SimpleDirectoryReader(input_files=[temp_log_path], file_metadata=lambda _: {"skip_embedding": True}).load_data()
-            index = VectorStoreIndex.from_documents(documents, show_progress=False)
+            index = VectorStoreIndex.from_documents(documents, show_progress=True)
             query_engine = index.as_query_engine(similarity_top_k=3, response_mode="compact", streaming=False)
 
             QUERY_PROMPT = (
@@ -208,6 +210,8 @@ def analyze_with_ai(log_path, model, log_url):
         }
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return {
             "name": os.path.basename(log_path),
             "raw": f"RAG analysis failed: {str(e)}",
@@ -524,10 +528,9 @@ def run_analysis(data: AnalysisRequest, report_id: str):
             progress_data[report_id]["status"] += "\n⚠️ No failed logs to analyze."
             return
 
-        analyzed_logs = []
-
         def analyze_one(idx, log_url):
             log_name = log_url.split("/")[-1]
+            print(f"Analyzing {idx} of {len(failed_logs)}: {log_name}")
             save_path = os.path.join(LOG_DOWNLOAD_DIR, log_name)
             progress_data[report_id]["status"] = f"⬇️ Checking {idx+1}/{len(failed_logs)}: {log_name}"
             if not download_log_file(log_url, save_path):
@@ -535,12 +538,11 @@ def run_analysis(data: AnalysisRequest, report_id: str):
             progress_data[report_id]["status"] = f"🧠 Analyzing {idx+1}/{len(failed_logs)}: {log_name}"
             return analyze_with_ai(save_path, model="llama2", log_url=log_url)
 
-        with ThreadPoolExecutor(max_workers=3) as executor:
-            futures = [executor.submit(analyze_one, idx, log_url) for idx, log_url in enumerate(failed_logs)]
-            for future in futures:
-                result = future.result()
-                if result:
-                    analyzed_logs.append(result)
+        analyzed_logs = []
+        for idx, log_url in enumerate(failed_logs):
+            result = analyze_one(idx, log_url)
+            if result:
+                analyzed_logs.append(result)
 
         report_path = os.path.join(REPORT_DIR, f"{report_id}.html")
         generate_html_report(analyzed_logs, output_file=report_path)
