@@ -515,11 +515,12 @@ def start_analysis(data: AnalysisRequest, background_tasks: BackgroundTasks):
     return {"report_id": report_id}
 
 def run_analysis(data: AnalysisRequest, report_id: str):
+    import pdb; pdb.set_trace()
+    # progress_data[report_id]["status"] = "🔍 Scanning for logs..."
     try:
         base_path = "http://magna002.ceph.redhat.com/cephci-jenkins/results/openstack/IBM/8.1/rhel-9.6/Test/19.2.1-245.1.hotfix.bz2375001/870/tier-2_rgw_regression_extended/Test_non_current_deletion_via_s3cmd_0.err"
         urllib.request.urlopen(base_path)
 
-        progress_data[report_id]["status"] = "🔍 Scanning for logs..."
         all_logs, failed_logs = collect_logs_with_failed_check(base_path, max_depth=2)
 
         progress_data[report_id]["total_logs"] = len(all_logs)
