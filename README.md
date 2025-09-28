@@ -20,7 +20,7 @@ It includes a **FastAPI backend** that scrapes Jenkins log data, runs an **LLM-b
 
 - **Python**: 3.8+  
 - **Node.js & npm**: For the frontend  
-- **Ollama**: Must be running with the specified LLM model (`llama2`)  
+- **Ollama**: Must be running with the specified LLM model (`gemma3:1b`)  
 - **MongoDB**: A running MongoDB instance (local or remote) accessible via a connection URI  
 
 ---
@@ -55,10 +55,10 @@ It includes a **FastAPI backend** that scrapes Jenkins log data, runs an **LLM-b
    MONGO_URI="mongodb+srv://<user>:<password>@<cluster-url>/<db-name>?retryWrites=true&w=majority"
    ```
 
-5. Start Ollama (ensure `llama2` is pulled):
+5. Start Ollama (ensure `gemma3:1b` is pulled):
 
    ```bash
-   ollama run llama2
+   ollama run gemma3:1b
    ```
 
 6. Run the Backend Server:

@@ -1,33 +1,35 @@
-import os
-import uuid
-import datetime
-import tempfile
-import re
-import urllib.request
-import json
-import csv
-import html
-import requests
 import asyncio
-from fastapi import FastAPI, Query, BackgroundTasks, Request, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse, HTMLResponse
-from pydantic import BaseModel
-from bs4 import BeautifulSoup
-from urllib.error import URLError
-from concurrent.futures import ThreadPoolExecutor
+import csv
+import datetime
+import html
+import json
+import os
+import re
+import tempfile
+import urllib.request
+import uuid
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import List
+from urllib.error import URLError
+
+import requests
+from bs4 import BeautifulSoup
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Query, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+
+# --- LlamaIndex RAG imports ---
+from llama_index.core import Settings, SimpleDirectoryReader, VectorStoreIndex
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.llms.ollama import Ollama
 
 # --- MongoDB Imports ---
 from motor.motor_asyncio import AsyncIOMotorClient
-
-# --- LlamaIndex RAG imports ---
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
-from llama_index.core.node_parser import SentenceSplitter
-from llama_index.llms.ollama import Ollama
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from pydantic import BaseModel
+from utils import extract_error_blocks
 
 # ========== CONFIG ==========
 
@@ -162,10 +164,16 @@ def analyze_with_ai(log_path, model, log_url):
             lines = f.readlines()[-10000:]
             log_content = ''.join(lines)
 
+        error_blocks = extract_error_blocks(log_path)
+        error_content = '\n\n'.join(error_blocks).strip()
+
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_log_path = os.path.join(temp_dir, "temp_log.log")
             with open(temp_log_path, 'w') as temp_f:
-                temp_f.write(log_content)
+                if error_content:
+                    temp_f.write(error_content)
+                else:
+                    temp_f.write(log_content)
 
             Settings.llm = Ollama(base_url=OLLAMA_HOST, model=model, temperature=0.1, request_timeout=600)
             Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
@@ -175,9 +183,14 @@ def analyze_with_ai(log_path, model, log_url):
             query_engine = index.as_query_engine(similarity_top_k=3, response_mode="compact", streaming=False)
 
             QUERY_PROMPT = (
-                "Analyze this log file to identify the root cause of failures. "
-                "Provide concise analysis in EXACTLY this format:\n"
-                "Reason: <root cause>\n"
+                "You are given a log file. Carefully inspect the log for error messages and their associated tracebacks. "
+                "Identify the most relevant error and its full traceback that indicate the root cause of the failure. "
+                "Do not generalize or say there are no details if errors exist—quote the most informative error message and the entire associated traceback verbatim from the log. "
+                "If multiple errors are present, select the one most likely to be the root cause. "
+                "Note: Sometimes the error message field may be 'None' or not informative, but the actual error or traceback appears elsewhere in the log. "
+                "You must look beyond just the error message field and focus on any error or traceback details that indicate a problem, even if the error message is 'None'. "
+                "Provide your analysis in EXACTLY this format:\n"
+                "Reason: <quote BOTH the relevant error message AND the FULL traceback verbatim from the log>\n"
                 "Fix: <suggested solution>\n"
                 "Steps: <immediate next steps>"
             )
@@ -207,7 +220,8 @@ def analyze_with_ai(log_path, model, log_url):
             "steps": steps,
             "log_url": log_url,
             "model": model,
-            "rag_context": {"query": QUERY_PROMPT, "chunks": context_chunks, "model": model}
+            "rag_context": {"query": QUERY_PROMPT, "chunks": context_chunks, "model": model},
+            "error_blocks": error_blocks
         }
 
     except Exception as e:
@@ -221,8 +235,10 @@ def analyze_with_ai(log_path, model, log_url):
             "steps": "Verify Ollama service and network connection",
             "log_url": log_url,
             "model": model,
-            "rag_context": None
+            "rag_context": None,
+            "error_blocks": []
         }
+
 
 # ========== HTML REPORT ==========
 
@@ -538,7 +554,7 @@ def run_analysis(data: AnalysisRequest, report_id: str):
             if not download_log_file(log_url, save_path):
                 return None
             progress_data[report_id]["status"] = f"🧠 Analyzing {idx+1}/{len(failed_logs)}: {log_name}"
-            return analyze_with_ai(save_path, model="llama2", log_url=log_url)
+            return analyze_with_ai(save_path, model="gemma3:1b", log_url=log_url)
 
         analyzed_logs = []
         for idx, log_url in enumerate(failed_logs):
