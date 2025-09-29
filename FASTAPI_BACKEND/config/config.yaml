@@ -1,3 +1,3 @@
-model: llama2
+model: gemma3:1b
 log:
   download_dir: "/Users/pentakotadivyagowri/Downloads/fastapi_backend/download_failed_logs"  # not used directly, replaced with selected log file from browser
